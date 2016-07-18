@@ -19,25 +19,51 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="dailyPlan/listKeyword.do" modelAttribute="dailyPlan">
-
-<input type="text" name="keyword">
-&nbsp;
-<input type="submit" name="search" value="<spring:message code="dailyPlan.search" />" />
-<br></br>
-</form:form>
-
-
 <display:table name="dailyPlans" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
-	<acme:column code="dailyPlan.weekDay" property="weekDay" sortable="true"/>
+	<spring:message code="dailyPlan.weekDay" var="weekDayHeader" />
+	<display:column title="${weekDayHeader}">
+		<jstl:choose>
+    		<jstl:when test="${row.weekDay==1}">
+    			<spring:message code="dailyPlan.weekDay.monday" var="weekDay" /><jstl:out value="${weekDay}"/>
+    		</jstl:when>
+    		<jstl:when test="${row.weekDay==2}">
+    			<spring:message code="dailyPlan.weekDay.tuesday" var="weekDay" /><jstl:out value="${weekDay}"/>
+    		</jstl:when>
+    		<jstl:when test="${row.weekDay==3}">
+    			<spring:message code="dailyPlan.weekDay.wednesday" var="weekDay" /><jstl:out value="${weekDay}"/>
+    		</jstl:when>
+    		<jstl:when test="${row.weekDay==4}">
+    			<spring:message code="dailyPlan.weekDay.thursday" var="weekDay" /><jstl:out value="${weekDay}"/>
+    		</jstl:when>
+    		<jstl:when test="${row.weekDay==5}">
+    			<spring:message code="dailyPlan.weekDay.friday" var="weekDay" /><jstl:out value="${weekDay}"/>
+    		</jstl:when>
+    		<jstl:when test="${row.weekDay==6}">
+    			<spring:message code="dailyPlan.weekDay.saturday" var="weekDay" /><jstl:out value="${weekDay}"/>
+    		</jstl:when>
+    		<jstl:when test="${row.weekDay==7}">
+    			<spring:message code="dailyPlan.weekDay.sunday" var="weekDay" /><jstl:out value="${weekDay}"/>
+    		</jstl:when>
+    	</jstl:choose>
+	</display:column>
 	
 	<acme:column code="dailyPlan.title" property="title" sortable="true"/>
 	
 	<acme:column code="dailyPlan.description" property="description"/>
 	
-	<acme:column code="dailyPlan.photos" property="photos"/>		
+	<acme:pictureColumn items="${row.photos}" code="dailyPlan.photos" alt="${row.title}"/>
+	
+	<acme:refColumn ref="slot/list.do?dailyPlanId=${row.id}" code="dailyPlan.slots"/>	
+	
+	<security:authorize access="hasRole('USER')">
+	<acme:refColumn ref="dailyPlan/user/edit.do?dailyPlanId=${row.id}&tripId=${param['tripId']}" code="dailyPlan.edit"/>
+	</security:authorize>
+	
+	<security:authorize access="hasRole('USER')">
+	<acme:refColumn ref="slot/user/create.do?dailyPlanId=${row.id}" code="dailyPlan.addSlot"/>
+	</security:authorize>	
 					
 </display:table>
-<acme:cancel url="/" code="dailyPlan.back"/>
+<acme:cancel url="/trip/list.do" code="dailyPlan.back"/>

@@ -19,27 +19,24 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="slot/listKeyword.do" modelAttribute="slot">
-
-<input type="text" name="keyword">
-&nbsp;
-<input type="submit" name="search" value="<spring:message code="slot.search" />" />
-<br></br>
-</form:form>
-
-
 <display:table name="slots" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
 	<acme:column code="slot.title" property="title" sortable="true"/>
 	
-	<acme:column code="slot.description" property="description"/>		
+	<acme:column code="slot.description" property="description"/>
+	
+	<acme:column code="slot.activity" property="activity.title"/>		
 	
 	<acme:pictureColumn items="${row.photos}" code="slot.photos" alt="${row.title}"/>
 	
 	<acme:column code="slot.startTime" property="startTime" sortable="true"/>
 	
 	<acme:column code="slot.endTime" property="endTime" sortable="true"/>
+	
+	<security:authorize access="hasRole('USER')">
+	<acme:refColumn ref="slot/user/edit.do?slotId=${row.id}&dailyPlanId=${param['dailyPlanId']}" code="dailyPlan.edit"/>
+	</security:authorize>
 				
 </display:table>
 <acme:cancel url="/" code="slot.back"/>

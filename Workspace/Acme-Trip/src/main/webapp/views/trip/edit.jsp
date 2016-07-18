@@ -11,6 +11,8 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	<form:hidden path="owner"/>
+	<form:hidden path="dailyPlans"/>
+	<form:hidden path="tripComments"/>
 	
 	<acme:textbox code="trip.title" path="title"/><br/>
 	

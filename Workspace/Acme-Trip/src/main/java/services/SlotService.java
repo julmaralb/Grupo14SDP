@@ -16,60 +16,65 @@ import domain.Slot;
 public class SlotService {
 	// Managed repository -----------------------------------------------------
 
-			@Autowired
-			private SlotRepository slotRepository;
+	@Autowired
+	private SlotRepository slotRepository;
 
-			// Supporting services ----------------------------------------------------
+	// Supporting services ----------------------------------------------------
 
-			// Constructors -----------------------------------------------------------
+	// Constructors -----------------------------------------------------------
 
-			public SlotService() {
-				super();
-			}
+	public SlotService() {
+		super();
+	}
 
-			// Simple CRUD methods ----------------------------------------------------
+	// Simple CRUD methods ----------------------------------------------------
 
-			public Slot create() {
-				Slot result;
+	public Slot create() {
+		Slot result;
 
-				result = new Slot();
+		result = new Slot();
 
-				return result;
-			}
+		return result;
+	}
 
-			public Slot findOne(int slotId) {
-				Assert.notNull(slotId);
+	public Slot findOne(int slotId) {
+		Assert.notNull(slotId);
 
-				Slot result;
+		Slot result;
 
-				result = slotRepository.findOne(slotId);
+		result = slotRepository.findOne(slotId);
 
-				return result;
-			}
+		return result;
+	}
 
-			public Collection<Slot> findAll() {
+	public Collection<Slot> findAll() {
 
-				Collection<Slot> result;
+		Collection<Slot> result;
 
-				result = slotRepository.findAll();
+		result = slotRepository.findAll();
 
-				return result;
-			}
+		return result;
+	}
 
-			public void save(Slot slot) {
-				Assert.notNull(slot);
+	public void save(Slot slot) {
+		Assert.notNull(slot);
 
-				slotRepository.save(slot);
-			}
+		slotRepository.save(slot);
+	}
 
-			public void delete(Slot slot) {
-				Assert.notNull(slot);
+	public void delete(Slot slot) {
+		Assert.notNull(slot);
 
-				slotRepository.delete(slot);
-			}
+		slotRepository.delete(slot);
+	}
 
-			// Other business methods -------------------------------------------------
+	// Other business methods -------------------------------------------------
 
-		
+	public Collection<Slot> findAllByDailyPlanId(int dailyPlanId) {
+		Collection<Slot> result;
 
+		result = slotRepository.findAllByDailyPlanId(dailyPlanId);
+
+		return result;
+	}
 }

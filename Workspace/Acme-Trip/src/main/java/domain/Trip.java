@@ -129,7 +129,7 @@ public class Trip extends DomainEntity {
 	}
 
 	@Valid
-	@OneToMany(mappedBy = "trip")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "trip")
 	public Collection<TripComment> getTripComments() {
 		return tripComments;
 	}

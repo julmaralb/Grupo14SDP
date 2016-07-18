@@ -1,7 +1,5 @@
 package controllers.user;
 
-import java.util.Collection;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.DailyPlanService;
 import services.TripService;
 import services.UserService;
 import controllers.AbstractController;
@@ -21,8 +20,8 @@ import domain.Trip;
 import domain.User;
 
 @Controller
-@RequestMapping("/trip/user")
-public class TripUserController extends AbstractController {
+@RequestMapping("/dailyPlan/user")
+public class DailyPlanUserController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
 
@@ -30,39 +29,32 @@ public class TripUserController extends AbstractController {
 	private TripService tripService;
 
 	@Autowired
+	private DailyPlanService dailyPlanService;
+
+	@Autowired
 	private UserService userService;
 
 	// Constructors -----------------------------------------------------------
 
-	public TripUserController() {
+	public DailyPlanUserController() {
 		super();
 	}
 
 	// Listing ----------------------------------------------------------------
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
-		ModelAndView result;
-		Collection<Trip> trips;
-
-		trips = tripService.findByPrincipal();
-
-		result = new ModelAndView("trip/list");
-		result.addObject("requestURI", "trip/user/list.do");
-		result.addObject("trips", trips);
-
-		return result;
-	}
-
 	// Creation ---------------------------------------------------------------
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create() {
+	public ModelAndView create(@RequestParam int tripId) {
 		ModelAndView result;
+		DailyPlan dailyPlan;
 		Trip trip;
 
-		trip = tripService.create();
-		result = createEditModelAndView(trip);
+		dailyPlan = dailyPlanService.create();
+		trip = tripService.findOne(tripId);
+		dailyPlan.setTrip(trip);
+		result = createEditModelAndView(dailyPlan);
+		result.addObject("tripId", tripId);
 
 		return result;
 	}
@@ -70,83 +62,74 @@ public class TripUserController extends AbstractController {
 	// Edition ----------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam int tripId) {
+	public ModelAndView edit(@RequestParam int dailyPlanId, int tripId) {
 
 		ModelAndView result;
-		Trip trip;
+		DailyPlan dailyPlan;
 		User pricipal;
 
 		pricipal = userService.findByPrincipal();
-		trip = tripService.findOne(tripId);
-		Assert.isTrue(trip.getOwner().equals(pricipal));
-		Assert.notNull(trip);
-		result = createEditModelAndView(trip);
+		dailyPlan = dailyPlanService.findOne(dailyPlanId);
+		Assert.isTrue(dailyPlan.getTrip().getOwner().equals(pricipal));
+		Assert.notNull(dailyPlan);
+		result = createEditModelAndView(dailyPlan);
+		result.addObject("tripId", tripId);
 
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid Trip trip, BindingResult binding) {
+	public ModelAndView save(@Valid DailyPlan dailyPlan, int tripId,
+			BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(trip);
+			result = createEditModelAndView(dailyPlan);
 		} else {
 			try {
-				tripService.save(trip);
-				result = new ModelAndView("redirect:/trip/user/list.do");
+				Trip trip;
+				trip = tripService.findOne(tripId);
+				dailyPlan.setTrip(trip);
+				dailyPlanService.save(dailyPlan);
+				result = new ModelAndView("redirect:/dailyPlan/list.do?tripId="
+						+ tripId);
 			} catch (Throwable oops) {
-				result = createEditModelAndView(trip, "trip.commit.error");
+				result = createEditModelAndView(dailyPlan,
+						"dailyPlan.commit.error");
 			}
 		}
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(@Valid Trip trip, BindingResult binding) {
+	public ModelAndView delete(@Valid DailyPlan dailyPlan, BindingResult binding) {
 		ModelAndView result;
 
 		try {
-			tripService.delete(trip);
-			result = new ModelAndView("redirect:/trip/user/list.do");
+			dailyPlanService.delete(dailyPlan);
+			result = new ModelAndView("redirect:/");
 		} catch (Throwable oops) {
-			result = createEditModelAndView(trip, "trip.commit.error");
+			result = createEditModelAndView(dailyPlan, "dailyPlan.commit.error");
 		}
-		return result;
-	}
-	
-	// Others -----------------------------------------------------------------
-	
-	@RequestMapping(value = "/copyTrip", method = RequestMethod.GET)
-	public ModelAndView copyTrip(@RequestParam int tripId) {
-		ModelAndView result;
-
-		Trip trip;
-		
-		trip = tripService.findOne(tripId);
-		
-		tripService.copyTrip(trip);
-
-		result = new ModelAndView("redirect:/trip/user/list.do");
-
 		return result;
 	}
 
 	// Ancillary methods ------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(Trip trip) {
+	protected ModelAndView createEditModelAndView(DailyPlan dailyPlan) {
 		ModelAndView result;
 
-		result = createEditModelAndView(trip, null);
+		result = createEditModelAndView(dailyPlan, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(Trip trip, String message) {
+	protected ModelAndView createEditModelAndView(DailyPlan dailyPlan,
+			String message) {
 		ModelAndView result;
 
-		result = new ModelAndView("trip/edit");
-		result.addObject("trip", trip);
+		result = new ModelAndView("dailyPlan/edit");
+		result.addObject("dailyPlan", dailyPlan);
 		result.addObject("message", message);
 
 		return result;

@@ -10,6 +10,7 @@ import org.springframework.util.Assert;
 
 import repositories.ActivityRepository;
 import domain.Activity;
+import domain.User;
 
 @Service
 @Transactional
@@ -21,6 +22,9 @@ public class ActivityService {
 	private ActivityRepository activityRepository;
 
 	// Supporting services ----------------------------------------------------
+
+	@Autowired
+	private UserService userService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -70,4 +74,14 @@ public class ActivityService {
 	}
 
 	// Other business methods -------------------------------------------------
+
+	public Collection<Activity> findAllByPrincipal() {
+		Collection<Activity> result;
+		User principal;
+
+		principal = userService.findByPrincipal();
+		result = activityRepository.findAllByUserId(principal.getId());
+
+		return result;
+	}
 }

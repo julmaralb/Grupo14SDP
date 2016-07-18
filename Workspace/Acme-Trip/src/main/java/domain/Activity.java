@@ -9,7 +9,6 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -73,19 +72,19 @@ public class Activity extends DomainEntity {
 
 	// Relationships ----------------------------------------------------------
 
-	private Slot slot;
+	private Collection<Slot> slots;
 	private User user;
 	private ActivityType activityType;
 	private Collection<ActivityComment> activityComments;
 
 	@Valid
-	@OneToOne(optional = true)
-	public Slot getSlot() {
-		return slot;
+	@OneToMany(mappedBy = "activity")
+	public Collection<Slot> getSlots() {
+		return slots;
 	}
 
-	public void setSlot(Slot slot) {
-		this.slot = slot;
+	public void setSlots(Collection<Slot> slots) {
+		this.slots = slots;
 	}
 
 	@Valid

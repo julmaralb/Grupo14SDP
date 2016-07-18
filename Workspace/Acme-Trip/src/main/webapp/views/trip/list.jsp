@@ -41,6 +41,14 @@
 	
 	<acme:pictureColumn items="${row.photos}" code="trip.photos" alt="${row.title}"/>
 	
+	<acme:refColumn ref="dailyPlan/list.do?tripId=${row.id}" code="trip.dailyPlans"/>
+	
+	<acme:refColumn ref="trip/user/copyTrip.do?tripId=${row.id}" code="trip.copyTrip"/>
+	
+	<security:authorize access="hasRole('USER')">
+	<acme:refColumn ref="trip/user/edit.do?tripId=${row.id}" code="trip.edit"/>
+	</security:authorize>
+	
 	<security:authorize access="hasRole('USER')">
 	<acme:refColumn ref="dailyPlan/user/create.do?tripId=${row.id}" code="trip.addDailyPlan"/>
 	</security:authorize>

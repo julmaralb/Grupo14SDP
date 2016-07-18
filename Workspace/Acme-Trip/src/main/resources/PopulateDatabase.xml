@@ -697,7 +697,7 @@
 		</property>
 	</bean>
 	
-		<!-- Slots -->
+	<!-- Slots -->
 	
 	<bean id="slot1" class="domain.Slot">
 		<property name="title" value="slot1Title" />
@@ -881,7 +881,7 @@
 		<property name="activity" ref="activity13" />
 	</bean>
 	
-			<!-- Activities -->
+	<!-- Activities -->
 	
 	<bean id="activity1" class="domain.Activity">
 		<property name="title" value="activity1Title" />
@@ -893,7 +893,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot1" />
+		<property name="slots">
+			<list>
+				<ref bean="slot1" />
+			</list>
+		</property>
 		<property name="user" ref="user1" />
 		<property name="activityType" ref="activityType1" />
 	</bean>
@@ -908,7 +912,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot2" />
+		<property name="slots">
+			<list>
+				<ref bean="slot2" />
+			</list>
+		</property>
 		<property name="user" ref="user1" />
 		<property name="activityType" ref="activityType2" />
 	</bean>
@@ -923,7 +931,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot3" />
+		<property name="slots">
+			<list>
+				<ref bean="slot3" />
+			</list>
+		</property>
 		<property name="user" ref="user1" />
 		<property name="activityType" ref="activityType3" />
 	</bean>
@@ -938,7 +950,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot4" />
+		<property name="slots">
+			<list>
+				<ref bean="slot4" />
+			</list>
+		</property>
 		<property name="user" ref="user1" />
 		<property name="activityType" ref="activityType4" />
 	</bean>
@@ -953,7 +969,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot5" />
+		<property name="slots">
+			<list>
+				<ref bean="slot5" />
+			</list>
+		</property>
 		<property name="user" ref="user2" />
 		<property name="activityType" ref="activityType1" />
 	</bean>
@@ -968,7 +988,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot6" />
+		<property name="slots">
+			<list>
+				<ref bean="slot6" />
+			</list>
+		</property>
 		<property name="user" ref="user2" />
 		<property name="activityType" ref="activityType2" />
 	</bean>
@@ -983,7 +1007,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot7" />
+		<property name="slots">
+			<list>
+				<ref bean="slot7" />
+			</list>
+		</property>
 		<property name="user" ref="user2" />
 		<property name="activityType" ref="activityType3" />
 	</bean>
@@ -998,7 +1026,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot8" />
+		<property name="slots">
+			<list>
+				<ref bean="slot8" />
+			</list>
+		</property>
 		<property name="user" ref="user2" />
 		<property name="activityType" ref="activityType1" />
 	</bean>
@@ -1013,7 +1045,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot9" />
+		<property name="slots">
+			<list>
+				<ref bean="slot9" />
+			</list>
+		</property>
 		<property name="user" ref="user2" />
 		<property name="activityType" ref="activityType2" />
 	</bean>
@@ -1028,7 +1064,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot10" />
+		<property name="slots">
+			<list>
+				<ref bean="slot10" />
+			</list>
+		</property>
 		<property name="user" ref="user2" />
 		<property name="activityType" ref="activityType4" />
 	</bean>
@@ -1043,7 +1083,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot11" />
+		<property name="slots">
+			<list>
+				<ref bean="slot11" />
+			</list>
+		</property>
 		<property name="user" ref="user3" />
 		<property name="activityType" ref="activityType4" />
 	</bean>
@@ -1058,7 +1102,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot12" />
+		<property name="slots">
+			<list>
+				<ref bean="slot12" />
+			</list>
+		</property>
 		<property name="user" ref="user3" />
 		<property name="activityType" ref="activityType3" />
 	</bean>
@@ -1073,7 +1121,11 @@
 			</list>
 		</property>
 		<property name="inappropriate" value="false" />
-		<property name="slot" ref="slot13" />
+		<property name="slots">
+			<list>
+				<ref bean="slot13" />
+			</list>
+		</property>
 		<property name="user" ref="user3" />
 		<property name="activityType" ref="activityType1" />
 	</bean>

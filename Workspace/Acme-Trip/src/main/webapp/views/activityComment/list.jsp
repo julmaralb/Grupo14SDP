@@ -19,15 +19,6 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="activityComment/listKeyword.do" modelAttribute="activityComment">
-
-<input type="text" name="keyword">
-&nbsp;
-<input type="submit" name="search" value="<spring:message code="activityComment.search" />" />
-<br></br>
-</form:form>
-
-
 <display:table name="activityComments" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 

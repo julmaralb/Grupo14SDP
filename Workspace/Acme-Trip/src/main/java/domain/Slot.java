@@ -10,7 +10,6 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -107,7 +106,8 @@ public class Slot extends DomainEntity {
 
 	@Valid
 	@NotNull
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "slot", optional = false)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH },optional = false)
 	public Activity getActivity() {
 		return activity;
 	}

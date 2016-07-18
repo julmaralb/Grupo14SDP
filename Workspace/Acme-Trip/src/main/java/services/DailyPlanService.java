@@ -1,6 +1,9 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+
+import javassist.expr.NewArray;
 
 import javax.transaction.Transactional;
 
@@ -10,68 +13,79 @@ import org.springframework.util.Assert;
 
 import repositories.DailyPlanRepository;
 import domain.DailyPlan;
+import domain.Slot;
 
 @Service
 @Transactional
 public class DailyPlanService {
-	
+
 	// Managed repository -----------------------------------------------------
 
-			@Autowired
-			private DailyPlanRepository dailyPlanRepository;
+	@Autowired
+	private DailyPlanRepository dailyPlanRepository;
 
-			// Supporting services ----------------------------------------------------
+	// Supporting services ----------------------------------------------------
 
-			// Constructors -----------------------------------------------------------
+	@Autowired
+	private UserService userService;
 
-			public DailyPlanService() {
-				super();
-			}
+	// Constructors -----------------------------------------------------------
 
-			// Simple CRUD methods ----------------------------------------------------
+	public DailyPlanService() {
+		super();
+	}
 
-			public DailyPlan create() {
-				DailyPlan result;
+	// Simple CRUD methods ----------------------------------------------------
 
-				result = new DailyPlan();
+	public DailyPlan create() {
+		DailyPlan result;
+		Collection<Slot> slots;
 
-				return result;
-			}
+		result = new DailyPlan();
+		slots = new ArrayList<Slot>();
+		result.setSlots(slots);
 
-			public DailyPlan findOne(int dailyPlanId) {
-				Assert.notNull(dailyPlanId);
+		return result;
+	}
 
-				DailyPlan result;
+	public DailyPlan findOne(int dailyPlanId) {
+		Assert.notNull(dailyPlanId);
 
-				result = dailyPlanRepository.findOne(dailyPlanId);
+		DailyPlan result;
 
-				return result;
-			}
+		result = dailyPlanRepository.findOne(dailyPlanId);
 
-			public Collection<DailyPlan> findAll() {
+		return result;
+	}
 
-				Collection<DailyPlan> result;
+	public Collection<DailyPlan> findAll() {
 
-				result = dailyPlanRepository.findAll();
+		Collection<DailyPlan> result;
 
-				return result;
-			}
+		result = dailyPlanRepository.findAll();
 
-			public void save(DailyPlan dailyPlan) {
-				Assert.notNull(dailyPlan);
+		return result;
+	}
 
-				dailyPlanRepository.save(dailyPlan);
-			}
+	public void save(DailyPlan dailyPlan) {
+		Assert.notNull(dailyPlan);
 
-			public void delete(DailyPlan dailyPlan) {
-				Assert.notNull(dailyPlan);
+		dailyPlanRepository.save(dailyPlan);
+	}
 
-				dailyPlanRepository.delete(dailyPlan);
-			}
+	public void delete(DailyPlan dailyPlan) {
+		Assert.notNull(dailyPlan);
 
-			// Other business methods -------------------------------------------------
+		dailyPlanRepository.delete(dailyPlan);
+	}
 
-		
+	// Other business methods -------------------------------------------------
 
+	public Collection<DailyPlan> findAllByTripId(int tripId) {
+		Collection<DailyPlan> result;
 
+		result = dailyPlanRepository.findAllByTripId(tripId);
+
+		return result;
+	}
 }

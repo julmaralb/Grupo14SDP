@@ -10,12 +10,15 @@
 <form:form action="slot/user/edit.do" modelAttribute="slot">
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
+	<form:hidden path="dailyPlan"/>
 	
-	<acme:textbox code="slot.title" path="title" readonly="true"/>
-	<acme:textbox code="slot.description" path="description"/>
-	<acme:textarea code="slot.photos" path="photos"/>
-	<acme:textbox code="slot.startTime" path="startTime"/>
-	<acme:textbox code="slot.endTime" path="endTime"/>
+	<acme:textbox code="slot.title" path="title"/><br/>
+	<acme:textarea code="slot.description" path="description"/><br/>
+	<acme:textarea code="slot.photos" path="photos"/><br/>
+	<acme:textbox code="slot.startTime" path="startTime"/><br/>
+	<acme:textbox code="slot.endTime" path="endTime"/><br/>
+	<acme:select items="${activities}" itemLabel="title" code="slot.activity" path="activity"/>
+	<input type="hidden" name= "dailyPlanId" value="${dailyPlanId}"/>
 	
 	<br></br>
 	<acme:submit name="save" code="slot.save"/>
