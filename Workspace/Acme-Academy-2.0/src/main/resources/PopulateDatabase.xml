@@ -1,0 +1,1041 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2014 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="student1" />
+		<property name="password" value="5e5545d38a68148a2d5bd5ec9a89e327" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="STUDENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="student2" />
+		<property name="password" value="213ee683360d88249109c2f92789dbc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="STUDENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="student3" />
+		<property name="password" value="8e4947690532bc44a8e41e9fb365b76a" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="STUDENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="student4" />
+		<property name="password" value="166a50c910e390d922db4696e4c7747b" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="STUDENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="student5" />
+		<property name="password" value="9fd9280a7aa3578c8e853745a5fcc18a" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="STUDENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="student6" />
+		<property name="password" value="27e062bf3df59edebb5db9f89952c8b3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="STUDENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="lecturer1" />
+		<property name="password" value="edf90aff836f1fc27fc04aeebf6e84b9" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="LECTURER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="lecturer2" />
+		<property name="password" value="3a3c497dad8cb7af8da97ce8b3f9b7f3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="LECTURER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="lecturer3" />
+		<property name="password" value="1c7a6d906e7a421e42dd9f604aaac498" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="LECTURER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Other domain beans come here -->
+	
+	<!-- Administrators -->
+	
+	<bean id="administrator1" class="domain.Administrator">
+		<property name="name" value="administratorName1" />
+		<property name="surname" value="administratorSurname1" />
+		<property name="email" value="administrator1@hotmail.com" />
+		<property name="phone" value="631165953" />
+		<property name="userAccount" ref="userAccount1" />
+	</bean>	
+	
+	<!-- Lecturers -->
+	
+	<bean id="lecturer1" class="domain.Lecturer">
+		<property name="name" value="lecturerName1" />
+		<property name="surname" value="lecturerSurname1" />
+		<property name="email" value="lecturer1@hotmail.com" />
+		<property name="phone" value="635854268" />
+		<property name="counter" value="1" />
+		<property name="subjects">
+			<list>
+				<ref bean="subject1" />
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount8" />
+	</bean>
+	
+	<bean id="lecturer2" class="domain.Lecturer">
+		<property name="name" value="lecturerName2" />
+		<property name="surname" value="lecturerSurname2" />
+		<property name="email" value="lecturer2@hotmail.com" />
+		<property name="phone" value="965351845" />
+		<property name="counter" value="5" />
+		<property name="subjects">
+			<list>
+				<ref bean="subject2" />
+				<ref bean="subject3" />
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount9" />
+	</bean>
+	
+	<bean id="lecturer3" class="domain.Lecturer">
+		<property name="name" value="lecturerName3" />
+		<property name="surname" value="lecturerSurname3" />
+		<property name="email" value="lecturer3@hotmail.com" />
+		<property name="phone" value="954368541" />
+		<property name="counter" value="3" />
+		<property name="subjects">
+			<list>
+				<ref bean="subject4" />
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount10" />
+	</bean>
+	
+	<!-- Students -->
+	
+	<bean id="student1" class="domain.Student">
+		<property name="name" value="studentName1" />
+		<property name="surname" value="studentSurname1" />
+		<property name="email" value="student1@hotmail.com" />
+		<property name="phone" value="654362515" />
+		<property name="socialIdentities">
+			<list>
+				<ref bean="socialIdentity1" />
+				<ref bean="socialIdentity2" />
+			</list>
+		</property>
+		<property name="groups">
+			<list>
+				<ref bean="group1" />
+				<ref bean="group2" />
+				<ref bean="group4" />
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount2" />
+	</bean>
+	
+	<bean id="student2" class="domain.Student">
+		<property name="name" value="studentName2" />
+		<property name="surname" value="studentSurname2" />
+		<property name="email" value="student2@hotmail.com" />
+		<property name="phone" value="653149533" />
+		<property name="socialIdentities">
+			<list>
+				<ref bean="socialIdentity3" />
+			</list>
+		</property>
+		<property name="groups">
+			<list>
+				<ref bean="group1" />
+				<ref bean="group2" />
+				<ref bean="group5" />
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount3" />
+	</bean>
+	
+	<bean id="student3" class="domain.Student">
+		<property name="name" value="studentName3" />
+		<property name="surname" value="studentSurname3" />
+		<property name="email" value="student3@hotmail.com" />
+		<property name="phone" value="954362514" />
+		<property name="groups">
+			<list>
+				<ref bean="group1" />
+				<ref bean="group2" />
+				<ref bean="group5" />
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount4" />
+	</bean>
+	
+	<bean id="student4" class="domain.Student">
+		<property name="name" value="studentName4" />
+		<property name="surname" value="studentSurname4" />
+		<property name="email" value="student4@hotmail.com" />
+		<property name="phone" value="956415263" />
+		<property name="groups">
+			<list>
+				<ref bean="group3" />
+				<ref bean="group6" />
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount5" />
+	</bean>
+	
+	<bean id="student5" class="domain.Student">
+		<property name="name" value="studentName5" />
+		<property name="surname" value="studentSurname5" />
+		<property name="email" value="student5@hotmail.com" />
+		<property name="phone" value="654326598" />
+		<property name="socialIdentities">
+			<list>
+				<ref bean="socialIdentity4" />
+				<ref bean="socialIdentity5" />
+			</list>
+		</property>
+		<property name="groups">
+			<list>
+				<ref bean="group3" />
+				<ref bean="group6" />
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount6" />
+	</bean>
+	
+	<bean id="student6" class="domain.Student">
+		<property name="name" value="studentName6" />
+		<property name="surname" value="studentSurname6" />
+		<property name="email" value="student6@hotmail.com" />
+		<property name="phone" value="954326598" />
+		<property name="socialIdentities">
+			<list>
+				<ref bean="socialIdentity6" />
+			</list>
+		</property>
+		<property name="groups">
+			<list>
+				<ref bean="group6" />
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount7" />
+	</bean>
+	
+		<!-- SocialIdentities -->
+
+	<bean id="socialIdentity1" class="domain.SocialIdentity">
+		<property name="name" value="facebook" />
+		<property name="nickname" value="student1facebook" />
+		<property name="homePage" value="http://facebook.com" />
+		<property name="email" value="student1@hotmail.com" />
+		<property name="actor" ref="student1" />
+	</bean>
+	
+	<bean id="socialIdentity2" class="domain.SocialIdentity">
+		<property name="name" value="twitter" />
+		<property name="nickname" value="student1twitter" />
+		<property name="homePage" value="http://twitter.com" />
+		<property name="email" value="student1@hotmail.com" />
+		<property name="actor" ref="student1" />
+	</bean>
+	
+	<bean id="socialIdentity3" class="domain.SocialIdentity">
+		<property name="name" value="facebook" />
+		<property name="nickname" value="student2facebook" />
+		<property name="homePage" value="http://facebook.com" />
+		<property name="email" value="student2@hotmail.com" />
+		<property name="actor" ref="student2" />
+	</bean>
+	
+	<bean id="socialIdentity4" class="domain.SocialIdentity">
+		<property name="name" value="facebook" />
+		<property name="nickname" value="student5facebook" />
+		<property name="homePage" value="http://facebook.com" />
+		<property name="email" value="student5@hotmail.com" />
+		<property name="actor" ref="student5" />
+	</bean>
+	
+	<bean id="socialIdentity5" class="domain.SocialIdentity">
+		<property name="name" value="twitter" />
+		<property name="nickname" value="student5twitter" />
+		<property name="homePage" value="http://twitter.com" />
+		<property name="email" value="student5@hotmail.com" />
+		<property name="actor" ref="student5" />
+	</bean>
+	
+	<bean id="socialIdentity6" class="domain.SocialIdentity">
+		<property name="name" value="twitter" />
+		<property name="nickname" value="student6twitter" />
+		<property name="homePage" value="http://twitter.com" />
+		<property name="email" value="student6@hotmail.com" />
+		<property name="actor" ref="student6" />
+	</bean>
+	
+	<bean id="socialIdentity7" class="domain.SocialIdentity">
+		<property name="name" value="twitter" />
+		<property name="nickname" value="lecturer1twitter" />
+		<property name="homePage" value="http://twitter.com" />
+		<property name="email" value="lecturer1@hotmail.com" />
+		<property name="actor" ref="lecturer1" />
+	</bean>
+	
+	<bean id="socialIdentity8" class="domain.SocialIdentity">
+		<property name="name" value="facebook" />
+		<property name="nickname" value="lecturer2facebook" />
+		<property name="homePage" value="http://facebook.com" />
+		<property name="email" value="lecturer2@hotmail.com" />
+		<property name="actor" ref="lecturer2" />
+	</bean>
+	
+	<!-- Subject -->
+	
+	<bean id="subject1" class="domain.Subject">
+		<property name="code" value="AA-111" />
+		<property name="title" value="subjectTitle1" />
+		<property name="lecturer" ref="lecturer1" />
+		<property name="groups">
+			<list>
+				<ref bean="group1" />
+			</list>
+		</property>
+		<property name="syllabi">
+			<list>
+				<ref bean="syllabus1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="subject2" class="domain.Subject">
+		<property name="code" value="AA-222" />
+		<property name="title" value="subjectTitle2" />
+		<property name="lecturer" ref="lecturer2" />
+		<property name="groups">
+			<list>
+				<ref bean="group2" />
+				<ref bean="group3" />
+			</list>
+		</property>
+		<property name="syllabi">
+			<list>
+				<ref bean="syllabus2" />
+				<ref bean="syllabus3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="subject3" class="domain.Subject">
+		<property name="code" value="BB-111" />
+		<property name="title" value="subjectTitle3" />
+		<property name="lecturer" ref="lecturer2" />
+		<property name="groups">
+			<list>
+
+			</list>
+		</property>
+		<property name="syllabi">
+			<list>
+				<ref bean="syllabus4" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="subject4" class="domain.Subject">
+		<property name="code" value="CC-333" />
+		<property name="title" value="subjectTitle4" />
+		<property name="lecturer" ref="lecturer3" />
+		<property name="groups">
+			<list>
+				<ref bean="group4" />
+				<ref bean="group5" />
+				<ref bean="group6" />
+			</list>
+		</property>
+		<property name="syllabi">
+			<list>
+				<ref bean="syllabus5" />
+				<ref bean="syllabus6" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Bibliographies -->
+	
+	<bean id="bibliography1" class="domain.Bibliography">
+		<property name="title" value="bibliographytitle1" />
+		<property name="authors">
+			<list>
+				<value>author1</value>
+				<value>author2</value>
+			</list>
+		</property>
+		<property name="locator" value="locator1" />
+		<property name="URL" value="http://bibliography1.com" />
+		<property name="counter" value="1" />
+		<property name="syllabi">
+			<list>
+				<ref bean="syllabus1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="bibliography2" class="domain.Bibliography">
+		<property name="title" value="bibliographytitle2" />
+		<property name="authors">
+			<list>
+				<value>author3</value>
+				<value>author4</value>
+			</list>
+		</property>
+		<property name="locator" value="locator2" />
+		<property name="URL" value="http://bibliography2.com" />
+		<property name="counter" value="2" />
+		<property name="syllabi">
+			<list>
+				<ref bean="syllabus2" />
+				<ref bean="syllabus3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="bibliography3" class="domain.Bibliography">
+		<property name="title" value="bibliographytitle3" />
+		<property name="authors">
+			<list>
+				<value>author4</value>
+				<value>author5</value>
+			</list>
+		</property>
+		<property name="locator" value="locator3" />
+		<property name="URL" value="http://bibliography3.com" />
+		<property name="counter" value="2" />
+		<property name="syllabi">
+			<list>
+				<ref bean="syllabus3" />
+				<ref bean="syllabus4" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="bibliography4" class="domain.Bibliography">
+		<property name="title" value="bibliographytitle4" />
+		<property name="authors">
+			<list>
+				<value>author6</value>
+				<value>author7</value>
+			</list>
+		</property>
+		<property name="locator" value="locator4" />
+		<property name="URL" value="http://bibliography4.com" />
+		<property name="counter" value="3" />
+		<property name="syllabi">
+			<list>
+				<ref bean="syllabus4" />
+				<ref bean="syllabus5" />
+				<ref bean="syllabus6" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="bibliography5" class="domain.Bibliography">
+		<property name="title" value="bibliographytitle5" />
+		<property name="authors">
+			<list>
+				<value>author7</value>
+				<value>author8</value>
+			</list>
+		</property>
+		<property name="locator" value="locator5" />
+		<property name="URL" value="http://bibliography5.com" />
+		<property name="counter" value="1" />
+		<property name="syllabi">
+			<list>
+				<ref bean="syllabus6" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Syllabi -->
+	
+	<bean id="syllabus1" class="domain.Syllabus">
+		<property name="academicYear" value="2016" />
+		<property name="summary" value="summary1" />
+		<property name="goals">
+			<list>
+				<value>goal1</value>
+				<value>goal2</value>
+			</list>
+		</property>
+		<property name="prerequisites">
+			<list>
+				<value>prerequisite1</value>
+				<value>prerequisite2</value>
+			</list>
+		</property>
+		<property name="evaluationAndGradingPolicies" value="evaluationAndGradingPolicies1" />
+		<property name="subject" ref="subject1" />
+		<property name="bibliographies">
+			<list>
+				<ref bean="bibliography1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="syllabus2" class="domain.Syllabus">
+		<property name="academicYear" value="2016" />
+		<property name="summary" value="summary2" />
+		<property name="goals">
+			<list>
+				<value>goal1</value>
+				<value>goal2</value>
+			</list>
+		</property>
+		<property name="prerequisites">
+			<list>
+				<value>prerequisite1</value>
+				<value>prerequisite2</value>
+			</list>
+		</property>
+		<property name="evaluationAndGradingPolicies" value="evaluationAndGradingPolicies2" />
+		<property name="subject" ref="subject2" />
+		<property name="bibliographies">
+			<list>
+				<ref bean="bibliography2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="syllabus3" class="domain.Syllabus">
+		<property name="academicYear" value="2017" />
+		<property name="summary" value="summary3" />
+		<property name="goals">
+			<list>
+				<value>goal1</value>
+				<value>goal2</value>
+			</list>
+		</property>
+		<property name="prerequisites">
+			<list>
+				<value>prerequisite1</value>
+				<value>prerequisite2</value>
+			</list>
+		</property>
+		<property name="evaluationAndGradingPolicies" value="evaluationAndGradingPolicies3" />
+		<property name="subject" ref="subject2" />
+		<property name="bibliographies">
+			<list>
+				<ref bean="bibliography2" />
+				<ref bean="bibliography3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="syllabus4" class="domain.Syllabus">
+		<property name="academicYear" value="2016" />
+		<property name="summary" value="summary4" />
+		<property name="goals">
+			<list>
+				<value>goal1</value>
+				<value>goal2</value>
+			</list>
+		</property>
+		<property name="prerequisites">
+			<list>
+
+			</list>
+		</property>
+		<property name="evaluationAndGradingPolicies" value="evaluationAndGradingPolicies4" />
+		<property name="subject" ref="subject3" />
+		<property name="bibliographies">
+			<list>
+				<ref bean="bibliography3" />
+				<ref bean="bibliography4" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="syllabus5" class="domain.Syllabus">
+		<property name="academicYear" value="2016" />
+		<property name="summary" value="summary5" />
+		<property name="goals">
+			<list>
+				<value>goal1</value>
+			</list>
+		</property>
+		<property name="prerequisites">
+			<list>
+				<value>prerequisite1</value>
+				<value>prerequisite2</value>
+			</list>
+		</property>
+		<property name="evaluationAndGradingPolicies" value="evaluationAndGradingPolicies5" />
+		<property name="subject" ref="subject4" />
+		<property name="bibliographies">
+			<list>
+				<ref bean="bibliography4" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="syllabus6" class="domain.Syllabus">
+		<property name="academicYear" value="2017" />
+		<property name="summary" value="summary6" />
+		<property name="goals">
+			<list>
+				<value>goal1</value>
+				<value>goal2</value>
+			</list>
+		</property>
+		<property name="prerequisites">
+			<list>
+				<value>prerequisite1</value>
+				<value>prerequisite2</value>
+			</list>
+		</property>
+		<property name="evaluationAndGradingPolicies" value="evaluationAndGradingPolicies6" />
+		<property name="subject" ref="subject4" />
+		<property name="bibliographies">
+			<list>
+				<ref bean="bibliography4" />
+				<ref bean="bibliography5" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Groups -->
+	
+	<bean id="group1" class="domain.Group">
+		<property name="name" value="groupName1" />
+		<property name="description" value="groupDescription1" />
+		<property name="academicYear" value="2016" />
+		<property name="subject" ref="subject1" />
+		<property name="students">
+			<list>
+				<ref bean="student1" />
+				<ref bean="student2" />
+				<ref bean="student3" />
+			</list>
+		</property>
+		<property name="assignments">
+			<list>
+				<ref bean="assignment1" />
+			</list>
+		</property>
+		<property name="learningMaterials">
+			<list>
+				<ref bean="learningMaterial1" />
+				<ref bean="learningMaterial2" />
+				<ref bean="learningMaterial3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="group2" class="domain.Group">
+		<property name="name" value="groupName2" />
+		<property name="description" value="groupDescription2" />
+		<property name="academicYear" value="2016" />
+		<property name="subject" ref="subject2" />
+		<property name="students">
+			<list>
+				<ref bean="student1" />
+				<ref bean="student2" />
+				<ref bean="student3" />
+			</list>
+		</property>
+		<property name="assignments">
+			<list>
+				<ref bean="assignment2" />
+			</list>
+		</property>
+		<property name="learningMaterials">
+			<list>
+				<ref bean="learningMaterial4" />
+				<ref bean="learningMaterial5" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="group3" class="domain.Group">
+		<property name="name" value="groupName3" />
+		<property name="description" value="groupDescription3" />
+		<property name="academicYear" value="2016" />
+		<property name="subject" ref="subject2" />
+		<property name="students">
+			<list>
+				<ref bean="student4" />
+				<ref bean="student5" />
+			</list>
+		</property>
+		<property name="assignments">
+			<list>
+				<ref bean="assignment3" />
+			</list>
+		</property>
+		<property name="learningMaterials">
+			<list>
+				<ref bean="learningMaterial6" />
+				<ref bean="learningMaterial7" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="group4" class="domain.Group">
+		<property name="name" value="groupName4" />
+		<property name="description" value="groupDescription4" />
+		<property name="academicYear" value="2016" />
+		<property name="subject" ref="subject4" />
+		<property name="students">
+			<list>
+				<ref bean="student1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="group5" class="domain.Group">
+		<property name="name" value="groupName5" />
+		<property name="description" value="groupDescription5" />
+		<property name="academicYear" value="2016" />
+		<property name="subject" ref="subject4" />
+		<property name="students">
+			<list>
+				<ref bean="student2" />
+				<ref bean="student3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="group6" class="domain.Group">
+		<property name="name" value="groupName6" />
+		<property name="description" value="groupDescription6" />
+		<property name="academicYear" value="2016" />
+		<property name="subject" ref="subject4" />
+		<property name="students">
+			<list>
+				<ref bean="student4" />
+				<ref bean="student5" />
+				<ref bean="student6" />
+			</list>
+		</property>
+	</bean>
+	
+		<!-- LearningMaterials -->
+	
+	<bean id="learningMaterial1" class="domain.LearningMaterial">
+		<property name="title" value="learningMaterialTitle1" />
+		<property name="notes" value="notes1" />
+		<property name="keywords">
+			<list>
+				<value>keyword1</value>
+				<value>keyword2</value>
+			</list>
+		</property>
+
+		<property name="contents" value="http://dropbox.com" />
+		<property name="group" ref="group1" />
+	</bean>
+	
+	<bean id="learningMaterial2" class="domain.LearningMaterial">
+		<property name="title" value="learningMaterialTitle2" />
+		<property name="notes" value="notes2" />
+		<property name="keywords">
+			<list>
+
+			</list>
+		</property>
+
+		<property name="contents" value="http://dropbox.com" />
+		<property name="group" ref="group1" />
+	</bean>
+	
+	<bean id="learningMaterial3" class="domain.LearningMaterial">
+		<property name="title" value="learningMaterialTitle3" />
+		<property name="keywords">
+			<list>
+				<value>keyword3</value>
+			</list>
+		</property>
+
+		<property name="contents" value="http://dropbox.com" />
+		<property name="group" ref="group1" />
+	</bean>
+	
+	<bean id="learningMaterial4" class="domain.LearningMaterial">
+		<property name="title" value="learningMaterialTitle4" />
+		<property name="notes" value="notes3" />
+		<property name="keywords">
+			<list>
+				<value>keyword4</value>
+				<value>keyword5</value>
+			</list>
+		</property>
+
+		<property name="contents" value="http://dropbox.com" />
+		<property name="group" ref="group2" />
+	</bean>
+	
+	<bean id="learningMaterial5" class="domain.LearningMaterial">
+		<property name="title" value="learningMaterialTitle5" />
+		<property name="keywords">
+			<list>
+				<value>keyword6</value>
+				<value>keyword7</value>
+			</list>
+		</property>
+
+		<property name="contents" value="http://dropbox.com" />
+		<property name="group" ref="group2" />
+	</bean>
+	
+	<bean id="learningMaterial6" class="domain.LearningMaterial">
+		<property name="title" value="learningMaterialTitle6" />
+		<property name="notes" value="notes3" />
+		<property name="keywords">
+			<list>
+				<value>keyword4</value>
+				<value>keyword5</value>
+			</list>
+		</property>
+
+		<property name="contents" value="http://dropbox.com" />
+		<property name="group" ref="group3" />
+	</bean>
+	
+	<bean id="learningMaterial7" class="domain.LearningMaterial">
+		<property name="title" value="learningMaterialTitle7" />
+		<property name="keywords">
+			<list>
+				<value>keyword6</value>
+				<value>keyword7</value>
+			</list>
+		</property>
+
+		<property name="contents" value="http://dropbox.com" />
+		<property name="group" ref="group3" />
+	</bean>
+	
+	<!-- Assignments -->
+	
+	<bean id="assignment1" class="domain.Assignment">
+		<property name="title" value="assigmentTitle1" />
+		<property name="description" value="assigmentDescription1" />
+		<property name="points" value="70" />
+		<property name="opening" value="06/20/2016" />
+		<property name="deadline" value="09/15/2016" />
+		<property name="group" ref="group1" />
+		<property name="deliverables">
+			<list>
+				<ref bean="deliverable1" />
+				<ref bean="deliverable2" />
+			</list>
+		</property>
+		<property name="rubrics">
+			<list>
+				<ref bean="rubric1" />
+				<ref bean="rubric2" />
+				<ref bean="rubric3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="assignment2" class="domain.Assignment">
+		<property name="title" value="assigmentTitle2" />
+		<property name="description" value="assigmentDescription2" />
+		<property name="points" value="50" />
+		<property name="opening" value="06/15/2016" />
+		<property name="deadline" value="09/20/2016" />
+		<property name="group" ref="group2" />
+		<property name="deliverables">
+			<list>
+				<ref bean="deliverable3" />
+			</list>
+		</property>
+		<property name="rubrics">
+			<list>
+				<ref bean="rubric4" />
+				<ref bean="rubric5" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="assignment3" class="domain.Assignment">
+		<property name="title" value="assigmentTitle3" />
+		<property name="description" value="assigmentDescription3" />
+		<property name="points" value="0" />
+		<property name="opening" value="06/15/2016" />
+		<property name="deadline" value="09/20/2016" />
+		<property name="group" ref="group3" />
+		<property name="deliverables">
+			<list>
+
+			</list>
+		</property>
+		<property name="rubrics">
+			<list>
+				<ref bean="rubric6" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Rubrics -->
+	
+	<bean id="rubric1" class="domain.Rubric">
+		<property name="explanation" value="default" />
+		<property name="percentage" value="20" />
+		<property name="assignment" ref="assignment1" />
+		<property name="instantiated" value="false" />
+		<property name="number" value="1" />
+	</bean>
+	
+	<bean id="rubric2" class="domain.Rubric">
+		<property name="explanation" value="rubric2Explanation" />
+		<property name="percentage" value="40" />
+		<property name="assignment" ref="assignment1" />
+		<property name="instantiated" value="false" />
+		<property name="number" value="2" />
+	</bean>
+	
+	<bean id="rubric3" class="domain.Rubric">
+		<property name="explanation" value="rubric3Explanation" />
+		<property name="percentage" value="40" />
+		<property name="assignment" ref="assignment1" />
+		<property name="instantiated" value="false" />
+		<property name="number" value="3" />
+	</bean>
+	
+	<bean id="rubric4" class="domain.Rubric">
+		<property name="explanation" value="default" />
+		<property name="percentage" value="50" />
+		<property name="assignment" ref="assignment2" />
+		<property name="instantiated" value="false" />
+		<property name="number" value="1" />
+	</bean>
+	
+	<bean id="rubric5" class="domain.Rubric">
+		<property name="explanation" value="rubric5Explanation" />
+		<property name="percentage" value="50" />
+		<property name="assignment" ref="assignment2" />
+		<property name="instantiated" value="false" />
+		<property name="number" value="2" />
+	</bean>
+	
+	<bean id="rubric6" class="domain.Rubric">
+		<property name="explanation" value="default" />
+		<property name="percentage" value="100" />
+		<property name="assignment" ref="assignment3" />
+		<property name="instantiated" value="false" />
+		<property name="number" value="1" />
+	</bean>
+	
+	<!-- Deliverables -->
+	
+	<bean id="deliverable1" class="domain.Deliverable">
+		<property name="moment" value="06/30/2016" />
+		<property name="contents" value="http://dropbox.com" />
+		<property name="deliverableVersion" value="1" />
+		<property name="mark" value="0" />
+		<property name="student" ref="student1" />
+		<property name="assignment" ref="assignment1" />
+	</bean>
+	
+	<bean id="deliverable2" class="domain.Deliverable">
+		<property name="moment" value="07/01/2016" />
+		<property name="contents" value="http://dropbox.com" />
+		<property name="deliverableVersion" value="2" />
+		<property name="mark" value="0" />
+		<property name="student" ref="student2" />
+		<property name="assignment" ref="assignment1" />
+	</bean>
+	
+	<bean id="deliverable3" class="domain.Deliverable">
+		<property name="moment" value="06/29/2016" />
+		<property name="contents" value="http://dropbox.com" />
+		<property name="deliverableVersion" value="1" />
+		<property name="mark" value="0" />
+		<property name="student" ref="student3" />
+		<property name="assignment" ref="assignment2" />
+	</bean>
+	
+</beans>

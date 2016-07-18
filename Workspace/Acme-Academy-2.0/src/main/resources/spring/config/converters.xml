@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * converters.xml
+ *
+ * Copyright (C) 2014 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd		
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd		
+	">
+
+	<util:list id="converters">
+		<!-- 
+			Add your own converters using entries of the following form: 
+			<bean class="converters.Class1ToClass2" /> 
+		-->
+		
+		<bean class="converters.AuthorityToStringConverter" />
+		<bean class="converters.StringToAuthorityConverter" />
+		
+		<bean class="converters.ActorToStringConverter" />
+		<bean class="converters.StringToActorConverter" />
+		
+		<bean class="converters.AdministratorToStringConverter" />
+		<bean class="converters.StringToAdministratorConverter" />
+		
+		<bean class="converters.AssignmentToStringConverter" />
+		<bean class="converters.StringToAssignmentConverter" />
+		
+		<bean class="converters.DeliverableToStringConverter" />
+		<bean class="converters.StringToDeliverableConverter" />
+		
+		<bean class="converters.GroupToStringConverter" />
+		<bean class="converters.StringToGroupConverter" />
+		
+		<bean class="converters.LearningMaterialToStringConverter" />
+		<bean class="converters.StringToLearningMaterialConverter" />
+		
+		<bean class="converters.LecturerToStringConverter" />
+		<bean class="converters.StringToLecturerConverter" />
+		
+		<bean class="converters.StudentToStringConverter" />
+		<bean class="converters.StringToStudentConverter" />
+		
+		<bean class="converters.SubjectToStringConverter" />
+		<bean class="converters.StringToSubjectConverter" />
+		
+		<bean class="converters.SocialIdentityToStringConverter" />
+		<bean class="converters.StringToSocialIdentityConverter" />
+		
+		<bean class="converters.SyllabusToStringConverter" />
+		<bean class="converters.StringToSyllabusConverter" />
+		
+		<bean class="converters.BibliographyToStringConverter" />
+		<bean class="converters.StringToBibliographyConverter" />
+		
+		<bean class="converters.RubricToStringConverter" />
+		<bean class="converters.StringToRubricConverter" />
+		
+		<bean class="converters.AssessmentToStringConverter" />
+		<bean class="converters.StringToAssessmentConverter" />
+		
+		
+	</util:list>
+	
+</beans>
