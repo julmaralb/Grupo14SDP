@@ -87,7 +87,9 @@ public class MessageService {
 		principal = actorService.findByPrincipal();
 		milliseconds = System.currentTimeMillis() - 100;
 		message.setMoment(new Date(milliseconds));
-		message.setSender(principal);
+		if (message.getVersion() == 0) {
+			message.setSender(principal);
+		}
 		messageRepository.save(message);
 
 	}

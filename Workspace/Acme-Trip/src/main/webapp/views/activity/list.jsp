@@ -24,9 +24,13 @@
 
 	<acme:column code="activity.title" property="title" sortable="true"/>
 	
-	<acme:column code="activity.description" property="description"/>		
+	<acme:column code="activity.description" property="description"/>	
 	
-	<acme:pictureColumn items="${row.photos}" code="activity.photos" alt="${row.title}"/>		
+	<acme:column code="activity.activityType" property="activityType.name"/>		
+	
+	<acme:pictureColumn items="${row.photos}" code="activity.photos" alt="${row.title}"/>
+	
+	<acme:refColumn ref="activityComment/actor/list.do?activityId=${row.id}" code="activity.comments"/>	
 	
 </display:table>
 

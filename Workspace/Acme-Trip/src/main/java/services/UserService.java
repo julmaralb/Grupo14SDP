@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -13,8 +14,10 @@ import repositories.UserRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Activity;
 import domain.Actor;
 import domain.Folder;
+import domain.Trip;
 import domain.User;
 import forms.UserForm;
 
@@ -154,7 +157,15 @@ public class UserService {
 	public User reconstruct(UserForm userForm) {
 		User result;
 
+		Collection<Activity> activities;
+		Collection<Trip> trips;
+		Collection<Folder> folders;
+
+		activities = new ArrayList<Activity>();
+		trips = new ArrayList<Trip>();
+
 		result = create();
+		folders = folderService.initializeFolders(result);
 		result.getUserAccount().setPassword(userForm.getPassword());
 		result.getUserAccount().setUsername(userForm.getUsername());
 
@@ -164,6 +175,9 @@ public class UserService {
 		result.setName(userForm.getName());
 		result.setPhone(userForm.getPhone());
 		result.setSurname(userForm.getUsername());
+		result.setTrips(trips);
+		result.setActivities(activities);
+		result.setFolders(folders);
 
 		if (userForm.getTermsAccepted() == false) {
 			throw new IllegalArgumentException(

@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import services.TripService;
 import services.UserService;
 import controllers.AbstractController;
-import domain.DailyPlan;
 import domain.Trip;
 import domain.User;
 
@@ -114,18 +113,33 @@ public class TripUserController extends AbstractController {
 		}
 		return result;
 	}
-	
+
 	// Others -----------------------------------------------------------------
-	
+
 	@RequestMapping(value = "/copyTrip", method = RequestMethod.GET)
 	public ModelAndView copyTrip(@RequestParam int tripId) {
 		ModelAndView result;
 
 		Trip trip;
-		
+
 		trip = tripService.findOne(tripId);
-		
+
 		tripService.copyTrip(trip);
+
+		result = new ModelAndView("redirect:/trip/user/list.do");
+
+		return result;
+	}
+
+	@RequestMapping(value = "/subscribe", method = RequestMethod.GET)
+	public ModelAndView subscribe(@RequestParam int tripId) {
+		ModelAndView result;
+
+		Trip trip;
+
+		trip = tripService.findOne(tripId);
+
+		tripService.subscribeToTrip(trip);
 
 		result = new ModelAndView("redirect:/trip/user/list.do");
 

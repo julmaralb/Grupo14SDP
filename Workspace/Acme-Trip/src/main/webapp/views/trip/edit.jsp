@@ -13,6 +13,7 @@
 	<form:hidden path="owner"/>
 	<form:hidden path="dailyPlans"/>
 	<form:hidden path="tripComments"/>
+	<form:hidden path="subscriptors"/>
 	
 	<acme:textbox code="trip.title" path="title"/><br/>
 	

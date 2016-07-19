@@ -34,6 +34,8 @@
 	
 	<acme:column code="slot.endTime" property="endTime" sortable="true"/>
 	
+	<acme:refColumn ref="activity/list.do?slotId=${row.id}" code="slot.activity"/>
+	
 	<security:authorize access="hasRole('USER')">
 	<acme:refColumn ref="slot/user/edit.do?slotId=${row.id}&dailyPlanId=${param['dailyPlanId']}" code="dailyPlan.edit"/>
 	</security:authorize>

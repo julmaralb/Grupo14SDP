@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
 import repositories.FolderRepository;
 import domain.Actor;
 import domain.Folder;
+import domain.Message;
 
 @Service
 @Transactional
@@ -37,11 +38,8 @@ public class FolderService {
 
 	public Folder create() {
 		Folder result;
-		Actor principal;
 
 		result = new Folder();
-		principal = actorService.findByPrincipal();
-		result.setActor(principal);
 
 		return result;
 	}
@@ -88,12 +86,15 @@ public class FolderService {
 
 		Collection<Folder> result;
 		Collection<String> names;
+		Collection<Message> messages;
 
 		result = new ArrayList<Folder>();
 		names = new ArrayList<String>();
+		messages = new ArrayList<Message>();
 
 		names.add("In Folder");
 		names.add("Out Folder");
+		names.add("Trash Folder");
 		names.add("Starred Folder");
 		names.add("Spam Folder");
 
@@ -105,6 +106,7 @@ public class FolderService {
 			temp.setIsSystem(true);
 			temp.setName(string);
 			temp.setActor(actor);
+			temp.setMessages(messages);
 
 			result.add(temp);
 		}

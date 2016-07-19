@@ -84,7 +84,7 @@
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="USER" />
+					<property name="authority" value="MANAGER" />
 				</bean>
 			</list>
 		</property>
@@ -96,7 +96,7 @@
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="USER" />
+					<property name="authority" value="MANAGER" />
 				</bean>
 			</list>
 		</property>
@@ -108,7 +108,7 @@
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="USER" />
+					<property name="authority" value="MANAGER" />
 				</bean>
 			</list>
 		</property>

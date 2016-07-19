@@ -13,5 +13,8 @@ public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 
 	@Query("select a from Activity a where a.user.id = ?1")
 	Collection<Activity> findAllByUserId(int userId);
+	
+	@Query("select s.activity from Slot s where s.id = ?1")
+	Activity findBySlotId(int slotId);
 
 }

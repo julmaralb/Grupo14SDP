@@ -1,6 +1,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -9,65 +10,90 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.ActivityCommentRepository;
-
 import domain.ActivityComment;
+import domain.Actor;
 
 @Service
 @Transactional
 public class ActivityCommentService {
 	// Managed repository -----------------------------------------------------
 
-		@Autowired
-		private ActivityCommentRepository activityCommentRepository;
+	@Autowired
+	private ActivityCommentRepository activityCommentRepository;
 
-		// Supporting services ----------------------------------------------------
+	// Supporting services ----------------------------------------------------
 
-		// Constructors -----------------------------------------------------------
+	@Autowired
+	private ActorService actorService;
 
-		public ActivityCommentService() {
-			super();
-		}
+	// Constructors -----------------------------------------------------------
 
-		// Simple CRUD methods ----------------------------------------------------
+	public ActivityCommentService() {
+		super();
+	}
 
-		public ActivityComment create() {
-			ActivityComment result;
+	// Simple CRUD methods ----------------------------------------------------
 
-			result = new ActivityComment();
+	public ActivityComment create() {
+		ActivityComment result;
+		Date moment;
+		Actor principal;
 
-			return result;
-		}
+		result = new ActivityComment();
+		principal = actorService.findByPrincipal();
+		moment = new Date();
 
-		public ActivityComment findOne(int activityCommentId) {
-			Assert.notNull(activityCommentId);
+		result.setMoment(moment);
+		result.setActor(principal);
 
-			ActivityComment result;
+		return result;
+	}
 
-			result = activityCommentRepository.findOne(activityCommentId);
+	public ActivityComment findOne(int activityCommentId) {
+		Assert.notNull(activityCommentId);
 
-			return result;
-		}
+		ActivityComment result;
 
-		public Collection<ActivityComment> findAll() {
+		result = activityCommentRepository.findOne(activityCommentId);
 
-			Collection<ActivityComment> result;
+		return result;
+	}
 
-			result = activityCommentRepository.findAll();
+	public Collection<ActivityComment> findAll() {
 
-			return result;
-		}
+		Collection<ActivityComment> result;
 
-		public void save(ActivityComment activityComment) {
-			Assert.notNull(activityComment);
+		result = activityCommentRepository.findAll();
 
-			activityCommentRepository.save(activityComment);
-		}
+		return result;
+	}
 
-		public void delete(ActivityComment activityComment) {
-			Assert.notNull(activityComment);
+	public void save(ActivityComment activityComment) {
+		Assert.notNull(activityComment);
+		long milliseconds;
+		Actor principal;
 
-			activityCommentRepository.delete(activityComment);
-		}
+		milliseconds = System.currentTimeMillis() - 100;
+		activityComment.setMoment(new Date(milliseconds));
+		principal = actorService.findByPrincipal();
+		activityComment.setActor(principal);
 
-		// Other business methods -------------------------------------------------
+		activityCommentRepository.save(activityComment);
+	}
+
+	public void delete(ActivityComment activityComment) {
+		Assert.notNull(activityComment);
+
+		activityCommentRepository.delete(activityComment);
+	}
+
+	// Other business methods -------------------------------------------------
+
+	public Collection<ActivityComment> findAllByActivityId(int activityId) {
+		Collection<ActivityComment> result;
+
+		result = activityCommentRepository.findAllByActivityId(activityId);
+
+		return result;
+	}
 }

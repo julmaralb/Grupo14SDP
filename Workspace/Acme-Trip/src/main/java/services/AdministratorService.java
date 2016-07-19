@@ -5,72 +5,110 @@ import java.util.Collection;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.AdministratorRepository;
+import security.Authority;
+import security.UserAccount;
 import domain.Administrator;
+import domain.Folder;
 
 @Service
 @Transactional
 public class AdministratorService {
 
-	
 	// Managed repository -----------------------------------------------------
 
-			@Autowired
-			private AdministratorRepository administratorRepository;
+	@Autowired
+	private AdministratorRepository administratorRepository;
 
-			// Supporting services ----------------------------------------------------
+	// Supporting services ----------------------------------------------------
 
-			// Constructors -----------------------------------------------------------
+	@Autowired
+	private Md5PasswordEncoder encoder;
 
-			public AdministratorService() {
-				super();
-			}
+	@Autowired
+	private FolderService folderService;
 
-			// Simple CRUD methods ----------------------------------------------------
+	// Constructors -----------------------------------------------------------
 
-			public Administrator create() {
-				Administrator result;
+	public AdministratorService() {
+		super();
+	}
 
-				result = new Administrator();
+	// Simple CRUD methods ----------------------------------------------------
 
-				return result;
-			}
+	public Administrator create() {
+		Administrator result;
+		UserAccount userAccount;
 
-			public Administrator findOne(int administratorId) {
-				Assert.notNull(administratorId);
+		userAccount = createAdminAccount();
+		result = new Administrator();
+		result.setUserAccount(userAccount);
 
-				Administrator result;
+		return result;
+	}
 
-				result = administratorRepository.findOne(administratorId);
+	public Administrator findOne(int administratorId) {
+		Assert.notNull(administratorId);
 
-				return result;
-			}
+		Administrator result;
 
-			public Collection<Administrator> findAll() {
+		result = administratorRepository.findOne(administratorId);
 
-				Collection<Administrator> result;
+		return result;
+	}
 
-				result = administratorRepository.findAll();
+	public Collection<Administrator> findAll() {
 
-				return result;
-			}
+		Collection<Administrator> result;
 
-			public void save(Administrator administrator) {
-				Assert.notNull(administrator);
+		result = administratorRepository.findAll();
 
-				administratorRepository.save(administrator);
-			}
+		return result;
+	}
 
-			public void delete(Administrator administrator) {
-				Assert.notNull(administrator);
+	public void save(Administrator administrator) {
+		Assert.notNull(administrator);
 
-				administratorRepository.delete(administrator);
-			}
+		String password;
+		password = administrator.getUserAccount().getPassword();
+		password = encoder.encodePassword(password, null);
+		administrator.getUserAccount().setPassword(password);
+		Collection<Folder> folders;
+		folders = folderService.initializeFolders(administrator);
+		administrator.setFolders(folders);
 
-			// Other business methods -------------------------------------------------
+		administratorRepository.save(administrator);
+	}
 
-		
+	public void delete(Administrator administrator) {
+		Assert.notNull(administrator);
+
+		administratorRepository.delete(administrator);
+	}
+
+	// Other business methods -------------------------------------------------
+
+	public UserAccount createAdminAccount() {
+		UserAccount result;
+		// Collection<Authority> authorities;
+		Authority authority;
+
+		result = new UserAccount();
+		// result.setUsername("");
+		// result.setPassword("");
+
+		authority = new Authority();
+		authority.setAuthority("ADMIN");
+		// authorities = new ArrayList<Authority>();
+		// authorities.add(authority);
+
+		// result.setAuthorities(authorities);
+		result.addAuthority(authority);
+
+		return result;
+	}
 }

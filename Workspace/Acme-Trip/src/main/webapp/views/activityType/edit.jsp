@@ -7,22 +7,17 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="subject/administrator/edit.do" modelAttribute="subject">
+<form:form action="activityType/administrator/edit.do" modelAttribute="activityType">
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
+	<form:hidden path="activities"/>
 	
-	<acme:textbox code="subject.code" path="code" readonly="true"/>
-	<acme:textbox code="subject.title" path="title"/>
-	<acme:select items="${lecturers}" itemLabel="userAccount.username" code="subject.lecturer" path="lecturer"/>
+	
+	<acme:textbox code="activityType.name" path="name" />
 	
 	<br></br>
-	<acme:submit name="save" code="subject.save"/>
-	<acme:cancel code="subject.cancel" url="/subject/list.do"/>
-	<jstl:if test="${subject.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="subject.delete"/>"
-			onclick="return confirm('<spring:message code="subject.confirm.delete" />')" />
-		&nbsp
-	</jstl:if>
+	<acme:submit name="save" code="activityType.save"/>
+	<acme:cancel code="activityType.cancel" url="/activityType/list.do"/>
+	<acme:delete code="activityType.delete" codeConfirm="activityType.confirm.delete" condition="${activityType.id != 0}"/>
 	
 </form:form>

@@ -36,8 +36,12 @@ public class ActivityService {
 
 	public Activity create() {
 		Activity result;
+		User principal;
 
 		result = new Activity();
+		principal = userService.findByPrincipal();
+		result.setUser(principal);
+		result.setInappropriate(false);
 
 		return result;
 	}
@@ -63,6 +67,11 @@ public class ActivityService {
 
 	public void save(Activity activity) {
 		Assert.notNull(activity);
+		User principal;
+
+		principal = userService.findByPrincipal();
+		activity.setUser(principal);
+		activity.setInappropriate(false);
 
 		activityRepository.save(activity);
 	}
@@ -81,6 +90,14 @@ public class ActivityService {
 
 		principal = userService.findByPrincipal();
 		result = activityRepository.findAllByUserId(principal.getId());
+
+		return result;
+	}
+
+	public Activity findBySlotId(int slotId) {
+		Activity result;
+
+		result = activityRepository.findBySlotId(slotId);
 
 		return result;
 	}

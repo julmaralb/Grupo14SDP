@@ -31,6 +31,7 @@
 		<value>/views/dailyPlan/tiles.xml</value>
 		<value>/views/activityComment/tiles.xml</value>
 		<value>/views/tripComment/tiles.xml</value>
+		<value>/views/manager/tiles.xml</value>
 	</util:list>
 
 </beans>

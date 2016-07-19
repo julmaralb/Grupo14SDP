@@ -22,13 +22,16 @@
 <display:table name="activityComments" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
-	<acme:column code="activityComment.title" property="title" sortable="true"/>
+	<acme:column code="activityComment.text" property="text"/>
+
+	<acme:column code="activityComment.title" property="title"/>
+		
+	<acme:column code="activityComment.actor" property="actor.userAccount.username"/>
 	
-	<acme:column code="activityComment.moment" property="moment" sortable="true"/>
-	
-	<acme:column code="activityComment.text" property="text" sortable="true"/>
-	
-	<acme:column code="activityComment.inappropriate" property="inappropriate" sortable="true"/>		
+	<acme:column code="activityComment.moment" property="moment"/>
 					
 </display:table>
-<acme:cancel url="/" code="activityComment.back"/>
+
+<a href="activityComment/actor/create.do?activityId=${param['activityId']}"><spring:message code="activityComment.create"></spring:message> </a> <br/>
+
+<acme:cancel url="/trip/list.do" code="activityComment.back"/>

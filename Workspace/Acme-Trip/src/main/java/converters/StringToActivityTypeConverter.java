@@ -6,20 +6,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import repositories.ActivityRepository;
-import domain.Activity;
+import repositories.ActivityTypeRepository;
+import domain.ActivityType;
 
 @Component
 @Transactional
 public class StringToActivityTypeConverter implements
-		Converter<String, Activity> {
+		Converter<String, ActivityType> {
 
 	@Autowired
-	ActivityRepository activityRepository;
+	ActivityTypeRepository activityTypeRepository;
 
 	@Override
-	public Activity convert(String text) {
-		Activity result;
+	public ActivityType convert(String text) {
+		ActivityType result;
 		int id;
 
 		try {
@@ -27,7 +27,7 @@ public class StringToActivityTypeConverter implements
 				result = null;
 			else {
 				id = Integer.valueOf(text);
-				result = activityRepository.findOne(id);
+				result = activityTypeRepository.findOne(id);
 			}
 		} catch (Throwable oops) {
 			throw new IllegalArgumentException(oops);

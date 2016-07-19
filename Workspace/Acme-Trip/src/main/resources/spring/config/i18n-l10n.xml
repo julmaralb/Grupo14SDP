@@ -37,6 +37,7 @@
 		<value>/views/dailyPlan/messages</value>
 		<value>/views/activityComment/messages</value>
 		<value>/views/tripComment/messages</value>
+		<value>/views/manager/messages</value>
 	</util:list>
 
 </beans>

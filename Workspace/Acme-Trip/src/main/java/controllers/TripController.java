@@ -75,7 +75,7 @@ public class TripController extends AbstractController {
 		}
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/listByUser", method = RequestMethod.GET)
 	public ModelAndView listByUser(@RequestParam int userId) {
 
@@ -89,6 +89,19 @@ public class TripController extends AbstractController {
 		} catch (Throwable error) {
 			result = new ModelAndView("redirect:list.do");
 		}
+		return result;
+	}
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam int tripId) {
+		ModelAndView result;
+		Trip trip;
+
+		trip = tripService.findOne(tripId);
+
+		result = new ModelAndView("trip/display");
+		result.addObject("trip", trip);
+
 		return result;
 	}
 

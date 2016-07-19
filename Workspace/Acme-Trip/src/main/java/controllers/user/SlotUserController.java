@@ -73,11 +73,11 @@ public class SlotUserController extends AbstractController {
 
 		ModelAndView result;
 		Slot slot;
-		User pricipal;
+		User principal;
 
-		pricipal = userService.findByPrincipal();
+		principal = userService.findByPrincipal();
 		slot = slotService.findOne(slotId);
-		Assert.isTrue(slot.getDailyPlan().getTrip().getOwner().equals(pricipal));
+		Assert.isTrue(slot.getDailyPlan().getTrip().getOwner().equals(principal));
 		Assert.notNull(slot);
 		result = createEditModelAndView(slot);
 		result.addObject("dailyPlanId", dailyPlanId);

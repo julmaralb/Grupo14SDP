@@ -13,7 +13,7 @@
 	<legend><spring:message code="message.details"/></legend>
 	<div>
     	<spring:message code="message.sender"/> : <jstl:out value="${msg.sender.email}"></jstl:out><br/>
-    	<span><spring:message code="message.recipient"/> : <jstl:out value="${msg.recipient.email}"></jstl:out></span><br/>
+    	<spring:message code="message.recipient"/> : <jstl:out value="${msg.recipient.email}"></jstl:out><br/>
     	<spring:message code="message.priority"/> : 
     	<jstl:choose>
     		<jstl:when test="${msg.priority==1}">

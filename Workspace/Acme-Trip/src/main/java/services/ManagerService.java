@@ -5,71 +5,110 @@ import java.util.Collection;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.ManagerRepository;
+import security.Authority;
+import security.UserAccount;
+import domain.Folder;
 import domain.Manager;
 
 @Service
 @Transactional
 public class ManagerService {
+
 	// Managed repository -----------------------------------------------------
 
-			@Autowired
-			private ManagerRepository managerRepository;
+	@Autowired
+	private ManagerRepository managerRepository;
 
-			// Supporting services ----------------------------------------------------
+	// Supporting services ----------------------------------------------------
 
-			// Constructors -----------------------------------------------------------
+	@Autowired
+	private Md5PasswordEncoder encoder;
 
-			public ManagerService() {
-				super();
-			}
+	@Autowired
+	private FolderService folderService;
 
-			// Simple CRUD methods ----------------------------------------------------
+	// Constructors -----------------------------------------------------------
 
-			public Manager create() {
-				Manager result;
+	public ManagerService() {
+		super();
+	}
 
-				result = new Manager();
+	// Simple CRUD methods ----------------------------------------------------
 
-				return result;
-			}
+	public Manager create() {
+		Manager result;
 
-			public Manager findOne(int managerId) {
-				Assert.notNull(managerId);
+		result = new Manager();
+		UserAccount userAccount;
+		userAccount = createManagerAccount();
+		result.setUserAccount(userAccount);
 
-				Manager result;
+		return result;
+	}
 
-				result = managerRepository.findOne(managerId);
+	public Manager findOne(int managerId) {
+		Assert.notNull(managerId);
 
-				return result;
-			}
+		Manager result;
 
-			public Collection<Manager> findAll() {
+		result = managerRepository.findOne(managerId);
 
-				Collection<Manager> result;
+		return result;
+	}
 
-				result = managerRepository.findAll();
+	public Collection<Manager> findAll() {
 
-				return result;
-			}
+		Collection<Manager> result;
 
-			public void save(Manager manager) {
-				Assert.notNull(manager);
+		result = managerRepository.findAll();
 
-				managerRepository.save(manager);
-			}
+		return result;
+	}
 
-			public void delete(Manager manager) {
-				Assert.notNull(manager);
+	public void save(Manager manager) {
+		Assert.notNull(manager);
 
-				managerRepository.delete(manager);
-			}
+		String password;
+		password = manager.getUserAccount().getPassword();
+		password = encoder.encodePassword(password, null);
+		manager.getUserAccount().setPassword(password);
+		Collection<Folder> folders;
+		folders = folderService.initializeFolders(manager);
+		manager.setFolders(folders);
 
-			// Other business methods -------------------------------------------------
+		managerRepository.save(manager);
+	}
 
-		
-	
+	public void delete(Manager manager) {
+		Assert.notNull(manager);
+
+		managerRepository.delete(manager);
+	}
+
+	// Other business methods -------------------------------------------------
+
+	public UserAccount createManagerAccount() {
+		UserAccount result;
+		// Collection<Authority> authorities;
+		Authority authority;
+
+		result = new UserAccount();
+		// result.setUsername("");
+		// result.setPassword("");
+
+		authority = new Authority();
+		authority.setAuthority("MANAGER");
+		// authorities = new ArrayList<Authority>();
+		// authorities.add(authority);
+
+		// result.setAuthorities(authorities);
+		result.addAuthority(authority);
+
+		return result;
+	}
 }

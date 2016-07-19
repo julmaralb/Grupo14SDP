@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.TripRepository;
 import domain.DailyPlan;
+import domain.Folder;
+import domain.Message;
 import domain.Slot;
 import domain.Trip;
 import domain.TripComment;
@@ -31,6 +34,12 @@ public class TripService {
 
 	@Autowired
 	private DailyPlanService dailyPlanService;
+
+	@Autowired
+	private MessageService messageService;
+
+	@Autowired
+	private FolderService folderService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -82,8 +91,11 @@ public class TripService {
 		User principal;
 
 		principal = userService.findByPrincipal();
-		trip.setOwner(principal);
+		if (trip.getId() == 0) {
+			trip.setOwner(principal);
+		}
 
+		notifySubscriptors(trip);
 		tripRepository.save(trip);
 	}
 
@@ -177,5 +189,39 @@ public class TripService {
 		copy.setPhotos(copyPhotos);
 
 		save(copy);
+	}
+
+	public void subscribeToTrip(Trip trip) {
+		User principal;
+		Collection<User> subscriptors;
+
+		principal = userService.findByPrincipal();
+		subscriptors = trip.getSubscriptors();
+
+		subscriptors.add(principal);
+		trip.setSubscriptors(subscriptors);
+
+	}
+
+	public void notifySubscriptors(Trip trip) {
+		Collection<User> subscriptors;
+		User sender;
+
+		subscriptors = trip.getSubscriptors();
+		sender = trip.getOwner();
+
+		for (User u : subscriptors) {
+			Message m = messageService.create();
+			Folder recipientInbox = folderService.findByNameAndActorId(
+					"In Folder", u.getId());
+			m.setSender(sender);
+			m.setRecipient(u);
+			m.setFolder(recipientInbox);
+			m.setSubject(trip.getTitle() + " modified");
+			m.setPriority(1);
+			m.setBody("My trip with title: " + trip.getId()
+					+ " has been modified");
+			messageService.save(m);
+		}
 	}
 }

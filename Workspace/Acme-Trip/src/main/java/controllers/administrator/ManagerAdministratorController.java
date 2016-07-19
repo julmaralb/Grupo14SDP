@@ -1,14 +1,4 @@
-/* AdministratorController.java
- *
- * Copyright (C) 2013 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
- * http://www.tdg-seville.info/License.html
- * 
- */
-
-package controllers;
+package controllers.administrator;
 
 import java.util.Collection;
 
@@ -26,45 +16,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import security.Authority;
 import security.UserAccount;
-import services.AdministratorService;
-
-import domain.Administrator;
+import services.ManagerService;
+import controllers.AbstractController;
+import domain.Manager;
 
 @Controller
-@RequestMapping("/administrator")
-public class AdministratorController extends AbstractController {
+@RequestMapping("/manager/administrator")
+public class ManagerAdministratorController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
 
 	@Autowired
-	private AdministratorService administratorService;
+	private ManagerService managerService;
 
 	// Constructors -----------------------------------------------------------
 
-	public AdministratorController() {
+	public ManagerAdministratorController() {
 		super();
-	}
-
-	// Action-1 ---------------------------------------------------------------
-
-	@RequestMapping("/action-1")
-	public ModelAndView action1() {
-		ModelAndView result;
-
-		result = new ModelAndView("administrator/action-1");
-
-		return result;
-	}
-
-	// Action-2 ---------------------------------------------------------------
-
-	@RequestMapping("/action-2")
-	public ModelAndView action2() {
-		ModelAndView result;
-
-		result = new ModelAndView("administrator/action-2");
-
-		return result;
 	}
 
 	// Creation --------------------------------------------------------
@@ -73,10 +41,10 @@ public class AdministratorController extends AbstractController {
 	public ModelAndView create() {
 
 		ModelAndView result;
-		Administrator administrator;
+		Manager manager;
 
-		administrator = administratorService.create();
-		result = createEditModelAndView(administrator);
+		manager = managerService.create();
+		result = createEditModelAndView(manager);
 
 		return result;
 	}
@@ -87,9 +55,9 @@ public class AdministratorController extends AbstractController {
 	public ModelAndView edit(@RequestParam int adminId) {
 
 		ModelAndView result;
-		Administrator administatror;
+		Manager administatror;
 
-		administatror = administratorService.findOne(adminId);
+		administatror = managerService.findOne(adminId);
 		Assert.notNull(administatror);
 		result = createEditModelAndView(administatror);
 
@@ -97,19 +65,19 @@ public class AdministratorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid @ModelAttribute Administrator administrator,
+	public ModelAndView save(@Valid @ModelAttribute Manager manager,
 			BindingResult binding) {
 
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(administrator);
+			result = createEditModelAndView(manager);
 		} else {
 			try {
-				administratorService.save(administrator);
+				managerService.save(manager);
 				result = new ModelAndView("redirect:/");
 			} catch (Throwable oops) {
-				result = createEditModelAndView(administrator, "administrator.commit.error");
+				result = createEditModelAndView(manager, "manager.commit.error");
 			}
 		}
 		return result;
@@ -117,26 +85,27 @@ public class AdministratorController extends AbstractController {
 
 	// Ancillary methods -----------------------------------------------
 
-	protected ModelAndView createEditModelAndView(Administrator administrator) {
+	protected ModelAndView createEditModelAndView(Manager manager) {
 
 		ModelAndView result;
 
-		result = createEditModelAndView(administrator, null);
+		result = createEditModelAndView(manager, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(Administrator administrator, String message) {
+	protected ModelAndView createEditModelAndView(Manager manager,
+			String message) {
 
 		ModelAndView result;
 		UserAccount userAccount;
 		Collection<Authority> authorities;
 
-		userAccount = administrator.getUserAccount();
+		userAccount = manager.getUserAccount();
 		authorities = Authority.listAuthorities();
-		result = new ModelAndView("administrator/edit");
+		result = new ModelAndView("manager/edit");
 
-		result.addObject("administrator", administrator);
+		result.addObject("manager", manager);
 		result.addObject("userAccount", userAccount);
 
 		result.addObject("authorities", authorities);

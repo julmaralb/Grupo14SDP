@@ -3,8 +3,6 @@ package services;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javassist.expr.NewArray;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +25,7 @@ public class DailyPlanService {
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
-	private UserService userService;
+	private TripService tripService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -70,6 +68,7 @@ public class DailyPlanService {
 	public void save(DailyPlan dailyPlan) {
 		Assert.notNull(dailyPlan);
 
+		tripService.notifySubscriptors(dailyPlan.getTrip());
 		dailyPlanRepository.save(dailyPlan);
 	}
 
