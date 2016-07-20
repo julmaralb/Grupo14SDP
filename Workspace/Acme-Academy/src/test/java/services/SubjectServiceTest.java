@@ -5,11 +5,15 @@ import java.util.Collection;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
+import repositories.AssignmentRepository;
+import repositories.StudentRepository;
 
 import utilities.AbstractTest;
 import domain.Subject;
@@ -25,6 +29,18 @@ public class SubjectServiceTest extends AbstractTest {
 
 	@Autowired
 	private SubjectService subjectService;
+	
+	@Autowired
+	private LecturerService lecturerService;
+	
+	@Autowired
+	private StudentRepository studentRepository;
+
+	@Autowired
+	private Md5PasswordEncoder encoder;
+	
+	@Autowired
+	private AssignmentRepository assignmentRepository;
 
 	// Test ---------------------------------------
 

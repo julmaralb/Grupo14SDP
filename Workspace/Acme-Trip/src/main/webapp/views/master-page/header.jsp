@@ -37,7 +37,18 @@
 					<li class="arrow"></li>
 					<li><a href="manager/administrator/create.do"><spring:message code="master.page.administrator.registerManager" /></a></li>
 					<li><a href="administrator/create.do"><spring:message code="master.page.administrator.registerAdmin" /></a></li>
+					<li><a href="activity/administrator/list.do"><spring:message code="master.page.administrator.activity.list" /></a></li>	
 					<li><a href="activityType/administrator/create.do"><spring:message code="master.page.administrator.activityType.create" /></a></li>					
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('MANAGER')">
+			<li><a class="fNiv"><spring:message	code="master.page.manager.campaigns" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="campaign/manager/create.do"><spring:message code="master.page.manager.campaign.create" /></a></li>
+					<li><a href="campaign/manager/list.do"><spring:message code="master.page.manager.campaign.list" /></a></li>				
 				</ul>
 			</li>
 		</security:authorize>

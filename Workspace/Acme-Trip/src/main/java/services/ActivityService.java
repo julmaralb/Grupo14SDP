@@ -101,4 +101,8 @@ public class ActivityService {
 
 		return result;
 	}
+
+	public void flagActivity(Activity activity) {
+		activity.setInappropriate(true);
+	}
 }

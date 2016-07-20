@@ -68,6 +68,21 @@
 		<bean class="converters.TripCommentToStringConverter" />
 		<bean class="converters.StringToTripCommentConverter" />
 		
+		<bean class="converters.BannerToStringConverter" />
+		<bean class="converters.StringToBannerConverter" />
+		
+		<bean class="converters.CreditCardToStringConverter" />
+		<bean class="converters.StringToCreditCardConverter" />
+		
+		<bean class="converters.CampaignToStringConverter" />
+		<bean class="converters.StringToCampaignConverter" />
+		
+		<bean class="converters.ChargeRecordToStringConverter" />
+		<bean class="converters.StringToChargeRecordConverter" />
+		
+		<bean class="converters.DisplayPriceToStringConverter" />
+		<bean class="converters.StringToDisplayPriceConverter" />
+		
 	</util:list>
 	
 </beans>

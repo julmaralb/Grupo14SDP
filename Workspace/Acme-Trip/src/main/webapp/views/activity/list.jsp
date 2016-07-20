@@ -30,6 +30,14 @@
 	
 	<acme:pictureColumn items="${row.photos}" code="activity.photos" alt="${row.title}"/>
 	
+	<security:authorize access="hasRole('ADMIN')">
+	<acme:column code="activity.inappropriate" property="inappropriate"/>
+	</security:authorize>
+	
+	<security:authorize access="hasRole('ADMIN')">
+	<acme:refConditionColumn ref="activity/administrator/flagActivity.do?activityId=${row.id}" code="activity.flagActivity" condition="${row.inappropriate == false}"/>	
+	</security:authorize>
+	
 	<security:authorize access="isAuthenticated()">
 	<acme:refColumn ref="activityComment/actor/list.do?activityId=${row.id}" code="activity.comments"/>	
 	</security:authorize>

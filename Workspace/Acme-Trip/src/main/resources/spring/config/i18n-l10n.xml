@@ -38,6 +38,8 @@
 		<value>/views/activityComment/messages</value>
 		<value>/views/tripComment/messages</value>
 		<value>/views/manager/messages</value>
+		<value>/views/banner/messages</value>
+		<value>/views/campaign/messages</value>
 	</util:list>
 
 </beans>
