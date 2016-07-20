@@ -74,6 +74,7 @@
 		<security:intercept-url pattern="/banner/manager/**" access="hasRole('MANAGER')" /> 
 		<security:intercept-url pattern="/campaign/manager/**" access="hasRole('MANAGER')" /> 
 		<security:intercept-url pattern="/creditCard/manager/**" access="hasRole('MANAGER')" /> 
+		<security:intercept-url pattern="/chargeRecord/manager/**" access="hasRole('MANAGER')" />
 
 		<security:intercept-url pattern="/customer/action-1.do" access="hasRole('CUSTOMER')" /> 
 		<security:intercept-url pattern="/customer/action-2.do" access="hasRole('CUSTOMER')" /> 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.ChargeRecordRepository;
+import domain.Actor;
 import domain.ChargeRecord;
 
 @Service
@@ -21,6 +22,9 @@ public class ChargeRecordService {
 	private ChargeRecordRepository chargeRecordRepository;
 
 	// Supporting services ----------------------------------------------------
+
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -70,4 +74,16 @@ public class ChargeRecordService {
 	}
 
 	// Other business methods -------------------------------------------------
+
+	public Collection<ChargeRecord> findAllByCreditCardIdAndPrincipal(
+			int creditCardId) {
+		Collection<ChargeRecord> result;
+		Actor principal;
+
+		principal = actorService.findByPrincipal();
+		result = chargeRecordRepository.findAllByCreditCardIdAndManagerId(
+				creditCardId, principal.getId());
+
+		return result;
+	}
 }

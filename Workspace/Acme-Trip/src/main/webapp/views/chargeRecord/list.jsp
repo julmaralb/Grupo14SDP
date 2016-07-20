@@ -19,20 +19,17 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<display:table name="banners" id="row" requestURI="${requestURI}"
+<display:table name="chargeRecords" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
-	<acme:column code="banner.keywords" property="keywords"/>
+	<acme:column code="chargeRecord.price" property="price"/>
 	
-	<acme:column code="banner.maxDisplayTimes" property="maxDisplayTimes"/>
+	<acme:column code="chargeRecord.tax" property="tax"/>
 	
-	<acme:column code="banner.dayDisplays" property="dayDisplays"/>
+	<acme:column code="chargeRecord.moment" property="moment"/>
 	
-	<acme:onePictureColumn code="banner.photo" alt="" src="${row.photo}"/>
+	<acme:column code="chargeRecord.creditCard" property="creditCard"/>
 				
 </display:table>
 
-<div>
-<a href="banner/manager/create.do"><spring:message code="banner.create" /></a>
-</div>
-<acme:cancel url="/" code="banner.back"/>
+<acme:cancel url="/creditCard/manager/list.do" code="chargeRecord.back"/>

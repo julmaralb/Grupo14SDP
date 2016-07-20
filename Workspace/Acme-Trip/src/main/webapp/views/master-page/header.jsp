@@ -44,6 +44,26 @@
 		</security:authorize>
 		
 		<security:authorize access="hasRole('MANAGER')">
+			<li><a class="fNiv"><spring:message	code="master.page.manager.creditCards" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="creditCard/manager/create.do"><spring:message code="master.page.manager.creditCard.create" /></a></li>
+					<li><a href="creditCard/manager/list.do"><spring:message code="master.page.manager.creditCard.list" /></a></li>				
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('MANAGER')">
+			<li><a class="fNiv"><spring:message	code="master.page.manager.banners" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="banner/manager/create.do"><spring:message code="master.page.manager.banner.create" /></a></li>
+					<li><a href="banner/manager/list.do"><spring:message code="master.page.manager.banner.list" /></a></li>				
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('MANAGER')">
 			<li><a class="fNiv"><spring:message	code="master.page.manager.campaigns" /></a>
 				<ul>
 					<li class="arrow"></li>

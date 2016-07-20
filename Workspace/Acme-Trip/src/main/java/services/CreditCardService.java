@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -10,7 +11,10 @@ import org.springframework.util.Assert;
 
 import repositories.CreditCardRepository;
 import domain.Actor;
+import domain.Campaign;
+import domain.ChargeRecord;
 import domain.CreditCard;
+import domain.Manager;
 
 @Service
 @Transactional
@@ -22,6 +26,9 @@ public class CreditCardService {
 	private CreditCardRepository creditCardRepository;
 
 	// Supporting services ----------------------------------------------------
+
+	@Autowired
+	private ManagerService managerService;
 
 	@Autowired
 	private ActorService actorService;
@@ -36,8 +43,17 @@ public class CreditCardService {
 
 	public CreditCard create() {
 		CreditCard result;
+		Manager principal;
+		Collection<Campaign> campaigns;
+		Collection<ChargeRecord> chargeRecords;
 
 		result = new CreditCard();
+		principal = managerService.findByPrincipal();
+		campaigns = new ArrayList<Campaign>();
+		chargeRecords = new ArrayList<ChargeRecord>();
+		result.setManager(principal);
+		result.setCampaigns(campaigns);
+		result.setChargeRecords(chargeRecords);
 
 		return result;
 	}
@@ -63,7 +79,10 @@ public class CreditCardService {
 
 	public void save(CreditCard creditCard) {
 		Assert.notNull(creditCard);
+		Manager principal;
 
+		principal = managerService.findByPrincipal();
+		creditCard.setManager(principal);
 		creditCardRepository.save(creditCard);
 	}
 

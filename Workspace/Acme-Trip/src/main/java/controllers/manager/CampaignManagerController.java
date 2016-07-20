@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorService;
 import services.CampaignService;
 import services.CreditCardService;
 import controllers.AbstractController;
+import domain.Actor;
 import domain.Campaign;
 import domain.CreditCard;
 
@@ -30,6 +32,9 @@ public class CampaignManagerController extends AbstractController {
 
 	@Autowired
 	private CreditCardService creditCardService;
+
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -47,7 +52,7 @@ public class CampaignManagerController extends AbstractController {
 		campaigns = campaignService.findAllByPrincipal();
 
 		result = new ModelAndView("campaign/list");
-		result.addObject("requestURI", "campaign/administrator/list.do");
+		result.addObject("requestURI", "campaign/manager/list.do");
 		result.addObject("campaigns", campaigns);
 
 		return result;
@@ -73,9 +78,12 @@ public class CampaignManagerController extends AbstractController {
 
 		ModelAndView result;
 		Campaign campaign;
+		Actor principal;
 
+		principal = actorService.findByPrincipal();
 		campaign = campaignService.findOne(campaignId);
 		Assert.notNull(campaign);
+		Assert.isTrue(campaign.getManager().equals(principal));
 		result = createEditModelAndView(campaign);
 
 		return result;

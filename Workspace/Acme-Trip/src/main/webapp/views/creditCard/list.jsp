@@ -19,20 +19,28 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<display:table name="banners" id="row" requestURI="${requestURI}"
+<display:table name="creditCards" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
-	<acme:column code="banner.keywords" property="keywords"/>
+	<acme:column code="creditCard.holderName" property="holderName"/>
 	
-	<acme:column code="banner.maxDisplayTimes" property="maxDisplayTimes"/>
+	<acme:column code="creditCard.brandName" property="brandName"/>
 	
-	<acme:column code="banner.dayDisplays" property="dayDisplays"/>
+	<acme:column code="creditCard.number" property="number"/>
 	
-	<acme:onePictureColumn code="banner.photo" alt="" src="${row.photo}"/>
+	<acme:column code="creditCard.expMonth" property="expMonth"/>
+	
+	<acme:column code="creditCard.expYear" property="expYear"/>
+	
+	<acme:column code="creditCard.CVV" property="CVV"/>
+	
+	<acme:refColumn ref="chargeRecord/manager/list.do?creditCardId=${row.id}" code="creditCard.chargeRecords"/>
+	
+	<acme:refColumn ref="campaign/manager/listBycreditCard?creditCardId=${row.id}" code="creditCard.campaigns"/>
 				
 </display:table>
 
 <div>
-<a href="banner/manager/create.do"><spring:message code="banner.create" /></a>
+<a href="creditCard/manager/create.do"><spring:message code="creditCard.create" /></a>
 </div>
-<acme:cancel url="/" code="banner.back"/>
+<acme:cancel url="/" code="creditCard.back"/>

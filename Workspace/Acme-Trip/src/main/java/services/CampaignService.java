@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -10,7 +11,9 @@ import org.springframework.util.Assert;
 
 import repositories.CampaignRepository;
 import domain.Actor;
+import domain.Banner;
 import domain.Campaign;
+import domain.Manager;
 
 @Service
 @Transactional
@@ -26,6 +29,9 @@ public class CampaignService {
 	@Autowired
 	private ActorService actorService;
 
+	@Autowired
+	private ManagerService managerService;
+
 	// Constructors -----------------------------------------------------------
 
 	public CampaignService() {
@@ -36,8 +42,15 @@ public class CampaignService {
 
 	public Campaign create() {
 		Campaign result;
+		Manager principal;
+		Collection<Banner> banners;
 
 		result = new Campaign();
+		principal = managerService.findByPrincipal();
+		banners = new ArrayList<Banner>();
+
+		result.setManager(principal);
+		result.setBanners(banners);
 
 		return result;
 	}
@@ -63,6 +76,10 @@ public class CampaignService {
 
 	public void save(Campaign campaign) {
 		Assert.notNull(campaign);
+		Manager principal;
+
+		principal = managerService.findByPrincipal();
+		campaign.setManager(principal);
 
 		campaignRepository.save(campaign);
 	}

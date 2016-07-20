@@ -38,6 +38,7 @@ public class BannerService {
 		Banner result;
 
 		result = new Banner();
+		result.setDayDisplays(0);
 
 		return result;
 	}

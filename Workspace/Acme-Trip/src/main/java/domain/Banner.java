@@ -29,6 +29,7 @@ public class Banner extends DomainEntity {
 	private String photo;
 	private Collection<String> keywords;
 	private int maxDisplayTimes;
+	private int dayDisplays;
 
 	@NotNull
 	@URL
@@ -58,6 +59,15 @@ public class Banner extends DomainEntity {
 
 	public void setMaxDisplayTimes(int maxDisplayTimes) {
 		this.maxDisplayTimes = maxDisplayTimes;
+	}
+
+	@Min(0)
+	public int getDayDisplays() {
+		return dayDisplays;
+	}
+
+	public void setDayDisplays(int dayDisplays) {
+		this.dayDisplays = dayDisplays;
 	}
 
 	// Relationships ----------------------------------------------------------

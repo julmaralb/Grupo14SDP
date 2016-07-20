@@ -14,31 +14,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
-import services.BannerService;
-import services.CampaignService;
+import services.CreditCardService;
 import controllers.AbstractController;
 import domain.Actor;
-import domain.Banner;
-import domain.Campaign;
+import domain.CreditCard;
 
 @Controller
-@RequestMapping("/banner/manager")
-public class BannerManagerController extends AbstractController {
+@RequestMapping("/creditCard/manager")
+public class CreditCardManagerController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
 
 	@Autowired
-	private BannerService bannerService;
-
+	private CreditCardService creditCardService;
+	
 	@Autowired
 	private ActorService actorService;
 
-	@Autowired
-	private CampaignService campaignService;
-
 	// Constructors -----------------------------------------------------------
 
-	public BannerManagerController() {
+	public CreditCardManagerController() {
 		super();
 	}
 
@@ -47,13 +42,13 @@ public class BannerManagerController extends AbstractController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
-		Collection<Banner> banners;
+		Collection<CreditCard> creditCards;
 
-		banners = bannerService.findAllByPrincipal();
+		creditCards = creditCardService.findAllByPrincipal();
 
-		result = new ModelAndView("banner/list");
-		result.addObject("requestURI", "banner/manager/list.do");
-		result.addObject("banners", banners);
+		result = new ModelAndView("creditCard/list");
+		result.addObject("requestURI", "creditCard/manager/list.do");
+		result.addObject("creditCards", creditCards);
 
 		return result;
 	}
@@ -63,10 +58,10 @@ public class BannerManagerController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
-		Banner banner;
+		CreditCard creditCard;
 
-		banner = bannerService.create();
-		result = createEditModelAndView(banner);
+		creditCard = creditCardService.create();
+		result = createEditModelAndView(creditCard);
 
 		return result;
 	}
@@ -74,69 +69,74 @@ public class BannerManagerController extends AbstractController {
 	// Edition ----------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam int bannerId) {
+	public ModelAndView edit(@RequestParam int creditCardId) {
 
 		ModelAndView result;
-		Banner banner;
+		CreditCard creditCard;
 		Actor principal;
 
 		principal = actorService.findByPrincipal();
-		banner = bannerService.findOne(bannerId);
-		Assert.notNull(banner);
-		Assert.isTrue(banner.getCampaign().getManager().equals(principal));
-		result = createEditModelAndView(banner);
+		creditCard = creditCardService.findOne(creditCardId);
+		Assert.notNull(creditCard);
+		Assert.isTrue(creditCard.getManager().equals(principal));
+		result = createEditModelAndView(creditCard);
 
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid Banner banner, BindingResult binding) {
+	public ModelAndView save(@Valid CreditCard creditCard, BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(banner);
+			result = createEditModelAndView(creditCard);
 		} else {
 			try {
-				bannerService.save(banner);
-				result = new ModelAndView("redirect:/banner/manager/list.do");
+				creditCardService.save(creditCard);
+				result = new ModelAndView(
+						"redirect:/creditCard/manager/list.do");
 			} catch (Throwable oops) {
-				result = createEditModelAndView(banner, "banner.commit.error");
+				result = createEditModelAndView(creditCard,
+						"creditCard.commit.error");
 			}
 		}
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(@Valid Banner banner, BindingResult binding) {
+	public ModelAndView delete(@Valid CreditCard creditCard,
+			BindingResult binding) {
 		ModelAndView result;
 
 		try {
-			bannerService.delete(banner);
-			result = new ModelAndView("redirect:/banner/manager/list.do");
+			creditCardService.delete(creditCard);
+			result = new ModelAndView("redirect:/creditCard/manager/list.do");
 		} catch (Throwable oops) {
-			result = createEditModelAndView(banner, "banner.commit.error");
+			result = createEditModelAndView(creditCard,
+					"creditCard.delete.error");
 		}
 		return result;
 	}
 
 	// Ancillary methods ------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(Banner banner) {
+	protected ModelAndView createEditModelAndView(CreditCard creditCard) {
 		ModelAndView result;
 
-		result = createEditModelAndView(banner, null);
+		result = createEditModelAndView(creditCard, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(Banner banner, String message) {
+	protected ModelAndView createEditModelAndView(CreditCard creditCard,
+			String message) {
 		ModelAndView result;
-		Collection<Campaign> campaigns;
+		Collection<CreditCard> creditCards;
 
-		result = new ModelAndView("banner/edit");
-		campaigns = campaignService.findAllByPrincipal();
-		result.addObject("banner", banner);
-		result.addObject("campaigns", campaigns);
+		result = new ModelAndView("creditCard/edit");
+		creditCards = creditCardService.findAllByPrincipal();
+		result.addObject("creditCard", creditCard);
+		result.addObject("creditCards", creditCards);
 		result.addObject("message", message);
 
 		return result;

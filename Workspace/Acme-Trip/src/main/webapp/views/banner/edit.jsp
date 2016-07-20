@@ -10,6 +10,7 @@
 <form:form action="banner/manager/edit.do" modelAttribute="banner">
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
+	<form:hidden path="dayDisplays"/>
 	
 	<acme:textbox code="banner.photo" path="photo" />
 	<acme:textarea code="banner.keywords" path="keywords" />

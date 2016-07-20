@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 
 import repositories.ManagerRepository;
 import security.Authority;
+import security.LoginService;
 import security.UserAccount;
 import domain.Folder;
 import domain.Manager;
@@ -91,6 +92,29 @@ public class ManagerService {
 	}
 
 	// Other business methods -------------------------------------------------
+
+	public Manager findByPrincipal() {
+		Manager result;
+		UserAccount userAccount;
+
+		userAccount = LoginService.getPrincipal();
+		result = findByUserAccount(userAccount);
+
+		Assert.notNull(result);
+
+		return result;
+	}
+
+	public Manager findByUserAccount(UserAccount userAccount) {
+		assert userAccount != null;
+
+		Manager result;
+
+		result = managerRepository.findByUserAccountId(userAccount.getId());
+		assert result != null;
+
+		return result;
+	}
 
 	public UserAccount createManagerAccount() {
 		UserAccount result;
