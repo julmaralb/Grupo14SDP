@@ -22,13 +22,17 @@
 <display:table name="activityComments" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
-	<acme:column code="activityComment.text" property="text"/>
+	<acme:column code="activityComment.actor" property="actor.userAccount.username"/>
 
 	<acme:column code="activityComment.title" property="title"/>
-		
-	<acme:column code="activityComment.actor" property="actor.userAccount.username"/>
+
+	<acme:column code="activityComment.text" property="text"/>
 	
 	<acme:column code="activityComment.moment" property="moment"/>
+	
+	<security:authorize access="hasRole('ADMIN')">
+	<acme:refColumn ref="comment/administrator/flagComment.do?commentId=${row.id}" code="activityComment.flagComment"/>	
+	</security:authorize>
 					
 </display:table>
 

@@ -7,14 +7,17 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="tripComment/user/edit.do" modelAttribute="tripComment">
+<form:form action="tripComment/actor/edit.do" modelAttribute="tripComment">
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
+	<form:hidden path="actor"/>
+	<form:hidden path="inappropriate"/>
+	<form:hidden path="trip"/>
+	<form:hidden path="moment"/>
 	
-	<acme:textbox code="tripComment.title" path="title" readonly="true"/>
-	<acme:textbox code="tripComment.moment" path="moment"/>
-	<acme:textbox code="tripComment.text" path="text"/>
-	<acme:textbox code="tripComment.inappropriate" path="inappropriate"/>
+	<acme:textbox code="tripComment.title" path="title"/>
+	<acme:textarea code="tripComment.text" path="text"/>
+	<input type="hidden" name= "tripId" value="${tripId}"/>
 	
 	<br></br>
 	<acme:submit name="save" code="tripComment.save"/>

@@ -1,6 +1,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.TripCommentRepository;
+import domain.Actor;
 import domain.TripComment;
 
 @Service
@@ -17,59 +19,82 @@ public class TripCommentService {
 
 	// Managed repository -----------------------------------------------------
 
-			@Autowired
-			private TripCommentRepository tripCommentRepository;
+	@Autowired
+	private TripCommentRepository tripCommentRepository;
 
-			// Supporting services ----------------------------------------------------
+	// Supporting services ----------------------------------------------------
 
-			// Constructors -----------------------------------------------------------
+	@Autowired
+	private ActorService actorService;
 
-			public TripCommentService() {
-				super();
-			}
+	// Constructors -----------------------------------------------------------
 
-			// Simple CRUD methods ----------------------------------------------------
+	public TripCommentService() {
+		super();
+	}
 
-			public TripComment create() {
-				TripComment result;
+	// Simple CRUD methods ----------------------------------------------------
 
-				result = new TripComment();
+	public TripComment create() {
+		TripComment result;
+		Date moment;
+		Actor principal;
 
-				return result;
-			}
+		result = new TripComment();
+		principal = actorService.findByPrincipal();
+		moment = new Date();
 
-			public TripComment findOne(int tripCommentId) {
-				Assert.notNull(tripCommentId);
+		result.setMoment(moment);
+		result.setActor(principal);
 
-				TripComment result;
+		return result;
+	}
 
-				result = tripCommentRepository.findOne(tripCommentId);
+	public TripComment findOne(int tripCommentId) {
+		Assert.notNull(tripCommentId);
 
-				return result;
-			}
+		TripComment result;
 
-			public Collection<TripComment> findAll() {
+		result = tripCommentRepository.findOne(tripCommentId);
 
-				Collection<TripComment> result;
+		return result;
+	}
 
-				result = tripCommentRepository.findAll();
+	public Collection<TripComment> findAll() {
 
-				return result;
-			}
+		Collection<TripComment> result;
 
-			public void save(TripComment tripComment) {
-				Assert.notNull(tripComment);
+		result = tripCommentRepository.findAll();
 
-				tripCommentRepository.save(tripComment);
-			}
+		return result;
+	}
 
-			public void delete(TripComment tripComment) {
-				Assert.notNull(tripComment);
-
-				tripCommentRepository.delete(tripComment);
-			}
-
-			// Other business methods -------------------------------------------------
-
+	public void save(TripComment tripComment) {
+		Assert.notNull(tripComment);
+		long milliseconds;
+		Actor principal;
 		
+		milliseconds = System.currentTimeMillis() - 100;
+		tripComment.setMoment(new Date(milliseconds));
+		principal = actorService.findByPrincipal();
+		tripComment.setActor(principal);
+
+		tripCommentRepository.save(tripComment);
+	}
+
+	public void delete(TripComment tripComment) {
+		Assert.notNull(tripComment);
+
+		tripCommentRepository.delete(tripComment);
+	}
+
+	// Other business methods -------------------------------------------------
+
+	public Collection<TripComment> findAllAppropriateByTripId(int tripId) {
+		Collection<TripComment> result;
+
+		result = tripCommentRepository.findAllByTripId(tripId);
+
+		return result;
+	}
 }

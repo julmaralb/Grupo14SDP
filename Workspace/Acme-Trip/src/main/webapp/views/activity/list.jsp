@@ -30,8 +30,10 @@
 	
 	<acme:pictureColumn items="${row.photos}" code="activity.photos" alt="${row.title}"/>
 	
+	<security:authorize access="isAuthenticated()">
 	<acme:refColumn ref="activityComment/actor/list.do?activityId=${row.id}" code="activity.comments"/>	
+	</security:authorize>
 	
 </display:table>
 
-<acme:cancel url="/" code="activity.back"/>
+<acme:cancel url="/trip/list.do" code="activity.back"/>

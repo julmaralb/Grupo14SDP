@@ -16,7 +16,7 @@
 	<form:hidden path="moment"/>
 		
 	<acme:textbox code="activityComment.title" path="title"/>
-	<acme:textbox code="activityComment.text" path="text"/>
+	<acme:textarea code="activityComment.text" path="text"/>
 	<input type="hidden" name= "activityId" value="${activityId}"/>
 
 	<br></br>

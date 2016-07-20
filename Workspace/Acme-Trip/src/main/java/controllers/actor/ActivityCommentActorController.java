@@ -49,7 +49,7 @@ public class ActivityCommentActorController extends AbstractController {
 		Collection<ActivityComment> activityComments;
 
 		activityComments = activityCommentService
-				.findAllByActivityId(activityId);
+				.findAllAppropriateByActivityId(activityId);
 
 		result = new ModelAndView("activityComment/list");
 		result.addObject("requestURI", "activityComment/actor/list.do");

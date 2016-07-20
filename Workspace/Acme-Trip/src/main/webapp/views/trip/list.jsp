@@ -43,6 +43,10 @@
 	
 	<acme:refColumn ref="dailyPlan/list.do?tripId=${row.id}" code="trip.dailyPlans"/>
 	
+	<security:authorize access="isAuthenticated()">
+	<acme:refColumn ref="tripComment/actor/list.do?tripId=${row.id}" code="trip.comments"/>
+	</security:authorize>
+	
 	<acme:refColumn ref="trip/display.do?tripId=${row.id}" code="trip.display"/>
 	
 	<security:authorize access="hasRole('USER')">

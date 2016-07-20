@@ -17,60 +17,69 @@ public class CommentService {
 
 	// Managed repository -----------------------------------------------------
 
-			@Autowired
-			private CommentRepository commentRepository;
+	@Autowired
+	private CommentRepository commentRepository;
 
-			// Supporting services ----------------------------------------------------
+	// Supporting services ----------------------------------------------------
 
-			// Constructors -----------------------------------------------------------
+	// Constructors -----------------------------------------------------------
 
-			public CommentService() {
-				super();
-			}
+	public CommentService() {
+		super();
+	}
 
-			// Simple CRUD methods ----------------------------------------------------
+	// Simple CRUD methods ----------------------------------------------------
 
-			public Comment create() {
-				Comment result;
+	public Comment create() {
+		Comment result;
 
-				result = new Comment();
+		result = new Comment();
 
-				return result;
-			}
+		return result;
+	}
 
-			public Comment findOne(int commentId) {
-				Assert.notNull(commentId);
+	public Comment findOne(int commentId) {
+		Assert.notNull(commentId);
 
-				Comment result;
+		Comment result;
 
-				result = commentRepository.findOne(commentId);
+		result = commentRepository.findOne(commentId);
 
-				return result;
-			}
+		return result;
+	}
 
-			public Collection<Comment> findAll() {
+	public Collection<Comment> findAll() {
 
-				Collection<Comment> result;
+		Collection<Comment> result;
 
-				result = commentRepository.findAll();
+		result = commentRepository.findAll();
 
-				return result;
-			}
+		return result;
+	}
 
-			public void save(Comment comment) {
-				Assert.notNull(comment);
+	public void save(Comment comment) {
+		Assert.notNull(comment);
 
-				commentRepository.save(comment);
-			}
+		commentRepository.save(comment);
+	}
 
-			public void delete(Comment comment) {
-				Assert.notNull(comment);
+	public void delete(Comment comment) {
+		Assert.notNull(comment);
 
-				commentRepository.delete(comment);
-			}
+		commentRepository.delete(comment);
+	}
 
-			// Other business methods -------------------------------------------------
+	// Other business methods -------------------------------------------------
 
-		
+	public Comment findById(int commentId) {
+		Comment result;
 
+		result = commentRepository.findById(commentId);
+
+		return result;
+	}
+
+	public void flagComment(Comment comment) {
+		comment.setInappropriate(true);
+	}
 }

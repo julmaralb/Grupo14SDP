@@ -22,13 +22,20 @@
 <display:table name="tripComments" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
-	<acme:column code="tripComment.title" property="title" sortable="true"/>
+	<acme:column code="activityComment.actor" property="actor.userAccount.username"/>
 	
-	<acme:column code="tripComment.moment" property="moment" sortable="true"/>
+	<acme:column code="tripComment.title" property="title" />
 	
-	<acme:column code="tripComment.text" property="text" sortable="true"/>
+	<acme:column code="tripComment.text" property="text" />
 	
-	<acme:column code="tripComment.inappropriate" property="inappropriate" sortable="true"/>		
+	<acme:column code="activityComment.moment" property="moment"/>
+	
+	<security:authorize access="hasRole('ADMIN')">
+	<acme:refColumn ref="comment/administrator/flagComment.do?commentId=${row.id}" code="tripComment.flagComment"/>	
+	</security:authorize>
 					
 </display:table>
-<acme:cancel url="/" code="tripComment.back"/>
+
+<a href="tripComment/actor/create.do?tripId=${param['tripId']}"><spring:message code="tripComment.create"></spring:message> </a> <br/>
+
+<acme:cancel url="/trip/list.do" code="tripComment.back"/>

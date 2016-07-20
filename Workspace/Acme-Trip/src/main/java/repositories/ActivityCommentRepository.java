@@ -12,7 +12,7 @@ import domain.ActivityComment;
 public interface ActivityCommentRepository extends
 		JpaRepository<ActivityComment, Integer> {
 
-	@Query("select ac from ActivityComment ac where ac.activity.id = ?1")
+	@Query("select ac from ActivityComment ac where ac.activity.id = ?1 AND ac.inappropriate = false")
 	Collection<ActivityComment> findAllByActivityId(int activityId);
 
 }

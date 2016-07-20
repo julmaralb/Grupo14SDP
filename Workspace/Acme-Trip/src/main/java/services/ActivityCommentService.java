@@ -89,7 +89,7 @@ public class ActivityCommentService {
 
 	// Other business methods -------------------------------------------------
 
-	public Collection<ActivityComment> findAllByActivityId(int activityId) {
+	public Collection<ActivityComment> findAllAppropriateByActivityId(int activityId) {
 		Collection<ActivityComment> result;
 
 		result = activityCommentRepository.findAllByActivityId(activityId);
