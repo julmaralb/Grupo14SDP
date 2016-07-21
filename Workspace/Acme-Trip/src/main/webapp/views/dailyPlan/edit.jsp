@@ -36,7 +36,7 @@
 	
 	<br></br>
 	<acme:submit name="save" code="dailyPlan.save"/>
-	<acme:cancel code="dailyPlan.cancel" url="/dailyPlan/list.do"/>
+	<acme:cancel code="dailyPlan.cancel" url="/trip/list.do"/>
 	<acme:delete code="dailyPlan.delete" codeConfirm="dailyPlan.confirm.delete" condition="${dailyPlan.id != 0}"/>
 	
 </form:form>

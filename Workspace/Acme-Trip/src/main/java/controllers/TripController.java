@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.BannerService;
 import services.TripService;
+import domain.Banner;
 import domain.Trip;
 
 @Controller
@@ -20,6 +22,9 @@ public class TripController extends AbstractController {
 
 	@Autowired
 	private TripService tripService;
+	
+	@Autowired
+	private BannerService bannerService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -96,11 +101,14 @@ public class TripController extends AbstractController {
 	public ModelAndView display(@RequestParam int tripId) {
 		ModelAndView result;
 		Trip trip;
+		Banner banner;
 
 		trip = tripService.findOne(tripId);
+		banner = bannerService.findRandomToDisplay(trip);
 
 		result = new ModelAndView("trip/display");
 		result.addObject("trip", trip);
+		result.addObject("banner", banner);
 
 		return result;
 	}

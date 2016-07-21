@@ -11,6 +11,8 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<img src="${banner.photo}" width="600" height="166">
+
 <fieldset>
 	<legend><spring:message code="trip.details"/></legend>
 	<div>

@@ -35,4 +35,4 @@
 <div>
 <a href="banner/manager/create.do"><spring:message code="banner.create" /></a>
 </div>
-<acme:cancel url="/" code="banner.back"/>
+<acme:cancel url="/campaign/manager/list.do" code="banner.back"/>

@@ -19,7 +19,7 @@
 	
 	<br></br>
 	<acme:submit name="save" code="banner.save"/>
-	<acme:cancel code="banner.cancel" url="/banner/list.do"/>
-	<acme:delete code="banner.delete" codeConfirm="banner.confirm.delete" condition="banner.id != 0"/>
+	<acme:cancel code="banner.cancel" url="/banner/manager/list.do"/>
+	<acme:delete code="banner.delete" codeConfirm="banner.confirm.delete" condition="${banner.id != 0}"/>
 	
 </form:form>

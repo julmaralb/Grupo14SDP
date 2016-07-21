@@ -1,6 +1,7 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -99,6 +100,37 @@ public class CampaignService {
 		principal = actorService.findByPrincipal();
 		result = campaignRepository.findAllByManagerId(principal.getId());
 
+		return result;
+	}
+
+	public void cancelCampaign(Campaign campaign) {
+		Calendar currentDate;
+		Calendar startMoment;
+		boolean sePuedeCancelar = false;
+
+		currentDate = Calendar.getInstance();
+		startMoment = Calendar.getInstance();
+		startMoment.setTime(campaign.getStartMoment());
+		if (currentDate.before(startMoment)) {
+			sePuedeCancelar = true;
+		}
+		if (sePuedeCancelar) {
+			campaign.setCancelled(true);
+		}
+	}
+
+	public boolean canBeModifiedOrDeleted(Campaign campaign) {
+		boolean result = false;
+		Calendar currentDate;
+		Calendar startMoment;
+		currentDate = Calendar.getInstance();
+		startMoment = Calendar.getInstance();
+		startMoment.setTime(campaign.getStartMoment());
+		System.out.println(startMoment);
+
+		if (currentDate.before(startMoment)) {
+			result = true;
+		}
 		return result;
 	}
 }

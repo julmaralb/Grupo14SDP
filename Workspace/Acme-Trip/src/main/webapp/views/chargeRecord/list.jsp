@@ -28,8 +28,18 @@
 	
 	<acme:column code="chargeRecord.moment" property="moment"/>
 	
-	<acme:column code="chargeRecord.creditCard" property="creditCard"/>
+	<acme:column code="chargeRecord.creditCard" property="creditCard.number"/>
+	
+	<security:authorize access="hasRole('ADMIN')">
+	<acme:column code="chargeRecord.manager" property="creditCard.manager.userAccount.username"/>
+	</security:authorize>
 				
 </display:table>
 
+<security:authorize access="hasRole('MANAGER')">
 <acme:cancel url="/creditCard/manager/list.do" code="chargeRecord.back"/>
+</security:authorize>
+
+<security:authorize access="hasRole('ADMIN')">
+<acme:cancel url="/" code="chargeRecord.back"/>
+</security:authorize>

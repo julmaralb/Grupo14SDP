@@ -97,7 +97,7 @@ public class CreditCardManagerController extends AbstractController {
 						"redirect:/creditCard/manager/list.do");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(creditCard,
-						"creditCard.commit.error");
+						"creditCard.expired.error");
 			}
 		}
 		return result;

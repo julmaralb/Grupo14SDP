@@ -42,6 +42,7 @@
 		<value>/views/campaign/messages</value>
 		<value>/views/creditCard/messages</value>
 		<value>/views/chargeRecord/messages</value>
+		<value>/views/displayPrice/messages</value>
 	</util:list>
 
 </beans>

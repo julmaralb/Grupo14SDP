@@ -37,5 +37,5 @@
 	<acme:checkbox code="user.termsAccepted" path="termsAccepted"/><a href="user/terms.do"> <spring:message code="user.moreInfo" /></a>
 	<br></br>
 	<acme:submit name="save" code="user.save"/>
-	<acme:cancel code="user.cancel" url="security/login.do"/>
+	<acme:cancel code="user.cancel" url="/security/login.do"/>
 </form:form>

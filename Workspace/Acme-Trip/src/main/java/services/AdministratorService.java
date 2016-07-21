@@ -13,6 +13,9 @@ import repositories.AdministratorRepository;
 import security.Authority;
 import security.UserAccount;
 import domain.Administrator;
+import domain.Banner;
+import domain.ChargeRecord;
+import domain.DisplayPrice;
 import domain.Folder;
 
 @Service
@@ -31,6 +34,15 @@ public class AdministratorService {
 
 	@Autowired
 	private FolderService folderService;
+
+	@Autowired
+	private BannerService bannerService;
+
+	@Autowired
+	private ChargeRecordService chargeRecordService;
+
+	@Autowired
+	private DisplayPriceService displayPriceService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -110,5 +122,29 @@ public class AdministratorService {
 		result.addAuthority(authority);
 
 		return result;
+	}
+
+	public void chargeTodaysDisplays() {
+		Collection<Banner> all;
+		DisplayPrice displayPrice;
+		double price;
+		double tax;
+
+		all = bannerService.findAll();
+		displayPrice = displayPriceService.findDisplayPrice();
+		price = displayPrice.getPrice();
+		tax = displayPrice.getTax();
+		for (Banner b : all) {
+			if (b.getDayDisplays() > 0) {
+				ChargeRecord temp = chargeRecordService.create();
+				double tempPrice = (((tax / 100) * price) + price)
+						* b.getDayDisplays();
+				temp.setPrice(tempPrice);
+				temp.setTax(tax);
+				temp.setCreditCard(b.getCampaign().getCreditCard());
+				chargeRecordService.save(temp);
+				b.setDayDisplays(0);
+			}
+		}
 	}
 }

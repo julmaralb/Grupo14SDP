@@ -21,7 +21,7 @@
 	
 	<br></br>
 	<acme:submit name="save" code="campaign.save"/>
-	<acme:cancel code="campaign.cancel" url="/campaign/list.do"/>
-	<acme:delete code="campaign.delete" codeConfirm="campaign.confirm.delete" condition="campaign.id != 0"/>
+	<acme:cancel code="campaign.cancel" url="/campaign/manager/list.do"/>
+	<acme:delete code="campaign.delete" codeConfirm="campaign.confirm.delete" condition="${campaign.id != 0}"/>
 	
 </form:form>

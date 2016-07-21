@@ -57,6 +57,20 @@ public class BannerManagerController extends AbstractController {
 
 		return result;
 	}
+	
+	@RequestMapping(value = "/listByCampaign", method = RequestMethod.GET)
+	public ModelAndView listByCampaign(@RequestParam int campaignId) {
+		ModelAndView result;
+		Collection<Banner> banners;
+
+		banners = bannerService.findAllByCampaignIdAndPrincipal(campaignId);
+
+		result = new ModelAndView("banner/list");
+		result.addObject("requestURI", "banner/manager/listByCampaign.do");
+		result.addObject("banners", banners);
+
+		return result;
+	}
 
 	// Creation ---------------------------------------------------------------
 

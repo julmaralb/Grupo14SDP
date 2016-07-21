@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -70,4 +71,17 @@ public class DisplayPriceService {
 	}
 
 	// Other business methods -------------------------------------------------
+
+	public DisplayPrice findDisplayPrice() {
+		Collection<DisplayPrice> displayPriceCollection;
+		ArrayList<DisplayPrice> displayPriceList;
+		DisplayPrice result;
+
+		displayPriceCollection = displayPriceRepository.findAll();
+		displayPriceList = new ArrayList<DisplayPrice>(displayPriceCollection);
+
+		result = displayPriceList.get(0);
+
+		return result;
+	}
 }

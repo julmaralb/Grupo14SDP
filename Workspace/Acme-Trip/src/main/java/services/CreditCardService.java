@@ -1,6 +1,7 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -83,6 +84,7 @@ public class CreditCardService {
 
 		principal = managerService.findByPrincipal();
 		creditCard.setManager(principal);
+		Assert.isTrue(checkNotExpired(creditCard));
 		creditCardRepository.save(creditCard);
 	}
 
@@ -101,6 +103,24 @@ public class CreditCardService {
 		principal = actorService.findByPrincipal();
 		result = creditCardRepository.findAllByManagerId(principal.getId());
 
+		return result;
+	}
+
+	public boolean checkNotExpired(CreditCard creditCard) {
+		boolean result;
+		Calendar currentDate;
+
+		currentDate = Calendar.getInstance();
+		result = false;
+
+		if (creditCard.getExpYear() > currentDate.get(Calendar.YEAR)) {
+			result = true;
+		}
+		if (creditCard.getExpYear() == currentDate.get(Calendar.YEAR)) {
+			if (creditCard.getExpMonth() >= currentDate.get(Calendar.MONTH)+1) {
+				result = true;
+			}
+		}
 		return result;
 	}
 }

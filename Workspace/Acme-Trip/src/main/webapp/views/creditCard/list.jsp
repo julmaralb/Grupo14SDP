@@ -36,7 +36,7 @@
 	
 	<acme:refColumn ref="chargeRecord/manager/list.do?creditCardId=${row.id}" code="creditCard.chargeRecords"/>
 	
-	<acme:refColumn ref="campaign/manager/listBycreditCard?creditCardId=${row.id}" code="creditCard.campaigns"/>
+	<acme:refColumn ref="creditCard/manager/edit.do?creditCardId=${row.id}" code="creditCard.edit"/>
 				
 </display:table>
 

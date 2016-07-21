@@ -39,5 +39,5 @@
 	
 	<br></br>
 	<acme:submit name="save" code="administrator.save"/>
-	<acme:cancel code="administrator.cancel" url="security/login.do"/>
+	<acme:cancel code="administrator.cancel" url="/security/login.do"/>
 </form:form>

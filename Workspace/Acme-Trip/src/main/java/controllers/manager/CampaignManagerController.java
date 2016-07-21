@@ -82,6 +82,7 @@ public class CampaignManagerController extends AbstractController {
 
 		principal = actorService.findByPrincipal();
 		campaign = campaignService.findOne(campaignId);
+		Assert.isTrue(campaignService.canBeModifiedOrDeleted(campaign));
 		Assert.notNull(campaign);
 		Assert.isTrue(campaign.getManager().equals(principal));
 		result = createEditModelAndView(campaign);
@@ -112,11 +113,29 @@ public class CampaignManagerController extends AbstractController {
 		ModelAndView result;
 
 		try {
+			Assert.isTrue(campaignService.canBeModifiedOrDeleted(campaign));
 			campaignService.delete(campaign);
 			result = new ModelAndView("redirect:/campaign/manager/list.do");
 		} catch (Throwable oops) {
 			result = createEditModelAndView(campaign, "campaign.commit.error");
 		}
+		return result;
+	}
+
+	@RequestMapping(value = "/cancelCampaign", method = RequestMethod.GET)
+	public ModelAndView cancelCampaign(@RequestParam int campaignId) {
+
+		ModelAndView result;
+		Campaign campaign;
+		Actor principal;
+
+		principal = actorService.findByPrincipal();
+		campaign = campaignService.findOne(campaignId);
+		Assert.notNull(campaign);
+		Assert.isTrue(campaign.getManager().equals(principal));
+		campaignService.cancelCampaign(campaign);
+		result = new ModelAndView("redirect:/campaign/manager/list.do");
+
 		return result;
 	}
 

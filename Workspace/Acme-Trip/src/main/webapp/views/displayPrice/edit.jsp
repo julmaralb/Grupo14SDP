@@ -7,16 +7,15 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="folder/actor/edit.do" modelAttribute="folder">
+<form:form action="displayPrice/administrator/edit.do" modelAttribute="displayPrice">
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
-	<form:hidden path="actor"/>
 	
-	<acme:textbox code="folder.name" path="name" />
+	<acme:textbox code="displayPrice.price" path="price" />
+	<acme:textbox code="displayPrice.tax" path="tax" />
 	
 	<br></br>
-	<acme:submit name="save" code="folder.save"/>
-	<acme:cancel code="folder.cancel" url="/folder/actor/list.do"/>
-	<acme:delete code="folder.delete" codeConfirm="folder.confirm.delete" condition="${folder.id != 0}"/>
+	<acme:submit name="save" code="displayPrice.save"/>
+	<acme:cancel code="displayPrice.cancel" url="/"/>
 	
 </form:form>

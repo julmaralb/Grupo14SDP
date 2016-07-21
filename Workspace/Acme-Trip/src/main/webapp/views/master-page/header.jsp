@@ -38,9 +38,14 @@
 					<li><a href="manager/administrator/create.do"><spring:message code="master.page.administrator.registerManager" /></a></li>
 					<li><a href="administrator/create.do"><spring:message code="master.page.administrator.registerAdmin" /></a></li>
 					<li><a href="activity/administrator/list.do"><spring:message code="master.page.administrator.activity.list" /></a></li>	
-					<li><a href="activityType/administrator/create.do"><spring:message code="master.page.administrator.activityType.create" /></a></li>					
+					<li><a href="activityType/administrator/create.do"><spring:message code="master.page.administrator.activityType.create" /></a></li>	
+					<li><a href="displayPrice/administrator/edit.do"><spring:message code="master.page.administrator.displayPrice.edit" /></a></li>					
 				</ul>
 			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('ADMIN')">
+			<li><a class="fNiv" href="displayPrice/administrator/chargeDisplays.do"><spring:message code="master.page.administrator.chargeDisplays" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('MANAGER')">

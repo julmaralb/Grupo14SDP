@@ -14,4 +14,7 @@ public interface BannerRepository extends JpaRepository<Banner, Integer> {
 	@Query("select b from Banner b where b.campaign.manager.id = ?1")
 	Collection<Banner> findAllByManagerId(int managerId);
 
+	@Query("select b from Banner b where b.campaign.id= ?1 AND b.campaign.manager.id = ?2")
+	Collection<Banner> findAllByCampaignAndManagerId(int campaignId, int managerId);
+
 }

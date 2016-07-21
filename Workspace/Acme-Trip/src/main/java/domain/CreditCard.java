@@ -112,7 +112,8 @@ public class CreditCard extends DomainEntity {
 	}
 
 	@Valid
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "creditCard")
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH }, mappedBy = "creditCard")
 	public Collection<ChargeRecord> getChargeRecords() {
 		return chargeRecords;
 	}

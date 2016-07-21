@@ -21,7 +21,7 @@
 
 	<br></br>
 	<acme:submit name="save" code="activityComment.save"/>
-	<acme:cancel code="activityComment.cancel" url="/activityComment/list.do"/>
+	<acme:cancel code="activityComment.cancel" url="/trip/list.do"/>
 	<acme:delete code="activityComment.delete" codeConfirm="activityComment.confirm.delete" condition="${activityComment.id != 0}"/>
 	
 </form:form>

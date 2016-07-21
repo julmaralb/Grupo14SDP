@@ -1,6 +1,8 @@
 package services;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -36,8 +38,12 @@ public class ChargeRecordService {
 
 	public ChargeRecord create() {
 		ChargeRecord result;
+		Date moment;
 
 		result = new ChargeRecord();
+		moment = new Date();
+
+		result.setMoment(moment);
 
 		return result;
 	}
@@ -63,6 +69,10 @@ public class ChargeRecordService {
 
 	public void save(ChargeRecord chargeRecord) {
 		Assert.notNull(chargeRecord);
+		long milliseconds;
+
+		milliseconds = System.currentTimeMillis() - 100;
+		chargeRecord.setMoment(new Date(milliseconds));
 
 		chargeRecordRepository.save(chargeRecord);
 	}
@@ -85,5 +95,20 @@ public class ChargeRecordService {
 				creditCardId, principal.getId());
 
 		return result;
+	}
+
+	public Collection<ChargeRecord> findAllFromToday() {
+		Collection<ChargeRecord> result;
+		Calendar c;
+		
+		c= Calendar.getInstance();
+		c.set(Calendar.HOUR_OF_DAY, 0);
+	    c.set(Calendar.MINUTE, 0);
+	    c.set(Calendar.SECOND, 0);
+	    Date today = c.getTime();
+		result = chargeRecordRepository.findAllFromToday(today);
+
+		return result;
+
 	}
 }

@@ -116,6 +116,459 @@
 
 	<!-- Other domain beans come here -->
 	
+	<!-- Managers -->
+	
+	<bean id="manager1" class="domain.Manager">
+		<property name="name" value="managerName1" />
+		<property name="surname" value="managerSurname1" />
+		<property name="email" value="manager1@hotmail.com" />
+		<property name="folders">
+			<list>
+				<ref bean="inFolder5" />
+				<ref bean="outFolder5" />
+				<ref bean="trashFolder5" />
+				<ref bean="starredFolder5" />
+				<ref bean="spamFolder5" />
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount6" />
+	</bean>
+	
+	<bean id="manager2" class="domain.Manager">
+		<property name="name" value="managerName2" />
+		<property name="surname" value="managerSurname2" />
+		<property name="email" value="manager2@hotmail.com" />
+		<property name="folders">
+			<list>
+				<ref bean="inFolder6" />
+				<ref bean="outFolder6" />
+				<ref bean="trashFolder6" />
+				<ref bean="starredFolder6" />
+				<ref bean="spamFolder6" />
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount7" />
+	</bean>
+	
+	<bean id="manager3" class="domain.Manager">
+		<property name="name" value="managerName3" />
+		<property name="surname" value="managerSurname3" />
+		<property name="email" value="manager3@hotmail.com" />
+		<property name="folders">
+			<list>
+				<ref bean="inFolder7" />
+				<ref bean="outFolder7" />
+				<ref bean="trashFolder7" />
+				<ref bean="starredFolder7" />
+				<ref bean="spamFolder7" />
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount8" />
+	</bean>
+	
+	<!-- Credit Card -->
+	
+	<bean id="creditCard1" class="domain.CreditCard">
+		<property name="holderName" value="creditcardHolder1" />
+		<property name="brandName" value="Visa" />
+		<property name="number" value="4435590746612438" />
+		<property name="expMonth" value="12" />
+		<property name="expYear" value="2018" />
+		<property name="CVV" value="683" />
+		<property name="manager" ref="manager1" />
+		<property name="campaigns">
+			<list>
+				<ref bean="campaign1" />
+				<ref bean="campaign3" />
+			</list>
+		</property>
+		<property name="chargeRecords">
+			<list>
+				<ref bean="chargeRecord1" />
+				<ref bean="chargeRecord2" />
+				<ref bean="chargeRecord3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="creditCard2" class="domain.CreditCard">
+		<property name="holderName" value="creditcardHolder1" />
+		<property name="brandName" value="Mastercard" />
+		<property name="number" value="5383074045919207" />
+		<property name="expMonth" value="06" />
+		<property name="expYear" value="2018" />
+		<property name="CVV" value="321" />
+		<property name="manager" ref="manager1" />
+		<property name="campaigns">
+			<list>
+				<ref bean="campaign2" />
+			</list>
+		</property>
+		<property name="chargeRecords">
+			<list>
+				<ref bean="chargeRecord4" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="creditCard3" class="domain.CreditCard">
+		<property name="holderName" value="creditcardHolder2" />
+		<property name="brandName" value="Visa" />
+		<property name="number" value="4532191758921171" />
+		<property name="expMonth" value="08" />
+		<property name="expYear" value="2019" />
+		<property name="CVV" value="483" />
+		<property name="manager" ref="manager2" />
+		<property name="campaigns">
+			<list>
+				<ref bean="campaign4" />
+			</list>
+		</property>
+		<property name="chargeRecords">
+			<list>
+				<ref bean="chargeRecord5" />
+				<ref bean="chargeRecord6" />
+				<ref bean="chargeRecord7" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="creditCard4" class="domain.CreditCard">
+		<property name="holderName" value="creditcardHolder2" />
+		<property name="brandName" value="Mastercard" />
+		<property name="number" value="5249012815266189" />
+		<property name="expMonth" value="05" />
+		<property name="expYear" value="2019" />
+		<property name="CVV" value="367" />
+		<property name="manager" ref="manager2" />
+		<property name="campaigns">
+			<list>
+				<ref bean="campaign5" />
+			</list>
+		</property>
+		<property name="chargeRecords">
+			<list>
+				<ref bean="chargeRecord8" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="creditCard5" class="domain.CreditCard">
+		<property name="holderName" value="creditcardHolder3" />
+		<property name="brandName" value="Visa" />
+		<property name="number" value="4024007162315526" />
+		<property name="expMonth" value="12" />
+		<property name="expYear" value="2019" />
+		<property name="CVV" value="435" />
+		<property name="manager" ref="manager3" />
+		<property name="campaigns">
+			<list>
+				<ref bean="campaign6" />
+			</list>
+		</property>
+		<property name="chargeRecords">
+			<list>
+				<ref bean="chargeRecord9" />
+				<ref bean="chargeRecord10" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Charge Record -->
+	
+	<bean id="chargeRecord1" class="domain.ChargeRecord">
+		<property name="price" value="6.0" />
+		<property name="tax" value="21.0" />
+		<property name="moment" value="07/20/2016" />
+		<property name="creditCard" ref="creditCard1" />
+	</bean>
+	
+	<bean id="chargeRecord2" class="domain.ChargeRecord">
+		<property name="price" value="12.0" />
+		<property name="tax" value="21.0" />
+		<property name="moment" value="07/20/2016" />
+		<property name="creditCard" ref="creditCard1" />
+	</bean>
+	
+	<bean id="chargeRecord3" class="domain.ChargeRecord">
+		<property name="price" value="6.0" />
+		<property name="tax" value="21.0" />
+		<property name="moment" value="07/20/2016" />
+		<property name="creditCard" ref="creditCard1" />
+	</bean>
+	
+	<bean id="chargeRecord4" class="domain.ChargeRecord">
+		<property name="price" value="12.0" />
+		<property name="tax" value="21.0" />
+		<property name="moment" value="07/20/2016" />
+		<property name="creditCard" ref="creditCard2" />
+	</bean>
+	
+	<bean id="chargeRecord5" class="domain.ChargeRecord">
+		<property name="price" value="6.0" />
+		<property name="tax" value="21.0" />
+		<property name="moment" value="07/20/2016" />
+		<property name="creditCard" ref="creditCard3" />
+	</bean>
+	
+	<bean id="chargeRecord6" class="domain.ChargeRecord">
+		<property name="price" value="6.0" />
+		<property name="tax" value="21.0" />
+		<property name="moment" value="07/20/2016" />
+		<property name="creditCard" ref="creditCard3" />
+	</bean>
+	
+	<bean id="chargeRecord7" class="domain.ChargeRecord">
+		<property name="price" value="12.0" />
+		<property name="tax" value="21.0" />
+		<property name="moment" value="07/20/2016" />
+		<property name="creditCard" ref="creditCard3" />
+	</bean>
+	
+	<bean id="chargeRecord8" class="domain.ChargeRecord">
+		<property name="price" value="6.0" />
+		<property name="tax" value="21.0" />
+		<property name="moment" value="07/20/2016" />
+		<property name="creditCard" ref="creditCard4" />
+	</bean>
+	
+	<bean id="chargeRecord9" class="domain.ChargeRecord">
+		<property name="price" value="12.0" />
+		<property name="tax" value="21.0" />
+		<property name="moment" value="07/20/2016" />
+		<property name="creditCard" ref="creditCard5" />
+	</bean>
+	
+	<bean id="chargeRecord10" class="domain.ChargeRecord">
+		<property name="price" value="12.0" />
+		<property name="tax" value="21.0" />
+		<property name="moment" value="07/20/2016" />
+		<property name="creditCard" ref="creditCard5" />
+	</bean>
+	
+	<!-- Campaign -->
+	
+	<bean id="campaign1" class="domain.Campaign">
+		<property name="title" value="campaignTitle1" />
+		<property name="startMoment" value="10/10/2016" />
+		<property name="finishMoment" value="11/10/2016" />
+		<property name="cancelled" value="false" />
+		<property name="manager" ref="manager1" />
+		<property name="creditCard" ref="creditCard1" />
+		<property name="banners">
+			<list>
+				<ref bean="banner1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="campaign2" class="domain.Campaign">
+		<property name="title" value="campaignTitle2" />
+		<property name="startMoment" value="10/05/2016" />
+		<property name="finishMoment" value="11/20/2016" />
+		<property name="cancelled" value="false" />
+		<property name="manager" ref="manager1" />
+		<property name="creditCard" ref="creditCard2" />
+		<property name="banners">
+			<list>
+				<ref bean="banner2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="campaign3" class="domain.Campaign">
+		<property name="title" value="campaignTitle3" />
+		<property name="startMoment" value="11/01/2016" />
+		<property name="finishMoment" value="11/30/2016" />
+		<property name="cancelled" value="false" />
+		<property name="manager" ref="manager1" />
+		<property name="creditCard" ref="creditCard1" />
+		<property name="banners">
+			<list>
+				<ref bean="banner3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="campaign4" class="domain.Campaign">
+		<property name="title" value="campaignTitle4" />
+		<property name="startMoment" value="01/01/2017" />
+		<property name="finishMoment" value="03/30/2017" />
+		<property name="cancelled" value="false" />
+		<property name="manager" ref="manager2" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="banners">
+			<list>
+				<ref bean="banner4" />
+				<ref bean="banner5" />
+				<ref bean="banner6" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="campaign5" class="domain.Campaign">
+		<property name="title" value="campaignTitle5" />
+		<property name="startMoment" value="12/15/2016" />
+		<property name="finishMoment" value="12/30/2016" />
+		<property name="cancelled" value="false" />
+		<property name="manager" ref="manager2" />
+		<property name="creditCard" ref="creditCard4" />
+		<property name="banners">
+			<list>
+				<ref bean="banner7" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="campaign6" class="domain.Campaign">
+		<property name="title" value="campaignTitle6" />
+		<property name="startMoment" value="01/01/2017" />
+		<property name="finishMoment" value="02/15/2017" />
+		<property name="cancelled" value="false" />
+		<property name="manager" ref="manager3" />
+		<property name="creditCard" ref="creditCard5" />
+		<property name="banners">
+			<list>
+				<ref bean="banner8" />
+				<ref bean="banner9" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Banners -->
+	
+	<bean id="banner1" class="domain.Banner">
+		<property name="photo" value="http://www.dmfed.org.uk/wp-content/uploads/2016/02/travel.jpg" />
+		<property name="maxDisplayTimes" value="10" />
+		<property name="dayDisplays" value="0" />
+		<property name="campaign" ref="campaign1" />
+		<property name="keywords">
+			<list>
+				<value>trip1Title</value>
+				<value>dailyPlan1Title</value>		
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="banner2" class="domain.Banner">
+		<property name="photo" value="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Cinderella_Castle_Perspectives_-_Banner_view.png/800px-Cinderella_Castle_Perspectives_-_Banner_view.png" />
+		<property name="maxDisplayTimes" value="5" />
+		<property name="dayDisplays" value="0" />
+		<property name="campaign" ref="campaign2" />
+		<property name="keywords">
+			<list>
+				<value>trip2Title</value>
+				<value>dailyPlan2Title</value>		
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="banner3" class="domain.Banner">
+		<property name="photo" value="http://1.bp.blogspot.com/_zAjDDcNDaPY/SykdsDptveI/AAAAAAAAAB8/EL9Gfs1hVzs/S1600-R/travelgoody-polinesia.jpg" />
+		<property name="maxDisplayTimes" value="5" />
+		<property name="dayDisplays" value="0" />
+		<property name="campaign" ref="campaign3" />
+		<property name="keywords">
+			<list>
+				<value>trip3Title</value>		
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="banner4" class="domain.Banner">
+		<property name="photo" value="http://www.zurichinsurance.ie/internet/irelandgi/SiteCollectionImages/travel/b2c_productpage_banner_travel.jpg" />
+		<property name="maxDisplayTimes" value="5" />
+		<property name="dayDisplays" value="0" />
+		<property name="campaign" ref="campaign4" />
+		<property name="keywords">
+			<list>
+				<value>trip3Title</value>
+				<value>dailyPlan4Title</value>	
+				<value>activity7Title</value>
+				<value>activity6Title</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="banner5" class="domain.Banner">
+		<property name="photo" value="http://www.tropical-paradise.net/image-files/custom-web-banner-design01.jpg" />
+		<property name="maxDisplayTimes" value="5" />
+		<property name="dayDisplays" value="0" />
+		<property name="campaign" ref="campaign4" />
+		<property name="keywords">
+			<list>
+				<value>tri3Title</value>
+				<value>slot6Title</value>	
+				<value>slot7Title3</value>
+				<value>activit7Title</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="banner6" class="domain.Banner">
+		<property name="photo" value="http://3.bp.blogspot.com/-TJaNYV6Bps8/UE8s7I2NLRI/AAAAAAAADQM/MvTP-cI3Bb0/s1600/TravexTravelsBanner13.png" />
+		<property name="maxDisplayTimes" value="5" />
+		<property name="dayDisplays" value="0" />
+		<property name="campaign" ref="campaign4" />
+		<property name="keywords">
+			<list>
+				<value>slot8Title</value>	
+				<value>slot7Title</value>
+				<value>activity8Title</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="banner7" class="domain.Banner">
+		<property name="photo" value="https://colesvilletravel.files.wordpress.com/2013/02/travel-guard-banner.jpg" />
+		<property name="maxDisplayTimes" value="10" />
+		<property name="dayDisplays" value="0" />
+		<property name="campaign" ref="campaign5" />
+		<property name="keywords">
+			<list>
+				<value>trip4Title</value>	
+				<value>activity11Title</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="banner8" class="domain.Banner">
+		<property name="photo" value="http://www.merojob.com/uploads/clientfiles/Olam_Travel_Vacancy_III-banner.jpg" />
+		<property name="maxDisplayTimes" value="10" />
+		<property name="dayDisplays" value="0" />
+		<property name="campaign" ref="campaign6" />
+		<property name="keywords">
+			<list>
+				<value>trip4Title</value>	
+				<value>activity11Title</value>
+				<value>activity12Title</value>
+				<value>slot12Title</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="banner9" class="domain.Banner">
+		<property name="photo" value="http://www.epictravels.com/content/homepage/large-feature-image/Epic-Travels-Banners-Yoga.jpg" />
+		<property name="maxDisplayTimes" value="10" />
+		<property name="dayDisplays" value="0" />
+		<property name="campaign" ref="campaign6" />
+		<property name="keywords">
+			<list>
+				<value>dailyPlan7Title</value>	
+				<value>activity11Title</value>
+				<value>activity12Title</value>
+				<value>slot11Title</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Display Price -->
+	
+	<bean id="displayPrice" class="domain.DisplayPrice">
+		<property name="price" value="4.99" />
+		<property name="tax" value="21.0" />
+	</bean>
+	
 	<!-- ActivityTypes -->
 	
 	<bean id="activityType1" class="domain.ActivityType">
@@ -296,56 +749,6 @@
 				<ref bean="tripComment6" />
 			</list>
 		</property>
-	</bean>
-	
-	<!-- Managers -->
-	
-	<bean id="manager1" class="domain.Manager">
-		<property name="name" value="managerName1" />
-		<property name="surname" value="managerSurname1" />
-		<property name="email" value="manager1@hotmail.com" />
-		<property name="folders">
-			<list>
-				<ref bean="inFolder5" />
-				<ref bean="outFolder5" />
-				<ref bean="trashFolder5" />
-				<ref bean="starredFolder5" />
-				<ref bean="spamFolder5" />
-			</list>
-		</property>
-		<property name="userAccount" ref="userAccount6" />
-	</bean>
-	
-	<bean id="manager2" class="domain.Manager">
-		<property name="name" value="managerName2" />
-		<property name="surname" value="managerSurname2" />
-		<property name="email" value="manager2@hotmail.com" />
-		<property name="folders">
-			<list>
-				<ref bean="inFolder6" />
-				<ref bean="outFolder6" />
-				<ref bean="trashFolder6" />
-				<ref bean="starredFolder6" />
-				<ref bean="spamFolder6" />
-			</list>
-		</property>
-		<property name="userAccount" ref="userAccount7" />
-	</bean>
-	
-	<bean id="manager3" class="domain.Manager">
-		<property name="name" value="managerName3" />
-		<property name="surname" value="managerSurname3" />
-		<property name="email" value="manager3@hotmail.com" />
-		<property name="folders">
-			<list>
-				<ref bean="inFolder7" />
-				<ref bean="outFolder7" />
-				<ref bean="trashFolder7" />
-				<ref bean="starredFolder7" />
-				<ref bean="spamFolder7" />
-			</list>
-		</property>
-		<property name="userAccount" ref="userAccount8" />
 	</bean>
 	
 	<!-- Administrator -->

@@ -17,7 +17,7 @@
 	
 	<br></br>
 	<acme:submit name="save" code="activityType.save"/>
-	<acme:cancel code="activityType.cancel" url="/activityType/list.do"/>
+	<acme:cancel code="activityType.cancel" url="/activityType/adminsitrator/list.do"/>
 	<acme:delete code="activityType.delete" codeConfirm="activityType.confirm.delete" condition="${activityType.id != 0}"/>
 	
 </form:form>

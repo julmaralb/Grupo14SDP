@@ -30,9 +30,13 @@
 	
 	<acme:column code="campaign.cancelled" property="cancelled"/>
 	
-	<acme:column code="campaign.creditCard" property="creditCard"/>
+	<acme:column code="campaign.creditCard" property="creditCard.number"/>
 	
-	<acme:refColumn ref="banner/manager/listByCampaign?campaignId=${row.id}" code="campaign.banners"/>
+	<acme:refColumn ref="banner/manager/listByCampaign.do?campaignId=${row.id}" code="campaign.banners"/>
+	
+	<acme:refColumn ref="campaign/manager/edit.do?campaignId=${row.id}" code="campaign.edit"/>
+	
+	<acme:refConditionColumn ref="campaign/manager/cancelCampaign.do?campaignId=${row.id}" code="campaign.cancelCampaign" condition="${row.cancelled == false}"/>
 				
 </display:table>
 

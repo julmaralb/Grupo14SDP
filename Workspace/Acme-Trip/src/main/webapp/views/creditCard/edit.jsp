@@ -23,7 +23,7 @@
 	
 	<br></br>
 	<acme:submit name="save" code="creditCard.save"/>
-	<acme:cancel code="creditCard.cancel" url="/creditCard/list.do"/>
-	<acme:delete code="creditCard.delete" codeConfirm="creditCard.confirm.delete" condition="creditCard.id != 0"/>
+	<acme:cancel code="creditCard.cancel" url="/creditCard/manager/list.do"/>
+	<acme:delete code="creditCard.delete" codeConfirm="creditCard.confirm.delete" condition="${creditCard.id != 0}"/>
 	
 </form:form>
