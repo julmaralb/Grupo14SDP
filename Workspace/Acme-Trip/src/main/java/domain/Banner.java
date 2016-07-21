@@ -28,6 +28,7 @@ public class Banner extends DomainEntity {
 
 	private String photo;
 	private Collection<String> keywords;
+	private int displayTimes;
 	private int maxDisplayTimes;
 	private int dayDisplays;
 
@@ -51,8 +52,17 @@ public class Banner extends DomainEntity {
 	public void setKeywords(Collection<String> keywords) {
 		this.keywords = keywords;
 	}
+	
+	@Min(0)
+	public int getDisplayTimes() {
+		return displayTimes;
+	}
 
-	@Min(1)
+	public void setDisplayTimes(int displayTimes) {
+		this.displayTimes = displayTimes;
+	}
+
+	@Min(0)
 	public int getMaxDisplayTimes() {
 		return maxDisplayTimes;
 	}

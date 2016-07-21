@@ -24,6 +24,8 @@
 
 	<acme:column code="banner.keywords" property="keywords"/>
 	
+	<acme:column code="banner.displayTimes" property="displayTimes"/>
+	
 	<acme:column code="banner.maxDisplayTimes" property="maxDisplayTimes"/>
 	
 	<acme:column code="banner.dayDisplays" property="dayDisplays"/>

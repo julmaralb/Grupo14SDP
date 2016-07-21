@@ -439,6 +439,7 @@
 	
 	<bean id="banner1" class="domain.Banner">
 		<property name="photo" value="http://www.dmfed.org.uk/wp-content/uploads/2016/02/travel.jpg" />
+		<property name="displayTimes" value="20" />
 		<property name="maxDisplayTimes" value="10" />
 		<property name="dayDisplays" value="0" />
 		<property name="campaign" ref="campaign1" />
@@ -452,6 +453,7 @@
 	
 	<bean id="banner2" class="domain.Banner">
 		<property name="photo" value="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Cinderella_Castle_Perspectives_-_Banner_view.png/800px-Cinderella_Castle_Perspectives_-_Banner_view.png" />
+		<property name="displayTimes" value="15" />
 		<property name="maxDisplayTimes" value="5" />
 		<property name="dayDisplays" value="0" />
 		<property name="campaign" ref="campaign2" />
@@ -465,6 +467,7 @@
 	
 	<bean id="banner3" class="domain.Banner">
 		<property name="photo" value="http://1.bp.blogspot.com/_zAjDDcNDaPY/SykdsDptveI/AAAAAAAAAB8/EL9Gfs1hVzs/S1600-R/travelgoody-polinesia.jpg" />
+		<property name="displayTimes" value="6" />
 		<property name="maxDisplayTimes" value="5" />
 		<property name="dayDisplays" value="0" />
 		<property name="campaign" ref="campaign3" />
@@ -477,6 +480,7 @@
 	
 	<bean id="banner4" class="domain.Banner">
 		<property name="photo" value="http://www.zurichinsurance.ie/internet/irelandgi/SiteCollectionImages/travel/b2c_productpage_banner_travel.jpg" />
+		<property name="displayTimes" value="12" />
 		<property name="maxDisplayTimes" value="5" />
 		<property name="dayDisplays" value="0" />
 		<property name="campaign" ref="campaign4" />
@@ -492,6 +496,7 @@
 	
 	<bean id="banner5" class="domain.Banner">
 		<property name="photo" value="http://www.tropical-paradise.net/image-files/custom-web-banner-design01.jpg" />
+		<property name="displayTimes" value="25" />
 		<property name="maxDisplayTimes" value="5" />
 		<property name="dayDisplays" value="0" />
 		<property name="campaign" ref="campaign4" />
@@ -507,6 +512,7 @@
 	
 	<bean id="banner6" class="domain.Banner">
 		<property name="photo" value="http://3.bp.blogspot.com/-TJaNYV6Bps8/UE8s7I2NLRI/AAAAAAAADQM/MvTP-cI3Bb0/s1600/TravexTravelsBanner13.png" />
+		<property name="displayTimes" value="18" />
 		<property name="maxDisplayTimes" value="5" />
 		<property name="dayDisplays" value="0" />
 		<property name="campaign" ref="campaign4" />
@@ -521,6 +527,7 @@
 	
 	<bean id="banner7" class="domain.Banner">
 		<property name="photo" value="https://colesvilletravel.files.wordpress.com/2013/02/travel-guard-banner.jpg" />
+		<property name="displayTimes" value="9" />
 		<property name="maxDisplayTimes" value="10" />
 		<property name="dayDisplays" value="0" />
 		<property name="campaign" ref="campaign5" />
@@ -534,6 +541,7 @@
 	
 	<bean id="banner8" class="domain.Banner">
 		<property name="photo" value="http://www.merojob.com/uploads/clientfiles/Olam_Travel_Vacancy_III-banner.jpg" />
+		<property name="displayTimes" value="20" />
 		<property name="maxDisplayTimes" value="10" />
 		<property name="dayDisplays" value="0" />
 		<property name="campaign" ref="campaign6" />
@@ -549,6 +557,7 @@
 	
 	<bean id="banner9" class="domain.Banner">
 		<property name="photo" value="http://www.epictravels.com/content/homepage/large-feature-image/Epic-Travels-Banners-Yoga.jpg" />
+		<property name="displayTimes" value="21" />
 		<property name="maxDisplayTimes" value="10" />
 		<property name="dayDisplays" value="0" />
 		<property name="campaign" ref="campaign6" />

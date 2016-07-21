@@ -45,6 +45,7 @@ public class BannerService {
 
 		result = new Banner();
 		result.setDayDisplays(0);
+		result.setDisplayTimes(0);
 
 		return result;
 	}
@@ -103,10 +104,13 @@ public class BannerService {
 		return result;
 	}
 
-	// Este método recorre todas las keywords de todos los banner y , usando el método findByKeyword, comprueba si la en colección 
-	// que se devuelve se encuentra el trip pasado por parámetro. Si el trip se encuentra en la colección devuelta esto quiere
-	// decir que esa keyword se encuentra en algún luegar de la información guardada sobre él en el sistema y el banner 
-	// correspondiente  se añade a una lista de posibles candidatos a ser mostrado de la cual se elige uno de manera aleatoria.
+	// Este método recorre todas las keywords de todos los banner y , usando el
+	// método findByKeyword, comprueba si en la colección que se devuelve se
+	// encuentra el trip pasado por parámetro. Si el trip se encuentra en la
+	// colección devuelta esto quiere decir que esa keyword se encuentra en
+	// algún luegar de la información guardada sobre él en el sistema y el banner
+	// correspondiente se añade a una lista de posibles candidatos a ser mostrado
+	// de la cual se elige uno de manera aleatoria.
 	public Banner findRandomToDisplay(Trip trip) {
 		Banner result;
 		Collection<Banner> all;
@@ -123,7 +127,14 @@ public class BannerService {
 				}
 			}
 		}
+		// Sacamos los que han agotado su número de displays posibles.
+		for (Banner banner : candidates) {
+			if (banner.getMaxDisplayTimes() == 0) {
+				candidates.remove(banner);
+			}
+		}
 		result = candidates.get(r.nextInt(candidates.size()));
+		result.setDisplayTimes(result.getDisplayTimes() + 1);
 		result.setDayDisplays(result.getDayDisplays() + 1);
 		result.setMaxDisplayTimes(result.getMaxDisplayTimes() - 1);
 
