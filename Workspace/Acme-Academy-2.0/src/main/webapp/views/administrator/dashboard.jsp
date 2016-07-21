@@ -118,6 +118,49 @@
 	
 	<td><jstl:out value=" ${averageSocialIdentitiesPerActor}"/></td>
   </tr>
+  					<%-- Dashboard 2.0 - C --%>
+   <tr>
+    <th><spring:message code="administrator.averageSyllabiPerSubject"/></th>
+	
+	<td><jstl:out value=" ${averageaverageSyllabiPerSubject}"/></td>
+  </tr>
   
-		</table>
+  <tr>
+    <th><spring:message code="administrator.averageBibliographyPerSyllabus"/></th>
+	
+	<td><jstl:out value=" ${averageBibliographyPerSyllabus}"/></td>
+  </tr>
+  
+  <tr>
+  <th><spring:message code="administrator.subjectLargestBibliography"/></th>
+  <td>
+  <display:table name="subjectLargestBibliography" id="row" requestURI="administrator/dashboard.do" class="displaytag">
+	</display:table>
+  </td>
+    </tr>
+   						 <%-- Dashboard 2.0 - B --%>
+     <tr>
+  <th><spring:message code="administrator.assignmentsmoreorless20AVG"/></th>
+  <td>
+  <display:table name="assignmentsmoreorless20AVG" id="row" requestURI="administrator/dashboard.do" class="displaytag">
+	</display:table>
+  </td>
+    </tr>
+    
+         <tr>
+  <th><spring:message code="administrator.lecturerWithMoreRubricsPerAssignment"/></th>
+  <td>
+  <display:table name="lecturerWithMoreRubricsPerAssignment" id="row" requestURI="administrator/dashboard.do" class="displaytag">
+	</display:table>
+  </td>
+    </tr>
+    
+     <tr>
+  <th><spring:message code="administrator.lecturerWithLessRubricsPerAssignment"/></th>
+  <td>
+  <display:table name="lecturerWithLessRubricsPerAssignment" id="row" requestURI="administrator/dashboard.do" class="displaytag">
+	</display:table>
+  </td>
+    </tr>
+  		</table>
 		

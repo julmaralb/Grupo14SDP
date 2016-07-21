@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import domain.Assignment;
 import domain.Group;
 import domain.Lecturer;
 import domain.Student;
@@ -135,6 +136,77 @@ public class AdministratorService {
 		result=administratorRepository.avgSocialIdentitiesPerActor();
 		return result;
 	}
+
+	public Double avgSillabiPerSubject() {
+		Double result;
+		result= administratorRepository.avgSillabiPerSubject();
+		
+		return result;
+	}
+
+	public Double avgBibliographiesPerSyllabus() {
+		Double result;
+		result= administratorRepository.avgBibliographiesPerSyllabus();
+		return result;
+	}
+
+	public Collection<String> subjectsWithLargestBibliography() {
+		Collection<Subject> subjectsWithLargestBibliography;
+		Collection<String> result;
+		
+		subjectsWithLargestBibliography=administratorRepository.subjectsWithLargestBibliography();
+		
+		result=new ArrayList<String>();
+		for(Subject s:subjectsWithLargestBibliography){
+			result.add(s.getTitle());
+		}
+		
+		return result;
+	}
+
+	public Collection<String> assignmentsWithMoreOrLessThan20PAvgRubrics() {
+		Collection<Assignment> assignmentsWithMoreOrLessThan20PAvgRubrics;
+		Collection<String> result;
+		
+		assignmentsWithMoreOrLessThan20PAvgRubrics=administratorRepository.assignmentsWithMoreOrLessThan20PAvgRubrics();
+		
+		result=new ArrayList<String>();
+		for(Assignment a:assignmentsWithMoreOrLessThan20PAvgRubrics){
+			result.add(a.getTitle());
+		}
+		
+		return result;
+	}
+	
+	public Collection<String> lecturerWithMoreRubricsPerAssignment(){
+		Collection<Lecturer> lecturerWithMoreRubricsPerAssignment;
+		Collection<String> result;
+		
+		lecturerWithMoreRubricsPerAssignment=administratorRepository.lecturerWithMoreRubricsPerAssignment();
+		
+		result=new ArrayList<String>();
+		for(Lecturer l:lecturerWithMoreRubricsPerAssignment){
+			result.add(l.getName());
+		}
+	
+		return result;
+	}
+	
+	public Collection<String> lecturerWithLessRubricsPerAssignment(){
+		Collection<Lecturer> lecturerWithLessRubricsPerAssignment;
+		Collection<String> result;
+		
+		lecturerWithLessRubricsPerAssignment=administratorRepository.lecturerWithLessRubricsPerAssignment();
+		
+		result=new ArrayList<String>();
+		for(Lecturer l:lecturerWithLessRubricsPerAssignment){
+			result.add(l.getName());
+		}
+		
+		return result;
+	}
+	
+	
 	
 	
 

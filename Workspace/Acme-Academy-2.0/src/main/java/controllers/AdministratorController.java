@@ -71,7 +71,13 @@ public class AdministratorController extends AbstractController {
 		Double averageLearningMaterialPerGroup;
 		Collection<String> subjectMoreLMAvailable;
 		Double averageSocialIdentitiesPerActor;
-
+		Double averageaverageSyllabiPerSubject;
+		Double averageBibliographyPerSyllabus;
+		Collection<String> subjectLargestBibliography;
+		Collection<String> assignmentsmoreorless20AVG;
+		Collection<String> lecturerWithMoreRubricsPerAssignment;
+		Collection<String> lecturerWithLessRubricsPerAssignment;
+		
 		result = new ModelAndView("administrator/dashboard");
 
 		averageStudentPerSubject = administratorService
@@ -88,7 +94,13 @@ public class AdministratorController extends AbstractController {
 		subjectMoreLMAvailable = administratorService.subjectMoreLMAvailable();
 		averageSocialIdentitiesPerActor = administratorService
 				.averageSocialIdentitiesPerActor();
-
+		averageaverageSyllabiPerSubject=administratorService.avgSillabiPerSubject();
+		averageBibliographyPerSyllabus=administratorService.avgBibliographiesPerSyllabus();
+		subjectLargestBibliography = administratorService.subjectsWithLargestBibliography();
+		assignmentsmoreorless20AVG= administratorService.assignmentsWithMoreOrLessThan20PAvgRubrics();
+		lecturerWithMoreRubricsPerAssignment=administratorService.lecturerWithMoreRubricsPerAssignment();
+		lecturerWithLessRubricsPerAssignment=administratorService.lecturerWithLessRubricsPerAssignment();
+		
 		result.addObject("averageStudentPerSubject", averageStudentPerSubject);
 		result.addObject("studentRolesSubject", studentRolesSubject);
 		result.addObject("averageSubjectPerLecturer", averageSubjectPerLecturer);
@@ -101,7 +113,13 @@ public class AdministratorController extends AbstractController {
 		result.addObject("subjectMoreLMAvailable", subjectMoreLMAvailable);
 		result.addObject("averageSocialIdentitiesPerActor",
 				averageSocialIdentitiesPerActor);
-
+		result.addObject("averageaverageSyllabiPerSubject", averageaverageSyllabiPerSubject);
+		result.addObject("averageBibliographyPerSyllabus",averageBibliographyPerSyllabus);
+		result.addObject("subjectLargestBibliography", subjectLargestBibliography);
+		result.addObject("assignmentsmoreorless20AVG", assignmentsmoreorless20AVG);
+		result.addObject("lecturerWithMoreRubricsPerAssignment", lecturerWithMoreRubricsPerAssignment);
+		result.addObject("lecturerWithLessRubricsPerAssignment", lecturerWithLessRubricsPerAssignment);
+		
 		return result;
 	}
 
