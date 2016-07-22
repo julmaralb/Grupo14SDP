@@ -126,7 +126,7 @@ public class TripCommentActorController extends AbstractController {
 			result = new ModelAndView("redirect:/tripComment/actor/list.do");
 		} catch (Throwable oops) {
 			result = createEditModelAndView(tripComment,
-					"tripComment.commit.error");
+					"tripComment.delete.error");
 		}
 		return result;
 	}

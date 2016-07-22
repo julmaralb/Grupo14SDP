@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorService;
 import services.FolderService;
 import controllers.AbstractController;
+import domain.Actor;
 import domain.Folder;
 
 @Controller
@@ -25,6 +27,9 @@ public class FolderActorController extends AbstractController {
 
 	@Autowired
 	private FolderService folderService;
+
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -54,8 +59,11 @@ public class FolderActorController extends AbstractController {
 	public ModelAndView create() {
 		ModelAndView result;
 		Folder folder;
+		Actor principal;
 
-		folder = folderService.create();
+		principal = actorService.findByPrincipal();
+		folder = new Folder();
+		folder.setActor(principal);
 		result = createEditModelAndView(folder);
 
 		return result;
@@ -68,8 +76,11 @@ public class FolderActorController extends AbstractController {
 
 		ModelAndView result;
 		Folder folder;
+		Actor principal;
 
+		principal = actorService.findByPrincipal();
 		folder = folderService.findOne(folderId);
+		Assert.isTrue(folder.getActor().equals(principal));
 		Assert.notNull(folder);
 		result = createEditModelAndView(folder);
 
@@ -93,12 +104,29 @@ public class FolderActorController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public ModelAndView delete(@RequestParam int folderId) {
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(@Valid Folder folder, BindingResult binding) {
+		ModelAndView result;
+
+		try {
+			folderService.delete(folder);
+			result = new ModelAndView("redirect:/folder/actor/list.do");
+		} catch (Throwable oops) {
+			result = createEditModelAndView(folder, "folder.delete.error");
+		}
+
+		return result;
+	}
+
+	@RequestMapping(value = "/deleteFolder", method = RequestMethod.GET)
+	public ModelAndView deleteFolder(@RequestParam int folderId) {
 		ModelAndView result;
 		Folder folder;
+		Actor principal;
 
+		principal = actorService.findByPrincipal();
 		folder = folderService.findOne(folderId);
+		Assert.isTrue(folder.getActor().equals(principal));
 
 		folderService.delete(folder);
 

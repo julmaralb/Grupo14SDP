@@ -16,6 +16,14 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+<script>
+function myFunction(str) {
+	    var patt = new RegExp("^([+][0-9]{1,2})?([0-9]{3})?(?:[0-9]{4,})");
+	    if(patt.test(str)==false){
+	    	window.alert("The phone number introduced does not match the usual pattern continue anyways?");
+	    }  
+	}
+</script>
 
 <form:form action="student/edit.do" modelAttribute="studentForm">
 
@@ -24,7 +32,7 @@
 	<acme:textbox code="student.name" path="name"/>
 	<acme:textbox code="student.surname" path="surname"/>
 	<acme:textbox code="student.email" path="email"/>
-	<acme:textbox code="student.phone" path="phone"/>	
+	<acme:idtextbox code="student.phone" id="phoneId" path="phone"/>
 	</fieldset>
 
 	<fieldset>
@@ -36,6 +44,9 @@
 	
 	<acme:checkbox code="student.termsAccepted" path="termsAccepted"/><a href="student/terms.do"> <spring:message code="student.moreInfo" /></a>
 	<br></br>
-	<acme:submit name="save" code="student.save"/>
+	
+	<button type="submit" name="save" onclick="myFunction(this.form.phoneId.value)">
+	<spring:message code="student.save" />
+	</button>
 	<acme:cancel code="student.cancel" url="security/login.do"/>
 </form:form>

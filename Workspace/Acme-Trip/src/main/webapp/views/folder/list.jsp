@@ -30,7 +30,7 @@
 	
 	<acme:refConditionColumn ref="folder/actor/edit.do?folderId=${row.id}" code="folder.edit" condition="${!row.isSystem}"/>
 	
-	<acme:refConditionConfirmDeleteColumn ref="folder/actor/delete.do?folderId=${row.id}" code="folder.delete" codeConfirm="folder.confirm.delete" condition="${!row.isSystem}"/>
+	<acme:refConditionConfirmDeleteColumn ref="folder/actor/deleteFolder.do?folderId=${row.id}" code="folder.delete" codeConfirm="folder.confirm.delete" condition="${!row.isSystem}"/>
 				
 </display:table>
 

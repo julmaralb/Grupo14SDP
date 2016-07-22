@@ -75,6 +75,16 @@ public class FolderService {
 
 	public void delete(Folder folder) {
 		Assert.notNull(folder);
+		Collection<Message> messages;
+		Folder trashFolder;
+		Actor principal;
+
+		messages = folder.getMessages();
+		principal = actorService.findByPrincipal();
+		trashFolder = findByNameAndActorId("Trash Folder", principal.getId());
+		for (Message m : messages) {
+			m.setFolder(trashFolder);
+		}
 
 		folderRepository.delete(folder);
 	}

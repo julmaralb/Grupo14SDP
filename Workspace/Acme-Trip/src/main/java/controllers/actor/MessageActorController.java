@@ -83,8 +83,12 @@ public class MessageActorController extends AbstractController {
 	public ModelAndView display(@RequestParam int messageId) {
 		ModelAndView result;
 		Message message;
+		Actor principal;
 
+		principal = actorService.findByPrincipal();
 		message = messageService.findOne(messageId);
+		Assert.isTrue(message.getSender().equals(principal)
+				|| message.getRecipient().equals(principal));
 
 		result = new ModelAndView("message/display");
 		result.addObject("msg", message);
@@ -146,8 +150,12 @@ public class MessageActorController extends AbstractController {
 	public ModelAndView delete(@RequestParam int messageId) {
 		ModelAndView result;
 		Message message;
+		Actor principal;
 
+		principal = actorService.findByPrincipal();
 		message = messageService.findOne(messageId);
+		Assert.isTrue(message.getSender().equals(principal)
+				|| message.getRecipient().equals(principal));
 
 		messageService.deleteMessage(message);
 
@@ -160,8 +168,12 @@ public class MessageActorController extends AbstractController {
 	public ModelAndView spam(@RequestParam int messageId) {
 		ModelAndView result;
 		Message message;
+		Actor principal;
 
+		principal = actorService.findByPrincipal();
 		message = messageService.findOne(messageId);
+		Assert.isTrue(message.getSender().equals(principal)
+				|| message.getRecipient().equals(principal));
 
 		messageService.moveToSpam(message);
 
@@ -174,8 +186,12 @@ public class MessageActorController extends AbstractController {
 	public ModelAndView star(@RequestParam int messageId) {
 		ModelAndView result;
 		Message message;
+		Actor principal;
 
+		principal = actorService.findByPrincipal();
 		message = messageService.findOne(messageId);
+		Assert.isTrue(message.getSender().equals(principal)
+				|| message.getRecipient().equals(principal));
 
 		messageService.moveToStarred(message);
 
@@ -188,8 +204,12 @@ public class MessageActorController extends AbstractController {
 	public ModelAndView removeStar(@RequestParam int messageId) {
 		ModelAndView result;
 		Message message;
+		Actor principal;
 
+		principal = actorService.findByPrincipal();
 		message = messageService.findOne(messageId);
+		Assert.isTrue(message.getSender().equals(principal)
+				|| message.getRecipient().equals(principal));
 
 		messageService.moveToBackFromStarred(message);
 
@@ -206,8 +226,12 @@ public class MessageActorController extends AbstractController {
 		ModelAndView result;
 		Message message;
 		message = messageService.findOne(messageId);
+		Actor principal;
+		principal = actorService.findByPrincipal();
 
 		try {
+			Assert.isTrue(message.getSender().equals(principal)
+					|| message.getRecipient().equals(principal));
 			messageService.moveMessage(message, folder);
 			result = new ModelAndView("redirect:/folder/actor/list.do");
 		} catch (Throwable oops) {
