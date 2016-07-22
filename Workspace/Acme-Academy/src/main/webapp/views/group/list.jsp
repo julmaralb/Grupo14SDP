@@ -31,39 +31,23 @@
 	<acme:column code="group.subject" property="subject.title"/>
 	
 	<security:authorize access="hasRole('LECTURER')">
-	<display:column>
-	<a href="assignment/lecturer/listByGroup.do?groupId=<jstl:out value="${row.id}"/>"><spring:message code="group.assignments"/></a>
-	</display:column>
+	<acme:refColumn ref="assignment/lecturer/listByGroup.do?groupId=${row.id}" code="group.assignments"/>
 	</security:authorize>
 	
 	<security:authorize access="hasRole('LECTURER')">
-	<display:column>
-	<a href="learningMaterial/lecturer/list.do?groupId=<jstl:out value="${row.id}"/>"><spring:message code="group.learningMaterials"/></a>
-	</display:column>
+	<acme:refColumn ref="learningMaterial/lecturer/list.do?groupId=${row.id}" code="group.learningMaterials"/>
 	</security:authorize>
 	
 	<security:authorize access="hasRole('STUDENT')">
-	<display:column>
-	<jstl:if test="${fn:contains(row.students,principal)}">
-	<a href="learningMaterial/student/list.do?groupId=<jstl:out value="${row.id}"/>"><spring:message code="group.learningMaterials"/></a>
-	</jstl:if>
-	</display:column>
+	<acme:refConditionColumn ref="learningMaterial/student/list.do?groupId=${row.id}" code="group.learningMaterials" condition="${fn:contains(row.students,principal)}"/>
 	</security:authorize>
 	
 	<security:authorize access="hasRole('STUDENT')">
-	<display:column>
-	<jstl:if test="${fn:contains(row.students,principal)}">
-	<a href="assignment/student/listByGroup.do?groupId=<jstl:out value="${row.id}"/>"><spring:message code="group.assignments"/></a>
-	</jstl:if>
-	</display:column>
+	<acme:refConditionColumn ref="assignment/student/listByGroup.do?groupId=${row.id}" code="group.assignments" condition="${fn:contains(row.students,principal)}"/>
 	</security:authorize>
 	
 	<security:authorize access="hasRole('STUDENT')">
-	<display:column>
-	<jstl:if test="${!fn:contains(row.students,principal)}">
-	<a href="group/student/join.do?groupId=<jstl:out value="${row.id}"/>"><spring:message code="group.join"/></a>
-	</jstl:if>
-	</display:column>  
+	<acme:refConditionColumn ref="group/student/join.do?groupId=${row.id}" code="group.join" condition="${!fn:contains(row.students,principal)}"/>
 	</security:authorize>
 </display:table>
 

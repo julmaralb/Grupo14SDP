@@ -26,10 +26,10 @@
 	<acme:column code="subject.title" property="title" sortable="true"/>
 	<acme:column code="subject.syllabus" property="syllabus"/>
 	
-	<display:column> <a href="subject/listLecturers.do?subjectId=<jstl:out value="${row.id}"/>"><spring:message code="subject.lecturer"/></a></display:column>
+	<acme:refColumn ref="subject/listLecturers.do?subjectId=${row.id}" code="subject.lecturer"/>
 	
 	<security:authorize access="hasRole('ADMIN')">
-	<display:column> <a href="subject/administrator/edit.do?subjectId=<jstl:out value="${row.id}"/>"><spring:message code="subject.edit"/></a></display:column>
+	<acme:refColumn ref="subject/administrator/edit.do?subjectId=${row.id}" code="subject.edit"/>
 	</security:authorize>
 </display:table>
 

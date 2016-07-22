@@ -36,7 +36,7 @@
 	<acme:column code="lecturer.counter" property="counter" sortable="true"/>
 	</security:authorize>
 	
-	<display:column> <a href="lecturer/listSubjects.do?lecturerId=<jstl:out value="${row.id}"/>"><spring:message code="lecturer.subjects"/></a></display:column>
+	<acme:refColumn ref="lecturer/listSubjects.do?lecturerId=${row.id}" code="lecturer.subjects"/>
 
 </display:table>
 

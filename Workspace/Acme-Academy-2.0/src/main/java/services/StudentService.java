@@ -25,9 +25,6 @@ public class StudentService {
 	@Autowired
 	private StudentRepository studentRepository;
 
-	@Autowired
-	private Md5PasswordEncoder encoder;
-
 	// Supporting services ----------------------------------------------------
 
 	// Constructors -----------------------------------------------------------
@@ -72,6 +69,8 @@ public class StudentService {
 
 	public void save(Student student) {
 		Assert.notNull(student);
+		Md5PasswordEncoder encoder;
+		encoder = new Md5PasswordEncoder();
 
 		String password;
 		password = student.getUserAccount().getPassword();

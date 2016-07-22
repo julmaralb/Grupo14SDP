@@ -28,11 +28,6 @@
 	<br></br>
 	<acme:submit name="save" code="syllabus.save"/>
 	<acme:cancel code="syllabus.cancel" url="/syllabus/list.do"/>
-	<jstl:if test="${syllabus.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="syllabus.delete"/>"
-			onclick="return confirm('<spring:message code="syllabus.confirm.delete" />')" />
-		&nbsp
-	</jstl:if>
+	<acme:delete code="syllabus.delete" codeConfirm="syllabus.confirm.delete" condition="${syllabus.id != 0}"/>
 	
 </form:form>

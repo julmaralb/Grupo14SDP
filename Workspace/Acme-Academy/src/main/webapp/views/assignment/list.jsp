@@ -29,17 +29,21 @@
 	<acme:column code="assignment.deadline" property="deadline"/>
 	
 	<security:authorize access="hasRole('LECTURER')">
-	<display:column> <a href="deliverable/lecturer/list.do?assignmentId=<jstl:out value="${row.id}"/>"><spring:message code="assignment.deliverables"/></a></display:column>
+	<acme:refColumn ref="deliverable/lecturer/list.do?assignmentId=${row.id}" code="assignment.deliverables"/>
 	</security:authorize>
 	
 	<security:authorize access="hasRole('STUDENT')">
-	<display:column> <a href="deliverable/student/list.do?assignmentId=<jstl:out value="${row.id}"/>"><spring:message code="assignment.deliverables"/></a></display:column>
+	<acme:refColumn ref="deliverable/student/list.do?assignmentId=${row.id}" code="assignment.deliverables"/>
 	</security:authorize>
 	
 	<security:authorize access="hasRole('STUDENT')">
-	<display:column> <a href="deliverable/student/create.do?assignmentId=<jstl:out value="${row.id}"/>"><spring:message code="assignment.uploadDeliverable"/></a></display:column>
+	<acme:refColumn ref="deliverable/student/create.do?assignmentId=${row.id}" code="assignment.uploadDeliverable"/>
 	</security:authorize>
 </display:table>
+
+<security:authorize access="hasRole('LECTURER')">
+<a href="assignment/lecturer/create.do"><spring:message code="assignment.create"/></a>
+</security:authorize><br/>
 
 <security:authorize access="hasRole('STUDENT')">
 <acme:cancel url="group/student/listMyGroups.do" code="lecturer.back"/>

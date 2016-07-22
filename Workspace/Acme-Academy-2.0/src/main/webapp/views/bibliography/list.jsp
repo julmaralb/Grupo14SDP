@@ -36,4 +36,14 @@
 	
 </display:table>
 
+<security:authorize access="hasRole('LECTURER')">
+<a href="bibliography/lecturer/create.do"><spring:message code="bibliography.create"/></a>
+</security:authorize><br/>
+
+<security:authorize access="hasRole('LECTURER')">
 <acme:cancel url="syllabus/lecturer/list.do" code="lecturer.back"/>
+</security:authorize>
+
+<security:authorize access="hasRole('ADMIN')">
+<acme:cancel url="/" code="lecturer.back"/>
+</security:authorize>

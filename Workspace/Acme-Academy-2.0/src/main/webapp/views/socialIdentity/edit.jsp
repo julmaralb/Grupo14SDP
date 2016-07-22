@@ -20,10 +20,6 @@
 	<br></br>
 	<acme:submit name="save" code="socialIdentity.save"/>
 	<acme:cancel code="student.cancel" url="socialIdentity/list.do"/>
-	<jstl:if test="${socialIdentity.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="socialIdentity.delete"/>"
-			onclick="return confirm('<spring:message code="socialIdentity.confirm.delete" />')" />
-		&nbsp
-	</jstl:if>
+	<acme:delete code="socialIdentity.delete" codeConfirm="socialIdentity.confirm.delete" condition="${socialIdentity.id != 0}"/>
+	
 </form:form>

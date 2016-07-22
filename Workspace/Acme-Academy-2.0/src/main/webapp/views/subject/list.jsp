@@ -26,18 +26,18 @@
 	
 	<acme:column code="subject.title" property="title" sortable="true"/>
 	
-	<display:column> <a href="subject/listLecturers.do?subjectId=<jstl:out value="${row.id}"/>"><spring:message code="subject.lecturer"/></a></display:column>
+	<acme:refColumn ref="subject/listLecturers.do?subjectId=${row.id}" code="subject.lecturer"/>
 	
 	<security:authorize access="hasRole('LECTURER')">
-	<display:column> <a href="subject/lecturer/display.do?subjectId=<jstl:out value="${row.id}"/>"><spring:message code="subject.display"/></a></display:column>
+	<acme:refColumn ref="subject/lecturer/display.do?subjectId=${row.id}" code="subject.display"/>
 	</security:authorize>
 	
 	<security:authorize access="hasRole('LECTURER')">
-	<display:column> <a href="subject/lecturer/listSyllabi.do?subjectId=<jstl:out value="${row.id}"/>"><spring:message code="subject.syllabi"/></a></display:column>
+	<acme:refColumn ref="subject/lecturer/listSyllabi.do?subjectId=${row.id}" code="subject.syllabi"/>
 	</security:authorize>
 	
 	<security:authorize access="hasRole('ADMIN')">
-	<display:column> <a href="subject/administrator/edit.do?subjectId=<jstl:out value="${row.id}"/>"><spring:message code="subject.edit"/></a></display:column>
+	<acme:refColumn ref="subject/administrator/edit.do?subjectId=${row.id}" code="subject.edit"/>
 	</security:authorize>
 </display:table>
 <acme:cancel url="/" code="lecturer.back"/>

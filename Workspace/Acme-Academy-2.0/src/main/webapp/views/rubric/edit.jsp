@@ -24,11 +24,6 @@
 	<br></br>
 	<acme:submit name="save" code="rubric.save"/>
 	<acme:cancel code="rubric.cancel" url="/rubric/list.do"/>
-	<jstl:if test="${rubric.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="rubric.delete"/>"
-			onclick="return confirm('<spring:message code="rubric.confirm.delete" />')" />
-		&nbsp
-	</jstl:if>
+	<acme:delete code="rubric.delete" codeConfirm="rubric.confirm.delete" condition="${rubric.id != 0}"/>
 	
 </form:form>

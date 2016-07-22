@@ -28,6 +28,10 @@
 </display:table>
 
 <security:authorize access="hasRole('LECTURER')">
+<a href="rubric/lecturer/create.do"><spring:message code="rubric.create"/> </a>
+</security:authorize><br/>
+
+<security:authorize access="hasRole('LECTURER')">
 <acme:cancel url="group/lecturer/list.do" code="lecturer.back"/>
 </security:authorize>
 

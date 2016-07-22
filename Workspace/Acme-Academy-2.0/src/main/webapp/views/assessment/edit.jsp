@@ -11,6 +11,7 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	<form:hidden path="deliverable"/>
+	<form:hidden path="number"/>
 	
 	<acme:textbox code="assessment.explanation" path="explanation"/>
 	<br />
@@ -29,11 +30,6 @@
 	<br></br>
 	<acme:submit name="save" code="assessment.save"/>
 	<acme:cancel code="assessment.cancel" url="/assessment/list.do"/>
-	<jstl:if test="${assessment.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="assessment.delete"/>"
-			onclick="return confirm('<spring:message code="assessment.confirm.delete" />')" />
-		&nbsp
-	</jstl:if>
+	<acme:delete code="assessment.delete" codeConfirm="assessment.confirm.delete" condition="${assessment.id != 0}"/>
 	
 </form:form>

@@ -48,22 +48,20 @@
 	
 	<spring:message code="deliverable.student" var="studentHeader"/>
 	<display:column title="${studentHeader}" sortable="true"> <jstl:out value="${row.student.name}"> </jstl:out> <jstl:out value="${row.student.surname}"> </jstl:out></display:column>
-
+	
 	<security:authorize access="hasRole('LECTURER')">
-	<display:column> <a href="assessment/lecturer/list.do?deliverableId=<jstl:out value="${row.id}"/>"><spring:message code="deliverable.assessments"/></a></display:column>
-	</security:authorize>
-
-	<security:authorize access="hasRole('LECTURER')">
-	<display:column> <a href="assessment/lecturer/create.do?deliverableId=<jstl:out value="${row.id}"/>"><spring:message code="deliverable.assess"/></a></display:column>
+	<acme:refColumn ref="assessment/lecturer/list.do?deliverableId=${row.id}" code="deliverable.assessments"/>
 	</security:authorize>
 	
 	<security:authorize access="hasRole('LECTURER')">
-	<display:column>
-	<jstl:if test="${computable}">
-	<a href="deliverable/lecturer/computeMark.do?deliverableId=<jstl:out value="${row.id}"/>"><spring:message code="deliverable.computeMark"/></a>
-	</jstl:if> 
-	</display:column>
+	<acme:refColumn ref="assessment/lecturer/create.do?deliverableId=${row.id}" code="deliverable.assess"/>
 	</security:authorize>
+
+	
+	<security:authorize access="hasRole('LECTURER')">
+	<acme:refConditionColumn ref="deliverable/lecturer/computeMark.do?deliverableId=${row.id}" code="deliverable.computeMark" condition="${computable}"/>
+	</security:authorize>
+	
 	
 </display:table>
 

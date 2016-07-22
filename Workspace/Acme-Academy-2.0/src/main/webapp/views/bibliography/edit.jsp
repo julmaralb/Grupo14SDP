@@ -24,11 +24,6 @@
 	<br></br>
 	<acme:submit name="save" code="bibliography.save"/>
 	<acme:cancel code="bibliography.cancel" url="/bibliography/list.do"/>
-	<jstl:if test="${bibliography.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="bibliography.delete"/>"
-			onclick="return confirm('<spring:message code="bibliography.confirm.delete" />')" />
-		&nbsp
-	</jstl:if>
+	<acme:delete code="bibliography.delete" codeConfirm="bibliography.confirm.delete" condition="${bibliography.id != 0}"/>
 	
 </form:form>

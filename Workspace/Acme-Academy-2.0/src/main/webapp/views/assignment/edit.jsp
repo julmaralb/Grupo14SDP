@@ -11,7 +11,6 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	<form:hidden path="rubrics"/>
-	<form:hidden path="number"/>
 	
 	<acme:textbox code="assignment.title" path="title"/>
 	<acme:textarea code="assignment.description" path="description"/>
