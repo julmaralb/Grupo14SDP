@@ -30,9 +30,6 @@ public class AdministratorService {
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
-	private Md5PasswordEncoder encoder;
-
-	@Autowired
 	private FolderService folderService;
 
 	@Autowired
@@ -84,6 +81,8 @@ public class AdministratorService {
 
 	public void save(Administrator administrator) {
 		Assert.notNull(administrator);
+		Md5PasswordEncoder encoder;
+		encoder = new Md5PasswordEncoder();
 
 		String password;
 		password = administrator.getUserAccount().getPassword();

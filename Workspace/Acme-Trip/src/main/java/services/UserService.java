@@ -30,9 +30,6 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
-	private Md5PasswordEncoder encoder;
-
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
@@ -83,6 +80,8 @@ public class UserService {
 
 	public void save(User user) {
 		Assert.notNull(user);
+		Md5PasswordEncoder encoder;
+		encoder = new Md5PasswordEncoder();
 
 		if (user.getId() == 0) {
 

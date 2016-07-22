@@ -28,9 +28,6 @@ public class ManagerService {
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
-	private Md5PasswordEncoder encoder;
-
-	@Autowired
 	private FolderService folderService;
 
 	// Constructors -----------------------------------------------------------
@@ -73,6 +70,8 @@ public class ManagerService {
 
 	public void save(Manager manager) {
 		Assert.notNull(manager);
+		Md5PasswordEncoder encoder;
+		encoder = new Md5PasswordEncoder();
 
 		String password;
 		password = manager.getUserAccount().getPassword();
