@@ -27,8 +27,8 @@ import org.springframework.web.servlet.ModelAndView;
 import security.Authority;
 import security.UserAccount;
 import services.AdministratorService;
-
 import domain.Administrator;
+import domain.Banner;
 
 @Controller
 @RequestMapping("/administrator")
@@ -142,6 +142,56 @@ public class AdministratorController extends AbstractController {
 		result.addObject("authorities", authorities);
 		result.addObject("message", message);
 
+		return result;
+	}
+	
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	public ModelAndView dashboard() {
+
+		ModelAndView result;
+		Integer userRegistered;
+		Integer numbersTrip;
+		Double avgTripsPerUser;
+		Double standardDevTripsPerUser;
+		Collection<String> usersWithMoreThan80PMaxTripsRegistered;
+		Double avgDailyPlansPerUser;
+		Double standardDevDailyPlansPerUser;
+		Collection<Double> minMaxAvgCampaignsPerManager;
+		Double avgAmountMoneyPerCampaign;
+		Collection<Double> avgAndStandardDevDaysThatCampaignsLast;
+		Collection<String>managerWithMoreCampaigns;
+		Collection<Banner>activeBannersDisplayedMoreThan10PAvg;
+		Collection<Banner>activeBannersDisplayedLessThan10PAvg;
+		
+		userRegistered= administratorService.userRegistered();
+		result=new ModelAndView("administrator/dashboard");
+		numbersTrip=administratorService.numbersTrip();
+		avgTripsPerUser=administratorService.avgTripsPerUser();
+		standardDevTripsPerUser=administratorService.standardDevTripsPerUser();
+		usersWithMoreThan80PMaxTripsRegistered=administratorService.usersWithMoreThan80PMaxTripsRegistered();
+		avgDailyPlansPerUser=administratorService.avgDailyPlansPerUser();
+		standardDevDailyPlansPerUser=administratorService.standardDevDailyPlansPerUser();
+		minMaxAvgCampaignsPerManager=administratorService.minMaxAvgCampaignsPerManager();
+		avgAmountMoneyPerCampaign=administratorService.avgAmountMoneyPerCampaign();
+		managerWithMoreCampaigns=administratorService.managerWithMoreCampaigns();
+		activeBannersDisplayedMoreThan10PAvg=administratorService.activeBannersDisplayedMoreThan10PAvg();
+		activeBannersDisplayedLessThan10PAvg=administratorService.activeBannersDisplayedLessThan10PAvg();
+		avgAndStandardDevDaysThatCampaignsLast=administratorService.avgAndStandardDevDaysThatCampaignsLast();
+		
+		result.addObject("userRegistered", userRegistered);
+		result.addObject("numbersTrip", numbersTrip);
+		result.addObject("avgTripsPerUser",avgTripsPerUser);
+		result.addObject("standardDevTripsPerUser", standardDevTripsPerUser);
+		result.addObject("usersWithMoreThan80PMaxTripsRegistered", usersWithMoreThan80PMaxTripsRegistered);
+		result.addObject("avgDailyPlansPerUser", avgDailyPlansPerUser);
+		result.addObject("standardDevDailyPlansPerUser", standardDevDailyPlansPerUser);
+		result.addObject("minMaxAvgCampaignsPerManager", minMaxAvgCampaignsPerManager);
+		result.addObject("avgAmountMoneyPerCampaign", avgAmountMoneyPerCampaign);
+		result.addObject("avgAndStandardDevDaysThatCampaignsLast",avgAndStandardDevDaysThatCampaignsLast);
+		result.addObject("managerWithMoreCampaigns", managerWithMoreCampaigns);
+		result.addObject("activeBannersDisplayedMoreThan10PAvg", activeBannersDisplayedMoreThan10PAvg);
+		result.addObject("activeBannersDisplayedLessThan10PAvg", activeBannersDisplayedLessThan10PAvg);
+		
 		return result;
 	}
 }

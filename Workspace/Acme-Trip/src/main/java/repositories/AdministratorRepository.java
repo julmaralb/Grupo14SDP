@@ -26,6 +26,18 @@ public interface AdministratorRepository extends
 	@Query("select avg(u.trips.size),SQRT(sum((u.trips.size - (select avg(u.trips.size) from User u))*(u.trips.size - (select avg(u.trips.size) from User u)))/(select count(u) from User u)) from User u")
 	Collection<Double> avgAndStandardDevTripsPerUser();
 
+	@Query("select avg(u.trips.size) from User u")
+	Double avgTripsPerUser();
+	
+	@Query("select SQRT(sum((u.trips.size - (select avg(u.trips.size) from User u))*(u.trips.size - (select avg(u.trips.size) from User u)))/(select count(u) from User u)) from User u")
+	Double standardDevTripsPerUser();
+	
+	@Query("select avg(dp.size) from User u join u.trips t join t.dailyPlans dp")
+	Double avgDailyPlansPerUser();
+	
+	@Query("select SQRT(sum((dp.size - (select avg(dp.size) from User u join u.trips t join t.dailyPlans dp))*(dp.size - (select avg(dp.size) from User u join u.trips t join t.dailyPlans dp)))/(select count(u) from User u)) from User u join u.trips t join t.dailyPlans dp")
+	Double standardDevDailyPlansPerUser();
+	
 	@Query("select avg(dp.size),SQRT(sum((dp.size - (select avg(dp.size) from User u join u.trips t join t.dailyPlans dp))*(dp.size - (select avg(dp.size) from User u join u.trips t join t.dailyPlans dp)))/(select count(u) from User u)) from User u join u.trips t join t.dailyPlans dp")
 	Collection<Double> avgAndStandardDevDailyPlansPerUser();
 

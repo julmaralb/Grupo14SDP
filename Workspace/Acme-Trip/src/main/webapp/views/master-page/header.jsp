@@ -46,6 +46,7 @@
 		
 		<security:authorize access="hasRole('ADMIN')">
 			<li><a class="fNiv" href="displayPrice/administrator/chargeDisplays.do"><spring:message code="master.page.administrator.chargeDisplays" /></a></li>
+			<li><a href="administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>					
 		</security:authorize>
 		
 		<security:authorize access="hasRole('MANAGER')">
