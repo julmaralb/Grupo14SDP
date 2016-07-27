@@ -94,7 +94,7 @@ public class BannerAgentController extends AbstractController {
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(banner, binding.toString());
+			result = createEditModelAndView(banner);
 		} else {
 			try {
 				bannerService.save(banner);

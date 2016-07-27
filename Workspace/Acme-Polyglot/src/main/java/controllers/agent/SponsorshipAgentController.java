@@ -95,7 +95,7 @@ public class SponsorshipAgentController extends AbstractController {
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(sponsorship, binding.toString());
+			result = createEditModelAndView(sponsorship);
 		} else {
 			try {
 				sponsorshipService.save(sponsorship);

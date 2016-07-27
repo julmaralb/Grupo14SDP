@@ -81,7 +81,7 @@ public class LanguageAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(language, binding.toString());
+			result = createEditModelAndView(language);
 		} else {
 			try {
 				languageService.save(language);

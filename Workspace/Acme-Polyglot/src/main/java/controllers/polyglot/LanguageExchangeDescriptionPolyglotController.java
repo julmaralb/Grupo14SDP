@@ -103,8 +103,7 @@ public class LanguageExchangeDescriptionPolyglotController extends
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(languageExchangeDescription,
-					binding.toString());
+			result = createEditModelAndView(languageExchangeDescription);
 		} else {
 			try {
 				languageExchangeDescriptionService

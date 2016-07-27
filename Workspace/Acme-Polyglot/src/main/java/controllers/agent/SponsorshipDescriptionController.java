@@ -114,8 +114,7 @@ public class SponsorshipDescriptionController extends AbstractController {
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(sponsorshipDescription,
-					binding.toString());
+			result = createEditModelAndView(sponsorshipDescription);
 		} else {
 			try {
 				sponsorshipDescriptionService.save(sponsorshipDescription);

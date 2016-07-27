@@ -1,0 +1,1279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2014 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="polyglot1" />
+		<property name="password" value="d9cd28132198669ae8eee77dfc7beb39" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="POLYGLOT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="polyglot2" />
+		<property name="password" value="a4e8bc2431a2e9e0e1c485e953021164" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="POLYGLOT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="polyglot3" />
+		<property name="password" value="9f4d563b32e397143a13767df6da2832" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="POLYGLOT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="agent1" />
+		<property name="password" value="83a87fd756ab57199c0bb6d5e11168cb" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AGENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="agent2" />
+		<property name="password" value="b1a4a6b01cc297d4677c4ca6656e14d7" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AGENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Other domain beans come here -->	
+	
+	<!-- Administrator -->
+	
+	<bean id="administrator1" class="domain.Administrator">
+		<property name="name" value="adminName" />
+		<property name="surname" value="adminSurname" />
+		<property name="phone" value="954863214" />
+		<property name="email" value="admin@hotmail.com" />		
+		<property name="userAccount" ref="userAccount1" />
+	</bean>
+	
+	<!-- Agents -->
+	
+	<bean id="agent1" class="domain.Agent">
+		<property name="name" value="agent1Name" />
+		<property name="surname" value="agent1Surname" />
+		<property name="phone" value="954362544" />
+		<property name="email" value="agent1@hotmail.com" />		
+		<property name="userAccount" ref="userAccount5" />
+		<property name="sponsorships">
+			<list>
+				<ref bean="sponsorship1" />
+				<ref bean="sponsorship2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="agent2" class="domain.Agent">
+		<property name="name" value="agent2Name" />
+		<property name="surname" value="agent2Surname" />
+		<property name="phone" value="623654152" />
+		<property name="email" value="agent2@hotmail.com" />		
+		<property name="userAccount" ref="userAccount6" />
+		<property name="sponsorships">
+			<list>
+				<ref bean="sponsorship3" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Polyglots -->
+	
+	<bean id="polyglot1" class="domain.Polyglot">
+		<property name="name" value="polyglot1Name" />
+		<property name="surname" value="polyglot1Surname" />
+		<property name="phone" value="635545965" />
+		<property name="email" value="polyglot1@hotmail.com" />		
+		<property name="userAccount" ref="userAccount2" />
+		<property name="organisedLanguageExchanges">
+			<list>
+				<ref bean="languageExchange1" />
+				<ref bean="languageExchange2" />
+				<ref bean="languageExchange3" />
+			</list>
+		</property>
+		<property name="participatedLanguageExchanges">
+			<list>
+				<ref bean="languageExchange1" />
+				<ref bean="languageExchange2" />
+				<ref bean="languageExchange3" />
+				<ref bean="languageExchange5" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="polyglot2" class="domain.Polyglot">
+		<property name="name" value="polyglot2Name" />
+		<property name="surname" value="polyglot2Surname" />
+		<property name="phone" value="954361547" />
+		<property name="email" value="polyglot2@hotmail.com" />		
+		<property name="userAccount" ref="userAccount3" />
+		<property name="organisedLanguageExchanges">
+			<list>
+				<ref bean="languageExchange4" />
+				<ref bean="languageExchange5" />
+			</list>
+		</property>
+		<property name="participatedLanguageExchanges">
+			<list>
+				<ref bean="languageExchange1" />
+				<ref bean="languageExchange3" />
+				<ref bean="languageExchange4" />
+				<ref bean="languageExchange5" />
+				<ref bean="languageExchange6" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="polyglot3" class="domain.Polyglot">
+		<property name="name" value="polyglot3Name" />
+		<property name="surname" value="polyglot3Surname" />
+		<property name="phone" value="954853515" />
+		<property name="email" value="polyglot3@hotmail.com" />		
+		<property name="userAccount" ref="userAccount4" />
+		<property name="organisedLanguageExchanges">
+			<list>
+				<ref bean="languageExchange6" />
+			</list>
+		</property>
+		<property name="participatedLanguageExchanges">
+			<list>
+				<ref bean="languageExchange2" />
+				<ref bean="languageExchange3" />
+				<ref bean="languageExchange4" />
+				<ref bean="languageExchange6" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- LanguageExchanges -->
+	
+	<bean id="languageExchange1" class="domain.LanguageExchange">
+		<property name="registrationDate" value="10/11/2016" />
+		<property name="exchangePlace" value="Calle Lisboa 4, Sevilla" />
+		<property name="cancelled" value="false" />
+		<property name="owner" ref="polyglot1" />
+		<property name="participants">
+			<list>
+				<ref bean="polyglot1" />
+				<ref bean="polyglot2" />
+			</list>
+		</property>
+		<property name="languages">
+			<list>
+				<ref bean="language1" />
+				<ref bean="language2" />
+			</list>
+		</property>
+		<property name="languageExchangeDescriptions">
+			<list>
+				<ref bean="languageExchangeDescription1" />
+				<ref bean="languageExchangeDescription2" />
+			</list>
+		</property>
+		<property name="sponsorships">
+			<list>
+				<ref bean="sponsorship1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchange2" class="domain.LanguageExchange">
+		<property name="registrationDate" value="10/20/2016" />
+		<property name="exchangePlace" value="Calle Virgen de la Antigua 11a, Sevilla" />
+		<property name="cancelled" value="false" />
+		<property name="owner" ref="polyglot1" />
+		<property name="participants">
+			<list>
+				<ref bean="polyglot1" />
+				<ref bean="polyglot3" />
+			</list>
+		</property>
+		<property name="languages">
+			<list>
+				<ref bean="language1" />
+				<ref bean="language2" />
+				<ref bean="language3" />
+			</list>
+		</property>
+		<property name="languageExchangeDescriptions">
+			<list>
+				<ref bean="languageExchangeDescription3" />
+				<ref bean="languageExchangeDescription4" />
+				<ref bean="languageExchangeDescription5" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchange3" class="domain.LanguageExchange">
+		<property name="registrationDate" value="11/05/2016" />
+		<property name="exchangePlace" value="Calle Virgen de la Antigua 11a, Sevilla" />
+		<property name="cancelled" value="false" />
+		<property name="owner" ref="polyglot1" />
+		<property name="participants">
+			<list>
+				<ref bean="polyglot1" />
+				<ref bean="polyglot2" />
+				<ref bean="polyglot3" />
+			</list>
+		</property>
+		<property name="languages">
+			<list>
+				<ref bean="language1" />
+				<ref bean="language2" />
+				<ref bean="language4" />
+			</list>
+		</property>
+		<property name="languageExchangeDescriptions">
+			<list>
+				<ref bean="languageExchangeDescription6" />
+				<ref bean="languageExchangeDescription7" />
+				<ref bean="languageExchangeDescription8" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchange4" class="domain.LanguageExchange">
+		<property name="registrationDate" value="10/22/2016" />
+		<property name="exchangePlace" value="Calle Torneo 4, Sevilla" />
+		<property name="cancelled" value="false" />
+		<property name="owner" ref="polyglot2" />
+		<property name="participants">
+			<list>
+				<ref bean="polyglot2" />
+				<ref bean="polyglot3" />
+			</list>
+		</property>
+		<property name="languages">
+			<list>
+				<ref bean="language1" />
+				<ref bean="language2" />
+				<ref bean="language5" />
+			</list>
+		</property>
+		<property name="languageExchangeDescriptions">
+			<list>
+				<ref bean="languageExchangeDescription9" />
+				<ref bean="languageExchangeDescription10" />
+				<ref bean="languageExchangeDescription11" />
+			</list>
+		</property>
+		<property name="sponsorships">
+			<list>
+				<ref bean="sponsorship2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchange5" class="domain.LanguageExchange">
+		<property name="registrationDate" value="11/10/2016" />
+		<property name="exchangePlace" value="Calle Virgen de la Antigua 11a, Sevilla" />
+		<property name="cancelled" value="false" />
+		<property name="owner" ref="polyglot2" />
+		<property name="participants">
+			<list>
+				<ref bean="polyglot1" />
+				<ref bean="polyglot2" />
+			</list>
+		</property>
+		<property name="languages">
+			<list>
+				<ref bean="language1" />
+				<ref bean="language2" />
+				<ref bean="language3" />
+			</list>
+		</property>
+		<property name="languageExchangeDescriptions">
+			<list>
+				<ref bean="languageExchangeDescription12" />
+				<ref bean="languageExchangeDescription13" />
+				<ref bean="languageExchangeDescription14" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchange6" class="domain.LanguageExchange">
+		<property name="registrationDate" value="12/10/2016" />
+		<property name="exchangePlace" value="Calle Torneo 4, Sevilla" />
+		<property name="cancelled" value="false" />
+		<property name="owner" ref="polyglot3" />
+		<property name="participants">
+			<list>
+				<ref bean="polyglot2" />
+				<ref bean="polyglot3" />
+			</list>
+		</property>
+		<property name="languages">
+			<list>
+				<ref bean="language1" />
+				<ref bean="language2" />
+				<ref bean="language4" />
+			</list>
+		</property>
+		<property name="languageExchangeDescriptions">
+			<list>
+				<ref bean="languageExchangeDescription15" />
+				<ref bean="languageExchangeDescription16" />
+				<ref bean="languageExchangeDescription17" />
+			</list>
+		</property>
+		<property name="sponsorships">
+			<list>
+				<ref bean="sponsorship3" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Sponsorships -->
+	
+	<bean id="sponsorship1" class="domain.Sponsorship">
+		<property name="name" value="sponsorship1Name" />		
+		<property name="agent" ref="agent1" />
+		<property name="languageExchange" ref="languageExchange1" />
+		<property name="banners">
+			<list>
+				<ref bean="banner1" />
+				<ref bean="banner2" />
+			</list>
+		</property>
+		<property name="sponsorshipDescriptions">
+			<list>
+				<ref bean="sponsorshipDescription1" />
+				<ref bean="sponsorshipDescription2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsorship2" class="domain.Sponsorship">
+		<property name="name" value="sponsorship2Name" />		
+		<property name="agent" ref="agent1" />
+		<property name="languageExchange" ref="languageExchange4" />
+		<property name="banners">
+			<list>
+				<ref bean="banner3" />
+			</list>
+		</property>
+		<property name="sponsorshipDescriptions">
+			<list>
+				<ref bean="sponsorshipDescription3" />
+				<ref bean="sponsorshipDescription4" />
+				<ref bean="sponsorshipDescription5" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsorship3" class="domain.Sponsorship">
+		<property name="name" value="sponsorship3Name" />		
+		<property name="agent" ref="agent2" />
+		<property name="languageExchange" ref="languageExchange6" />
+		<property name="banners">
+			<list>
+				<ref bean="banner4" />
+				<ref bean="banner5" />
+			</list>
+		</property>
+		<property name="sponsorshipDescriptions">
+			<list>
+				<ref bean="sponsorshipDescription6" />
+				<ref bean="sponsorshipDescription7" />
+				<ref bean="sponsorshipDescription8" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Banners -->
+	
+	<bean id="banner1" class="domain.Banner">
+		<property name="code" value="es" />	
+		<property name="photo" value="http://www.sparklebox.co.uk/2406-2410/_wp_generated/ppaea595bb_02.jpg" />		
+		<property name="sponsorship" ref="sponsorship1" />
+	</bean>
+	
+	<bean id="banner2" class="domain.Banner">
+		<property name="code" value="en" />	
+		<property name="photo" value="http://i36.photobucket.com/albums/e2/gothsk8gal/cult%20stuff/EnglandBanner.jpg" />		
+		<property name="sponsorship" ref="sponsorship1" />
+	</bean>
+	
+	<bean id="banner3" class="domain.Banner">
+		<property name="code" value="de" />	
+		<property name="photo" value="http://www.partyrama.co.uk/wp-content/uploads/2014/02/PBANN-00342.jpg" />		
+		<property name="sponsorship" ref="sponsorship2" />
+	</bean>
+	
+	<bean id="banner4" class="domain.Banner">
+		<property name="code" value="en" />	
+		<property name="photo" value="http://i36.photobucket.com/albums/e2/gothsk8gal/cult%20stuff/EnglandBanner.jpg" />		
+		<property name="sponsorship" ref="sponsorship3" />
+	</bean>
+	
+	<bean id="banner5" class="domain.Banner">
+		<property name="code" value="it" />	
+		<property name="photo" value="http://cdn.skim.gs/image/upload/v1456337479/msi/italy-banner_gbugn1.png" />		
+		<property name="sponsorship" ref="sponsorship3" />
+	</bean>
+	
+	<!-- Languages -->
+	
+	<bean id="language1" class="domain.Language">
+		<property name="code" value="es" />
+		<property name="counter" value="6" />
+		<property name="languageExchanges">
+			<list>
+				<ref bean="languageExchange1" />
+				<ref bean="languageExchange2" />
+				<ref bean="languageExchange3" />
+				<ref bean="languageExchange4" />
+				<ref bean="languageExchange5" />
+				<ref bean="languageExchange6" />
+			</list>
+		</property>
+		<property name="languageDescriptions">
+			<list>
+				<ref bean="languageDescription1" />
+				<ref bean="languageDescription2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="language2" class="domain.Language">
+		<property name="code" value="en" />
+		<property name="counter" value="6" />
+		<property name="languageExchanges">
+			<list>
+				<ref bean="languageExchange1" />
+				<ref bean="languageExchange2" />
+				<ref bean="languageExchange3" />
+				<ref bean="languageExchange4" />
+				<ref bean="languageExchange5" />
+				<ref bean="languageExchange6" />
+			</list>
+		</property>
+		<property name="languageDescriptions">
+			<list>
+				<ref bean="languageDescription3" />
+				<ref bean="languageDescription4" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="language3" class="domain.Language">
+		<property name="code" value="fr" />
+		<property name="counter" value="2" />
+		<property name="languageExchanges">
+			<list>
+				<ref bean="languageExchange2" />
+				<ref bean="languageExchange5" />
+			</list>
+		</property>
+		<property name="languageDescriptions">
+			<list>
+				<ref bean="languageDescription5" />
+				<ref bean="languageDescription6" />
+				<ref bean="languageDescription7" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="language4" class="domain.Language">
+		<property name="code" value="it" />
+		<property name="counter" value="2" />
+		<property name="languageExchanges">
+			<list>
+				<ref bean="languageExchange3" />
+				<ref bean="languageExchange6" />
+			</list>
+		</property>
+		<property name="languageDescriptions">
+			<list>
+				<ref bean="languageDescription8" />
+				<ref bean="languageDescription9" />
+				<ref bean="languageDescription10" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="language5" class="domain.Language">
+		<property name="code" value="de" />
+		<property name="counter" value="1" />
+		<property name="languageExchanges">
+			<list>
+				<ref bean="languageExchange4" />
+			</list>
+		</property>
+		<property name="languageDescriptions">
+			<list>
+				<ref bean="languageDescription11" />
+				<ref bean="languageDescription12" />
+				<ref bean="languageDescription13" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- LanguageExchangeDescriptions -->
+	
+	<bean id="languageExchangeDescription1" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange1ESTitle" />
+		<property name="text" value="languageExchange1ESText" />
+		<property name="code" value="es" />
+		<property name="languageExchange" ref="languageExchange1" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link1.com</value>
+				<value>http://link2.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag1</value>
+				<value>tag2</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription2" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange1ENTitle" />
+		<property name="text" value="languageExchange1ENText" />
+		<property name="code" value="en" />
+		<property name="languageExchange" ref="languageExchange1" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link3.com</value>
+				<value>http://link4.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag3</value>
+				<value>tag4</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription3" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange2ESTitle" />
+		<property name="text" value="languageExchange2ESText" />
+		<property name="code" value="es" />
+		<property name="languageExchange" ref="languageExchange2" />
+		<property name="infoLinks">
+			<list>
+
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag5</value>
+				<value>tag6</value>	
+				<value>tag7</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription4" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange2ENTitle" />
+		<property name="text" value="languageExchange2ENText" />
+		<property name="code" value="en" />
+		<property name="languageExchange" ref="languageExchange2" />
+		<property name="infoLinks">
+			<list>
+
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag8</value>
+				<value>tag6</value>	
+				<value>tag10</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription5" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange2FRTitle" />
+		<property name="text" value="languageExchange2FRText" />
+		<property name="code" value="fr" />
+		<property name="languageExchange" ref="languageExchange2" />
+		<property name="infoLinks">
+			<list>
+
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag11</value>
+				<value>tag12</value>	
+				<value>tag13</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription6" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange3ESTitle" />
+		<property name="text" value="languageExchange3ESText" />
+		<property name="code" value="es" />
+		<property name="languageExchange" ref="languageExchange3" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link5.com</value>
+				<value>http://link6.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag14</value>
+				<value>tag15</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription7" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange3ENTitle" />
+		<property name="text" value="languageExchange3ENText" />
+		<property name="code" value="en" />
+		<property name="languageExchange" ref="languageExchange3" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link7.com</value>
+				<value>http://link8.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag16</value>
+				<value>tag17</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription8" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange3ITTitle" />
+		<property name="text" value="languageExchange3ITText" />
+		<property name="code" value="it" />
+		<property name="languageExchange" ref="languageExchange3" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link9.com</value>
+				<value>http://link10.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag11</value>
+				<value>tag12</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription9" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange4ESTitle" />
+		<property name="text" value="languageExchange4ESText" />
+		<property name="code" value="es" />
+		<property name="languageExchange" ref="languageExchange4" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link11.com</value>
+				<value>http://link12.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag13</value>
+				<value>tag14</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription10" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange4ENTitle" />
+		<property name="text" value="languageExchange4ENText" />
+		<property name="code" value="en" />
+		<property name="languageExchange" ref="languageExchange4" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link13.com</value>
+				<value>http://link14.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription11" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange4DETitle" />
+		<property name="text" value="languageExchange4DEText" />
+		<property name="code" value="de" />
+		<property name="languageExchange" ref="languageExchange4" />
+		<property name="infoLinks">
+			<list>
+	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag15</value>
+				<value>tag16</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription12" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange5ESTitle" />
+		<property name="text" value="languageExchange5ESText" />
+		<property name="code" value="es" />
+		<property name="languageExchange" ref="languageExchange5" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link15.com</value>
+				<value>http://link16.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag17</value>
+				<value>tag18</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription13" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange5ENTitle" />
+		<property name="text" value="languageExchange5ENText" />
+		<property name="code" value="en" />
+		<property name="languageExchange" ref="languageExchange5" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link17.com</value>
+				<value>http://link18.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription14" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange5FRTitle" />
+		<property name="text" value="languageExchange5FRText" />
+		<property name="code" value="fr" />
+		<property name="languageExchange" ref="languageExchange5" />
+		<property name="infoLinks">
+			<list>
+	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag19</value>
+				<value>tag20</value>	
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="languageExchangeDescription15" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange6ESTitle" />
+		<property name="text" value="languageExchange6ESText" />
+		<property name="code" value="es" />
+		<property name="languageExchange" ref="languageExchange6" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link19.com</value>
+				<value>http://link20.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag21</value>
+				<value>tag22</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription16" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange6ENTitle" />
+		<property name="text" value="languageExchange6ENText" />
+		<property name="code" value="en" />
+		<property name="languageExchange" ref="languageExchange6" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link21.com</value>
+				<value>http://link22.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageExchangeDescription17" class="domain.LanguageExchangeDescription">
+		<property name="title" value="languageExchange6ITTitle" />
+		<property name="text" value="languageExchange6ITText" />
+		<property name="code" value="it" />
+		<property name="languageExchange" ref="languageExchange6" />
+		<property name="infoLinks">
+			<list>
+	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag23</value>
+				<value>tag24</value>	
+			</list>
+		</property>
+	</bean>
+	
+		<!-- LanguageDescriptions -->
+	
+	<bean id="languageDescription1" class="domain.LanguageDescription">
+		<property name="title" value="language1ESTitle" />
+		<property name="text" value="language1ESText" />
+		<property name="code" value="es" />
+		<property name="language" ref="language1" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link1.com</value>
+				<value>http://link2.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag1</value>
+				<value>tag2</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageDescription2" class="domain.LanguageDescription">
+		<property name="title" value="language1ENTitle" />
+		<property name="text" value="language1ENText" />
+		<property name="code" value="en" />
+		<property name="language" ref="language1" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link3.com</value>
+				<value>http://link4.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag3</value>
+				<value>tag4</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageDescription3" class="domain.LanguageDescription">
+		<property name="title" value="language2ESTitle" />
+		<property name="text" value="language2ESText" />
+		<property name="code" value="es" />
+		<property name="language" ref="language2" />
+		<property name="infoLinks">
+			<list>
+
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag5</value>
+				<value>tag6</value>	
+				<value>tag7</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageDescription4" class="domain.LanguageDescription">
+		<property name="title" value="language2ENTitle" />
+		<property name="text" value="language2ENText" />
+		<property name="code" value="en" />
+		<property name="language" ref="language2" />
+		<property name="infoLinks">
+			<list>
+
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag8</value>
+				<value>tag6</value>	
+				<value>tag10</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageDescription5" class="domain.LanguageDescription">
+		<property name="title" value="language3ESTitle" />
+		<property name="text" value="language3ESText" />
+		<property name="code" value="es" />
+		<property name="language" ref="language3" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link5.com</value>
+				<value>http://link6.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag14</value>
+				<value>tag15</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageDescription6" class="domain.LanguageDescription">
+		<property name="title" value="language3ENTitle" />
+		<property name="text" value="language3ENText" />
+		<property name="code" value="en" />
+		<property name="language" ref="language3" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link7.com</value>
+				<value>http://link8.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag16</value>
+				<value>tag17</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageDescription7" class="domain.LanguageDescription">
+		<property name="title" value="language3FRTitle" />
+		<property name="text" value="language3FRText" />
+		<property name="code" value="fr" />
+		<property name="language" ref="language3" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link9.com</value>
+				<value>http://link10.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag11</value>
+				<value>tag12</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageDescription8" class="domain.LanguageDescription">
+		<property name="title" value="language4ESTitle" />
+		<property name="text" value="language4ESText" />
+		<property name="code" value="es" />
+		<property name="language" ref="language4" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link11.com</value>
+				<value>http://link12.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag13</value>
+				<value>tag14</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageDescription9" class="domain.LanguageDescription">
+		<property name="title" value="language4ENTitle" />
+		<property name="text" value="language4ENText" />
+		<property name="code" value="en" />
+		<property name="language" ref="language4" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link13.com</value>
+				<value>http://link14.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageDescription10" class="domain.LanguageDescription">
+		<property name="title" value="language4ITTitle" />
+		<property name="text" value="language4ITText" />
+		<property name="code" value="it" />
+		<property name="language" ref="language4" />
+		<property name="infoLinks">
+			<list>
+	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag15</value>
+				<value>tag16</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageDescription11" class="domain.LanguageDescription">
+		<property name="title" value="language5ESTitle" />
+		<property name="text" value="languageE5ESText" />
+		<property name="code" value="es" />
+		<property name="language" ref="language5" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link15.com</value>
+				<value>http://link16.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag17</value>
+				<value>tag18</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageDescription12" class="domain.LanguageDescription">
+		<property name="title" value="language5ENTitle" />
+		<property name="text" value="language5ENText" />
+		<property name="code" value="en" />
+		<property name="language" ref="language5" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link17.com</value>
+				<value>http://link18.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="languageDescription13" class="domain.LanguageDescription">
+		<property name="title" value="language5DETitle" />
+		<property name="text" value="language5DEText" />
+		<property name="code" value="de" />
+		<property name="language" ref="language5" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link19.com</value>
+				<value>http://link20.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+			</list>
+		</property>
+	</bean>	
+	
+	<!-- SponsorshipDescriptions -->
+	
+	<bean id="sponsorshipDescription1" class="domain.SponsorshipDescription">
+		<property name="title" value="sponsorship1ESTitle" />
+		<property name="text" value="sponsorship1ESText" />
+		<property name="code" value="es" />
+		<property name="sponsorship" ref="sponsorship1" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link1.com</value>
+				<value>http://link2.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag1</value>
+				<value>tag2</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsorshipDescription2" class="domain.SponsorshipDescription">
+		<property name="title" value="sponsorship1ENTitle" />
+		<property name="text" value="sponsorship1ENText" />
+		<property name="code" value="en" />
+		<property name="sponsorship" ref="sponsorship1" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link3.com</value>
+				<value>http://link4.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag3</value>
+				<value>tag4</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsorshipDescription3" class="domain.SponsorshipDescription">
+		<property name="title" value="sponsorship2ESTitle" />
+		<property name="text" value="sponsorship2ESText" />
+		<property name="code" value="es" />
+		<property name="sponsorship" ref="sponsorship2" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link5.com</value>
+				<value>http://link6.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag5</value>
+				<value>tag6</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsorshipDescription4" class="domain.SponsorshipDescription">
+		<property name="title" value="sponsorship2ENTitle" />
+		<property name="text" value="sponsorship2ENText" />
+		<property name="code" value="en" />
+		<property name="sponsorship" ref="sponsorship2" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link7.com</value>
+				<value>http://link8.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag7</value>
+				<value>tag8</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsorshipDescription5" class="domain.SponsorshipDescription">
+		<property name="title" value="sponsorship2DETitle" />
+		<property name="text" value="sponsorship2DEText" />
+		<property name="code" value="de" />
+		<property name="sponsorship" ref="sponsorship2" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link9.com</value>
+				<value>http://link10.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag9</value>
+				<value>tag10</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsorshipDescription6" class="domain.SponsorshipDescription">
+		<property name="title" value="sponsorship3ESTitle" />
+		<property name="text" value="sponsorship3ESText" />
+		<property name="code" value="es" />
+		<property name="sponsorship" ref="sponsorship3" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link11.com</value>
+				<value>http://link12.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag11</value>
+				<value>tag12</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsorshipDescription7" class="domain.SponsorshipDescription">
+		<property name="title" value="sponsorship3ENTitle" />
+		<property name="text" value="sponsorship3ENText" />
+		<property name="code" value="en" />
+		<property name="sponsorship" ref="sponsorship3" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link13.com</value>
+				<value>http://link14.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag13</value>
+				<value>tag14</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsorshipDescription8" class="domain.SponsorshipDescription">
+		<property name="title" value="sponsorship3ITTitle" />
+		<property name="text" value="sponsorship3ITText" />
+		<property name="code" value="it" />
+		<property name="sponsorship" ref="sponsorship3" />
+		<property name="infoLinks">
+			<list>
+				<value>http://link15.com</value>
+				<value>http://link16.com</value>	
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>tag15</value>
+				<value>tag16</value>	
+			</list>
+		</property>
+	</bean>
+	
+</beans>

@@ -116,8 +116,7 @@ public class LanguageExchangePolyglotController extends AbstractController {
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(languageExchange,
-					binding.toString());
+			result = createEditModelAndView(languageExchange);
 		} else {
 			try {
 				languageService.incrementCounter(languageExchange);

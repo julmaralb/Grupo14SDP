@@ -90,8 +90,7 @@ public class LanguageDescriptionAdministratorController extends
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(languageDescription,
-					binding.toString());
+			result = createEditModelAndView(languageDescription);
 		} else {
 			try {
 				languageDescriptionService.save(languageDescription);
