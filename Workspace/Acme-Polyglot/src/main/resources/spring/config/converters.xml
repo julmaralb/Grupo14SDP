@@ -22,6 +22,36 @@
 			Add your own converters using entries of the following form: 
 			<bean class="converters.Class1ToClass2" /> 
 		-->
+		
+		<bean class="converters.AuthorityToStringConverter" />
+		<bean class="converters.StringToAuthorityConverter" />
+		
+		<bean class="converters.ActorToStringConverter" />
+		<bean class="converters.StringToActorConverter" />
+		
+		<bean class="converters.PolyglotToStringConverter" />
+		<bean class="converters.StringToPolyglotConverter" />
+		
+		<bean class="converters.AdministratorToStringConverter" />
+		<bean class="converters.StringToAdministratorConverter" />
+		
+		<bean class="converters.DescriptionToStringConverter" />
+		<bean class="converters.StringToDescriptionConverter" />
+		
+		<bean class="converters.LanguageToStringConverter" />
+		<bean class="converters.StringToLanguageConverter" />
+		
+		<bean class="converters.LanguageExchangeToStringConverter" />
+		<bean class="converters.StringToLanguageExchangeConverter" />
+		
+		<bean class="converters.BannerToStringConverter" />
+		<bean class="converters.StringToBannerConverter" />
+		
+		<bean class="converters.AgentToStringConverter" />
+		<bean class="converters.StringToAgentConverter" />
+		
+		<bean class="converters.SponsorshipToStringConverter" />
+		<bean class="converters.StringToSponsorshipConverter" />
 	</util:list>
 	
 </beans>

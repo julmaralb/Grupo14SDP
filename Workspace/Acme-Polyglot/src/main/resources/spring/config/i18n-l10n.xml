@@ -27,6 +27,14 @@
 		<value>/views/administrator/messages</value>
 		<value>/views/customer/messages</value>
 		<value>/views/profile/messages</value>
+		<value>/views/polyglot/messages</value>
+		<value>/views/languageExchange/messages</value>
+		<value>/views/language/messages</value>
+		<value>/views/languageExchangeDescription/messages</value>
+		<value>/views/languageDescription/messages</value>
+		<value>/views/banner/messages</value>
+		<value>/views/sponsorship/messages</value>
+		<value>/views/sponsorshipDescription/messages</value>
 	</util:list>
 
 </beans>

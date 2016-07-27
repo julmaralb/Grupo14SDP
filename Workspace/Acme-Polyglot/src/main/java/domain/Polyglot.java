@@ -23,28 +23,28 @@ public class Polyglot extends Actor {
 
 	// Relationships ----------------------------------------------------------
 
-	private Collection<LanguageExchange> OrganisedLanguageExchanges;
-	private Collection<LanguageExchange> ParticipatedLanguageExchanges;
+	private Collection<LanguageExchange> organisedLanguageExchanges;
+	private Collection<LanguageExchange> participatedLanguageExchanges;
 
 	@Valid
 	@OneToMany(mappedBy = "owner")
 	public Collection<LanguageExchange> getOrganisedLanguageExchanges() {
-		return OrganisedLanguageExchanges;
+		return organisedLanguageExchanges;
 	}
 
 	public void setOrganisedLanguageExchanges(
 			Collection<LanguageExchange> organisedLanguageExchanges) {
-		OrganisedLanguageExchanges = organisedLanguageExchanges;
+		this.organisedLanguageExchanges = organisedLanguageExchanges;
 	}
 
 	@Valid
 	@ManyToMany(mappedBy = "participants")
 	public Collection<LanguageExchange> getParticipatedLanguageExchanges() {
-		return ParticipatedLanguageExchanges;
+		return participatedLanguageExchanges;
 	}
 
 	public void setParticipatedLanguageExchanges(
 			Collection<LanguageExchange> participatedLanguageExchanges) {
-		ParticipatedLanguageExchanges = participatedLanguageExchanges;
+		this.participatedLanguageExchanges = participatedLanguageExchanges;
 	}
 }

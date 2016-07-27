@@ -5,11 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -20,6 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(indexes = { @Index(columnList = "registrationDate") })
 public class LanguageExchange extends DomainEntity {
 
 	// Constructors -----------------------------------------------------------
@@ -30,21 +32,9 @@ public class LanguageExchange extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 
-	private Collection<Description> descriptions;
 	private Date registrationDate;
 	private String exchangePlace;
 	private boolean cancelled;
-
-	@ElementCollection
-	@Valid
-	@NotNull
-	public Collection<Description> getDescriptions() {
-		return descriptions;
-	}
-
-	public void setDescriptions(Collection<Description> descriptions) {
-		this.descriptions = descriptions;
-	}
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
@@ -81,6 +71,8 @@ public class LanguageExchange extends DomainEntity {
 	private Polyglot owner;
 	private Collection<Polyglot> participants;
 	private Collection<Language> languages;
+	private Collection<LanguageExchangeDescription> languageExchangeDescriptions;
+	private Collection<Sponsorship> sponsorships;
 
 	@Valid
 	@NotNull
@@ -104,13 +96,33 @@ public class LanguageExchange extends DomainEntity {
 	}
 
 	@Valid
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.DETACH, CascadeType.REFRESH }, mappedBy = "languageExchanges")
+	@ManyToMany(mappedBy = "languageExchanges")
 	public Collection<Language> getLanguages() {
 		return languages;
 	}
 
 	public void setLanguages(Collection<Language> languages) {
 		this.languages = languages;
+	}
+
+	@Valid
+	@OneToMany(mappedBy = "languageExchange")
+	public Collection<LanguageExchangeDescription> getLanguageExchangeDescriptions() {
+		return languageExchangeDescriptions;
+	}
+
+	public void setLanguageExchangeDescriptions(
+			Collection<LanguageExchangeDescription> languageExchangeDescriptions) {
+		this.languageExchangeDescriptions = languageExchangeDescriptions;
+	}
+
+	@Valid
+	@OneToMany(mappedBy = "languageExchange")
+	public Collection<Sponsorship> getSponsorships() {
+		return sponsorships;
+	}
+
+	public void setSponsorships(Collection<Sponsorship> sponsorships) {
+		this.sponsorships = sponsorships;
 	}
 }

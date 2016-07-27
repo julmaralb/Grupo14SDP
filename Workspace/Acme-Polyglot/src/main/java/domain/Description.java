@@ -6,15 +6,18 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-@Embeddable
+@Entity
 @Access(AccessType.PROPERTY)
-public class Description {
+@Table(indexes = { @Index(columnList = "code") })
+public class Description extends DomainEntity {
 
 	// Constructors -----------------------------------------------------------
 
@@ -26,9 +29,9 @@ public class Description {
 
 	private String title;
 	private String text;
+	private String code;
 	private Collection<String> infoLinks;
 	private Collection<String> tags;
-	private String code;
 
 	@NotNull
 	@NotBlank
@@ -48,6 +51,15 @@ public class Description {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	@Pattern(regexp = "^([a-z]{2})$")
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	@ElementCollection
@@ -70,15 +82,5 @@ public class Description {
 		this.tags = tags;
 	}
 
-	@Pattern(regexp = "^([a-z]{2})$")
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
 	// Relationships ----------------------------------------------------------
-
 }

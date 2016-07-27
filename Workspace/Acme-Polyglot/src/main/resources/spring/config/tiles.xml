@@ -21,6 +21,15 @@
 		<value>/views/administrator/tiles.xml</value>
 		<value>/views/customer/tiles.xml</value>
 		<value>/views/profile/tiles.xml</value>
+		<value>/views/polyglot/tiles.xml</value>
+		<value>/views/languageExchange/tiles.xml</value>
+		<value>/views/language/tiles.xml</value>
+		<value>/views/languageExchangeDescription/tiles.xml</value>
+		<value>/views/languageExchangeDescription/tiles.xml</value>
+		<value>/views/languageDescription/tiles.xml</value>
+		<value>/views/banner/tiles.xml</value>
+		<value>/views/sponsorship/tiles.xml</value>
+		<value>/views/sponsorshipDescription/tiles.xml</value>
 	</util:list>
 
 </beans>

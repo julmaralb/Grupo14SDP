@@ -4,12 +4,12 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -23,19 +23,8 @@ public class Language extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 
-	private Collection<Description> descriptions;
 	private int counter;
-
-	@ElementCollection
-	@Valid
-	@NotNull
-	public Collection<Description> getDescriptions() {
-		return descriptions;
-	}
-
-	public void setDescriptions(Collection<Description> descriptions) {
-		this.descriptions = descriptions;
-	}
+	private String code;
 
 	@Min(0)
 	public int getCounter() {
@@ -46,9 +35,19 @@ public class Language extends DomainEntity {
 		this.counter = counter;
 	}
 
+	@Pattern(regexp = "^([a-z]{2})$")
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	// Relationships ----------------------------------------------------------
 
 	private Collection<LanguageExchange> languageExchanges;
+	private Collection<LanguageDescription> languageDescriptions;
 
 	@Valid
 	@ManyToMany
@@ -60,4 +59,16 @@ public class Language extends DomainEntity {
 			Collection<LanguageExchange> languageExchanges) {
 		this.languageExchanges = languageExchanges;
 	}
+
+	@Valid
+	@OneToMany(mappedBy = "language")
+	public Collection<LanguageDescription> getLanguageDescriptions() {
+		return languageDescriptions;
+	}
+
+	public void setLanguageDescriptions(
+			Collection<LanguageDescription> languageDescriptions) {
+		this.languageDescriptions = languageDescriptions;
+	}
+
 }
