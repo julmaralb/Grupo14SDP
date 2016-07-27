@@ -244,4 +244,9 @@ public class AdministratorService {
 		result=administratorRepository.avgAndStandardDevDaysThatCampaignsLast();
 		return result;
 	}
+
+	public Collection<String> userInactiveMoreOneyear() {
+		// TODO Service and repository of userInactiveMoreOneyear
+		return null;
+	}
 }

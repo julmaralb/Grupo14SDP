@@ -74,9 +74,17 @@
   
   </tr>
   
-	<%--Falta hace el usuarios inactivos --%>
-	<%--Falta hace el usuarios inactivos --%>
-	<%--Falta hace el usuarios inactivos --%>
+<tr>
+
+  <th><spring:message code="administrator.userInactiveMoreOneyear"/></th>
+ 
+  <td>
+  <display:table name="userInactiveMoreOneyear" id="row" requestURI="administrator/dashboard.do" class="displaytag">
+		
+		</display:table>
+  </td>
+  
+  </tr>
 	
 							<%--DashBoard B --%>
 
@@ -85,7 +93,11 @@
   <th><spring:message code="administrator.minMaxAvgCampaignsPerManager"/></th>
  
   <td>
-		<jstl:forEach items="${minMaxAvgCampaignsPerManager}" var="a"><jstl:out value="${a}"/></jstl:forEach>
+	<display:table name="minMaxAvgCampaignsPerManager" id="row" requestURI="administrator/dashboard.do" class="displaytag">
+	<display:column>
+	<jstl:forEach items="${row}" var="a"><jstl:out value="${a}"/> </jstl:forEach>
+	</display:column>
+	</display:table>
   </td>
   
   </tr>
@@ -101,8 +113,14 @@
 
   <th><spring:message code="administrator.avgAndStandardDevDaysThatCampaignsLast"/></th>
  
- <td><jstl:out value=" ${avgAndStandardDevDaysThatCampaignsLast}"/></td>
-  
+ <td>
+	<display:table name="avgAndStandardDevDaysThatCampaignsLast" id="row" requestURI="administrator/dashboard.do" class="displaytag">
+	<display:column>
+	<jstl:forEach items="${row}" var="a"><jstl:out value="${a}"/> </jstl:forEach>
+	</display:column>
+	 </display:table>
+</td>
+ 	
   </tr>
 
 <tr>
@@ -119,9 +137,8 @@
 	<th><spring:message code="administrator.activeBannersDisplayedMoreThan10PAvg"/></th>
  
   <td>
-  <display:table name="activeBannersDisplayedMoreThan10PAvg" id="row" pagesize="5" requestURI="administrator/dashboard.do" class="displaytag">
-  	<spring:message code="administrator.activeBannersDisplayedMoreThan10PAvg" var="photoHeader" />
-	<display:column title="${photoHeader}" sortable="false" ><img src="${row.photo }" alt="${row.id}" height="80">
+  <display:table name="activeBannersDisplayedMoreThan10PAvg" id="row" pagesize="3" requestURI="administrator/dashboard.do" class="displaytag">
+	<display:column ><img src="${row.photo }" alt="${row.id}" height="80">
 	</display:column>
   </display:table>
   </td>
@@ -131,9 +148,8 @@
 	<th><spring:message code="administrator.activeBannersDisplayedLessThan10PAvg"/></th>
  
   <td>
-  <display:table name="activeBannersDisplayedLessThan10PAvg" id="row" pagesize="5" requestURI="administrator/dashboard.do" class="displaytag">
-  	<spring:message code="administrator.activeBannersDisplayedLessThan10PAvg" var="photoHeader" />
-	<display:column title="${photoHeader}" sortable="false" ><img src="${row.photo }" alt="${row.id}" height="80">
+  <display:table name="activeBannersDisplayedLessThan10PAvg" id="row" pagesize="3" requestURI="administrator/dashboard.do" class="displaytag">
+	<display:column><img src="${row.photo }" alt="${row.id}" height="80">
 	</display:column>
   </display:table>
   </td>

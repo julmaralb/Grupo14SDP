@@ -162,6 +162,7 @@ public class AdministratorController extends AbstractController {
 		Collection<String>managerWithMoreCampaigns;
 		Collection<Banner>activeBannersDisplayedMoreThan10PAvg;
 		Collection<Banner>activeBannersDisplayedLessThan10PAvg;
+		Collection<String>userInactiveMoreOneyear;
 		
 		userRegistered= administratorService.userRegistered();
 		result=new ModelAndView("administrator/dashboard");
@@ -177,6 +178,7 @@ public class AdministratorController extends AbstractController {
 		activeBannersDisplayedMoreThan10PAvg=administratorService.activeBannersDisplayedMoreThan10PAvg();
 		activeBannersDisplayedLessThan10PAvg=administratorService.activeBannersDisplayedLessThan10PAvg();
 		avgAndStandardDevDaysThatCampaignsLast=administratorService.avgAndStandardDevDaysThatCampaignsLast();
+		userInactiveMoreOneyear=administratorService.userInactiveMoreOneyear();
 		
 		result.addObject("userRegistered", userRegistered);
 		result.addObject("numbersTrip", numbersTrip);
@@ -191,6 +193,7 @@ public class AdministratorController extends AbstractController {
 		result.addObject("managerWithMoreCampaigns", managerWithMoreCampaigns);
 		result.addObject("activeBannersDisplayedMoreThan10PAvg", activeBannersDisplayedMoreThan10PAvg);
 		result.addObject("activeBannersDisplayedLessThan10PAvg", activeBannersDisplayedLessThan10PAvg);
+		result.addObject("userInactiveMoreOneyear",userInactiveMoreOneyear);
 		
 		return result;
 	}
