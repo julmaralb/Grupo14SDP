@@ -14,7 +14,7 @@
 	<form:hidden path="banners"/>
 	
 	<acme:textbox code="sponsorship.name" path="name"/><br/>
-	<acme:select items="${languageExchanges}" itemLabel="registrationDate" code="sponsorship.languageExchange" path="languageExchange"/>
+	<acme:select items="${languageExchanges}" itemLabel="name" code="sponsorship.languageExchange" path="languageExchange"/>
 	
 	<br></br>
 	<acme:submit name="save" code="sponsorship.save"/>

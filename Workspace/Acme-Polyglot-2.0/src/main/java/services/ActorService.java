@@ -1,5 +1,7 @@
 package services;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +54,15 @@ public class ActorService {
 		result = actorRepository.findByPrincipal(userAccount.getId());
 		assert result != null;
 
+		return result;
+	}
+	
+	public Collection<Actor> findAllButPrincipal() {
+		Collection<Actor> result;
+		
+		result = actorRepository.findAll();
+		result.remove(findByPrincipal());
+		
 		return result;
 	}
 }

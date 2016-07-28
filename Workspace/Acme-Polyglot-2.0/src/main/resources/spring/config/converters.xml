@@ -52,6 +52,12 @@
 		
 		<bean class="converters.SponsorshipToStringConverter" />
 		<bean class="converters.StringToSponsorshipConverter" />
+		
+		<bean class="converters.FolderToStringConverter" />
+		<bean class="converters.StringToFolderConverter" />
+		
+		<bean class="converters.MessageToStringConverter" />
+		<bean class="converters.StringToMessageConverter" />
 	</util:list>
 	
 </beans>

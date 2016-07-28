@@ -14,6 +14,8 @@
 	<form:hidden path="participants"/>
 	<form:hidden path="cancelled"/>
 	
+	<acme:textbox code="languageExchange.name" path="name"/><br/>
+	
 	<acme:textbox code="languageExchange.registrationDate" path="registrationDate"/><br/>
 	
 	<acme:textbox code="languageExchange.exchangePlace" path="exchangePlace"/><br/>

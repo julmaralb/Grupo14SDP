@@ -11,6 +11,7 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="userAccount.authorities" />
+	<form:hidden path="folders" />
 
 	<fieldset>
   	<legend><spring:message code="polyglot.personalInfo"/>:</legend>

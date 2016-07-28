@@ -31,6 +31,9 @@ public class LanguageExchangeService {
 	@Autowired
 	private PolyglotService polyglotService;
 
+	@Autowired
+	private FolderService folderService;
+
 	// Constructors -----------------------------------------------------------
 
 	public LanguageExchangeService() {
@@ -89,6 +92,9 @@ public class LanguageExchangeService {
 
 		languageExchange.setOwner(principal);
 
+		if (languageExchange.getId() == 0) {
+			folderService.createExchangeFolder(languageExchange);
+		}
 		languageExchangeRepository.save(languageExchange);
 	}
 
@@ -158,6 +164,10 @@ public class LanguageExchangeService {
 		languageExchanges.add(languageExchange);
 		languageExchange.setParticipants(participants);
 		principal.setParticipatedLanguageExchanges(languageExchanges);
+
+		if(!languageExchange.getOwner().equals(principal)){
+			folderService.createExchangeFolder(languageExchange);
+		}
 	}
 
 	public void unJoinLanguageExchange(LanguageExchange languageExchange) {

@@ -36,7 +36,7 @@
 	<acme:textbox code="message.subject" path="subject"/>
 	<br />
 	
-	<acme:textbox code="message.body" path="body"/>
+	<acme:textarea code="message.body" path="body"/>
 	<br />
 	
 	<acme:submit name="send" code="message.send"/>

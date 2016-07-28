@@ -73,9 +73,7 @@
 	</form:form>
 	</display:column>
     
-	
-	
-	<acme:refConditionConfirmDeleteColumn ref="message/actor/delete.do?messageId=${row.id}" code="message.delete" codeConfirm="message.confirm.delete" condition="${row.folder.id != trashId}"/>
+	<acme:refConditionConfirmDeleteColumn ref="message/actor/delete.do?messageId=${row.id}" code="message.delete" codeConfirm="message.confirm.delete" condition="${true}"/>
 				
 </display:table>
 

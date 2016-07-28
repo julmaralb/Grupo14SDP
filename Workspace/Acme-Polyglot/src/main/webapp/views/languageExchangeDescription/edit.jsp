@@ -16,7 +16,7 @@
 	<acme:textbox code="languageExchangeDescription.code" path="code"/><br/>
 	<acme:textarea code="languageExchangeDescription.infoLinks" path="infoLinks"/><br/>
 	<acme:textarea code="languageExchangeDescription.tags" path="tags"/><br/>
-	<acme:select items="${languageExchanges}" itemLabel="registrationDate" code="languageExchangeDescription.languageExchange" path="languageExchange"/>
+	<acme:select items="${languageExchanges}" itemLabel="name" code="languageExchangeDescription.languageExchange" path="languageExchange"/>
 	
 	<br></br>
 	<acme:submit name="save" code="languageExchangeDescription.save"/>

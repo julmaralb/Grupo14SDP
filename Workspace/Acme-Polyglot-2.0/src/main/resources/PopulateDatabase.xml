@@ -100,6 +100,14 @@
 		<property name="phone" value="954863214" />
 		<property name="email" value="admin@hotmail.com" />		
 		<property name="userAccount" ref="userAccount1" />
+		<property name="folders">
+			<list>
+				<ref bean="inBox6" />
+				<ref bean="outBox6" />
+				<ref bean="trashBox6" />
+				<ref bean="spamBox6" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- Agents -->
@@ -116,6 +124,14 @@
 				<ref bean="sponsorship2" />
 			</list>
 		</property>
+		<property name="folders">
+			<list>
+				<ref bean="inBox4" />
+				<ref bean="outBox4" />
+				<ref bean="trashBox4" />
+				<ref bean="spamBox4" />
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="agent2" class="domain.Agent">
@@ -127,6 +143,14 @@
 		<property name="sponsorships">
 			<list>
 				<ref bean="sponsorship3" />
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="inBox5" />
+				<ref bean="outBox5" />
+				<ref bean="trashBox5" />
+				<ref bean="spamBox5" />
 			</list>
 		</property>
 	</bean>
@@ -154,6 +178,18 @@
 				<ref bean="languageExchange5" />
 			</list>
 		</property>
+		<property name="folders">
+			<list>
+				<ref bean="inBox1" />
+				<ref bean="outBox1" />
+				<ref bean="trashBox1" />
+				<ref bean="spamBox1" />
+				<ref bean="languageExchange1Box1" />
+				<ref bean="languageExchange2Box1" />
+				<ref bean="languageExchange3Box1" />
+				<ref bean="languageExchange5Box1" />
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="polyglot2" class="domain.Polyglot">
@@ -177,6 +213,19 @@
 				<ref bean="languageExchange6" />
 			</list>
 		</property>
+		<property name="folders">
+			<list>
+				<ref bean="inBox2" />
+				<ref bean="outBox2" />
+				<ref bean="trashBox2" />
+				<ref bean="spamBox2" />
+				<ref bean="languageExchange1Box2" />
+				<ref bean="languageExchange3Box2" />
+				<ref bean="languageExchange4Box1" />
+				<ref bean="languageExchange5Box2" />
+				<ref bean="languageExchange6Box1" />
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="polyglot3" class="domain.Polyglot">
@@ -198,11 +247,24 @@
 				<ref bean="languageExchange6" />
 			</list>
 		</property>
+		<property name="folders">
+			<list>
+				<ref bean="inBox3" />
+				<ref bean="outBox3" />
+				<ref bean="trashBox3" />
+				<ref bean="spamBox3" />
+				<ref bean="languageExchange2Box2" />
+				<ref bean="languageExchange3Box3" />
+				<ref bean="languageExchange4Box2" />
+				<ref bean="languageExchange6Box2" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- LanguageExchanges -->
 	
 	<bean id="languageExchange1" class="domain.LanguageExchange">
+		<property name="name" value="LanguageExchange1" />
 		<property name="registrationDate" value="10/11/2016" />
 		<property name="exchangePlace" value="Calle Lisboa 4, Sevilla" />
 		<property name="cancelled" value="false" />
@@ -233,6 +295,7 @@
 	</bean>
 	
 	<bean id="languageExchange2" class="domain.LanguageExchange">
+		<property name="name" value="LanguageExchange2" />
 		<property name="registrationDate" value="10/20/2016" />
 		<property name="exchangePlace" value="Calle Virgen de la Antigua 11a, Sevilla" />
 		<property name="cancelled" value="false" />
@@ -260,6 +323,7 @@
 	</bean>
 	
 	<bean id="languageExchange3" class="domain.LanguageExchange">
+		<property name="name" value="LanguageExchange3" />
 		<property name="registrationDate" value="11/05/2016" />
 		<property name="exchangePlace" value="Calle Virgen de la Antigua 11a, Sevilla" />
 		<property name="cancelled" value="false" />
@@ -288,6 +352,7 @@
 	</bean>
 	
 	<bean id="languageExchange4" class="domain.LanguageExchange">
+		<property name="name" value="LanguageExchange4" />
 		<property name="registrationDate" value="10/22/2016" />
 		<property name="exchangePlace" value="Calle Torneo 4, Sevilla" />
 		<property name="cancelled" value="false" />
@@ -320,6 +385,7 @@
 	</bean>
 	
 	<bean id="languageExchange5" class="domain.LanguageExchange">
+		<property name="name" value="LanguageExchange5" />
 		<property name="registrationDate" value="11/10/2016" />
 		<property name="exchangePlace" value="Calle Virgen de la Antigua 11a, Sevilla" />
 		<property name="cancelled" value="false" />
@@ -347,6 +413,7 @@
 	</bean>
 	
 	<bean id="languageExchange6" class="domain.LanguageExchange">
+		<property name="name" value="LanguageExchange6" />
 		<property name="registrationDate" value="12/10/2016" />
 		<property name="exchangePlace" value="Calle Torneo 4, Sevilla" />
 		<property name="cancelled" value="false" />
@@ -1276,4 +1343,598 @@
 		</property>
 	</bean>
 	
+	<!-- Boxs -->
+
+	<bean id="inBox1" class="domain.Folder">
+		<property name="name" value="In Box" />
+		<property name="messages">
+			<list>
+				<ref bean="message5" />
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="polyglot1" />
+	</bean>
+
+	<bean id="outBox1" class="domain.Folder">
+		<property name="name" value="Out Box" />
+		<property name="messages">
+			<list>
+				<ref bean="message1" />
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="polyglot1" />
+	</bean>
+
+	<bean id="trashBox1" class="domain.Folder">
+		<property name="name" value="Trash Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="polyglot1" />
+	</bean>
+	
+	<bean id="spamBox1" class="domain.Folder">
+		<property name="name" value="Spam Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="polyglot1" />
+	</bean>
+	
+	<bean id="inBox2" class="domain.Folder">
+		<property name="name" value="In Box" />
+		<property name="messages">
+			<list>
+				<ref bean="message6" />
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="polyglot2" />
+	</bean>
+
+	<bean id="outBox2" class="domain.Folder">
+		<property name="name" value="Out Box" />
+		<property name="messages">
+			<list>
+				<ref bean="message2" />
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="polyglot2" />
+	</bean>
+
+	<bean id="trashBox2" class="domain.Folder">
+		<property name="name" value="Trash Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="polyglot2" />
+	</bean>
+	
+	<bean id="spamBox2" class="domain.Folder">
+		<property name="name" value="Spam Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="polyglot2" />
+	</bean>
+	
+	<bean id="inBox3" class="domain.Folder">
+		<property name="name" value="In Box" />
+		<property name="messages">
+			<list>
+				
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="polyglot3" />
+	</bean>
+
+	<bean id="outBox3" class="domain.Folder">
+		<property name="name" value="Out Box" />
+		<property name="messages">
+			<list>
+			
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="polyglot3" />
+	</bean>
+
+	<bean id="trashBox3" class="domain.Folder">
+		<property name="name" value="Trash Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="polyglot3" />
+	</bean>
+	
+	<bean id="spamBox3" class="domain.Folder">
+		<property name="name" value="Spam Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="polyglot3" />
+	</bean>
+	
+	<bean id="inBox4" class="domain.Folder">
+		<property name="name" value="In Box" />
+		<property name="messages">
+			<list>
+				<ref bean="message7" />
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="agent1" />
+	</bean>
+
+	<bean id="outBox4" class="domain.Folder">
+		<property name="name" value="Out Box" />
+		<property name="messages">
+			<list>
+				<ref bean="message3" />
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="agent1" />
+	</bean>
+
+	<bean id="trashBox4" class="domain.Folder">
+		<property name="name" value="Trash Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="agent1" />
+	</bean>
+	
+	<bean id="spamBox4" class="domain.Folder">
+		<property name="name" value="Spam Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="agent1" />
+	</bean>
+	
+		<bean id="inBox5" class="domain.Folder">
+		<property name="name" value="In Box" />
+		<property name="messages">
+			<list>
+				
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="agent2" />
+	</bean>
+
+	<bean id="outBox5" class="domain.Folder">
+		<property name="name" value="Out Box" />
+		<property name="messages">
+			<list>
+				
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="agent2" />
+	</bean>
+
+	<bean id="trashBox5" class="domain.Folder">
+		<property name="name" value="Trash Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="agent2" />
+	</bean>
+	
+	<bean id="spamBox5" class="domain.Folder">
+		<property name="name" value="Spam Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="agent2" />
+	</bean>
+	
+		<bean id="inBox6" class="domain.Folder">
+		<property name="name" value="In Box" />
+		<property name="messages">
+			<list>
+				<ref bean="message8" />
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="administrator1" />
+	</bean>
+
+	<bean id="outBox6" class="domain.Folder">
+		<property name="name" value="Out Box" />
+		<property name="messages">
+			<list>
+				<ref bean="message6" />
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="administrator1" />
+	</bean>
+
+	<bean id="trashBox6" class="domain.Folder">
+		<property name="name" value="Trash Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="administrator1" />
+	</bean>
+	
+	<bean id="spamBox6" class="domain.Folder">
+		<property name="name" value="Spam Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="true" />
+		<property name="actor" ref="administrator1" />
+	</bean>
+	
+	<bean id="languageExchange1Box1" class="domain.Folder">
+		<property name="name" value="LanguageExchange1 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot1" />
+	</bean>
+	
+	<bean id="languageExchange1Box2" class="domain.Folder">
+		<property name="name" value="LanguageExchange1 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot2" />
+	</bean>
+	
+	<bean id="languageExchange2Box1" class="domain.Folder">
+		<property name="name" value="LanguageExchange2 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot1" />
+	</bean>
+	
+	<bean id="languageExchange2Box2" class="domain.Folder">
+		<property name="name" value="LanguageExchange2 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot3" />
+	</bean>
+	
+	<bean id="languageExchange3Box1" class="domain.Folder">
+		<property name="name" value="LanguageExchange3 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot1" />
+	</bean>
+	
+	<bean id="languageExchange3Box2" class="domain.Folder">
+		<property name="name" value="LanguageExchange3 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot2" />
+	</bean>
+	
+	<bean id="languageExchange3Box3" class="domain.Folder">
+		<property name="name" value="LanguageExchange3 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot3" />
+	</bean>
+	
+	<bean id="languageExchange4Box1" class="domain.Folder">
+		<property name="name" value="LanguageExchange4 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot2" />
+	</bean>
+	
+	<bean id="languageExchange4Box2" class="domain.Folder">
+		<property name="name" value="LanguageExchange4 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot3" />
+	</bean>
+	
+	<bean id="languageExchange5Box1" class="domain.Folder">
+		<property name="name" value="LanguageExchange5 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot1" />
+	</bean>
+	
+	<bean id="languageExchange5Box2" class="domain.Folder">
+		<property name="name" value="LanguageExchange5 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot2" />
+	</bean>
+	
+	<bean id="languageExchange6Box1" class="domain.Folder">
+		<property name="name" value="LanguageExchange6 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot2" />
+	</bean>
+	
+	<bean id="languageExchange6Box2" class="domain.Folder">
+		<property name="name" value="LanguageExchange6 Box" />
+		<property name="messages">
+			<list>
+
+			</list>
+		</property>
+		<property name="isSystem" value="false" />
+		<property name="actor" ref="polyglot3" />
+	</bean>
+	
+	<!-- Message -->
+
+	<bean id="message1" class="domain.Message">
+		<property name="sentMoment" value="12/10/2015 12:05" />
+		<property name="receivedMoment" value="12/10/2015 12:10" />
+		<property name="title" value="title1" />
+		<property name="text" value="text1" />
+		<property name="infoLinks">
+			<list>
+				<value>messageLink1</value>
+				<value>messageLink2</value>
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>messageLink1</value>
+				<value>messageLink2</value>	
+			</list>
+		</property>
+		<property name="code" value="es" />
+		<property name="sender" ref="polyglot1" />
+		<property name="recipient" ref="polyglot2" />
+		<property name="folder" ref="outBox1" />
+	</bean>
+	
+	<bean id="message2" class="domain.Message">
+		<property name="sentMoment" value="12/10/2015 12:05" />
+		<property name="receivedMoment" value="12/10/2015 12:10" />
+		<property name="title" value="title2" />
+		<property name="text" value="text2" />
+		<property name="infoLinks">
+			<list>
+				<value>messageLink3</value>
+				<value>messageLink4</value>
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>messageLink3</value>
+				<value>messageLink4</value>	
+			</list>
+		</property>
+		<property name="code" value="en" />
+		<property name="sender" ref="polyglot2" />
+		<property name="recipient" ref="polyglot1" />
+		<property name="folder" ref="outBox2" />
+	</bean>
+	
+	<bean id="message3" class="domain.Message">
+		<property name="sentMoment" value="12/10/2015 12:05" />
+		<property name="receivedMoment" value="12/10/2015 12:10" />
+		<property name="title" value="title3" />
+		<property name="text" value="text3" />
+		<property name="infoLinks">
+			<list>
+				<value>messageLink5</value>
+				<value>messageLink6</value>
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>messageLink5</value>
+				<value>messageLink6</value>	
+			</list>
+		</property>
+		<property name="code" value="de" />
+		<property name="sender" ref="agent1" />
+		<property name="recipient" ref="administrator1" />
+		<property name="folder" ref="outBox4" />
+	</bean>
+	
+	<bean id="message4" class="domain.Message">
+		<property name="sentMoment" value="12/10/2015 12:05" />
+		<property name="receivedMoment" value="12/10/2015 12:10" />
+		<property name="title" value="title4" />
+		<property name="text" value="text4" />
+		<property name="infoLinks">
+			<list>
+				<value>messageLink7</value>
+				<value>messageLink8</value>
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>messageLink7</value>
+				<value>messageLink8</value>	
+			</list>
+		</property>
+		<property name="code" value="de" />
+		<property name="sender" ref="administrator1" />
+		<property name="recipient" ref="agent1" />
+		<property name="folder" ref="outBox6" />
+	</bean>
+	
+		<bean id="message5" class="domain.Message">
+		<property name="sentMoment" value="12/10/2015 12:05" />
+		<property name="receivedMoment" value="12/10/2015 12:10" />
+		<property name="title" value="title1" />
+		<property name="text" value="text1" />
+		<property name="infoLinks">
+			<list>
+				<value>messageLink1</value>
+				<value>messageLink2</value>
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>messageLink1</value>
+				<value>messageLink2</value>	
+			</list>
+		</property>
+		<property name="code" value="es" />
+		<property name="sender" ref="polyglot2" />
+		<property name="recipient" ref="polyglot1" />
+		<property name="folder" ref="inBox1" />
+	</bean>
+	
+	<bean id="message6" class="domain.Message">
+		<property name="sentMoment" value="12/10/2015 12:05" />
+		<property name="receivedMoment" value="12/10/2015 12:10" />
+		<property name="title" value="title2" />
+		<property name="text" value="text2" />
+		<property name="infoLinks">
+			<list>
+				<value>messageLink3</value>
+				<value>messageLink4</value>
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>messageLink3</value>
+				<value>messageLink4</value>	
+			</list>
+		</property>
+		<property name="code" value="en" />
+		<property name="sender" ref="polyglot1" />
+		<property name="recipient" ref="polyglot2" />
+		<property name="folder" ref="inBox2" />
+	</bean>
+	
+	<bean id="message7" class="domain.Message">
+		<property name="sentMoment" value="12/10/2015 12:05" />
+		<property name="receivedMoment" value="12/10/2015 12:10" />
+		<property name="title" value="title3" />
+		<property name="text" value="text3" />
+		<property name="infoLinks">
+			<list>
+				<value>messageLink5</value>
+				<value>messageLink6</value>
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>messageLink5</value>
+				<value>messageLink6</value>	
+			</list>
+		</property>
+		<property name="code" value="de" />
+		<property name="sender" ref="administrator1" />
+		<property name="recipient" ref="agent1" />
+		<property name="folder" ref="inBox4" />
+	</bean>
+	
+	<bean id="message8" class="domain.Message">
+		<property name="sentMoment" value="12/10/2015 12:05" />
+		<property name="receivedMoment" value="12/10/2015 12:10" />
+		<property name="title" value="title4" />
+		<property name="text" value="text4" />
+		<property name="infoLinks">
+			<list>
+				<value>messageLink7</value>
+				<value>messageLink8</value>
+			</list>
+		</property>
+		<property name="tags">
+			<list>
+				<value>messageLink7</value>
+				<value>messageLink8</value>	
+			</list>
+		</property>
+		<property name="code" value="de" />
+		<property name="sender" ref="agent1" />
+		<property name="recipient" ref="administrator1" />
+		<property name="folder" ref="inBox6" />
+	</bean>	
 </beans>

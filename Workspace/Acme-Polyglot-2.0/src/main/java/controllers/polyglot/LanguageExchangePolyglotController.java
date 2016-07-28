@@ -160,7 +160,7 @@ public class LanguageExchangePolyglotController extends AbstractController {
 
 		languageExchangeService.joinLanguageExchange(languageExchange);
 
-		result = new ModelAndView("redirect:/languageExchange/polyglot/list.do");
+		result = new ModelAndView("redirect:/languageExchange/polyglot/listJoined.do");
 
 		return result;
 	}
@@ -175,7 +175,7 @@ public class LanguageExchangePolyglotController extends AbstractController {
 
 		languageExchangeService.unJoinLanguageExchange(languageExchange);
 
-		result = new ModelAndView("redirect:/languageExchange/polyglot/list.do");
+		result = new ModelAndView("redirect:/languageExchange/polyglot/listJoined.do");
 
 		return result;
 	}

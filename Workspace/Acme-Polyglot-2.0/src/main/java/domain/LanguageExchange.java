@@ -32,9 +32,20 @@ public class LanguageExchange extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 
+	private String name;
 	private Date registrationDate;
 	private String exchangePlace;
 	private boolean cancelled;
+
+	@NotNull
+	@NotBlank
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)

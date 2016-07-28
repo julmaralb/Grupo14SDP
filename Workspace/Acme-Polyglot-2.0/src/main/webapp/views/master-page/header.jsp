@@ -136,6 +136,7 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
+					<li><a href="folder/actor/list.do"><spring:message code="master.page.list.folders" /></a></li>
 					<li><a href="polyglot/modifyProfile.do"><spring:message code="master.page.modifyProfile" /></a></li>					
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>

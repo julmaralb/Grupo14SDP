@@ -203,6 +203,7 @@
 	<!-- LanguageExchanges -->
 	
 	<bean id="languageExchange1" class="domain.LanguageExchange">
+		<property name="name" value="languageExchange1" />
 		<property name="registrationDate" value="10/11/2016" />
 		<property name="exchangePlace" value="Calle Lisboa 4, Sevilla" />
 		<property name="cancelled" value="false" />
@@ -233,6 +234,7 @@
 	</bean>
 	
 	<bean id="languageExchange2" class="domain.LanguageExchange">
+		<property name="name" value="languageExchange2" />
 		<property name="registrationDate" value="10/20/2016" />
 		<property name="exchangePlace" value="Calle Virgen de la Antigua 11a, Sevilla" />
 		<property name="cancelled" value="false" />
@@ -260,6 +262,7 @@
 	</bean>
 	
 	<bean id="languageExchange3" class="domain.LanguageExchange">
+		<property name="name" value="languageExchange3" />
 		<property name="registrationDate" value="11/05/2016" />
 		<property name="exchangePlace" value="Calle Virgen de la Antigua 11a, Sevilla" />
 		<property name="cancelled" value="false" />
@@ -288,6 +291,7 @@
 	</bean>
 	
 	<bean id="languageExchange4" class="domain.LanguageExchange">
+		<property name="name" value="languageExchange4" />
 		<property name="registrationDate" value="10/22/2016" />
 		<property name="exchangePlace" value="Calle Torneo 4, Sevilla" />
 		<property name="cancelled" value="false" />
@@ -320,6 +324,7 @@
 	</bean>
 	
 	<bean id="languageExchange5" class="domain.LanguageExchange">
+		<property name="name" value="languageExchange5" />
 		<property name="registrationDate" value="11/10/2016" />
 		<property name="exchangePlace" value="Calle Virgen de la Antigua 11a, Sevilla" />
 		<property name="cancelled" value="false" />
@@ -347,6 +352,7 @@
 	</bean>
 	
 	<bean id="languageExchange6" class="domain.LanguageExchange">
+		<property name="name" value="languageExchange6" />
 		<property name="registrationDate" value="12/10/2016" />
 		<property name="exchangePlace" value="Calle Torneo 4, Sevilla" />
 		<property name="cancelled" value="false" />

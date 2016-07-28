@@ -24,6 +24,8 @@
 <display:table name="languageExchanges" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
+	<acme:column code="languageExchange.name" property="name" sortable="true"/>
+
 	<acme:column code="languageExchange.registrationDate" property="registrationDate" sortable="true"/>
 	
 	<acme:column code="languageExchange.exchangePlace" property="exchangePlace" sortable="true"/>

@@ -1,9 +1,12 @@
 package domain;
 
+import java.util.Collection;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -70,6 +73,7 @@ public class Actor extends DomainEntity {
 	// Relationships ----------------------------------------------------------
 
 	private UserAccount userAccount;
+	private Collection<Folder> folders;
 
 	@Valid
 	@NotNull
@@ -80,5 +84,16 @@ public class Actor extends DomainEntity {
 
 	public void setUserAccount(UserAccount userAccount) {
 		this.userAccount = userAccount;
+	}
+
+	@Valid
+	@NotNull
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "actor")
+	public Collection<Folder> getFolders() {
+		return folders;
+	}
+
+	public void setFolders(Collection<Folder> folders) {
+		this.folders = folders;
 	}
 }
