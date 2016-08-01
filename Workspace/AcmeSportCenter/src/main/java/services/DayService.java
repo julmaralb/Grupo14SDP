@@ -90,4 +90,12 @@ public class DayService {
 		return result;
 	}
 
+	public Day findByHourRangeId(int hourRangeId) {
+		Day result;
+
+		result = dayRepository.findByHourRangeId(hourRangeId);
+
+		return result;
+	}
+
 }

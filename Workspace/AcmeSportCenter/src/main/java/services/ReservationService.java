@@ -121,15 +121,16 @@ public class ReservationService {
 	public void bookCourt(int courtId, int hourRangeId) {
 		Reservation reservation;
 		Court court;
-		// Day day;
+		Day day;
 		HourRange hourRange;
 
 		reservation = create();
-		// day = dayService.findOne(dayId);
+		day = dayService.findByHourRangeId(hourRangeId);
 		hourRange = hourRangeService.findOne(hourRangeId);
 		Assert.isTrue(hourRange.isAvailable() == true);
 		court = courtService.findOne(courtId);
 
+		reservation.setDay(day.getDay());
 		reservation.setStart(hourRange.getStart());
 		reservation.setEnd(hourRange.getEnd());
 		reservation.setCustomer(customerService.findByPrincipal());

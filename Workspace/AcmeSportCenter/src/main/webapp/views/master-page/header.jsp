@@ -17,6 +17,18 @@
 	<img src="images/acmesportlogo.png" alt="AcmeSportCenter Co., Inc."  height="150" width="300"/>
 </div>
 
+<script type="text/javascript">
+		function relativeRedir(loc) {	
+			var b = document.getElementsByTagName('base');
+			if (b && b[0] && b[0].href) {
+	  			if (b[0].href.substr(b[0].href.length - 1) == '/' && loc.charAt(0) == '/')
+	    		loc = loc.substr(1);
+	  			loc = b[0].href + loc;
+			}
+			window.location.replace(loc);
+		}
+	</script>
+
 <div>
 	<ul id="jMenu">
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
@@ -24,8 +36,7 @@
 			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="centre/administrator/list.do"><spring:message code="master.page.administrator.action.1" /></a></li>
-					<li><a href="administrator/action-2.do"><spring:message code="master.page.administrator.action.2" /></a></li>					
+					<li><a href="supervisor/administrator/create.do"><spring:message code="master.page.administrator.registerSupervisor" /></a></li>					
 				</ul>
 			</li>
 		</security:authorize>
@@ -46,6 +57,16 @@
 					<li class="arrow"></li>
 					<li><a href="court/administrator/list.do"><spring:message code="master.page.court.list" /></a></li>
 					<li><a href="court/administrator/create.do"><spring:message code="master.page.court.create" /></a></li>					
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('SUPERVISOR')">
+			<li><a class="fNiv"><spring:message	code="master.page.reports" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="report/supervisor/list.do"><spring:message code="master.page.reports.list" /></a></li>
+					<li><a href="report/supervisor/create.do"><spring:message code="master.page.reports.create" /></a></li>					
 				</ul>
 			</li>
 		</security:authorize>

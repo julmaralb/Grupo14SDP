@@ -28,6 +28,8 @@
 		<value>/views/centre/tiles.xml</value>
 		<value>/views/openMatch/tiles.xml</value>
 		<value>/views/hourRange/tiles.xml</value>
+		<value>/views/report/tiles.xml</value>
+		<value>/views/supervisor/tiles.xml</value>
 	</util:list>
 
 </beans>

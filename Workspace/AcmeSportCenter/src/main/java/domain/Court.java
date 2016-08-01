@@ -52,6 +52,7 @@ public class Court extends DomainEntity {
 	private Collection<Day> days;
 	private Collection<Reservation> reservations;
 	private Centre centre;
+	private Collection<Report> reports;
 
 	@Valid
 	@OneToMany(mappedBy = "court")
@@ -84,4 +85,13 @@ public class Court extends DomainEntity {
 		this.centre = centre;
 	}
 
+	@Valid
+	@OneToMany(mappedBy = "court")
+	public Collection<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(Collection<Report> reports) {
+		this.reports = reports;
+	}
 }

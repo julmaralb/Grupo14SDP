@@ -18,4 +18,7 @@ public interface DayRepository extends JpaRepository<Day, Integer> {
 	@Query("select DISTINCT d from Day d group by d.day")
 	Collection<Day> findAllDistinct();
 
+	@Query("select d from Day d where (select hr from HourRange hr where hr.id = ?1) member of d.hourRanges")
+	Day findByHourRangeId(int hourRangeId);
+
 }

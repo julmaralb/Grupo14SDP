@@ -7,54 +7,29 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <display:table name="openMatches" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 	
-	<spring:message code="openMatch.title" var="titleHeader"/>
-	<display:column property="title" title="${titleHeader}" sortable="false"/>
+	<acme:column code="openMatch.title" property="title"/>
+	<acme:column code="openMatch.description" property="description"/>
+	<acme:column code="openMatch.centre" property="reservation.court.centre.name"/>
+	<acme:column code="openMatch.court" property="reservation.court.name"/>
+	<acme:column code="openMatch.moment" property="moment"/>
+	<acme:column code="openMatch.owner" property="owner.userAccount.username"/>
+	<acme:column code="openMatch.numPlayers" property="numPlayers"/>
+	<acme:column code="openMatch.maxPlayers" property="maxPlayers"/>  
 	
-	<spring:message code="openMatch.description" var="descriptionHeader"/>
-	<display:column property="description" title="${descriptionHeader}" sortable="false"/>
-	
-	<spring:message code="openMatch.moment" var="momentHeader"/>
-	<display:column property="moment" title="${momentHeader}" sortable="true"/>
-	
-	<spring:message code="openMatch.centre" var="centreHeader"/>
-	<display:column property="reservation.court.centre.name" title="${centreHeader}" sortable="true"/>
-	
-	<spring:message code="openMatch.court" var="courtHeader"/>
-	<display:column property="reservation.court.name" title="${courtHeader}" sortable="false"/>
-	
-	<spring:message code="openMatch.owner" var="ownerHeader"/>
-	<display:column title="${ownerHeader}" sortable="false">
-	<jstl:out value="${row.owner.name}"> </jstl:out> <jstl:out value="${row.owner.surname}"> </jstl:out>
-	</display:column>
-	
-	<spring:message code="openMatch.numPlayers" var="numPlayersHeader"/>
-	<display:column property="numPlayers" title="${numPlayersHeader}" sortable="false"/>
-	
-	<spring:message code="openMatch.maxPlayers" var="maxPlayersHeader"/>
-	<display:column property="maxPlayers" title="${maxPlayersHeader}" sortable="false"/>
-	
-	<display:column>
-	<a href="customer/listPlayers.do?openMatchId=<jstl:out value="${row.id}"/>"><spring:message code="openMatch.players"/></a>
-	</display:column>  
+	<acme:refColumn ref="customer/listPlayers.do?openMatchId=${row.id}" code="openMatch.players"/>
 	
 	<security:authorize access="hasRole('CUSTOMER')">
-	<display:column>
-	<jstl:if test="${!fn:contains(row.players,principal)}">
-	<a href="openMatch/customer/join.do?openMatchId=<jstl:out value="${row.id}"/>"><spring:message code="openMatch.join"/></a>
-	</jstl:if>
-	</display:column>  
+	<acme:refConditionColumn ref="openMatch/customer/join.do?openMatchId=${row.id}" code="openMatch.join" condition="${!fn:contains(row.players,principal)}"/>
 	</security:authorize>
 	
-	<display:column> 
-	<jstl:if test="${row.owner == principal}">
-	<a href="openMatch/customer/edit.do?openMatchId=<jstl:out value="${row.id}"/>"><spring:message code="openMatch.edit"/></a>
-	</jstl:if>
-	</display:column>
-	
+	<security:authorize access="hasRole('CUSTOMER')">
+	<acme:refConditionColumn ref="openMatch/customer/edit.do?openMatchId=${row.id}" code="openMatch.edit" condition="${row.owner == principal}"/>
+	</security:authorize>	
 	
 </display:table>
 

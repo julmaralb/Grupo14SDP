@@ -5,6 +5,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <form:form action="openMatch/customer/edit.do" modelAttribute="openMatch">
 	<form:hidden path="id"/>
@@ -13,55 +14,15 @@
 	<form:hidden path="numPlayers"/>
 	<form:hidden path="owner"/>
 	
-	<form:label path="title">
-		<spring:message code="openMatch.title"/>:  
-	</form:label>		
-	<form:input path="title"/>
-	<form:errors cssClass="error" path="title"/>
-	<br></br>
+	<acme:textbox code="openMatch.title" path="title"/><br/>
+	<acme:textbox code="openMatch.description" path="description"/><br/>
+	<acme:textbox code="openMatch.moment" path="moment"/><br/>
+	<acme:textbox code="openMatch.maxPlayers" path="maxPlayers"/><br/>
+	<acme:select items="${reservations}" itemLabel="day" code="openMatch.reservation" path="reservation"/>
 	
-	<form:label path="description">
-		<spring:message code="openMatch.description"/>:  
-	</form:label>		
-	<form:textarea path="description"/>
-	<form:errors cssClass="error" path="description"/>
 	<br></br>
+	<acme:submit name="save" code="openMatch.save"/>
+	<acme:cancel code="openMatch.cancel" url="/"/>
+	<acme:delete code="openMatch.delete" codeConfirm="openMatch.confirm.delete" condition="${openMatch.id != 0}"/>
 	
-	<form:label path="moment">
-		<spring:message code="openMatch.moment"/>:  
-	</form:label>		
-	<form:input path="moment"/>
-	<form:errors cssClass="error" path="moment"/>
-	<br></br>
-	
-	<form:label path="maxPlayers">
-		<spring:message code="openMatch.maxPlayers"/>:  
-	</form:label>		
-	<form:input path="maxPlayers"/>
-	<form:errors cssClass="error" path="maxPlayers"/>
-	<br></br>
-	
-	<form:select path="reservation">
-		<form:option value="0">---</form:option>
-		<form:options
-			items="${reservations}"
-			itemLabel="day"
-			itemValue="id"
-		/>
-	</form:select>
-	<form:errors cssClass="error" path="reservation"/>
-	<br></br>
-	
-	<input type="submit" name="save"
-		value="<spring:message code="openMatch.save"/>"/>
-	&nbsp
-	<jstl:if test="${openMatch.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="openMatch.delete"/>"
-			onclick="return confirm('<spring:message code="openMatch.confirm.delete" />')" />
-		&nbsp
-	</jstl:if>
-	<input type="button" name="cancel"
-		value="<spring:message code="openMatch.cancel" />"
-		onclick="window.history.go(-1);" />
 </form:form>

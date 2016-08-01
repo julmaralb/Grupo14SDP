@@ -36,6 +36,12 @@
 
 		<bean class="converters.AuthorityToStringConverter" />
 		<bean class="converters.StringToAuthorityConverter" />
+		
+		<bean class="converters.SupervisorToStringConverter" />
+		<bean class="converters.StringToSupervisorConverter" />
+		
+		<bean class="converters.ReportToStringConverter" />
+		<bean class="converters.StringToReportConverter" />
 
 
 		<!-- Add your own converters using entries of the following form: <bean 

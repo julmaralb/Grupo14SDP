@@ -34,6 +34,8 @@
 		<value>/views/centre/messages</value>
 		<value>/views/openMatch/messages</value>
 		<value>/views/hourRange/messages</value>
+		<value>/views/report/messages</value>
+		<value>/views/supervisor/messages</value>
 	</util:list>
 
 </beans>

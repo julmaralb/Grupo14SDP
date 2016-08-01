@@ -5,25 +5,23 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <display:table name="reservations" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 	
 	<security:authorize access="hasRole('ADMIN')">
-	<spring:message code="reservation.customer" var="customerHeader"/>
-	<display:column property="customer.name" title="${customerHeader}" sortable="true"/>
+	<acme:column code="reservation.customer" property="customer.userAccount.username"/>
 	</security:authorize>
 	
-	<spring:message code="reservation.centre" var="centreHeader"/>
-	<display:column property="court.centre.name" title="${centreHeader}" sortable="true"/>
+	<acme:column code="reservation.centre" property="court.centre.name"/>
 	
-	<spring:message code="reservation.court" var="courtHeader"/>
-	<display:column property="court.name" title="${courtHeader}" sortable="true"/>
+	<acme:column code="reservation.court" property="court.name"/>
 	
-	<spring:message code="reservation.start" var="startHeader"/>
-	<display:column property="start" title="${startHeader}" sortable="true"/>
+	<acme:column code="reservation.day" property="day"/>
 	
-	<spring:message code="reservation.end" var="endHeader"/>
-	<display:column property="end" title="${endHeader}" sortable="false"/>
+	<acme:column code="reservation.start" property="start"/>
+	
+	<acme:column code="reservation.end" property="end"/>
 	
 </display:table>
