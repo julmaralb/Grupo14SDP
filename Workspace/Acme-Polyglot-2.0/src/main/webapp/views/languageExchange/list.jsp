@@ -21,6 +21,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<security:authorize access="isAnonymous()">
+<form:form action="languageExchange/listKeyword1.do" modelAttribute="languageExchange">
+
+<input type="text" name="keyword">
+&nbsp;
+<input type="submit" name="search" value="<spring:message code="languageExchange.search" />" />
+<br></br>
+</form:form>
+</security:authorize>
+
+<security:authorize access="isAuthenticated()">
+<form:form action="languageExchange/listKeyword2.do" modelAttribute="languageExchange">
+
+<input type="text" name="keyword">
+&nbsp;
+<input type="submit" name="search" value="<spring:message code="languageExchange.search" />" />
+<br></br>
+</form:form>
+</security:authorize>
+
 <display:table name="languageExchanges" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
@@ -53,6 +73,10 @@
 	
 	<security:authorize access="hasRole('POLYGLOT')">
 	<acme:refConditionColumn ref="languageExchange/polyglot/edit.do?languageExchangeId=${row.id}" code="languageExchange.edit" condition="${row.owner == principal}"/>
+	</security:authorize>
+	
+	<security:authorize access="hasRole('POLYGLOT')">
+	<acme:refConditionColumn ref="message/actor/createBroadcast.do?languageExchangeId=${row.id}" code="languageExchange.broadcastMessage" condition="${fn:contains(row.participants,principal) || row.owner == principal}"/>
 	</security:authorize>
 				
 </display:table>

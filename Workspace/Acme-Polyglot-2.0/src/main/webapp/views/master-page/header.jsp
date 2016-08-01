@@ -33,13 +33,7 @@
 	<ul id="jMenu">
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
 		<security:authorize access="hasRole('ADMIN')">
-			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
-				<ul>
-					<li class="arrow"></li>
-					<li><a href="administrator/action-1.do"><spring:message code="master.page.administrator.action.1" /></a></li>
-					<li><a href="administrator/action-2.do"><spring:message code="master.page.administrator.action.2" /></a></li>					
-				</ul>
-			</li>
+			<li><a class="fNiv" href="actor/administrator/list.do"><spring:message code="master.page.manageAccounts" /></a></li>				
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ADMIN')">
@@ -106,6 +100,26 @@
 		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+		</security:authorize>
+		
+		<security:authorize access="isAnonymous()">
+			<li><a class="fNiv"><spring:message	code="master.page.searchExchange" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="language/list.do"><spring:message code="master.page.searchByLanguage" /></a></li>
+					<li><a href="languageExchange/list.do"><spring:message code="master.page.searchByKeyword" /></a></li>					
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="isAuthenticated()">
+			<li><a class="fNiv"><spring:message	code="master.page.searchExchange" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="language/list.do"><spring:message code="master.page.searchByLanguage" /></a></li>
+					<li><a href="languageExchange/list.do"><spring:message code="master.page.searchByKeyword" /></a></li>					
+				</ul>
+			</li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">

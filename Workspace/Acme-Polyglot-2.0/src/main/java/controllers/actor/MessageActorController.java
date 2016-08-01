@@ -106,6 +106,19 @@ public class MessageActorController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/createBroadcast", method = RequestMethod.GET)
+	public ModelAndView createBroadcast(@RequestParam int languageExchangeId) {
+
+		ModelAndView result;
+		Message message;
+
+		message = messageService.create();
+		result = createBroadcastModelAndView(message,null);
+		result.addObject("languageExchangeId", languageExchangeId);
+
+		return result;
+	}
+
 	// Edition ----------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -159,6 +172,27 @@ public class MessageActorController extends AbstractController {
 
 		return result;
 	}
+
+	@RequestMapping(value = "/createBroadcast", method = RequestMethod.POST, params = "broadcast")
+	public ModelAndView save(
+			@ModelAttribute(value = "messa") @Valid Message message,
+			@RequestParam int languageExchangeId, BindingResult binding) {
+		ModelAndView result;
+
+		if (binding.hasErrors()) {
+			result = createBroadcastModelAndView(message);
+		} else {
+			try {
+				messageService.broadcastMessage(message,languageExchangeId);
+				result = new ModelAndView("redirect:/folder/actor/list.do");
+			} catch (Throwable oops) {
+				result = createBroadcastModelAndView(message, "message.commit.error");
+			}
+		}
+		return result;
+	}
+
+	// Other ------------------------------------------------------------------
 
 	@RequestMapping(value = "/spam", method = RequestMethod.GET)
 	public ModelAndView spam(@RequestParam int messageId) {
@@ -220,6 +254,24 @@ public class MessageActorController extends AbstractController {
 		result = new ModelAndView("message/edit");
 		result.addObject("messa", input);
 		result.addObject("recipients", recipients);
+		result.addObject("message2", message2);
+
+		return result;
+	}
+	
+	protected ModelAndView createBroadcastModelAndView(Message input) {
+		ModelAndView result;
+
+		result = createBroadcastModelAndView(input, null);
+
+		return result;
+	}
+	
+	protected ModelAndView createBroadcastModelAndView(Message input, String message2) {
+		ModelAndView result;
+
+		result = new ModelAndView("message/createBroadcast");
+		result.addObject("messa", input);
 		result.addObject("message2", message2);
 
 		return result;

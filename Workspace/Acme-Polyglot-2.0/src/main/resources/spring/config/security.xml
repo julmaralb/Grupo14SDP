@@ -43,8 +43,13 @@
 		<security:intercept-url pattern="/languageExchange/list3MonthsAgo.do" access="permitAll" />
 		<security:intercept-url pattern="/languageExchange/list3MonthsTime.do" access="permitAll" />
 		<security:intercept-url pattern="/languageExchangeDescription/display.do" access="permitAll" />
+		<security:intercept-url pattern="/languageExchange/list.do" access="permitAll" />
+		<security:intercept-url pattern="/languageExchange/listKeyword1.do" access="permitAll" />
+		<security:intercept-url pattern="/languageExchange/listByLanguage.do" access="permitAll" />
+		<security:intercept-url pattern="/language/list.do" access="permitAll" />
 		
 		<security:intercept-url pattern="/languageExchange/actor/**" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/languageExchange/listKeyword2.do" access="isAuthenticated()" />
 		<security:intercept-url pattern="/folder/actor/**" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/message/actor/**" access="isAuthenticated()" /> 
 
@@ -59,6 +64,7 @@
 		
 		<security:intercept-url pattern="/language/administrator/**" access="hasRole('ADMIN')" /> 
 		<security:intercept-url pattern="/languageDescription/administrator/**" access="hasRole('ADMIN')" /> 
+		<security:intercept-url pattern="/actor/administrator/**" access="hasRole('ADMIN')" /> 
  
 	
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />

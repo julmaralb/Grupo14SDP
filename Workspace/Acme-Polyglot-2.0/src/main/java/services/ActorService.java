@@ -32,6 +32,24 @@ public class ActorService {
 
 	// Simple CRUD methods ----------------------------------------------------
 
+	public Actor findOne(int actorId) {
+		Assert.notNull(actorId);
+
+		Actor result;
+
+		result = actorRepository.findOne(actorId);
+
+		return result;
+	}
+
+	public Collection<Actor> findAll() {
+		Collection<Actor> result;
+
+		result = actorRepository.findAll();
+
+		return result;
+	}
+
 	// Other business methods -------------------------------------------------
 
 	public Actor findByPrincipal() {
@@ -56,13 +74,13 @@ public class ActorService {
 
 		return result;
 	}
-	
+
 	public Collection<Actor> findAllButPrincipal() {
 		Collection<Actor> result;
-		
+
 		result = actorRepository.findAll();
 		result.remove(findByPrincipal());
-		
+
 		return result;
 	}
 }

@@ -22,4 +22,10 @@ public interface LanguageExchangeRepository extends
 	@Query("select p.participatedLanguageExchanges from Polyglot p where p.id = ?1")
 	Collection<LanguageExchange> findAllJoinedByPolyglotId(int polyglotId);
 
+	@Query("select distinct le from LanguageExchange le join le.languageExchangeDescriptions led where led.title like %?1% or led.text like %?1% or le.exchangePlace like %?1% or ?1 member of led.tags")
+	Collection<LanguageExchange> findByKeyword(String keyword);
+
+	@Query("select le from LanguageExchange le where (select l from Language l where l.id = ?1) member of le.languages")
+	Collection<LanguageExchange> findByLanguageId(int languageId);
+
 }

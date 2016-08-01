@@ -171,7 +171,17 @@ public class FolderService {
 			folder.setName(name);
 			folder.setActor(principal);
 			folder.setIsSystem(false);
+			folder.setExchangeName(languageExchange.getName());
 			save(folder);
 		}
+	}
+
+	public Folder findByExchangeNameAndActorId(String exchangeName, int actorId) {
+		Folder result;
+
+		result = folderRepository.findByExchangeNameAndActorId(exchangeName,
+				actorId);
+
+		return result;
 	}
 }

@@ -1611,6 +1611,7 @@
 	
 	<bean id="languageExchange1Box1" class="domain.Folder">
 		<property name="name" value="LanguageExchange1 Box" />
+		<property name="exchangeName" value="LanguageExchange1" />
 		<property name="messages">
 			<list>
 
@@ -1622,6 +1623,7 @@
 	
 	<bean id="languageExchange1Box2" class="domain.Folder">
 		<property name="name" value="LanguageExchange1 Box" />
+		<property name="exchangeName" value="LanguageExchange1" />
 		<property name="messages">
 			<list>
 
@@ -1633,6 +1635,7 @@
 	
 	<bean id="languageExchange2Box1" class="domain.Folder">
 		<property name="name" value="LanguageExchange2 Box" />
+		<property name="exchangeName" value="LanguageExchange2" />
 		<property name="messages">
 			<list>
 
@@ -1644,6 +1647,7 @@
 	
 	<bean id="languageExchange2Box2" class="domain.Folder">
 		<property name="name" value="LanguageExchange2 Box" />
+		<property name="exchangeName" value="LanguageExchange2" />
 		<property name="messages">
 			<list>
 
@@ -1655,6 +1659,7 @@
 	
 	<bean id="languageExchange3Box1" class="domain.Folder">
 		<property name="name" value="LanguageExchange3 Box" />
+		<property name="exchangeName" value="LanguageExchange3" />
 		<property name="messages">
 			<list>
 
@@ -1666,6 +1671,7 @@
 	
 	<bean id="languageExchange3Box2" class="domain.Folder">
 		<property name="name" value="LanguageExchange3 Box" />
+		<property name="exchangeName" value="LanguageExchange3" />
 		<property name="messages">
 			<list>
 
@@ -1677,6 +1683,7 @@
 	
 	<bean id="languageExchange3Box3" class="domain.Folder">
 		<property name="name" value="LanguageExchange3 Box" />
+		<property name="exchangeName" value="LanguageExchange3" />
 		<property name="messages">
 			<list>
 
@@ -1688,6 +1695,7 @@
 	
 	<bean id="languageExchange4Box1" class="domain.Folder">
 		<property name="name" value="LanguageExchange4 Box" />
+		<property name="exchangeName" value="LanguageExchange4" />
 		<property name="messages">
 			<list>
 
@@ -1699,6 +1707,7 @@
 	
 	<bean id="languageExchange4Box2" class="domain.Folder">
 		<property name="name" value="LanguageExchange4 Box" />
+		<property name="exchangeName" value="LanguageExchange4" />
 		<property name="messages">
 			<list>
 
@@ -1710,6 +1719,7 @@
 	
 	<bean id="languageExchange5Box1" class="domain.Folder">
 		<property name="name" value="LanguageExchange5 Box" />
+		<property name="exchangeName" value="LanguageExchange5" />
 		<property name="messages">
 			<list>
 
@@ -1721,6 +1731,7 @@
 	
 	<bean id="languageExchange5Box2" class="domain.Folder">
 		<property name="name" value="LanguageExchange5 Box" />
+		<property name="exchangeName" value="LanguageExchange5" />
 		<property name="messages">
 			<list>
 
@@ -1732,6 +1743,7 @@
 	
 	<bean id="languageExchange6Box1" class="domain.Folder">
 		<property name="name" value="LanguageExchange6 Box" />
+		<property name="exchangeName" value="LanguageExchange6" />
 		<property name="messages">
 			<list>
 
@@ -1743,6 +1755,7 @@
 	
 	<bean id="languageExchange6Box2" class="domain.Folder">
 		<property name="name" value="LanguageExchange6 Box" />
+		<property name="exchangeName" value="LanguageExchange6" />
 		<property name="messages">
 			<list>
 

@@ -29,6 +29,7 @@ public class Folder extends DomainEntity {
 
 	private String name;
 	private boolean isSystem;
+	private String exchangeName;
 
 	@NotNull
 	@NotBlank
@@ -48,7 +49,15 @@ public class Folder extends DomainEntity {
 	public void setIsSystem(boolean isSystem) {
 		this.isSystem = isSystem;
 	}
+	
+	public String getExchangeName() {
+		return exchangeName;
+	}
 
+	public void setExchangeName(String exchangeName) {
+		this.exchangeName = exchangeName;
+	}
+	
 	// Relationships ----------------------------------------------------------
 
 	private Actor actor;

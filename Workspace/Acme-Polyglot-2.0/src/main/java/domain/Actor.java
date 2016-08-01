@@ -74,6 +74,7 @@ public class Actor extends DomainEntity {
 
 	private UserAccount userAccount;
 	private Collection<Folder> folders;
+	private Collection<Keyword> keywords;
 
 	@Valid
 	@NotNull
@@ -95,5 +96,15 @@ public class Actor extends DomainEntity {
 
 	public void setFolders(Collection<Folder> folders) {
 		this.folders = folders;
+	}
+
+	@Valid
+	@OneToMany(mappedBy = "actor")
+	public Collection<Keyword> getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(Collection<Keyword> keywords) {
+		this.keywords = keywords;
 	}
 }

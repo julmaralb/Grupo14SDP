@@ -10,18 +10,20 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-<display:table name="polyglots" id="row" requestURI="${requestURI}"
+<display:table name="actors" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
-	<acme:column code="polyglot.name" property="name" sortable="true"/>
+	<acme:column code="actor.name" property="name" sortable="true"/>
 	
-	<acme:column code="polyglot.surname" property="surname" sortable="true"/>
+	<acme:column code="actor.surname" property="surname" sortable="true"/>
 	
-	<acme:column code="polyglot.email" property="email"/>
+	<acme:column code="actor.email" property="email"/>
 	
-	<acme:column code="polyglot.phone" property="phone"/>
+	<acme:column code="actor.phone" property="phone"/>
 	
-	<acme:column code="polyglot.username" property="userAccount.username"/>
+	<acme:column code="actor.username" property="userAccount.username"/>
+	
+	<acme:refConditionColumn ref="actor/administrator/ban.do?actorId=${row.id}" code="actor.ban" condition="${true}"/>
 			
 </display:table>
-<acme:cancel url="/" code="polyglot.back"/>
+<acme:cancel url="/" code="actor.back"/>

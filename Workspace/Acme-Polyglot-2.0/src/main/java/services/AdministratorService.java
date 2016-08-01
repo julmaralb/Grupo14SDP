@@ -9,12 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.AdministratorRepository;
+import domain.Actor;
 import domain.Administrator;
 
 @Service
 @Transactional
 public class AdministratorService {
-	
+
 	// Managed repository -----------------------------------------------------
 
 	@Autowired
@@ -72,4 +73,8 @@ public class AdministratorService {
 	}
 
 	// Other business methods -------------------------------------------------
+
+	public void disableAccount(Actor actor) {
+
+	}
 }

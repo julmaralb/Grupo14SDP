@@ -19,4 +19,7 @@ public interface FolderRepository extends JpaRepository<Folder, Integer> {
 
 	@Query("select f from Folder f where f.actor.id = ?1 and f.isSystem = false")
 	Collection<Folder> findAllNonSystemFoldersByActorId(int actorId);
+
+	@Query("select f from Folder f where f.exchangeName = ?1 and f.actor.id = ?2")
+	Folder findByExchangeNameAndActorId(String exchangeName, int actorId);
 }

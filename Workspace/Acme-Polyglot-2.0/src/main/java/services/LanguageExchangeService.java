@@ -165,7 +165,7 @@ public class LanguageExchangeService {
 		languageExchange.setParticipants(participants);
 		principal.setParticipatedLanguageExchanges(languageExchanges);
 
-		if(!languageExchange.getOwner().equals(principal)){
+		if (!languageExchange.getOwner().equals(principal)) {
 			folderService.createExchangeFolder(languageExchange);
 		}
 	}
@@ -202,6 +202,22 @@ public class LanguageExchangeService {
 		principal = polyglotService.findByPrincipal();
 		result = languageExchangeRepository.findAllJoinedByPolyglotId(principal
 				.getId());
+
+		return result;
+	}
+
+	public Collection<LanguageExchange> findByKeyword(String keyword) {
+		Collection<LanguageExchange> result;
+
+		result = languageExchangeRepository.findByKeyword(keyword);
+
+		return result;
+	}
+
+	public Collection<LanguageExchange> findByLanguageId(int languageId) {
+		Collection<LanguageExchange> result;
+
+		result = languageExchangeRepository.findByLanguageId(languageId);
 
 		return result;
 	}

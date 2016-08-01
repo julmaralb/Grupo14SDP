@@ -37,6 +37,7 @@
 		<value>/views/sponsorshipDescription/messages</value>
 		<value>/views/folder/messages</value>
 		<value>/views/message/messages</value>
+		<value>/views/actor/messages</value>
 	</util:list>
 
 </beans>

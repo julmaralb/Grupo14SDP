@@ -31,4 +31,9 @@
 		<put-attribute name="body" value="/views/message/display.jsp" />
 	</definition>
 	
+	<definition name="message/createBroadcast" extends="master.page">	
+		<put-attribute name="title" value="Crear Mensaje de Difusión" />
+		<put-attribute name="body" value="/views/message/createBroadcast.jsp" />
+	</definition>
+	
 </tiles-definitions>

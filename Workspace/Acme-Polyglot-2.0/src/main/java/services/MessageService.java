@@ -13,7 +13,9 @@ import org.springframework.util.Assert;
 import repositories.MessageRepository;
 import domain.Actor;
 import domain.Folder;
+import domain.LanguageExchange;
 import domain.Message;
+import domain.Polyglot;
 
 @Service
 @Transactional
@@ -31,6 +33,9 @@ public class MessageService {
 
 	@Autowired
 	private FolderService folderService;
+
+	@Autowired
+	private LanguageExchangeService languageExchangeService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -52,10 +57,13 @@ public class MessageService {
 				principal.getId());
 		moment = new Date();
 
-		result.setSender(principal);
+		result.setSender(principal);	
 		result.setSentMoment(moment);
 		result.setReceivedMoment(moment);
 		result.setFolder(folder);
+		
+		// Sólo para que los mensajes broadcast no den error
+		result.setRecipient(principal);
 
 		return result;
 	}
@@ -185,8 +193,8 @@ public class MessageService {
 		folder = message.getFolder();
 		principal = actorService.findByPrincipal();
 		folderNames = new ArrayList<String>();
-		principalTrashFolder = folderService.findByNameAndActorId(
-				"Trash Box", principal.getId());
+		principalTrashFolder = folderService.findByNameAndActorId("Trash Box",
+				principal.getId());
 
 		folderNames.add("In Box");
 		folderNames.add("Out Box");
@@ -213,5 +221,48 @@ public class MessageService {
 	public void moveMessage(Message message, Folder folder) {
 		Assert.isTrue(folder.getIsSystem() == false);
 		message.setFolder(folder);
+	}
+
+	public void broadcastMessage(Message message, int languageExchangeId) {
+		LanguageExchange languageExchange;
+		String exchangeName;
+		Collection<Polyglot> participants;
+		Actor principal;
+		long milliseconds;
+		Date moment;
+
+		languageExchange = languageExchangeService.findOne(languageExchangeId);
+		exchangeName = languageExchange.getName();
+		participants = languageExchange.getParticipants();
+		principal = actorService.findByPrincipal();
+
+		for (Polyglot p : participants) {
+			Message temp = create();
+			Folder folder = folderService.findByExchangeNameAndActorId(
+					exchangeName, p.getId());
+			System.out.println(folder);
+			Collection<Message> folderMessages;
+
+			milliseconds = System.currentTimeMillis() - 100;
+			moment = new Date(milliseconds);
+			folderMessages = folder.getMessages();
+
+			temp.setSentMoment(moment);
+			temp.setReceivedMoment(moment);
+			temp.setSender(principal);
+			temp.setFolder(folder);
+			temp.setRecipient(p);
+			temp.setTitle(message.getTitle());
+			temp.setText(message.getText());
+			temp.setInfoLinks(message.getInfoLinks());
+			temp.setTags(message.getTags());
+			temp.setCode(message.getCode());
+
+			folderMessages.add(temp);
+			folder.setMessages(folderMessages);
+
+			save(temp);
+		}
+
 	}
 }
