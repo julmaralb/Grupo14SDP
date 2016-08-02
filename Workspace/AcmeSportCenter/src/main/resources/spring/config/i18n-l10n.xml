@@ -36,6 +36,8 @@
 		<value>/views/hourRange/messages</value>
 		<value>/views/report/messages</value>
 		<value>/views/supervisor/messages</value>
+		<value>/views/sportEquipment/messages</value>
+		<value>/views/renting/messages</value>
 	</util:list>
 
 </beans>

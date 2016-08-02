@@ -5,22 +5,19 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+
 
 <display:table name="courts" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 	
-	<spring:message code="court.name" var="nameHeader"/>
-	<display:column property="name" title="${nameHeader}" sortable="true"/>
-	
-	<spring:message code="court.category" var="categoryHeader"/>
-	<display:column property="category" title="${categoryHeader}" sortable="true"/>
+	<acme:column code="court.name" property="name" sortable="true"/>
+	<acme:column code="court.category" property="category" sortable="true"/>
 	  	
-	<display:column> <a href="court/administrator/edit.do?courtId=<jstl:out value="${row.id}"/>"><spring:message code="court.edit"/></a></display:column>
+	<acme:refColumn ref="court/administrator/edit.do?courtId=${row.id}" code="court.edit"/>
 	
 </display:table>
 
 	<div>
-		<a href="court/administrator/create.do"> <spring:message
-				code="court.create" />
-		</a>
+		<a href="court/administrator/create.do"> <spring:message code="court.create" /></a>
 	</div>

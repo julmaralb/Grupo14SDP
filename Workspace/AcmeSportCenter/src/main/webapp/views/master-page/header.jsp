@@ -42,6 +42,20 @@
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ADMIN')">
+			<li><a class="fNiv"><spring:message	code="master.page.administrator.sportEquipment" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="sportEquipment/administrator/list.do"><spring:message code="master.page.administrator.sportEquipment.list" /></a></li>
+					<li><a href="sportEquipment/administrator/create.do"><spring:message code="master.page.administrator.sportEquipment.create" /></a></li>					
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('ADMIN')">
+			<li><a class="fNiv" href="day/administrator/createToday.do"><spring:message	code="master.page.createToday" /></a></li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.centres" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -96,16 +110,16 @@
 			</li>
 		</security:authorize>
 		
-		<security:authorize access="isAnonymous()">
-			<li><a class="fNiv" href="centre/list.do"><spring:message code="master.page.reservation.schedule" /></a></li>
-		</security:authorize>
-		
 		<security:authorize access="isAuthenticated()">
 			<li><a class="fNiv" href="centre/list.do"><spring:message code="master.page.reservation.schedule" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+		</security:authorize>
+		
+		<security:authorize access="isAnonymous()">
+			<li><a class="fNiv" href="centre/list.do"><spring:message code="master.page.reservation.schedule" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
@@ -120,8 +134,6 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="profile/action-1.do"><spring:message code="master.page.profile.action.1" /></a></li>
-					<li><a href="profile/action-2.do"><spring:message code="master.page.profile.action.2" /></a></li>
 					<li><a href="customer/modifyProfile.do"><spring:message code="master.page.customer.modifyProfile" /></a></li>					
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
@@ -135,10 +147,7 @@
 			        (<security:authentication property="principal.username" />)
 				</a>
 				<ul>
-					<li class="arrow"></li>
-					<li><a href="profile/action-1.do"><spring:message code="master.page.profile.action.1" /></a></li>
-					<li><a href="profile/action-2.do"><spring:message code="master.page.profile.action.2" /></a></li>
-					<li><a href="profile/action-3.do"><spring:message code="master.page.profile.action.3" /></a></li>					
+					<li class="arrow"></li>					
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
@@ -151,10 +160,7 @@
 			        (<security:authentication property="principal.username" />)
 				</a>
 				<ul>
-					<li class="arrow"></li>
-					<li><a href="profile/action-1.do"><spring:message code="master.page.profile.action.1" /></a></li>
-					<li><a href="profile/action-2.do"><spring:message code="master.page.profile.action.2" /></a></li>
-					<li><a href="profile/action-3.do"><spring:message code="master.page.profile.action.3" /></a></li>					
+					<li class="arrow"></li>					
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>

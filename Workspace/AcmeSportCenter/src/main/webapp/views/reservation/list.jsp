@@ -14,6 +14,8 @@
 	<acme:column code="reservation.customer" property="customer.userAccount.username"/>
 	</security:authorize>
 	
+	<acme:column code="reservation.code" property="code"/>
+	
 	<acme:column code="reservation.centre" property="court.centre.name"/>
 	
 	<acme:column code="reservation.court" property="court.name"/>

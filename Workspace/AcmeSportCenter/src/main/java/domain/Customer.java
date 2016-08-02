@@ -25,6 +25,7 @@ public class Customer extends Actor {
 	private Collection<Reservation> reservations;
 	private Collection<OpenMatch> ownOpenMatches;
 	private Collection<OpenMatch> pOpenMatches;
+	private Collection<Renting> rentings;
 
 	@Valid
 	@OneToMany(mappedBy = "customer")
@@ -56,4 +57,13 @@ public class Customer extends Actor {
 		this.pOpenMatches = pOpenMatches;
 	}
 
+	@Valid
+	@OneToMany(mappedBy = "customer")
+	public Collection<Renting> getRentings() {
+		return rentings;
+	}
+
+	public void setRentings(Collection<Renting> rentings) {
+		this.rentings = rentings;
+	}
 }

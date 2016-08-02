@@ -17,37 +17,24 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <display:table name="customers" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
-	<spring:message code="customer.name" var="nameHeader" />
-	<display:column property="name" title="${nameHeader}" sortable="true" />
-
-	<spring:message code="customer.surname" var="surnameHeader" />
-	<display:column property="surname" title="${surnameHeader}"
-		sortable="true" />
-
-	<spring:message code="customer.email" var="emailHeader" />
-	<display:column property="email" title="${emailHeader}"
-		sortable="false" />
-
-	<spring:message code="customer.phone" var="phoneHeader" />
-	<display:column property="phone" title="${phoneHeader}"
-		sortable="false" />
+	<acme:column code="customer.name" property="name"/>
+	<acme:column code="customer.surname" property="surname"/>
+	<acme:column code="customer.email" property="email"/>
+	<acme:column code="customer.phone" property="phone"/>
 	
 	<security:authorize access="hasRole('ADMIN')">	
-	<spring:message code="customer.address" var="addressHeader" />
-	<display:column property="address" title="${addressHeader}"
-		sortable="false" />
+	<acme:column code="customer.address" property="address"/>
 	</security:authorize>
-
-	<security:authorize access="hasRole('ADMIN')">
-	<spring:message code="customer.username" var="userHeader" />
-	<display:column property="userAccount.username" title="${userHeader}"
-		sortable="false" />
+	
+	<security:authorize access="hasRole('ADMIN')">	
+	<acme:column code="customer.phone" property="userAccount.username"/>
 	</security:authorize>
 
 </display:table>
 
-<input type="button" name="cancel" value="<spring:message code="customer.back" />" onclick="window.history.go(-1);" />
+<acme:cancel url="/" code="customer.back"/>

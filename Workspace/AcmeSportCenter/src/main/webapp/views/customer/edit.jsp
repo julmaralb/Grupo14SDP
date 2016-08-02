@@ -15,84 +15,34 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <form:form action="customer/edit.do" modelAttribute="customerForm">
 
 	<fieldset>
   	<legend><spring:message code="customer.personalInfo"/>:</legend>
-	<form:label path="name">
-		<spring:message code="customer.name" />:  
-	</form:label>
-	<form:input path="name" />
-	<form:errors cssClass="error" path="name" />
-	<br></br>
 
-	<form:label path="surname">
-		<spring:message code="customer.surname" />:  
-	</form:label>
-	<form:input path="surname" />
-	<form:errors cssClass="error" path="surname" />
-	<br></br>
+	<acme:textbox code="customer.name" path="name"/><br/>
+	<acme:textbox code="customer.surname" path="surname"/><br/>
+	<acme:textbox code="customer.email" path="email"/><br/>
+	<acme:textbox code="customer.phone" path="phone"/><br/>
+	<acme:textbox code="customer.address" path="address"/><br/>
 
-	<form:label path="email">
-		<spring:message code="customer.email" />:  
-	</form:label>
-	<form:input path="email" />
-	<form:errors cssClass="error" path="email" />
-	<br></br>
-
-	<form:label path="phone">
-		<spring:message code="customer.phone" />:  
-	</form:label>
-	<form:input path="phone" />
-	<form:errors cssClass="error" path="phone" />
-	<br></br>
-	
-	<form:label path="address">
-		<spring:message code="customer.address" />:  
-	</form:label>
-	<form:input path="address" />
-	<form:errors cssClass="error" path="address" />
-	<br></br>
 	</fieldset>
 
 	<fieldset>
   	<legend><spring:message code="customer.accountInfo"/>:</legend>
-	<form:label path="username">
-		<spring:message code="customer.username" />:  
-	</form:label>
-	<form:input path="username" />
-	<form:errors cssClass="error" path="username" />
-	<br></br>
 
-	<form:label path="password">
-		<spring:message code="customer.password" />:  
-	</form:label>
-	<form:password path="password" />
-	<form:errors cssClass="error" path="password" />
-	<br></br>
-	
-	<form:label path="secondPassword">
-		<spring:message code="customer.secondPassword" />:  
-	</form:label>
-	<form:password path="secondPassword" />
-	<form:errors cssClass="error" path="secondPassword" />
-	<br></br>
+	<acme:textbox code="customer.username" path="username"/><br/>
+	<acme:textbox code="customer.password" path="password"/><br/>
+	<acme:textbox code="customer.secondPassword" path="secondPassword"/><br/>
+
 	</fieldset>
 	
-	<form:label path="termsAccepted">
-		<spring:message code="customer.termsAccepted" />:  
-	</form:label>
-	<form:checkbox path="termsAccepted" />
-		<a href="customer/terms.do"> <spring:message code="customer.moreInfo" /></a>
-	<form:errors cssClass="error" path="termsAccepted" />
+	<acme:checkbox code="customer.termsAccepted" path="termsAccepted"/><a href="customer/terms.do" > <spring:message code="customer.moreInfo" /></a>
 	<br></br>
+	<acme:submit name="save" code="customer.save"/>
+	<acme:cancel url="/security/login.do" code="customer.cancel"/>
 	
-	<input type="submit" name="save"
-		value="<spring:message code="customer.save"/>" />
-	&nbsp
-	<input type="button" name="cancel"
-		value="<spring:message code="customer.cancel" />"
-		onclick="javascript: window.location.replace('security/login.do');" />
 </form:form>
 

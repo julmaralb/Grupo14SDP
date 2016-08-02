@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -53,6 +54,7 @@ public class Court extends DomainEntity {
 	private Collection<Reservation> reservations;
 	private Centre centre;
 	private Collection<Report> reports;
+	private Collection<SportEquipment> sportEquipments;
 
 	@Valid
 	@OneToMany(mappedBy = "court")
@@ -93,5 +95,16 @@ public class Court extends DomainEntity {
 
 	public void setReports(Collection<Report> reports) {
 		this.reports = reports;
+	}
+
+	@Valid
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH }, mappedBy = "court")
+	public Collection<SportEquipment> getSportEquipments() {
+		return sportEquipments;
+	}
+
+	public void setSportEquipments(Collection<SportEquipment> sportEquipments) {
+		this.sportEquipments = sportEquipments;
 	}
 }

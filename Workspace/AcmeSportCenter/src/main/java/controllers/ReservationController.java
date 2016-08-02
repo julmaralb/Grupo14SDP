@@ -13,6 +13,7 @@ import services.CourtService;
 import services.DayService;
 import domain.Court;
 import domain.Day;
+import domain.HourRange;
 
 @Controller
 @RequestMapping("/reservation")
@@ -38,18 +39,18 @@ public class ReservationController extends AbstractController {
 	public ModelAndView schedule(@RequestParam int dayId,
 			@RequestParam int centreId) {
 		ModelAndView result;
-		// Collection<HourRange> hourRanges;
+		Collection<HourRange> hourRanges;
 		Collection<Court> courts;
 		Collection<Day> days;
 		Day day;
 
-		// hourRanges = hourRangeService.findAll();
 		courts = courtService.findByCentreId(centreId);
 		day = dayService.findOne(dayId);
+		hourRanges = day.getHourRanges();
 		// days = dayService.findByDay(day.getDay());
 		days = dayService.findByDayAndCentreId(day.getDay(), centreId);
 		result = new ModelAndView("reservation/schedule");
-		// result.addObject("hourRanges", hourRanges);
+		result.addObject("hourRanges", hourRanges);
 		result.addObject("courts", courts);
 		result.addObject("day", day);
 		result.addObject("days", days);

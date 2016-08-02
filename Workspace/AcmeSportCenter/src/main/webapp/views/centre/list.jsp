@@ -5,35 +5,26 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <display:table name="centres" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 	
-	<spring:message code="centre.picture" var="pictureHeader"/>
-	<display:column><center><img src="${row.picture }" alt="${row.name }" height="80" ></center>
-	</display:column>
+	<acme:onePictureColumn code="centre.picture" alt="${row.name }" src="${row.picture}"/>
+	<acme:column code="centre.name" property="name" sortable="true"/>
+	<acme:column code="centre.address" property="address"/>
+	<acme:column code="centre.phone" property="phone"/>
 
-	<spring:message code="centre.name" var="nameHeader"/>
-	<display:column property="name" title="${nameHeader}" sortable="true"/>
-	
-	<spring:message code="centre.address" var="addressHeader"/>
-	<display:column property="address" title="${addressHeader}" sortable="false"/>
-	
-	<spring:message code="centre.phone" var="phoneHeader"/>
-	<display:column property="phone" title="${phoneHeader}" sortable="false"/>
-	
-	<display:column> <a href="day/list.do?centreId=<jstl:out value="${row.id}"/>"><spring:message code="centre.days"/></a></display:column>
+	<acme:refColumn ref="day/list.do?centreId=${row.id}" code="centre.days"/>
 	  	
 	<security:authorize access="hasRole('ADMIN')">  	
-	<display:column> <a href="centre/administrator/edit.do?centreId=<jstl:out value="${row.id}"/>"><spring:message code="centre.edit"/></a></display:column>
+	<acme:refColumn ref="centre/administrator/edit.do?centreId=${row.id}" code="centre.edit"/>
 	</security:authorize>
 	
 </display:table>
 
 	<security:authorize access="hasRole('ADMIN')">
 	<div>
-		<a href="centre/administrator/create.do"> <spring:message
-				code="centre.create" />
-		</a>
+		<a href="centre/administrator/create.do"> <spring:message code="centre.create" /></a>
 	</div>
 	</security:authorize>

@@ -5,26 +5,14 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <display:table name="days" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 	
-	<spring:message code="day.day" var="dayHeader"/>
-	<display:column property="day" title="${dayHeader}" sortable="true"/>
-	  	
-	<security:authorize access="hasRole('ADMIN')">
-	<display:column> <a href="day/edit.do?dayId=<jstl:out value="${row.id}"/>"><spring:message code="day.edit"/></a></display:column>
-	</security:authorize>
-	
-	<display:column> <a href="reservation/schedule.do?dayId=<jstl:out value="${row.id}"/>&centreId=<jstl:out value="${centreId}"/>"><spring:message code="day.schedules"/></a></display:column>
+	<acme:column code="day.day" property="day" sortable="true"/>
+	<acme:refColumn ref="reservation/schedule.do?dayId=${row.id}&centreId=${centreId}" code="day.schedules"/>
 	
 </display:table>
-<security:authorize access="hasRole('ADMIN')">
-	<div>
-		<a href="day/create.do"> <spring:message
-				code="day.create" />
-		</a>
-	</div>
-</security:authorize>
 
-<input type="button" name="cancel" value="<spring:message code="customer.back" />" onclick="window.history.go(-1);" />
+<acme:cancel url="/centre/list.do" code="customer.back"/>

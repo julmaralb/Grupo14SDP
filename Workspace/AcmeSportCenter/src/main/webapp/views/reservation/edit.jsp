@@ -13,6 +13,7 @@
 	<form:hidden path="court"/>
 	<form:hidden path="customer"/>
 	
+	<acme:textbox code="reservation.code" path="code" readonly="true"/><br/>
 	<acme:textbox code="reservation.day" path="day" readonly="true"/><br/>
 	<acme:textbox code="reservation.start" path="start" readonly="true"/><br/>
 	<acme:textbox code="reservation.end" path="end" readonly="true"/><br/>
@@ -34,7 +35,7 @@
 	<br></br>
 	<acme:submit name="save" code="reservation.save"/>
 	<acme:delete code="reservation.delete" codeConfirm="reservation.confirm.delete" condition="${reservation.id != 0}"/>
-	<acme:cancel url="/reservation/list.do" code="reservation.cancel"/>
+	<acme:cancel url="/centre/list.do" code="reservation.cancel"/>
 	
 </form:form>
 

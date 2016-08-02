@@ -30,6 +30,8 @@
 		<value>/views/hourRange/tiles.xml</value>
 		<value>/views/report/tiles.xml</value>
 		<value>/views/supervisor/tiles.xml</value>
+		<value>/views/sportEquipment/tiles.xml</value>
+		<value>/views/renting/tiles.xml</value>
 	</util:list>
 
 </beans>

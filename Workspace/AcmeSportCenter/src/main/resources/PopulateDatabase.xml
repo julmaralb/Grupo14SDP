@@ -96,6 +96,17 @@
 		<property name="expYear" value="2018" />
 		<property name="CVV" value="327" />
 	</bean>
+	
+	<!-- Administrator -->
+
+	<bean id="administrator" class="domain.Administrator">
+		<property name="name" value="administratorName" />
+		<property name="surname" value="administratorSurname1" />
+		<property name="email" value="administrator@hotmail.com" />
+		<property name="phone" value="6300863542" />
+		<property name="address" value="administratorAddress" />
+		<property name="userAccount" ref="userAccount1" />	
+	</bean>
 
 	<!-- Customer -->
 
@@ -152,145 +163,145 @@
 
 	<bean id="hourRange1" class="domain.HourRange">
 		<property name="start" value="19/06/2016 09:00" />
-		<property name="end" value="19/06/2016 09:30" />
+		<property name="end" value="19/06/2016 10:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange2" class="domain.HourRange">
-		<property name="start" value="19/06/2016 09:30" />
-		<property name="end" value="19/06/2016 10:00" />
+		<property name="start" value="19/06/2016 10:00" />
+		<property name="end" value="19/06/2016 11:00" />
 		<property name="available" value="true" />
 	</bean>
 
 	<bean id="hourRange3" class="domain.HourRange">
-		<property name="start" value="19/06/2016 10:00" />
-		<property name="end" value="19/06/2016 10:30" />
+		<property name="start" value="19/06/2016 11:00" />
+		<property name="end" value="19/06/2016 12:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange4" class="domain.HourRange">
-		<property name="start" value="19/06/2016 10:30" />
-		<property name="end" value="19/06/2016 11:00" />
+		<property name="start" value="19/06/2016 12:00" />
+		<property name="end" value="19/06/2016 13:00" />
 		<property name="available" value="true" />
 	</bean>
 
 	<bean id="hourRange5" class="domain.HourRange">
 		<property name="start" value="19/06/2016 09:00" />
-		<property name="end" value="19/06/2016 09:30" />
+		<property name="end" value="19/06/2016 10:00" />
 		<property name="available" value="true" />
 	</bean>
 
 	<bean id="hourRange6" class="domain.HourRange">
-		<property name="start" value="19/06/2016 09:30" />
-		<property name="end" value="19/06/2016 10:00" />
+		<property name="start" value="19/06/2016 10:00" />
+		<property name="end" value="19/06/2016 11:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange7" class="domain.HourRange">
-		<property name="start" value="19/06/2016 10:00" />
-		<property name="end" value="19/06/2016 10:30" />
+		<property name="start" value="19/06/2016 11:00" />
+		<property name="end" value="19/06/2016 12:00" />
 		<property name="available" value="true" />
 	</bean>
 
 	<bean id="hourRange8" class="domain.HourRange">
-		<property name="start" value="19/06/2016 10:30" />
-		<property name="end" value="19/06/2016 11:00" />
+		<property name="start" value="19/06/2016 12:00" />
+		<property name="end" value="19/06/2016 13:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange9" class="domain.HourRange">
 		<property name="start" value="19/06/2016 09:00" />
-		<property name="end" value="19/06/2016 09:30" />
+		<property name="end" value="19/06/2016 10:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange10" class="domain.HourRange">
-		<property name="start" value="19/06/2016 09:30" />
-		<property name="end" value="19/06/2016 10:00" />
+		<property name="start" value="19/06/2016 10:00" />
+		<property name="end" value="19/06/2016 11:00" />
 		<property name="available" value="true" />
 	</bean>
 
 	<bean id="hourRange11" class="domain.HourRange">
-		<property name="start" value="19/06/2016 10:00" />
-		<property name="end" value="19/06/2016 10:30" />
+		<property name="start" value="19/06/2016 11:00" />
+		<property name="end" value="19/06/2016 12:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange12" class="domain.HourRange">
-		<property name="start" value="19/06/2016 10:30" />
-		<property name="end" value="19/06/2016 11:00" />
+		<property name="start" value="19/06/2016 12:00" />
+		<property name="end" value="19/06/2016 13:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange13" class="domain.HourRange">
 		<property name="start" value="20/06/2016 09:00" />
-		<property name="end" value="20/06/2016 09:30" />
+		<property name="end" value="20/06/2016 10:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange14" class="domain.HourRange">
-		<property name="start" value="20/06/2016 09:30" />
-		<property name="end" value="20/06/2016 10:00" />
+		<property name="start" value="20/06/2016 10:00" />
+		<property name="end" value="20/06/2016 11:00" />
 		<property name="available" value="true" />
 	</bean>
 
 	<bean id="hourRange15" class="domain.HourRange">
-		<property name="start" value="20/06/2016 10:00" />
-		<property name="end" value="20/06/2016 10:30" />
+		<property name="start" value="20/06/2016 11:00" />
+		<property name="end" value="20/06/2016 12:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange16" class="domain.HourRange">
-		<property name="start" value="20/06/2016 10:30" />
-		<property name="end" value="20/06/2016 11:00" />
+		<property name="start" value="20/06/2016 12:00" />
+		<property name="end" value="20/06/2016 13:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange17" class="domain.HourRange">
 		<property name="start" value="20/06/2016 09:00" />
-		<property name="end" value="20/06/2016 09:30" />
+		<property name="end" value="20/06/2016 10:00" />
 		<property name="available" value="true" />
 	</bean>
 
 	<bean id="hourRange18" class="domain.HourRange">
-		<property name="start" value="20/06/2016 09:30" />
-		<property name="end" value="20/06/2016 10:00" />
+		<property name="start" value="20/06/2016 10:00" />
+		<property name="end" value="20/06/2016 11:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange19" class="domain.HourRange">
-		<property name="start" value="20/06/2016 10:00" />
-		<property name="end" value="20/06/2016 10:30" />
+		<property name="start" value="20/06/2016 11:00" />
+		<property name="end" value="20/06/2016 12:00" />
 		<property name="available" value="true" />
 	</bean>
 
 	<bean id="hourRange20" class="domain.HourRange">
-		<property name="start" value="20/06/2016 10:30" />
-		<property name="end" value="20/06/2016 11:00" />
+		<property name="start" value="20/06/2016 12:00" />
+		<property name="end" value="20/06/2016 13:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange21" class="domain.HourRange">
 		<property name="start" value="20/06/2016 09:00" />
-		<property name="end" value="20/06/2016 09:30" />
-		<property name="available" value="true" />
-	</bean>
-
-	<bean id="hourRange22" class="domain.HourRange">
-		<property name="start" value="20/06/2016 09:30" />
 		<property name="end" value="20/06/2016 10:00" />
 		<property name="available" value="true" />
 	</bean>
 
-	<bean id="hourRange23" class="domain.HourRange">
+	<bean id="hourRange22" class="domain.HourRange">
 		<property name="start" value="20/06/2016 10:00" />
-		<property name="end" value="20/06/2016 10:30" />
+		<property name="end" value="20/06/2016 11:00" />
+		<property name="available" value="true" />
+	</bean>
+
+	<bean id="hourRange23" class="domain.HourRange">
+		<property name="start" value="20/06/2016 11:00" />
+		<property name="end" value="20/06/2016 12:00" />
 		<property name="available" value="false" />
 	</bean>
 
 	<bean id="hourRange24" class="domain.HourRange">
-		<property name="start" value="20/06/2016 10:30" />
-		<property name="end" value="20/06/2016 11:00" />
+		<property name="start" value="20/06/2016 12:00" />
+		<property name="end" value="20/06/2016 13:00" />
 		<property name="available" value="false" />
 	</bean>
 
@@ -421,36 +432,40 @@
 	<!-- Reservation -->
 
 	<bean id="reservation1" class="domain.Reservation">
+		<property name="code" value="123456-ABCD" />
 		<property name="day" value="2016/06/19" />
-		<property name="start" value="19/06/2016 10:30" />
-		<property name="end" value="19/06/2016 11:00" />
+		<property name="start" value="19/06/2016 11:00" />
+		<property name="end" value="19/06/2016 12:00" />
 		<property name="creditCard" ref="creditCard1" />
 		<property name="court" ref="court1" />
 		<property name="customer" ref="customer1" />
 	</bean>
 	
 	<bean id="reservation2" class="domain.Reservation">
+		<property name="code" value="111111-AAAA" />
 		<property name="day" value="2016/06/19" />
-		<property name="start" value="19/06/2016 09:30" />
-		<property name="end" value="19/06/2016 10:00" />
+		<property name="start" value="19/06/2016 10:00" />
+		<property name="end" value="19/06/2016 11:00" />
 		<property name="creditCard" ref="creditCard2" />
 		<property name="court" ref="court1" />
 		<property name="customer" ref="customer2" />
 	</bean>
 	
 	<bean id="reservation3" class="domain.Reservation">
+		<property name="code" value="222222-BBBB" />
 		<property name="day" value="2016/06/19" />
 		<property name="start" value="19/06/2016 09:00" />
-		<property name="end" value="19/06/2016 09:30" />
+		<property name="end" value="19/06/2016 10:00" />
 		<property name="creditCard" ref="creditCard1" />
 		<property name="court" ref="court3" />
 		<property name="customer" ref="customer1" />
 	</bean>
 	
 	<bean id="reservation4" class="domain.Reservation">
+		<property name="code" value="333333-CCCC" />
 		<property name="day" value="2016/06/20" />
-		<property name="start" value="19/06/2016 10:30" />
-		<property name="end" value="19/06/2016 11:00" />
+		<property name="start" value="19/06/2016 11:00" />
+		<property name="end" value="19/06/2016 12:00" />
 		<property name="creditCard" ref="creditCard2" />
 		<property name="court" ref="court1" />
 		<property name="customer" ref="customer2" />
@@ -461,7 +476,7 @@
 	<bean id="openMatch1" class="domain.OpenMatch">
 		<property name="title" value="openMatchTitle1" />
 		<property name="description" value="openMatchDescription1" />
-		<property name="moment" value="19/06/2016 09:30" />
+		<property name="moment" value="19/06/2016 10:00" />
 		<property name="numPlayers" value="1" />
 		<property name="maxPlayers" value="10" />
 		<property name="owner" ref="customer1" />
@@ -476,7 +491,7 @@
 	<bean id="openMatch2" class="domain.OpenMatch">
 		<property name="title" value="openMatchTitle2" />
 		<property name="description" value="openMatchDescription2" />
-		<property name="moment" value="19/06/2016 11:30" />
+		<property name="moment" value="19/06/2016 10:00" />
 		<property name="numPlayers" value="1" />
 		<property name="maxPlayers" value="10" />
 		<property name="owner" ref="customer2" />

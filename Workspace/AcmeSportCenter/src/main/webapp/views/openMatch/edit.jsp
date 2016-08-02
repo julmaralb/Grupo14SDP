@@ -15,10 +15,10 @@
 	<form:hidden path="owner"/>
 	
 	<acme:textbox code="openMatch.title" path="title"/><br/>
-	<acme:textbox code="openMatch.description" path="description"/><br/>
+	<acme:textarea code="openMatch.description" path="description"/><br/>
 	<acme:textbox code="openMatch.moment" path="moment"/><br/>
 	<acme:textbox code="openMatch.maxPlayers" path="maxPlayers"/><br/>
-	<acme:select items="${reservations}" itemLabel="day" code="openMatch.reservation" path="reservation"/>
+	<acme:select items="${reservations}" itemLabel="code" code="openMatch.reservation" path="reservation"/>
 	
 	<br></br>
 	<acme:submit name="save" code="openMatch.save"/>

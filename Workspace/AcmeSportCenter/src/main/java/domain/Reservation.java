@@ -10,6 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,10 +26,21 @@ public class Reservation extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 
+	private String code;
 	private Date day;
 	private Date start;
 	private Date end;
 	private CreditCard creditCard;
+	
+	@Pattern(regexp = "^\\d{6}-\\w{4}$")
+	@NotNull
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	@NotNull
 	@Temporal(TemporalType.DATE)

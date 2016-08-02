@@ -2,6 +2,7 @@ package services;
 
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
@@ -50,8 +51,12 @@ public class ReservationService {
 
 	public Reservation create() {
 		Reservation result;
+		String code;
 
 		result = new Reservation();
+		code = getAleatoryCode();
+
+		result.setCode(code);
 
 		return result;
 	}
@@ -198,6 +203,35 @@ public class ReservationService {
 		if (creditCard.getExpYear() == currentDate.get(Calendar.YEAR)) {
 			if (creditCard.getExpMonth() > currentDate.get(Calendar.MONTH)) {
 				result = true;
+			}
+		}
+		return result;
+	}
+
+	public static String getAleatoryCode() {
+		String result = "";
+		Random random = new Random();
+		int letra;
+		Boolean f;
+
+		while (result.length() < 6) {
+			result += Integer.toString(random.nextInt(10));
+		}
+
+		result += "-";
+
+		while (result.length() < 11) {
+			if (Math.random() < 0.51) {
+				result += Integer.toString(random.nextInt(10));
+			} else {
+				f = true;
+				while (f) {
+					letra = random.nextInt(102);
+					if ((letra > 96 && letra < 102)) {
+						result += (char) letra;
+						f = false;
+					}
+				}
 			}
 		}
 		return result;

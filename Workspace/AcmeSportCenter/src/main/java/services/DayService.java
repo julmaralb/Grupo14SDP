@@ -98,4 +98,11 @@ public class DayService {
 		return result;
 	}
 
+	public Collection<Day> findByDay(Date day) {
+		Collection<Day> result;
+
+		result = dayRepository.findByDate(day);
+
+		return result;
+	}
 }

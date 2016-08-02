@@ -21,4 +21,7 @@ public interface DayRepository extends JpaRepository<Day, Integer> {
 	@Query("select d from Day d where (select hr from HourRange hr where hr.id = ?1) member of d.hourRanges")
 	Day findByHourRangeId(int hourRangeId);
 
+	@Query("select d from Day d where d.day = ?1")
+	Collection<Day> findByDate(Date date);
+
 }
