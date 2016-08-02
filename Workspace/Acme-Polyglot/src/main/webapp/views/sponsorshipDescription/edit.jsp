@@ -13,7 +13,7 @@
 	
 	<acme:textbox code="sponsorshipDescription.title" path="title"/><br/>
 	<acme:textarea code="sponsorshipDescription.text" path="text"/><br/>
-	<acme:textbox code="sponsorshipDescription.code" path="code"/><br/>
+	<acme:selectWithId items="${languages}" itemLabel="code" code="sponsorshipDescription.code" path="code" itemValue="code"/><br/>
 	<acme:textarea code="sponsorshipDescription.infoLinks" path="infoLinks"/><br/>
 	<acme:textarea code="sponsorshipDescription.tags" path="tags"/><br/>
 	<acme:select items="${sponsorships}" itemLabel="name" code="sponsorshipDescription.sponsorship" path="sponsorship"/>

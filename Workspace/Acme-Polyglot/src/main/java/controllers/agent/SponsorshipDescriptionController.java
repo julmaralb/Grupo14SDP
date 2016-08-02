@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AgentService;
+import services.LanguageService;
 import services.SponsorshipDescriptionService;
 import services.SponsorshipService;
 import controllers.AbstractController;
 import domain.Agent;
+import domain.Language;
 import domain.Sponsorship;
 import domain.SponsorshipDescription;
 
@@ -35,6 +37,9 @@ public class SponsorshipDescriptionController extends AbstractController {
 
 	@Autowired
 	private AgentService agentService;
+	
+	@Autowired
+	private LanguageService languageService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -160,10 +165,13 @@ public class SponsorshipDescriptionController extends AbstractController {
 			SponsorshipDescription sponsorshipDescription, String message) {
 		ModelAndView result;
 		Collection<Sponsorship> sponsorships;
+		Collection<Language> languages;
 
 		result = new ModelAndView("sponsorshipDescription/edit");
+		languages = languageService.findAll();
 		sponsorships = sponsorshipService.findAllByPrincipal();
 		result.addObject("sponsorships", sponsorships);
+		result.addObject("languages", languages);
 		result.addObject("sponsorshipDescription", sponsorshipDescription);
 		result.addObject("message", message);
 

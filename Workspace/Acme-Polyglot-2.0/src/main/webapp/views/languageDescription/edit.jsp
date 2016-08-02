@@ -13,7 +13,7 @@
 	
 	<acme:textbox code="languageDescription.title" path="title"/><br/>
 	<acme:textarea code="languageDescription.text" path="text"/><br/>
-	<acme:textbox code="languageDescription.code" path="code"/><br/>
+	<acme:selectWithId items="${languages}" itemLabel="code" code="languageDescription.code" path="code" itemValue="code"/><br/>
 	<acme:textarea code="languageDescription.infoLinks" path="infoLinks"/><br/>
 	<acme:textarea code="languageDescription.tags" path="tags"/><br/>
 	<acme:select items="${languages}" itemLabel="code" code="languageDescription.language" path="language"/>

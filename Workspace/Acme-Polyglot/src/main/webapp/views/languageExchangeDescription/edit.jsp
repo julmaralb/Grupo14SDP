@@ -13,10 +13,12 @@
 	
 	<acme:textbox code="languageExchangeDescription.title" path="title"/><br/>
 	<acme:textarea code="languageExchangeDescription.text" path="text"/><br/>
-	<acme:textbox code="languageExchangeDescription.code" path="code"/><br/>
+	<acme:selectWithId items="${languages}" itemLabel="code" code="languageExchangeDescription.code" path="code" itemValue="code"/><br/>
 	<acme:textarea code="languageExchangeDescription.infoLinks" path="infoLinks"/><br/>
 	<acme:textarea code="languageExchangeDescription.tags" path="tags"/><br/>
 	<acme:select items="${languageExchanges}" itemLabel="name" code="languageExchangeDescription.languageExchange" path="languageExchange"/>
+	
+
 	
 	<br></br>
 	<acme:submit name="save" code="languageExchangeDescription.save"/>

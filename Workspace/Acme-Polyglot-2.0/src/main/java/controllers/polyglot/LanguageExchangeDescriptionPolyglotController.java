@@ -15,8 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.LanguageExchangeDescriptionService;
 import services.LanguageExchangeService;
+import services.LanguageService;
 import services.PolyglotService;
 import controllers.AbstractController;
+import domain.Language;
 import domain.LanguageExchange;
 import domain.LanguageExchangeDescription;
 import domain.Polyglot;
@@ -36,6 +38,9 @@ public class LanguageExchangeDescriptionPolyglotController extends
 
 	@Autowired
 	private LanguageExchangeService languageExchangeService;
+	
+	@Autowired
+	private LanguageService languageService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -153,10 +158,13 @@ public class LanguageExchangeDescriptionPolyglotController extends
 			String message) {
 		ModelAndView result;
 		Collection<LanguageExchange> languageExchanges;
+		Collection<Language> languages;
 
 		result = new ModelAndView("languageExchangeDescription/edit");
 		languageExchanges = languageExchangeService.findAllByPrincipal();
+		languages = languageService.findAll();
 		result.addObject("languageExchanges", languageExchanges);
+		result.addObject("languages", languages);
 		result.addObject("languageExchangeDescription",
 				languageExchangeDescription);
 		result.addObject("message", message);
