@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import domain.Actor;
+
 import repositories.ActorRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
-import domain.Actor;
 
 @Service
 @Transactional
@@ -32,29 +33,18 @@ public class ActorService {
 	}
 
 	// Simple CRUD methods ----------------------------------------------------
-
+	
 	// Other business methods -------------------------------------------------
-
-	public Actor findByPrincipal() {
+	
+	public Actor findByPrincipal(){
 		Actor result;
 		UserAccount userAccount;
-
+		
 		userAccount = LoginService.getPrincipal();
-		result = findByUserAccount(userAccount);
-
+		Assert.notNull(userAccount);
+		result = actorRepository.findByUserAccountId(userAccount.getId());
 		Assert.notNull(result);
-
-		return result;
-	}
-
-	public Actor findByUserAccount(UserAccount userAccount) {
-		assert userAccount != null;
-
-		Actor result;
-
-		result = actorRepository.findByPrincipal(userAccount.getId());
-		assert result != null;
-
+		
 		return result;
 	}
 	
@@ -78,21 +68,6 @@ public class ActorService {
 			result = false;
 		}
 		
-		return result;
-	}
-	
-	public Collection<Actor> findAllButPrincipal() {
-		Collection<Actor> result;
-		
-		result = actorRepository.findAll();
-		result.remove(findByPrincipal());
-		
-		return result;
-	}
-
-	public Actor findOne(int id) {
-		Actor result;
-		result=actorRepository.findOne(id);
 		return result;
 	}
 }

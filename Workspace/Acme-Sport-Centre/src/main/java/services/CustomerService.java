@@ -25,9 +25,6 @@ public class CustomerService {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	@Autowired
-	private Md5PasswordEncoder encoder;
-
 	// Supporting services ----------------------------------------------------
 
 	// Constructors -----------------------------------------------------------
@@ -66,6 +63,8 @@ public class CustomerService {
 
 	public void save(Customer customer) {
 		Assert.notNull(customer);
+		Md5PasswordEncoder encoder;
+		encoder = new Md5PasswordEncoder();
 
 		String password;
 		password = customer.getUserAccount().getPassword();

@@ -21,6 +21,9 @@ public class CentreService {
 	private CentreRepository centreRepository;
 
 	// Supporting services ----------------------------------------------------
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -31,6 +34,7 @@ public class CentreService {
 	// Simple CRUD methods ----------------------------------------------------
 
 	public Centre create() {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		Centre result;
 
 		result = new Centre();
@@ -66,11 +70,11 @@ public class CentreService {
 
 	public void delete(Centre centre) {
 		Assert.notNull(centre);
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 
 		centreRepository.delete(centre);
 
 	}
 
 	// Other business methods -------------------------------------------------
-
 }

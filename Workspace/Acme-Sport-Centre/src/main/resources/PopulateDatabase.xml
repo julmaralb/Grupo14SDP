@@ -47,6 +47,18 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="supervisor1" />
+		<property name="password" value="d947df684dd40733bef0cd787f8ae4e1" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="SUPERVISOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 
 	<!-- Other domain beans come here -->
 
@@ -106,6 +118,17 @@
 		<property name="phone" value="6300863542" />
 		<property name="address" value="administratorAddress" />
 		<property name="userAccount" ref="userAccount1" />	
+	</bean>
+	
+	<!-- Supervisor -->
+
+	<bean id="supervisor1" class="domain.Supervisor">
+		<property name="name" value="supervisor1Name" />
+		<property name="surname" value="supervisor1Surname" />
+		<property name="email" value="supervisor1@hotmail.com" />
+		<property name="phone" value="632256894" />
+		<property name="address" value="supervisor1Address" />
+		<property name="userAccount" ref="userAccount4" />	
 	</bean>
 
 	<!-- Customer -->

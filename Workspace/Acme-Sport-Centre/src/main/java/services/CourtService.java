@@ -21,6 +21,9 @@ public class CourtService {
 	private CourtRepository courtRepository;
 
 	// Supporting services ----------------------------------------------------
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -31,6 +34,7 @@ public class CourtService {
 	// Simple CRUD methods ----------------------------------------------------
 
 	public Court create() {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		Court result;
 
 		result = new Court();
@@ -66,6 +70,7 @@ public class CourtService {
 
 	public void delete(Court court) {
 		Assert.notNull(court);
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 
 		courtRepository.delete(court);
 
