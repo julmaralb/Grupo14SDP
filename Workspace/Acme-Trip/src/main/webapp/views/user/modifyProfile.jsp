@@ -12,6 +12,7 @@
 	<form:hidden path="version" />
 	<form:hidden path="userAccount.authorities" />
 	<form:hidden path="folders" />
+	<form:hidden path="lastLogIn" />
 
 	<fieldset>
   	<legend><spring:message code="user.personalInfo"/>:</legend>

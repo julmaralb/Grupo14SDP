@@ -23,7 +23,9 @@
 	
 	<acme:column code="actor.username" property="userAccount.username"/>
 	
+	<acme:refColumn ref="keyword/administrator/listByActor.do?actorId=${row.id}" code="actor.keywords"/>
+	
 	<acme:refConditionColumn ref="actor/administrator/ban.do?actorId=${row.id}" code="actor.ban" condition="${true}"/>
 			
 </display:table>
-<acme:cancel url="/" code="actor.back"/>
+<acme:cancel url="/administrator/dashboard.do" code="actor.back"/>

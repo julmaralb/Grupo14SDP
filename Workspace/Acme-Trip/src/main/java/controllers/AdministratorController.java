@@ -29,6 +29,7 @@ import security.UserAccount;
 import services.AdministratorService;
 import domain.Administrator;
 import domain.Banner;
+import domain.User;
 
 @Controller
 @RequestMapping("/administrator")
@@ -162,7 +163,7 @@ public class AdministratorController extends AbstractController {
 		Collection<String>managerWithMoreCampaigns;
 		Collection<Banner>activeBannersDisplayedMoreThan10PAvg;
 		Collection<Banner>activeBannersDisplayedLessThan10PAvg;
-		Collection<String>userInactiveMoreOneyear;
+		Collection<User>userInactiveMoreOneyear;
 		
 		userRegistered= administratorService.userRegistered();
 		result=new ModelAndView("administrator/dashboard");

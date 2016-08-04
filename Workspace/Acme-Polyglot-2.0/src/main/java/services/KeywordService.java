@@ -96,4 +96,12 @@ public class KeywordService {
 		}
 		principal.setKeywords(keywords);
 	}
+
+	public Collection<Keyword> findAllByActorId(int actorId) {
+		Collection<Keyword> result;
+
+		result = keywordRepository.findAllByActorId(actorId);
+
+		return result;
+	}
 }

@@ -131,7 +131,7 @@
 			<li><a class="fNiv" href="user/create.do"><spring:message code="master.page.register" /></a></li>
 		</security:authorize>
 		
-		<security:authorize access="isAuthenticated()">
+		<security:authorize access="hasRole('USER')">
 			<li>
 				<a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 
@@ -145,6 +145,35 @@
 				</ul>
 			</li>
 		</security:authorize>
+		
+		<security:authorize access="hasRole('MANAGER')">
+			<li>
+				<a class="fNiv"> 
+					<spring:message code="master.page.profile" /> 
+			        (<security:authentication property="principal.username" />)
+				</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="folder/actor/list.do"><spring:message code="master.page.list.folders" /></a></li>					
+					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('ADMIN')">
+			<li>
+				<a class="fNiv"> 
+					<spring:message code="master.page.profile" /> 
+			        (<security:authentication property="principal.username" />)
+				</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="folder/actor/list.do"><spring:message code="master.page.list.folders" /></a></li>					
+					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
+				</ul>
+			</li>
+		</security:authorize>
+		
 	</ul>
 </div>
 

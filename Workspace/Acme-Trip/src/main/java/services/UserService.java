@@ -2,6 +2,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -14,6 +15,7 @@ import repositories.UserRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import security.UserAccountRepository;
 import domain.Activity;
 import domain.Actor;
 import domain.Folder;
@@ -29,6 +31,9 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private UserAccountRepository userAccountRepository;
 
 	// Supporting services ----------------------------------------------------
 
@@ -161,9 +166,11 @@ public class UserService {
 		Collection<Activity> activities;
 		Collection<Trip> trips;
 		Collection<Folder> folders;
+		Date today;
 
 		activities = new ArrayList<Activity>();
 		trips = new ArrayList<Trip>();
+		today = new Date();
 
 		result = create();
 		folders = folderService.initializeFolders(result);
@@ -179,6 +186,7 @@ public class UserService {
 		result.setTrips(trips);
 		result.setActivities(activities);
 		result.setFolders(folders);
+		result.setLastLogIn(today);
 
 		if (userForm.getTermsAccepted() == false) {
 			throw new IllegalArgumentException(
@@ -209,5 +217,17 @@ public class UserService {
 		result.setSurname(surname);
 		result.setName(name);
 		result.setEmail(email);
+	}
+
+	public void updateLastLogIn(String username) {
+		UserAccount userAccount;
+		User user;
+		Date today;
+
+		userAccount = userAccountRepository.findByUsername(username);
+		user = userRepository.findByUserAccountId(userAccount.getId());
+		today = new Date();
+		user.setLastLogIn(today);
+
 	}
 }

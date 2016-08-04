@@ -1,6 +1,7 @@
 package repositories;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -28,21 +29,24 @@ public interface AdministratorRepository extends
 
 	@Query("select avg(u.trips.size) from User u")
 	Double avgTripsPerUser();
-	
+
 	@Query("select SQRT(sum((u.trips.size - (select avg(u.trips.size) from User u))*(u.trips.size - (select avg(u.trips.size) from User u)))/(select count(u) from User u)) from User u")
 	Double standardDevTripsPerUser();
-	
+
 	@Query("select avg(dp.size) from User u join u.trips t join t.dailyPlans dp")
 	Double avgDailyPlansPerUser();
-	
+
 	@Query("select SQRT(sum((dp.size - (select avg(dp.size) from User u join u.trips t join t.dailyPlans dp))*(dp.size - (select avg(dp.size) from User u join u.trips t join t.dailyPlans dp)))/(select count(u) from User u)) from User u join u.trips t join t.dailyPlans dp")
 	Double standardDevDailyPlansPerUser();
-	
+
 	@Query("select avg(dp.size),SQRT(sum((dp.size - (select avg(dp.size) from User u join u.trips t join t.dailyPlans dp))*(dp.size - (select avg(dp.size) from User u join u.trips t join t.dailyPlans dp)))/(select count(u) from User u)) from User u join u.trips t join t.dailyPlans dp")
 	Collection<Double> avgAndStandardDevDailyPlansPerUser();
 
 	@Query("select u from User u where u.trips.size >= (select max(u2.trips.size)*0.8 from User u2)")
 	Collection<User> usersWithMoreThan80PMaxTripsRegistered();
+
+	@Query("select u from User u where datediff(?1,u.lastLogIn) > 365")
+	Collection<User> findInactive(Date today);
 
 	// Queries nivel B
 
@@ -57,11 +61,11 @@ public interface AdministratorRepository extends
 
 	@Query("select m from Manager m where m.campaigns.size >= ALL (select m1.campaigns.size from Manager m1)")
 	Collection<Manager> managerWithMoreCampaigns();
-	
+
 	@Query("select b from Banner b where b.displayTimes > ((select avg(b.displayTimes) from Banner b) + (select avg(b.displayTimes)*0.1 from Banner b)) AND b.campaign.cancelled = false")
 	Collection<Banner> activeBannersDisplayedMoreThan10PAvg();
-	
+
 	@Query("select b from Banner b where b.displayTimes > ((select avg(b.displayTimes) from Banner b) - (select avg(b.displayTimes)*0.1 from Banner b)) AND b.campaign.cancelled = false")
 	Collection<Banner> activeBannersDisplayedLessThan10PAvg();
-	
+
 }

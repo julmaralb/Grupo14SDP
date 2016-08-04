@@ -632,6 +632,7 @@
 		<property name="surname" value="userSurname1" />
 		<property name="email" value="user1@hotmail.com" />
 		<property name="phone" value="+654362515" />
+		<property name="lastLogIn" value="08/03/2016" />
 		<property name="folders">
 			<list>
 				<ref bean="inFolder1" />
@@ -668,6 +669,7 @@
 		<property name="surname" value="userSurname2" />
 		<property name="email" value="user2@hotmail.com" />
 		<property name="phone" value="+635149536" />
+		<property name="lastLogIn" value="08/03/2016" />
 		<property name="folders">
 			<list>
 				<ref bean="inFolder2" />
@@ -705,6 +707,7 @@
 		<property name="surname" value="userSurname3" />
 		<property name="email" value="user3@hotmail.com" />
 		<property name="phone" value="+954361485" />
+		<property name="lastLogIn" value="08/03/2016" />
 		<property name="folders">
 			<list>
 				<ref bean="inFolder3" />
@@ -729,6 +732,7 @@
 		<property name="surname" value="userSurname4" />
 		<property name="email" value="user4@hotmail.com" />
 		<property name="phone" value="+954368402" />
+		<property name="lastLogIn" value="08/02/2015" />
 		<property name="folders">
 			<list>
 				<ref bean="inFolder4" />

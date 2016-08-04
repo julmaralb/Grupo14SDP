@@ -118,7 +118,7 @@
 			<li><a class="fNiv" href="languageExchange/actor/list3MonthsTime.do"><spring:message code="master.page.list3MonthsTime" /></a></li>
 		</security:authorize>
 		
-		<security:authorize access="isAuthenticated()">
+		<security:authorize access="hasRole('POLYGLOT')">
 			<li>
 				<a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 
@@ -127,6 +127,33 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="polyglot/modifyProfile.do"><spring:message code="master.page.modifyProfile" /></a></li>					
+					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('AGENT')">
+			<li>
+				<a class="fNiv"> 
+					<spring:message code="master.page.profile" /> 
+			        (<security:authentication property="principal.username" />)
+				</a>
+				<ul>
+					<li class="arrow"></li>					
+					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('ADMIN')">
+			<li>
+				<a class="fNiv"> 
+					<spring:message code="master.page.profile" /> 
+			        (<security:authentication property="principal.username" />)
+				</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="administrator/dashboard.do"><spring:message code="master.page.dashboard" /></a></li>					
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>

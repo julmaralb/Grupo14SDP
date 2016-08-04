@@ -14,7 +14,7 @@ import domain.Administrator;
 @Service
 @Transactional
 public class AdministratorService {
-	
+
 	// Managed repository -----------------------------------------------------
 
 	@Autowired
@@ -72,4 +72,56 @@ public class AdministratorService {
 	}
 
 	// Other business methods -------------------------------------------------
+
+	public Collection<Object[]> languagesAndCountOfExchangesInvolved() {
+		Collection<Object[]> result;
+
+		result = administratorRepository.languagesAndCountOfExchangesInvolved();
+
+		return result;
+	}
+
+	public Collection<Object[]> polyglotsAndCountOfExchangesOrganised() {
+		Collection<Object[]> result;
+
+		result = administratorRepository
+				.polyglotsAndCountOfExchangesOrganised();
+
+		return result;
+	}
+
+	public Collection<Object[]> polyglotsAndCountOfExchangesJoined() {
+		Collection<Object[]> result;
+
+		result = administratorRepository.polyglotsAndCountOfExchangesJoined();
+
+		return result;
+	}
+
+	public Collection<Object[]> languageExchangesAndCountOfSponsorships() {
+		Collection<Object[]> result;
+
+		result = administratorRepository
+				.languageExchangesAndCountOfSponsorships();
+
+		return result;
+	}
+
+	public Collection<Object[]> polyglotsAndCountOfSponsoredExchanges() {
+		Collection<Object[]> result;
+
+		result = administratorRepository
+				.polyglotsAndCountOfSponsoredExchanges();
+
+		return result;
+	}
+
+	public Collection<Object[]> avgMinMaxSponsoredExchangesPerPolyglot() {
+		Collection<Object[]> result;
+
+		result = administratorRepository
+				.avgMinMaxSponsoredExchangesPerPolyglot();
+
+		return result;
+	}
 }

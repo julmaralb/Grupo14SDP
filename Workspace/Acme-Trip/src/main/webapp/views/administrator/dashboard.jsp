@@ -15,6 +15,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
 <table id="administrator" border="1">
@@ -81,6 +82,13 @@
   <td>
   <display:table name="userInactiveMoreOneyear" id="row" requestURI="administrator/dashboard.do" class="displaytag">
 		
+	<acme:column code="user.name" property="name" sortable="true"/>
+	
+	<acme:column code="user.surname" property="surname" sortable="true"/>
+	
+	<acme:column code="user.email" property="email"/>
+	
+	<acme:column code="user.phone" property="phone"/>
 		</display:table>
   </td>
   

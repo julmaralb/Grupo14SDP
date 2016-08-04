@@ -2,6 +2,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -152,101 +153,109 @@ public class AdministratorService {
 
 	public Integer userRegistered() {
 		Integer result;
-		
-		result=administratorRepository.numberOfUsers();
-				
+
+		result = administratorRepository.numberOfUsers();
+
 		return result;
 	}
 
 	public Integer numbersTrip() {
 		Integer result;
-		
-		result=administratorRepository.numberOfTrips();
+
+		result = administratorRepository.numberOfTrips();
 		return result;
 	}
 
 	public Double standardDevTripsPerUser() {
 		Double result;
-				
-		result=administratorRepository.standardDevTripsPerUser();
-		
+
+		result = administratorRepository.standardDevTripsPerUser();
+
 		return result;
 	}
 
 	public Double avgTripsPerUser() {
-			Double result;
-			result= administratorRepository.avgTripsPerUser();
+		Double result;
+		result = administratorRepository.avgTripsPerUser();
 		return result;
 	}
 
 	public Collection<String> usersWithMoreThan80PMaxTripsRegistered() {
 		Collection<String> result;
 		Collection<User> usersWithMoreThan80PMaxTripsRegistered;
-		result=new ArrayList<String>();
-		usersWithMoreThan80PMaxTripsRegistered=administratorRepository.usersWithMoreThan80PMaxTripsRegistered();
-		for(User u:usersWithMoreThan80PMaxTripsRegistered){
+		result = new ArrayList<String>();
+		usersWithMoreThan80PMaxTripsRegistered = administratorRepository
+				.usersWithMoreThan80PMaxTripsRegistered();
+		for (User u : usersWithMoreThan80PMaxTripsRegistered) {
 			result.add(u.getName());
 		}
-		
+
 		return result;
 	}
 
 	public Double avgDailyPlansPerUser() {
 		Double result;
-		result=administratorRepository.avgDailyPlansPerUser();
+		result = administratorRepository.avgDailyPlansPerUser();
 		return result;
 	}
 
 	public Double standardDevDailyPlansPerUser() {
 		Double result;
-		result=administratorRepository.standardDevDailyPlansPerUser();
+		result = administratorRepository.standardDevDailyPlansPerUser();
 		return result;
 	}
 
 	public Collection<Double> minMaxAvgCampaignsPerManager() {
 		Collection<Double> result;
-		result=administratorRepository.minMaxAvgCampaignsPerManager();
-			
+		result = administratorRepository.minMaxAvgCampaignsPerManager();
+
 		return result;
 	}
 
 	public Double avgAmountMoneyPerCampaign() {
 		Double result;
-		result=administratorRepository.avgAmountMoneyPerCampaign();
+		result = administratorRepository.avgAmountMoneyPerCampaign();
 		return result;
 	}
 
 	public Collection<String> managerWithMoreCampaigns() {
 		Collection<String> result;
 		Collection<Manager> managerWithMoreCampaigns;
-		result=new ArrayList<String>();
-		managerWithMoreCampaigns=administratorRepository.managerWithMoreCampaigns();
-		for(Manager m:managerWithMoreCampaigns){
+		result = new ArrayList<String>();
+		managerWithMoreCampaigns = administratorRepository
+				.managerWithMoreCampaigns();
+		for (Manager m : managerWithMoreCampaigns) {
 			result.add(m.getName());
 		}
 		return result;
 	}
 
 	public Collection<Banner> activeBannersDisplayedMoreThan10PAvg() {
-		Collection<Banner>result;
-		result=administratorRepository.activeBannersDisplayedMoreThan10PAvg();
+		Collection<Banner> result;
+		result = administratorRepository.activeBannersDisplayedMoreThan10PAvg();
 		return result;
 	}
 
 	public Collection<Banner> activeBannersDisplayedLessThan10PAvg() {
-		Collection<Banner>result;
-		result=administratorRepository.activeBannersDisplayedLessThan10PAvg();
+		Collection<Banner> result;
+		result = administratorRepository.activeBannersDisplayedLessThan10PAvg();
 		return result;
 	}
 
 	public Collection<Double> avgAndStandardDevDaysThatCampaignsLast() {
 		Collection<Double> result;
-		result=administratorRepository.avgAndStandardDevDaysThatCampaignsLast();
+		result = administratorRepository
+				.avgAndStandardDevDaysThatCampaignsLast();
 		return result;
 	}
 
-	public Collection<String> userInactiveMoreOneyear() {
-		// TODO Service and repository of userInactiveMoreOneyear
-		return null;
+	public Collection<User> userInactiveMoreOneyear() {
+		Collection<User> result;
+		Date today;
+
+		today = new Date();
+		result = administratorRepository.findInactive(today);
+
+		return result;
 	}
 }
