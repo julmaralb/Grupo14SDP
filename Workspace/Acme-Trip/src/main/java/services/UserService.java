@@ -78,7 +78,7 @@ public class UserService {
 		return result;
 	}
 
-	public void save(User user) {
+	public User save(User user) {
 		Assert.notNull(user);
 		Md5PasswordEncoder encoder;
 		encoder = new Md5PasswordEncoder();
@@ -97,7 +97,9 @@ public class UserService {
 
 		}
 		userRepository.save(user);
+		return user;
 	}
+	
 
 	public void delete(User user) {
 		Assert.notNull(user);

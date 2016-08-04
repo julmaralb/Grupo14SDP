@@ -1944,7 +1944,7 @@
 		<property name="name" value="Out Folder" />
 		<property name="messages">
 			<list>
-				<ref bean="message12" />
+				
 			</list>
 		</property>
 		<property name="isSystem" value="true" />
@@ -1955,7 +1955,7 @@
 		<property name="name" value="Trash Folder" />
 		<property name="messages">
 			<list>
-
+					<ref bean="message12" />
 			</list>
 		</property>
 		<property name="isSystem" value="true" />
@@ -2104,7 +2104,7 @@
 		<property name="priority" value="2" />
 		<property name="sender" ref="administrator1" />
 		<property name="recipient" ref="manager1" />
-		<property name="folder" ref="outFolder8" />
+		<property name="folder" ref="trashFolder8" />
 	</bean>
 	
 </beans>

@@ -231,4 +231,9 @@ public class MessageService {
 		Assert.isTrue(folder.getIsSystem() == false);
 		message.setFolder(folder);
 	}
+	
+	public boolean isRecipient(Message message, Actor actor) {
+		
+		return message.getRecipient().equals(actor);
+	}
 }
