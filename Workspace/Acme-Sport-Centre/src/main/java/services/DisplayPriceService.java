@@ -22,6 +22,9 @@ public class DisplayPriceService {
 	private DisplayPriceRepository displayPriceRepository;
 
 	// Supporting services ----------------------------------------------------
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -60,6 +63,7 @@ public class DisplayPriceService {
 
 	public void save(DisplayPrice displayPrice) {
 		Assert.notNull(displayPrice);
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 
 		displayPriceRepository.save(displayPrice);
 	}

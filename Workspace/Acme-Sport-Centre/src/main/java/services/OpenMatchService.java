@@ -41,6 +41,7 @@ public class OpenMatchService {
 		principal = customerService.findByPrincipal();
 		result = new OpenMatch();
 		result.setOwner(principal);
+		result.setNumPlayers(0);
 
 		return result;
 	}

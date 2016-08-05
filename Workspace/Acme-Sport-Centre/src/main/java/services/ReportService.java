@@ -26,6 +26,9 @@ public class ReportService {
 
 	@Autowired
 	private SupervisorService supervisorService;
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -36,6 +39,7 @@ public class ReportService {
 	// Simple CRUD methods ----------------------------------------------------
 
 	public Report create() {
+		Assert.isTrue(actorService.checkAuthority("SUPERVISOR"));
 		Report result;
 		Supervisor principal;
 		Date moment;
@@ -85,6 +89,7 @@ public class ReportService {
 
 	public void delete(Report report) {
 		Assert.notNull(report);
+		Assert.isTrue(actorService.checkAuthority("SUPERVISOR"));
 
 		reportRepository.delete(report);
 	}

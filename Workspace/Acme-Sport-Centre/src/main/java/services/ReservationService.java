@@ -40,6 +40,9 @@ public class ReservationService {
 
 	@Autowired
 	private CourtService courtService;
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -86,6 +89,9 @@ public class ReservationService {
 		HourRange hourRange;
 
 		hourRange = hourRangeService.findOne(hourRangeId);
+		Day day = dayService.findByHourRangeId(hourRangeId);
+		Assert.isTrue(reservation.getCourt().getDays().contains(day));
+		Assert.isTrue(day.getHourRanges().contains(hourRange));
 
 		// Validate Credit Card
 
@@ -157,6 +163,7 @@ public class ReservationService {
 	}
 
 	public Reservation createReservation(int courtId, int hourRangeId, int dayId) {
+		Assert.isTrue(actorService.checkAuthority("CUSTOMER"));
 		Reservation result;
 		Court court;
 		HourRange hourRange;
@@ -190,7 +197,7 @@ public class ReservationService {
 		return result;
 	}
 
-	private boolean validExpCreditCard(CreditCard creditCard) {
+	public boolean validExpCreditCard(CreditCard creditCard) {
 		boolean result;
 		Calendar currentDate;
 

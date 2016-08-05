@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.RentingRepository;
+import domain.Court;
+import domain.CreditCard;
 import domain.Customer;
 import domain.Renting;
+import domain.Reservation;
+import domain.SportEquipment;
 
 @Service
 @Transactional
@@ -26,6 +30,12 @@ public class RentingService {
 
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private ReservationService reservationService;
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -36,6 +46,7 @@ public class RentingService {
 	// Simple CRUD methods ----------------------------------------------------
 
 	public Renting create() {
+		Assert.isTrue(actorService.checkAuthority("CUSTOMER"));
 		Renting result;
 		String code;
 		Customer principal;
@@ -73,9 +84,20 @@ public class RentingService {
 	public void save(Renting renting) {
 		Assert.notNull(renting);
 		Customer principal;
+		Assert.isTrue(checkCanRent(renting));
 
 		principal = customerService.findByPrincipal();
 		renting.setCustomer(principal);
+
+		// Validate Credit Card
+
+		CreditCard cc;
+		boolean valida;
+
+		cc = renting.getCreditCard();
+		valida = reservationService.validExpCreditCard(cc);
+
+		Assert.isTrue(valida);
 
 		rentingRepository.save(renting);
 	}
@@ -126,5 +148,26 @@ public class RentingService {
 		result = rentingRepository.findAllByCustomerId(principal.getId());
 
 		return result;
+	}
+
+	public boolean checkCanRent(Renting renting) {
+		boolean res = false;
+		SportEquipment sportEquipment;
+		Court court;
+		Collection<Reservation> reservations;
+		Customer principal;
+
+		sportEquipment = renting.getSportEquipment();
+		court = sportEquipment.getCourt();
+		principal = customerService.findByPrincipal();
+		reservations = principal.getReservations();
+
+		for (Reservation r : reservations) {
+			if (r.getCourt().equals(court)) {
+				res = true;
+				break;
+			}
+		}
+		return res;
 	}
 }

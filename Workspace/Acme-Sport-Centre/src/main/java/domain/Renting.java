@@ -30,6 +30,7 @@ public class Renting extends DomainEntity {
 	private String code;
 	private CreditCard creditCard;
 	private double totalPrice;
+	private Date day;
 	private Date start;
 	private Date end;
 
@@ -60,6 +61,17 @@ public class Renting extends DomainEntity {
 
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	public Date getDay() {
+		return day;
+	}
+
+	public void setDay(Date day) {
+		this.day = day;
 	}
 
 	@NotNull

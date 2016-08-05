@@ -22,10 +22,11 @@ th, td {
 
 <table>
     <tr>
-        <th></th>
+        <th>
         <jstl:forEach items="${hourRanges}" var="hr"> 
         <th><fmt:formatDate value="${hr.start}" pattern="HH:mm"/>-<fmt:formatDate value="${hr.end}" pattern="HH:mm"/></th>  
         </jstl:forEach>
+        </th>
     </tr>
     <jstl:forEach items="${days}"  var="x">
     <tr>

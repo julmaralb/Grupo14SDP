@@ -32,7 +32,8 @@ public class CentreServiceTest extends AbstractTest {
 	// Tests ------------------------------------------------------------------
 
 	/**
-	 * Acme-SportCentre -3.1 A user who is authenticated as an administrator
+	 * Acme-Sport-Centre - 14.3
+	 * A user who is authenticated as an administrator
 	 * must be able to: Manage centres. That includes creating, listing ,
 	 * modifying or deleting them.
 	 * 
@@ -64,12 +65,13 @@ public class CentreServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * Acme-SportCentre - 3.1 A user who is authenticated as an administrator
+	 * Acme-Sport-Centre - 14.3 
+	 * A user who is authenticated as an administrator
 	 * must be able to: Manage centres. That includes creating, listing ,
 	 * modifying or deleting them.
 	 * 
-	 * Positive test case: A new centre is created.
-	 * 
+	 * Negative test case: The centre is not created because it wasn´t an
+	 * admin.
 	 */
 
 	@Test(expected = IllegalArgumentException.class)
@@ -96,12 +98,13 @@ public class CentreServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * Acme-SportCentre - 3.1 A user who is authenticated as an administrator
+	 * Acme-Sport-Centre - 14.3 
+	 * A user who is authenticated as an administrator
 	 * must be able to: Manage centres. That includes creating, listing ,
 	 * modifying or deleting them.
 	 * 
-	 * Positive test case: A new centre is created.
-	 * 
+	 * Negative test case: The centre is not deleted because it wasn´t an
+	 * admin.
 	 */
 
 	@Test(expected = IllegalArgumentException.class)
@@ -110,9 +113,64 @@ public class CentreServiceTest extends AbstractTest {
 
 		authenticate("supervisor1");
 
-		centre = centreService.findOne(5);
+		centre = centreService.findOne(55);
 
 		centreService.delete(centre);
+
+		authenticate(null);
+	}
+	
+	/**
+	 * Acme-Sport-Centre - 11.2
+	 * A user who is not authenticated
+	 * must be able to: Navigate through the catalogue 
+	 * of centres that are registered in the system. 
+	 * 
+	 * Positive test case: All centres are listed and the user
+	 * is not authenticated.
+	 * 
+	 */
+
+	@Test
+	public void testCentresList1() {
+		Collection<Centre> result;
+
+		result = centreService.findAll();
+
+		Assert.isTrue(result.size() == 2);
+
+	}
+	
+	/**
+	 * Acme-Sport-Centre - 11.2
+	 * A user who is authenticated as an administrator
+	 * must be able to: Manage centres. That includes creating, listing ,
+	 * modifying or deleting them.
+	 * 
+	 * Negative test case: A new centre is created and it doesn't
+	 * appear in the listing.
+	 * 
+	 */
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCentresList2() {
+		Collection<Centre> result;
+		Centre newCentre;
+
+		authenticate("admin");
+
+		result = centreService.findAll();
+		Assert.isTrue(result.size() == 2);
+
+		newCentre = centreService.create();
+		newCentre.setName("Nuevo centro");
+		newCentre.setAddress("centreAddress");
+		newCentre.setPhone("954362514");
+		newCentre.setPicture("http://picture.com");
+		centreService.save(newCentre);
+
+		result = centreService.findAll();
+		Assert.isTrue(result.size() == 2);
 
 		authenticate(null);
 	}

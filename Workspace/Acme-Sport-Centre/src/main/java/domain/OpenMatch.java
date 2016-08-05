@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -66,6 +67,8 @@ public class OpenMatch extends DomainEntity {
 		this.moment = moment;
 	}
 
+	@NotNull
+	@Min(0)
 	public Integer getNumPlayers() {
 		return numPlayers;
 	}
@@ -75,6 +78,7 @@ public class OpenMatch extends DomainEntity {
 	}
 
 	@NotNull
+	@Min(0)
 	public Integer getMaxPlayers() {
 		return maxPlayers;
 	}

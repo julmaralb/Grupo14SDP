@@ -79,6 +79,7 @@ public class RentingCustomerController extends AbstractController {
 		reservation = reservationService.findOne(reservationId);
 		price = displayPriceService.calculateRentingPrice(sportEquipment
 				.getPrice());
+		renting.setDay(reservation.getDay());
 		renting.setStart(reservation.getStart());
 		renting.setEnd(reservation.getEnd());
 		renting.setSportEquipment(sportEquipment);

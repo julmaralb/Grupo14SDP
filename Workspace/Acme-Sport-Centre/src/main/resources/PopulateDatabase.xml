@@ -570,5 +570,15 @@
 		<property name="courtPrice" value="12.50" />
 		<property name="tax" value="21.0" />
 	</bean>
+	
+	<!-- Reports -->
+	
+	<bean id="report1" class="domain.Report">
+		<property name="title" value="report1Title" />
+		<property name="description" value="report1Description" />
+		<property name="moment" value="03/03/2016" />
+		<property name="supervisor" ref="supervisor1" />
+		<property name="court" ref="court1" />
+	</bean>
 
 </beans>

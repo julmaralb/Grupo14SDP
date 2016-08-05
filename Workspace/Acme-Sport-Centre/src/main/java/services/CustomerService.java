@@ -27,6 +27,9 @@ public class CustomerService {
 
 	// Supporting services ----------------------------------------------------
 
+	@Autowired
+	private ActorService actorService;
+
 	// Constructors -----------------------------------------------------------
 
 	// Simple CRUD methods ----------------------------------------------------
@@ -62,6 +65,8 @@ public class CustomerService {
 	}
 
 	public void save(Customer customer) {
+		Assert.notNull(customer.getUserAccount().getUsername());
+		Assert.notNull(customer.getUserAccount().getPassword());
 		Assert.notNull(customer);
 		Md5PasswordEncoder encoder;
 		encoder = new Md5PasswordEncoder();
@@ -70,6 +75,12 @@ public class CustomerService {
 		password = customer.getUserAccount().getPassword();
 		password = encoder.encodePassword(password, null);
 		customer.getUserAccount().setPassword(password);
+
+		if (customer.getId() == 0) {
+			Assert.isTrue(!actorService.checkAuthority("ADMIN")
+					&& !actorService.checkAuthority("SUPERVISOR")
+					&& !actorService.checkAuthority("CUSTOMER"));
+		}
 
 		customerRepository.save(customer);
 	}

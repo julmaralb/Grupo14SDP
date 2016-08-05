@@ -14,12 +14,6 @@
 
 	<fieldset>
   	<legend><spring:message code="customer.personalInfo"/>:</legend>
-	<form:label path="name">
-		<spring:message code="customer.name" />:  
-	</form:label>
-	<form:input path="name" />
-	<form:errors cssClass="error" path="name" />
-	<br></br>
 	
 	<acme:textbox code="customer.name" path="name"/><br/>
 	<acme:textbox code="customer.surname" path="surname"/><br/>

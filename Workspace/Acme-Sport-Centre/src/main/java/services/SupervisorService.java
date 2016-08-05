@@ -25,6 +25,9 @@ public class SupervisorService {
 	private SupervisorRepository supervisorRepository;
 
 	// Supporting services ----------------------------------------------------
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -35,6 +38,7 @@ public class SupervisorService {
 	// Simple CRUD methods ----------------------------------------------------
 
 	public Supervisor create() {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		Supervisor result;
 
 		result = new Supervisor();

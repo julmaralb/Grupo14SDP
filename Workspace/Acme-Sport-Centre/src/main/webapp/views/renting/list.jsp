@@ -16,6 +16,8 @@
 	
 	<acme:column code="renting.totalPrice" property="totalPrice"/>
 	
+	<acme:column code="renting.day" property="day"/>
+	
 	<acme:column code="renting.start" property="start"/>
 	
 	<acme:column code="renting.end" property="end"/>
