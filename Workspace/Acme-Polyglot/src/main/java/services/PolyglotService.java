@@ -74,11 +74,16 @@ public class PolyglotService {
 	}
 
 	public void save(Polyglot polyglot) {
+		Assert.notNull(polyglot.getUserAccount().getUsername());
+		Assert.notNull(polyglot.getUserAccount().getPassword());
 		Assert.notNull(polyglot);
 		Md5PasswordEncoder encoder;
 		encoder = new Md5PasswordEncoder();
 
 		if (polyglot.getId() == 0) {
+			Assert.isTrue(!actorService.checkAuthority("ADMIN")
+					&& !actorService.checkAuthority("AGENT")
+					&& !actorService.checkAuthority("POLYGLOT"));
 
 			String password;
 			password = polyglot.getUserAccount().getPassword();

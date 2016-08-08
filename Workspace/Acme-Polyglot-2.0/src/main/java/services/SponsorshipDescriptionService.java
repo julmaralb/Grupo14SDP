@@ -65,12 +65,18 @@ public class SponsorshipDescriptionService {
 
 	public void save(SponsorshipDescription sponsorshipDescription) {
 		Assert.notNull(sponsorshipDescription);
+		Agent principal;
+		principal = agentService.findByPrincipal();
+		Assert.isTrue(sponsorshipDescription.getSponsorship().getAgent().equals(principal));
 
 		sponsorshipDescriptionRepository.save(sponsorshipDescription);
 	}
 
 	public void delete(SponsorshipDescription sponsorshipDescription) {
 		Assert.notNull(sponsorshipDescription);
+		Agent principal;
+		principal = agentService.findByPrincipal();
+		Assert.isTrue(sponsorshipDescription.getSponsorship().getAgent().equals(principal));
 
 		sponsorshipDescriptionRepository.delete(sponsorshipDescription);
 

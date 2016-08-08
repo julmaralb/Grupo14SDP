@@ -22,6 +22,9 @@ public class LanguageService {
 	private LanguageRepository languageRepository;
 
 	// Supporting services ----------------------------------------------------
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -32,6 +35,7 @@ public class LanguageService {
 	// Simple CRUD methods ----------------------------------------------------
 
 	public Language create() {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		Language result;
 
 		result = new Language();
@@ -60,13 +64,17 @@ public class LanguageService {
 	}
 
 	public void save(Language language) {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		Assert.notNull(language);
 
 		languageRepository.save(language);
 	}
 
 	public void delete(Language language) {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		Assert.notNull(language);
+
+		Assert.isTrue(language.getLanguageExchanges().size() == 0);
 
 		languageRepository.delete(language);
 

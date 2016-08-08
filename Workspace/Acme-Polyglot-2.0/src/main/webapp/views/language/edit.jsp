@@ -11,6 +11,8 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	<form:hidden path="counter"/>
+	<form:hidden path="languageExchanges"/>
+	<form:hidden path="languageDescriptions"/>
 	
 	<acme:textbox code="language.code" path="code"/><br/>
 	

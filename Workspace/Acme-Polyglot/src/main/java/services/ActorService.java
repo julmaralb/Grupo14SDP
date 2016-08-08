@@ -1,5 +1,7 @@
 package services;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.ActorRepository;
+import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
@@ -52,6 +55,29 @@ public class ActorService {
 		result = actorRepository.findByPrincipal(userAccount.getId());
 		assert result != null;
 
+		return result;
+	}
+	
+	public boolean checkAuthority(String authority){
+		boolean result;
+		Actor actor;
+		Collection<Authority> authorities;
+		result = false;
+
+		try {
+			actor = this.findByPrincipal();
+			authorities = actor.getUserAccount().getAuthorities();
+			
+			for (Authority a : authorities) {
+				if(a.getAuthority().equals(authority.toUpperCase())){
+					result = true;
+					break;
+				}
+			}
+		} catch (IllegalArgumentException e) {
+			result = false;
+		}
+		
 		return result;
 	}
 }

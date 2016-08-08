@@ -87,6 +87,10 @@ public class SponsorshipService {
 
 	public void delete(Sponsorship sponsorship) {
 		Assert.notNull(sponsorship);
+		Agent principal;
+		
+		principal = agentService.findByPrincipal();
+		Assert.isTrue(sponsorship.getAgent().equals(principal));
 
 		sponsorshipRepository.delete(sponsorship);
 

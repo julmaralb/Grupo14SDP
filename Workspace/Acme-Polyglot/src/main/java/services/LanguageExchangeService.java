@@ -152,6 +152,7 @@ public class LanguageExchangeService {
 
 		principal = polyglotService.findByPrincipal();
 		participants = languageExchange.getParticipants();
+		Assert.isTrue(!participants.contains(principal));
 		languageExchanges = principal.getParticipatedLanguageExchanges();
 
 		participants.add(principal);

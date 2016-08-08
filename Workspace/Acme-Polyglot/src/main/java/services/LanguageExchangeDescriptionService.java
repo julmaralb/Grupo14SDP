@@ -65,12 +65,18 @@ public class LanguageExchangeDescriptionService {
 
 	public void save(LanguageExchangeDescription languageExchangeDescription) {
 		Assert.notNull(languageExchangeDescription);
+		Polyglot principal;
+		principal = polyglotService.findByPrincipal();
+		Assert.isTrue(languageExchangeDescription.getLanguageExchange().getOwner().equals(principal));
 
 		languageExchangeDescriptionRepository.save(languageExchangeDescription);
 	}
 
 	public void delete(LanguageExchangeDescription languageExchangeDescription) {
 		Assert.notNull(languageExchangeDescription);
+		Polyglot principal;
+		principal = polyglotService.findByPrincipal();
+		Assert.isTrue(languageExchangeDescription.getLanguageExchange().getOwner().equals(principal));
 
 		languageExchangeDescriptionRepository
 				.delete(languageExchangeDescription);
