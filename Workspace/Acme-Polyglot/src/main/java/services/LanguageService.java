@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -10,6 +11,7 @@ import org.springframework.util.Assert;
 
 import repositories.LanguageRepository;
 import domain.Language;
+import domain.LanguageDescription;
 import domain.LanguageExchange;
 
 @Service
@@ -37,8 +39,12 @@ public class LanguageService {
 	public Language create() {
 		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		Language result;
+		Collection<LanguageDescription> languageDescriptions;
 
 		result = new Language();
+		languageDescriptions = new ArrayList<LanguageDescription>();
+		
+		result.setLanguageDescriptions(languageDescriptions);
 
 		return result;
 	}

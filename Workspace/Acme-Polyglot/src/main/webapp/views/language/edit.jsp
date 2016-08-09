@@ -18,7 +18,7 @@
 	
 	<br></br>
 	<acme:submit name="save" code="language.save"/>
-	<acme:cancel code="language.cancel" url="/language/adminsitrator/list.do"/>
+	<acme:cancel code="language.cancel" url="/language/administrator/list.do"/>
 	<acme:delete code="language.delete" codeConfirm="language.confirm.delete" condition="${language.id != 0}"/>
 	
 </form:form>

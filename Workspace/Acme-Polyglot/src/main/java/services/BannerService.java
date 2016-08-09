@@ -27,6 +27,9 @@ public class BannerService {
 
 	@Autowired
 	private AgentService agentService;
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -37,6 +40,7 @@ public class BannerService {
 	// Simple CRUD methods ----------------------------------------------------
 
 	public Banner create() {
+		Assert.isTrue(actorService.checkAuthority("AGENT"));
 		Banner result;
 
 		result = new Banner();
@@ -66,12 +70,16 @@ public class BannerService {
 
 	public void save(Banner banner) {
 		Assert.notNull(banner);
+		Assert.isTrue(actorService.checkAuthority("AGENT"));
+		Assert.isTrue(banner.getSponsorship().getAgent().equals(actorService.findByPrincipal()));
 
 		bannerRepository.save(banner);
 	}
 
 	public void delete(Banner banner) {
 		Assert.notNull(banner);
+		Assert.isTrue(actorService.checkAuthority("AGENT"));
+		Assert.isTrue(banner.getSponsorship().getAgent().equals(actorService.findByPrincipal()));
 
 		bannerRepository.delete(banner);
 
