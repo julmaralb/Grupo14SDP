@@ -43,8 +43,12 @@ public class FolderService {
 
 	public Folder create() {
 		Folder result;
+		Collection<Message> messages;
 
 		result = new Folder();
+		messages = new ArrayList<Message>();
+		
+		result.setMessages(messages);
 
 		return result;
 	}
@@ -80,12 +84,14 @@ public class FolderService {
 
 	public void delete(Folder folder) {
 		Assert.notNull(folder);
+		Assert.isTrue(folder.getIsSystem()== false);
 		Collection<Message> messages;
 		Folder trashFolder;
 		Actor principal;
 
 		messages = folder.getMessages();
 		principal = actorService.findByPrincipal();
+		Assert.isTrue(folder.getIsSystem()== false);
 		trashFolder = findByNameAndActorId("Trash Box", principal.getId());
 		for (Message m : messages) {
 			m.setFolder(trashFolder);
@@ -101,11 +107,9 @@ public class FolderService {
 
 		Collection<Folder> result;
 		Collection<String> names;
-		Collection<Message> messages;
 
 		result = new ArrayList<Folder>();
 		names = new ArrayList<String>();
-		messages = new ArrayList<Message>();
 
 		names.add("In Box");
 		names.add("Out Box");
@@ -120,7 +124,6 @@ public class FolderService {
 			temp.setIsSystem(true);
 			temp.setName(string);
 			temp.setActor(actor);
-			temp.setMessages(messages);
 
 			result.add(temp);
 		}

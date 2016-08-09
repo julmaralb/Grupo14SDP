@@ -128,6 +128,7 @@ public class MessageService {
 		Folder senderOutFolder;
 		long milliseconds;
 		Date moment;
+		Assert.notNull(message.getRecipient());
 
 		milliseconds = System.currentTimeMillis() - 100;
 		moment = new Date(milliseconds);
@@ -232,6 +233,7 @@ public class MessageService {
 		Date moment;
 
 		languageExchange = languageExchangeService.findOne(languageExchangeId);
+		Assert.notNull(message);
 		exchangeName = languageExchange.getName();
 		participants = languageExchange.getParticipants();
 		principal = actorService.findByPrincipal();
@@ -240,7 +242,6 @@ public class MessageService {
 			Message temp = create();
 			Folder folder = folderService.findByExchangeNameAndActorId(
 					exchangeName, p.getId());
-			System.out.println(folder);
 			Collection<Message> folderMessages;
 
 			milliseconds = System.currentTimeMillis() - 100;

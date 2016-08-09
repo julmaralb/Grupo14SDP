@@ -15,6 +15,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
+import domain.Folder;
 import domain.LanguageExchange;
 import domain.Polyglot;
 import forms.PolyglotForm;
@@ -32,6 +33,9 @@ public class PolyglotService {
 
 	@Autowired
 	private ActorService actorService;
+	
+	@Autowired
+	private FolderService folderService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -89,6 +93,10 @@ public class PolyglotService {
 			password = polyglot.getUserAccount().getPassword();
 			password = encoder.encodePassword(password, null);
 			polyglot.getUserAccount().setPassword(password);
+			Collection<Folder> folders;
+
+			folders = folderService.initializeFolders(polyglot);
+			polyglot.setFolders(folders);
 		}
 		polyglotRepository.save(polyglot);
 	}
@@ -177,8 +185,9 @@ public class PolyglotService {
 				.equals(polyglotForm.getSecondPassword())) {
 			throw new IllegalArgumentException("Passwords must match");
 		}
-		if(polyglotForm.getEmail() == "" && polyglotForm.getPhone() == ""){
-			throw new IllegalArgumentException("Must have a contact mean either phone or email");
+		if (polyglotForm.getEmail() == "" && polyglotForm.getPhone() == "") {
+			throw new IllegalArgumentException(
+					"Must have a contact mean either phone or email");
 		}
 		return result;
 	}
