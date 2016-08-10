@@ -61,6 +61,9 @@
 		
 		<bean class="converters.LanguageDescriptionToStringConverter" />
 		<bean class="converters.StringToLanguageDescriptionConverter" />
+		
+		<bean class="converters.SponsorshipDescriptionToStringConverter" />
+		<bean class="converters.StringToSponsorshipDescriptionConverter" />
 	</util:list>
 	
 </beans>

@@ -15,10 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AgentService;
 import services.BannerService;
+import services.LanguageService;
 import services.SponsorshipService;
 import controllers.AbstractController;
 import domain.Agent;
 import domain.Banner;
+import domain.Language;
 import domain.Sponsorship;
 
 @Controller
@@ -35,6 +37,9 @@ public class BannerAgentController extends AbstractController {
 
 	@Autowired
 	private AgentService agentService;
+	
+	@Autowired
+	private LanguageService languageService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -132,10 +137,13 @@ public class BannerAgentController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Banner banner, String message) {
 		ModelAndView result;
 		Collection<Sponsorship> sponsorships;
+		Collection<Language> languages;
 
 		result = new ModelAndView("banner/edit");
+		languages = languageService.findAll();
 		sponsorships = sponsorshipService.findAllByPrincipal();
 		result.addObject("sponsorships", sponsorships);
+		result.addObject("languages", languages);
 		result.addObject("banner", banner);
 		result.addObject("message", message);
 

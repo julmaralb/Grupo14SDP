@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -61,7 +62,7 @@ public class Language extends DomainEntity {
 	}
 
 	@Valid
-	@OneToMany(mappedBy = "language")
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "language")
 	public Collection<LanguageDescription> getLanguageDescriptions() {
 		return languageDescriptions;
 	}

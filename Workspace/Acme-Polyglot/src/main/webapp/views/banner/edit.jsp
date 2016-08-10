@@ -11,7 +11,7 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	
-	<acme:textbox code="banner.code" path="code"/><br/>
+	<acme:selectWithId items="${languages}" itemLabel="code" code="banner.code" path="code" itemValue="code"/><br/>
 	<acme:textbox code="banner.photo" path="photo"/><br/>
 	<acme:select items="${sponsorships}" itemLabel="name" code="banner.sponsorship" path="sponsorship"/>
 	

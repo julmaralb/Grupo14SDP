@@ -55,7 +55,7 @@ public class Sponsorship extends DomainEntity {
 	}
 
 	@Valid
-	@OneToMany(mappedBy = "sponsorship")
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "sponsorship")
 	public Collection<SponsorshipDescription> getSponsorshipDescriptions() {
 		return sponsorshipDescriptions;
 	}

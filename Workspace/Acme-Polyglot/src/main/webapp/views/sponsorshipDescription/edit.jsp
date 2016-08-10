@@ -20,7 +20,7 @@
 	
 	<br></br>
 	<acme:submit name="save" code="sponsorshipDescription.save"/>
-	<acme:cancel code="sponsorshipDescription.cancel" url="/languageExchange/agent/list.do"/>
+	<acme:cancel code="sponsorshipDescription.cancel" url="/sponsorship/agent/list.do"/>
 	<acme:delete code="sponsorshipDescription.delete" codeConfirm="sponsorshipDescription.confirm.delete" condition="${sponsorshipDescription.id != 0}"/>
 	
 </form:form>

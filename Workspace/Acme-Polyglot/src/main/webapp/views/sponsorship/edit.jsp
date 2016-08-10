@@ -12,6 +12,7 @@
 	<form:hidden path="version"/>
 	<form:hidden path="agent"/>
 	<form:hidden path="banners"/>
+	<form:hidden path="sponsorshipDescriptions"/>
 	
 	<acme:textbox code="sponsorship.name" path="name"/><br/>
 	<acme:select items="${languageExchanges}" itemLabel="name" code="sponsorship.languageExchange" path="languageExchange"/>
