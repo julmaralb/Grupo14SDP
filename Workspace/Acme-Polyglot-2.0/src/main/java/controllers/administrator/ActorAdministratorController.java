@@ -65,4 +65,19 @@ public class ActorAdministratorController extends AbstractController {
 
 		return result;
 	}
+	
+	@RequestMapping(value = "/unban", method = RequestMethod.GET)
+	public ModelAndView unban(@RequestParam int actorId) {
+		ModelAndView result;
+
+		Actor actor;
+
+		actor = actorService.findOne(actorId);
+
+		administratorService.enableAccount(actor);
+
+		result = new ModelAndView("redirect:/actor/administrator/list.do");
+
+		return result;
+	}
 }

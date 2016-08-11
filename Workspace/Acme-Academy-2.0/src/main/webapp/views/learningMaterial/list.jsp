@@ -24,6 +24,7 @@
 
 	<acme:column code="learningMaterial.title" property="title" sortable="true"/>
 	<acme:column code="learningMaterial.notes" property="notes"/>
+	<acme:column code="learningMaterial.keywords" property="keywords"/>
 
 	<spring:message code="learningMaterial.contents" var="contentsHeader" />
 	<display:column title="${contentsHeader}" sortable="false">

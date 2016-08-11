@@ -25,7 +25,9 @@
 	
 	<acme:refColumn ref="keyword/administrator/listByActor.do?actorId=${row.id}" code="actor.keywords"/>
 	
-	<acme:refConditionColumn ref="actor/administrator/ban.do?actorId=${row.id}" code="actor.ban" condition="${true}"/>
+	<acme:refConditionColumn ref="actor/administrator/ban.do?actorId=${row.id}" code="actor.ban" condition="${row.userAccount.isNotBanned == true}"/>
+	
+	<acme:refConditionColumn ref="actor/administrator/unban.do?actorId=${row.id}" code="actor.unban" condition="${row.userAccount.isNotBanned == false}"/>
 			
 </display:table>
 <acme:cancel url="/administrator/dashboard.do" code="actor.back"/>

@@ -11,8 +11,8 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	
-	<acme:textbox code="subject.code" path="code" readonly="true"/>
-	<acme:textbox code="subject.title" path="title"/>
+	<acme:textbox code="subject.code" path="code" readonly="true"/><br/>
+	<acme:textbox code="subject.title" path="title"/><br/>
 	<acme:select items="${lecturers}" itemLabel="userAccount.username" code="subject.lecturer" path="lecturer"/>
 	
 	<br></br>

@@ -51,6 +51,7 @@ public class PolyglotService {
 
 		userAccount = createUserAccount();
 		result = new Polyglot();
+		userAccount.setIsNotBanned(true);
 
 		result.setUserAccount(userAccount);
 

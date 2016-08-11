@@ -25,6 +25,13 @@
 	pagesize="5" class="displaytag">
 
 	<acme:column code="languageExchange.name" property="name" sortable="true"/>
+	
+	<spring:message code="languageExchange.languages" var="languageHeader" />
+	<display:column title="${languageHeader}">
+	<jstl:forEach items="${row.languages}" var="l">
+	<jstl:out value="${l.code}"/>
+	</jstl:forEach>
+	</display:column>
 
 	<acme:column code="languageExchange.registrationDate" property="registrationDate" sortable="true"/>
 	

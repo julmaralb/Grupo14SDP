@@ -11,9 +11,9 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	
-	<acme:textbox code="group.name" path="name"/>
-	<acme:textarea code="group.description" path="description"/>	
-	<acme:textbox code="group.academicYear" path="academicYear"/>
+	<acme:textbox code="group.name" path="name"/><br/>
+	<acme:textarea code="group.description" path="description"/><br/>
+	<acme:textbox code="group.academicYear" path="academicYear"/><br/>
 	<acme:select items="${subjects}" itemLabel="title" code="group.subject" path="subject"/>
 	<br></br>
 	

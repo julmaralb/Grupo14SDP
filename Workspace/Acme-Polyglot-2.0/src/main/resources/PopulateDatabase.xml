@@ -21,6 +21,7 @@
 	<bean id="userAccount1" class="security.UserAccount">
 		<property name="username" value="admin" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="isNotBanned" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -33,6 +34,7 @@
 	<bean id="userAccount2" class="security.UserAccount">
 		<property name="username" value="polyglot1" />
 		<property name="password" value="d9cd28132198669ae8eee77dfc7beb39" />
+		<property name="isNotBanned" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -45,6 +47,7 @@
 	<bean id="userAccount3" class="security.UserAccount">
 		<property name="username" value="polyglot2" />
 		<property name="password" value="a4e8bc2431a2e9e0e1c485e953021164" />
+		<property name="isNotBanned" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -57,6 +60,7 @@
 	<bean id="userAccount4" class="security.UserAccount">
 		<property name="username" value="polyglot3" />
 		<property name="password" value="9f4d563b32e397143a13767df6da2832" />
+		<property name="isNotBanned" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -69,6 +73,7 @@
 	<bean id="userAccount5" class="security.UserAccount">
 		<property name="username" value="agent1" />
 		<property name="password" value="83a87fd756ab57199c0bb6d5e11168cb" />
+		<property name="isNotBanned" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -81,6 +86,7 @@
 	<bean id="userAccount6" class="security.UserAccount">
 		<property name="username" value="agent2" />
 		<property name="password" value="b1a4a6b01cc297d4677c4ca6656e14d7" />
+		<property name="isNotBanned" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">

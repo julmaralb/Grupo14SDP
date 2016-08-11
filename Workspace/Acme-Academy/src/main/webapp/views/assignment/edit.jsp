@@ -11,11 +11,11 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	
-	<acme:textbox code="assignment.title" path="title"/>
-	<acme:textarea code="assignment.description" path="description"/>
-	<acme:textbox code="assignment.points" path="points"/>
-	<acme:textbox code="assignment.opening" path="opening"/>
-	<acme:textbox code="assignment.deadline" path="deadline"/>
+	<acme:textbox code="assignment.title" path="title"/><br/>
+	<acme:textarea code="assignment.description" path="description"/><br/>
+	<acme:textbox code="assignment.points" path="points"/><br/>
+	<acme:textbox code="assignment.opening" path="opening"/><br/>
+	<acme:textbox code="assignment.deadline" path="deadline"/><br/>
 	<acme:select items="${groups}" itemLabel="name" code="assignment.group" path="group"/>
 	<br></br>
 	

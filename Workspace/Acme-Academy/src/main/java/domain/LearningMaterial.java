@@ -58,6 +58,8 @@ public class LearningMaterial extends DomainEntity {
 	}
 
 	@URL
+	@NotNull
+	@NotBlank
 	public String getContents() {
 		return contents;
 	}

@@ -11,11 +11,10 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	
-	<acme:textbox code="learningMaterial.title" path="title"/>
-	<acme:textbox code="learningMaterial.notes" path="notes"/>
-	<br></br>
-	<acme:textarea code="learningMaterial.contents" path="contents"/>
-	
+	<acme:textbox code="learningMaterial.title" path="title"/><br/>
+	<acme:textbox code="learningMaterial.notes" path="notes"/><br/>
+	<acme:textarea code="learningMaterial.contents" path="contents"/><br/>
+	<acme:textarea code="learningMaterial.keywords" path="keywords"/><br/>
 	<acme:select items="${groups}" itemLabel="name" code="learningMaterial.groups" path="group"/>
 	
 	<br></br>

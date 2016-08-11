@@ -80,7 +80,11 @@ public class AdministratorService {
 	// Other business methods -------------------------------------------------
 
 	public void disableAccount(Actor actor) {
+		actor.getUserAccount().setIsNotBanned(false);
+	}
 
+	public void enableAccount(Actor actor) {
+		actor.getUserAccount().setIsNotBanned(true);
 	}
 
 	public Collection<Object[]> languagesAndCountOfExchangesInvolved() {
@@ -134,12 +138,11 @@ public class AdministratorService {
 
 		return result;
 	}
-	
+
 	public Collection<Object[]> meanMinMaxMessagesPerFolder() {
 		Collection<Object[]> result;
 
-		result = administratorRepository
-				.meanMinMaxMessagesPerFolder();
+		result = administratorRepository.meanMinMaxMessagesPerFolder();
 
 		return result;
 	}

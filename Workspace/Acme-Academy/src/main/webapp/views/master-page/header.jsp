@@ -129,7 +129,9 @@
 			        (<security:authentication property="principal.username" />)
 				</a>
 				<ul>
-					<li class="arrow"></li>					
+					<li class="arrow"></li>	
+					<li><a href="socialIdentity/create.do"><spring:message code="master.page.socialIdentity.create" /></a></li>
+					<li><a href="socialIdentity/list.do"><spring:message code="master.page.socialIdentity.list" /></a></li>				
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
@@ -143,7 +145,9 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>					
+					<li><a href="administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>	
+					<li><a href="socialIdentity/create.do"><spring:message code="master.page.socialIdentity.create" /></a></li>
+					<li><a href="socialIdentity/list.do"><spring:message code="master.page.socialIdentity.list" /></a></li>				
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
