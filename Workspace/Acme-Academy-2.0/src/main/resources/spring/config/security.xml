@@ -55,6 +55,8 @@
 		<security:intercept-url pattern="/lecturer/**" access="permitAll" />
 		<security:intercept-url pattern="/subject/listLecturers.do" access="permitAll" />
 		<security:intercept-url pattern="/subject/list.do" access="permitAll" />
+		<security:intercept-url pattern="/subject/listSyllabi.do" access="permitAll" />
+		<security:intercept-url pattern="/bibliography/listBibliographies.do" access="permitAll" />
 		<security:intercept-url pattern="/socialIdentity/**" access="isAuthenticated()" />
 		
 		<security:intercept-url pattern="/subject/lecturer/**" access="hasRole('LECTURER')" />

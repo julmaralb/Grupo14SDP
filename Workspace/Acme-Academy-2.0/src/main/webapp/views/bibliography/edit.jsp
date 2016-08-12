@@ -12,14 +12,10 @@
 	<form:hidden path="version"/>
 	<form:hidden path="counter"/>
 	
-	<acme:textbox code="bibliography.title" path="title"/>
-	<br />
-	<acme:textarea code="bibliography.authors" path="authors"/>
-	<br />
-	<acme:textbox code="bibliography.locator" path="locator"/>
-	<br />
+	<acme:textbox code="bibliography.title" path="title"/><br/>
+	<acme:textarea code="bibliography.authors" path="authors"/><br/>
+	<acme:textbox code="bibliography.locator" path="locator"/><br/>
 	<acme:textbox code="bibliography.URL" path="URL"/>
-	<br />
 	
 	<br></br>
 	<acme:submit name="save" code="bibliography.save"/>

@@ -12,9 +12,9 @@
 	<form:hidden path="version"/>
 	<form:hidden path="actor"/>
 	
-	<acme:textbox code="socialIdentity.name" path="name"/>
-	<acme:textbox code="socialIdentity.nickname" path="nickname"/>
-	<acme:textbox code="socialIdentity.homePage" path="homePage"/>
+	<acme:textbox code="socialIdentity.name" path="name"/><br/>
+	<acme:textbox code="socialIdentity.nickname" path="nickname"/><br/>
+	<acme:textbox code="socialIdentity.homePage" path="homePage"/><br/>
 	<acme:textbox code="socialIdentity.email" path="email"/>
 	
 	<br></br>

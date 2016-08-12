@@ -11,8 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.LecturerService;
 import services.SubjectService;
+import services.SyllabusService;
 import domain.Lecturer;
 import domain.Subject;
+import domain.Syllabus;
 
 @Controller
 @RequestMapping("/subject")
@@ -25,6 +27,9 @@ public class SubjectController extends AbstractController {
 
 	@Autowired
 	private SubjectService subjectService;
+	
+	@Autowired
+	private SyllabusService syllabusService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -60,6 +65,21 @@ public class SubjectController extends AbstractController {
 		result = new ModelAndView("lecturer/list");
 		result.addObject("lecturers", lecturers);
 		result.addObject("requestURI", "lecturer/list.do");
+
+		return result;
+	}
+	
+	@RequestMapping(value = "/listSyllabi", method = RequestMethod.GET)
+	public ModelAndView listSyllabi(@RequestParam int subjectId) {
+
+		ModelAndView result;
+		Collection<Syllabus> syllabi;
+
+		syllabi = syllabusService.findBySubjectId(subjectId);
+
+		result = new ModelAndView("syllabus/list");
+		result.addObject("syllabi", syllabi);
+		result.addObject("requestURI", "subject/listSyllabi.do");
 
 		return result;
 	}

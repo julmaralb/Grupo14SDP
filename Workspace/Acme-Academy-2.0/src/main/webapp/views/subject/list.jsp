@@ -32,9 +32,7 @@
 	<acme:refColumn ref="subject/lecturer/display.do?subjectId=${row.id}" code="subject.display"/>
 	</security:authorize>
 	
-	<security:authorize access="hasRole('LECTURER')">
-	<acme:refColumn ref="subject/lecturer/listSyllabi.do?subjectId=${row.id}" code="subject.syllabi"/>
-	</security:authorize>
+	<acme:refColumn ref="subject/listSyllabi.do?subjectId=${row.id}" code="subject.syllabi"/>
 	
 	<security:authorize access="hasRole('ADMIN')">
 	<acme:refColumn ref="subject/administrator/edit.do?subjectId=${row.id}" code="subject.edit"/>

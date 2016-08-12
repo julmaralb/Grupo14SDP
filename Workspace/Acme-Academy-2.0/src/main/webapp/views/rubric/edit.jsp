@@ -13,17 +13,13 @@
 	<form:hidden path="instantiated"/>
 	<form:hidden path="number"/>
 	
-	
-	
-	<acme:textbox code="rubric.explanation" path="explanation"/>
-	<br />
-	<acme:textbox code="rubric.percentage" path="percentage"/>
-	<br />
+	<acme:textbox code="rubric.explanation" path="explanation"/><br/>
+	<acme:textbox code="rubric.percentage" path="percentage"/><br/>
 	<acme:select items="${assignments}" itemLabel="title" code="rubric.assignments" path="assignment"/>
 	
 	<br></br>
 	<acme:submit name="save" code="rubric.save"/>
-	<acme:cancel code="rubric.cancel" url="/rubric/list.do"/>
+	<acme:cancel code="rubric.cancel" url="/group/lecturer/list.do"/>
 	<acme:delete code="rubric.delete" codeConfirm="rubric.confirm.delete" condition="${rubric.id != 0}"/>
 	
 </form:form>

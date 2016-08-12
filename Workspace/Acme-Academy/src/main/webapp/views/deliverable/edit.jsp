@@ -14,8 +14,7 @@
 	<form:hidden path="assignment"/>
 	<form:hidden path="deliverableVersion"/>
 	
-	<acme:textbox code="deliverable.moment" path="moment" readonly="true"/>
-	<br></br>
+	<acme:textbox code="deliverable.moment" path="moment" readonly="true"/><br/>
 	<acme:textarea code="deliverable.contents" path="contents"/>
 	
 	<input type="hidden" name= "assignmentId" value="${assignmentId}"/>

@@ -140,4 +140,13 @@ public class SyllabusService {
 
 		return result;
 	}
+	
+	public Collection<Syllabus> findBySubjectId(int subjectId) {
+		Collection<Syllabus> result;
+
+		result = syllabusRepository.findBySubjectId(subjectId);
+
+		return result;
+	}
+	
 }

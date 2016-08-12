@@ -21,16 +21,16 @@
 
 	<fieldset>
   	<legend><spring:message code="student.personalInfo"/>:</legend>
-	<acme:textbox code="student.name" path="name"/>
-	<acme:textbox code="student.surname" path="surname"/>
-	<acme:textbox code="student.email" path="email"/>
+	<acme:textbox code="student.name" path="name"/><br/>
+	<acme:textbox code="student.surname" path="surname"/><br/>
+	<acme:textbox code="student.email" path="email"/><br/>
 	<acme:textbox code="student.phone" path="phone"/>	
 	</fieldset>
 
 	<fieldset>
   	<legend><spring:message code="student.accountInfo"/>:</legend>
-  	<acme:textbox code="student.username" path="username"/>
-  	<acme:password code="student.password" path="password"/>
+  	<acme:textbox code="student.username" path="username"/><br/>
+  	<acme:password code="student.password" path="password"/><br/>
   	<acme:password code="student.secondPassword" path="secondPassword"/>
 	</fieldset>
 	

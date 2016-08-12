@@ -13,11 +13,10 @@
 	<form:hidden path="deliverable"/>
 	<form:hidden path="number"/>
 	
-	<acme:textbox code="assessment.explanation" path="explanation"/>
-	<br />
-	<acme:textbox code="assessment.points" path="points"/>
-	<br />
-	
+	<acme:textbox code="assessment.explanation" path="explanation"/><br/>
+	<acme:textbox code="assessment.points" path="points"/><br/>
+
+	<spring:message code="assessment.rubric" />
 	<select name="rubricId" >
 	<jstl:forEach items="${rubrics}" var="r">
     	<option value="${r.id}"><jstl:out value="${r.explanation}"/></option>
@@ -29,7 +28,7 @@
 	
 	<br></br>
 	<acme:submit name="save" code="assessment.save"/>
-	<acme:cancel code="assessment.cancel" url="/assessment/list.do"/>
+	<acme:cancel code="assessment.cancel" url="/group/lecturer/list.do"/>
 	<acme:delete code="assessment.delete" codeConfirm="assessment.confirm.delete" condition="${assessment.id != 0}"/>
 	
 </form:form>

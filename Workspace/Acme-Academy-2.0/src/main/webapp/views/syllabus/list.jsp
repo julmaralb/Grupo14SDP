@@ -23,18 +23,22 @@
 	pagesize="5" class="displaytag">
 
 	<acme:column code="syllabus.academicYear" property="academicYear" sortable="true"/>
-	
+	<acme:column code="syllabus.subject" property="subject.title"/>
 	<acme:column code="syllabus.summary" property="summary"/>
-	
 	<acme:column code="syllabus.goals" property="goals"/>
-	
 	<acme:column code="syllabus.prerequisites" property="prerequisites"/>
-	
 	<acme:column code="syllabus.evalAndGradPolicies" property="evaluationAndGradingPolicies"/>
 	
-	<display:column> <a href="syllabus/lecturer/listBibliographies.do?syllabusId=<jstl:out value="${row.id}"/>"><spring:message code="syllabus.bibliographies"/></a></display:column>
+	<acme:refColumn ref="bibliography/listBibliographies.do?syllabusId=${row.id}" code="syllabus.bibliographies"/>
 	
-	<display:column> <a href="syllabus/lecturer/edit.do?syllabusId=<jstl:out value="${row.id}"/>"><spring:message code="syllabus.edit"/></a></display:column>
+	<security:authorize access="hasRole('LECTURER')">
+	<acme:refColumn ref="syllabus/lecturer/edit.do?syllabusId=${row.id}" code="syllabus.edit"/>
+	</security:authorize>
 	
 </display:table>
-<acme:cancel url="subject/lecturer/list.do" code="lecturer.back"/>
+
+<security:authorize access="hasRole('LECTURER')">
+<a href="syllabus/lecturer/create.do"><spring:message code="syllabus.create"/> </a>
+</security:authorize><br/>
+
+<acme:cancel url="/" code="lecturer.back"/>
