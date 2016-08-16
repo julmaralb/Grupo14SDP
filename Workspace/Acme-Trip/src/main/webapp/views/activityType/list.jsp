@@ -23,8 +23,17 @@
 	pagesize="5" class="displaytag">
 
 	<acme:column code="activityType.name" property="name" sortable="true"/>
+	
+	<security:authorize access="hasRole('ADMIN')">
+	<acme:refColumn ref="activityType/administrator/edit.do?activityTypeId=${row.id}" code="activityType.edit"/>
+	</security:authorize>
 
 	<acme:refColumn ref="trip/listByActivityType.do?activityTypeId=${row.id}" code="activityType.trips"/>
 			
 </display:table>
+
+<security:authorize access="hasRole('ADMIN')">
+<a href="activityType/administrator/create.do?"><spring:message code="activityType.create"></spring:message> </a> <br/>
+</security:authorize><br/>
+
 <acme:cancel url="/" code="activityType.back"/>
