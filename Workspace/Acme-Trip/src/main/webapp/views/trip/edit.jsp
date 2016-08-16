@@ -27,7 +27,7 @@
 	
 	<br></br>
 	<acme:submit name="save" code="trip.save"/>
-	<acme:cancel code="trip.cancel" url="/trip/list.do"/>
+	<acme:cancel code="trip.cancel" url="/trip/user/list.do"/>
 	<acme:delete code="trip.delete" codeConfirm="trip.confirm.delete" condition="${trip.id != 0}"/>
 	
 </form:form>

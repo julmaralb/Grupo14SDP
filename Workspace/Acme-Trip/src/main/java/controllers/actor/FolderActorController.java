@@ -112,7 +112,7 @@ public class FolderActorController extends AbstractController {
 			folderService.delete(folder);
 			result = new ModelAndView("redirect:/folder/actor/list.do");
 		} catch (Throwable oops) {
-			result = createEditModelAndView(folder, "folder.delete.error");
+			result = createEditModelAndView(folder, oops.toString());
 		}
 
 		return result;

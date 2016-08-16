@@ -41,4 +41,4 @@
 	</security:authorize>
 				
 </display:table>
-<acme:cancel url="/" code="slot.back"/>
+<acme:cancel url="/trip/list.do" code="slot.back"/>

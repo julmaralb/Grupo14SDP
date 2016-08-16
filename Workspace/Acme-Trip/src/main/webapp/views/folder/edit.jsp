@@ -11,6 +11,7 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	<form:hidden path="actor"/>
+	<form:hidden path="messages"/>
 	
 	<acme:textbox code="folder.name" path="name" />
 	

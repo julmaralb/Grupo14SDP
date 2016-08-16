@@ -141,7 +141,7 @@ public class TripUserController extends AbstractController {
 
 		tripService.subscribeToTrip(trip);
 
-		result = new ModelAndView("redirect:/trip/user/list.do");
+		result = new ModelAndView("redirect:/trip/list.do");
 
 		return result;
 	}

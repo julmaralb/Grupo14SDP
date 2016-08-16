@@ -22,7 +22,7 @@
 	
 	<br></br>
 	<acme:submit name="save" code="slot.save"/>
-	<acme:cancel code="slot.cancel" url="/trip/list.do"/>
+	<acme:cancel code="slot.cancel" url="/trip/user/list.do"/>
 	<acme:delete code="slot.delete" codeConfirm="slot.confirm.delete" condition="${slot.id != 0}"/>
 	
 </form:form>

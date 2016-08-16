@@ -94,8 +94,9 @@ public class TripService {
 		if (trip.getId() == 0) {
 			trip.setOwner(principal);
 		}
-
-		notifySubscriptors(trip);
+		if (trip.getId() != 0) {
+			notifySubscriptors(trip);
+		}
 		tripRepository.save(trip);
 	}
 

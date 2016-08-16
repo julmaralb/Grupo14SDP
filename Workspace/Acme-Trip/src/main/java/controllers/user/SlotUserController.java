@@ -113,7 +113,7 @@ public class SlotUserController extends AbstractController {
 
 		try {
 			slotService.delete(slot);
-			result = new ModelAndView("redirect:/");
+			result = new ModelAndView("redirect:/trip/user/list.do");
 		} catch (Throwable oops) {
 			result = createEditModelAndView(slot, "slot.commit.error");
 		}
