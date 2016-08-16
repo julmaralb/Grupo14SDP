@@ -36,8 +36,6 @@ public class ChargeRecordServiceTest extends AbstractTest{
 				@Autowired
 				private ManagerService managerService;
 				
-				@Autowired
-				private CreditCardService creditCardService;
 				
 				// Tests ---------------------------------------
 				
@@ -71,7 +69,7 @@ public class ChargeRecordServiceTest extends AbstractTest{
 				 * An actor who is authenticated as a manager must be able to:
 				 * 		-Display the charge records that are associated with his or her credit cards.
 				 * 
-				 * Test:Un manager lista los charge records de otro manager
+				 * Negative Test:Un manager lista los charge records de otro manager
 				 */
 				@Test(expected=IllegalArgumentException.class)
 				public void TestListarChargeRecord2(){

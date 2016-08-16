@@ -1,5 +1,7 @@
 package services;
 
+import java.util.Collection;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.util.Assert;
 import utilities.AbstractTest;
 import domain.Actor;
 import domain.Folder;
+import domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/datasource.xml",
@@ -29,6 +32,9 @@ public class FolderServiceTest extends AbstractTest {
 
 	@Autowired
 	private ActorService actorService;
+	
+	@Autowired
+	private UserService userService;
 
 	// Tests ---------------------------------------
 	
@@ -37,38 +43,39 @@ public class FolderServiceTest extends AbstractTest {
 	 * An actor who is authenticated must be able to:
 	 * 		-Manage his or her messages and message boxes.
 	 * 
-	 * Positive Test: Crear una nueva folder
+	 * Positive Test: Un usuario crea una nueva folder
 	 * 
 	 */
 	@Test
-	public void testNewFolder() {
+	public void testNewFolder1() {
 		// Declare variables
-		Actor user;
+		User user;
 		Folder folder;
 		Integer numberOfFolders;
+		Collection<Folder> folders;
 
 		// Load objects to test
 		authenticate("user1");
-		user = actorService.findByPrincipal();
+		user = userService.findByPrincipal();
 
 		// Checks basic requirements
 		Assert.notNull(user, "El usuario no se ha logueado correctamente.");
 
 		// Execution of test
 		numberOfFolders = user.getFolders().size();
-
+		folders= user.getFolders();
 		folder = folderService.create();
 		folder.setName("Nueva carpeta Test");
 		folder.setIsSystem(false);
 		folder.setActor(user);
-
-		folderService.save(folder);
+		folders.add(folder);
+		user.setFolders(folders);
+		userService.save(user);
 		
+		folderService.save(folder);
+
 		// Checks results
 		Assert.isTrue(folder.getActor().equals(user)); // First check
-		
-		//********************** BORRAR ESTO *************************//
-		System.out.print("carpetas: ahora= "+ user.getFolders().size()+" -Antes= "+ numberOfFolders);
 		
 		Assert.isTrue(
 				user.getFolders().size() == numberOfFolders + 1,
@@ -83,40 +90,25 @@ public class FolderServiceTest extends AbstractTest {
 	 * An actor who is authenticated must be able to:
 	 * 		-Manage his or her messages and message boxes.
 	 * 
-	 * Test: Crear una nueva folder sin nombre
+	 * Test: Crear una nueva folder nula
 	 * 
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testNewFolder2() {
 		// Declare variables
-		Actor user;
-		Folder folder;
-		Integer numberOfFolders;
+		User user;
 
 		// Load objects to test
 		authenticate("user1");
-		user = actorService.findByPrincipal();
-
+		user = userService.findByPrincipal();
+		
 		// Checks basic requirements
 		Assert.notNull(user, "El usuario no se ha logueado correctamente.");
 
 		// Execution of test
-		numberOfFolders = user.getFolders().size();
+		
+		folderService.save(null);
 
-		folder = folderService.create();
-		folder.setName(null);
-		folder.setIsSystem(false);
-		folder.setActor(user);
-
-		folderService.save(folder);
-
-		// Checks results
-		//Assert.isTrue(folder.getActor().equals(user)); // First check
-
-		//Assert.isTrue(
-			//	user.getFolders().size() == numberOfFolders + 1,
-				//"El actor no tiene el mismo número de carpetas que antes + 1 tras crearse una nueva carpeta"); // Third
-																												// check
 		unauthenticate();
 
 	}
@@ -133,7 +125,6 @@ public class FolderServiceTest extends AbstractTest {
 		// Declare variables
 		Actor user;
 		Folder folder;
-		Integer numberOfFolders;
 
 		// Load objects to test
 		authenticate("user1");
@@ -143,7 +134,6 @@ public class FolderServiceTest extends AbstractTest {
 		Assert.notNull(user, "El usuario no se ha logueado correctamente.");
 
 		// Execution of test
-		numberOfFolders = user.getFolders().size();
 
 		folder = folderService.create();
 		folder.setName("Nueva Carpeta Test");
@@ -152,13 +142,6 @@ public class FolderServiceTest extends AbstractTest {
 
 		folderService.save(folder);
 
-		// Checks results
-		//Assert.isTrue(folder.getActor().equals(user)); // First check
-
-		//Assert.isTrue(
-			//	user.getFolders().size() == numberOfFolders + 1,
-				//"El actor no tiene el mismo número de carpetas que antes + 1 tras crearse una nueva carpeta"); // Third
-																												// check
 		unauthenticate();
 
 	}

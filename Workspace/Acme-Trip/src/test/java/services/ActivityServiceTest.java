@@ -53,7 +53,7 @@ import domain.Activity;
 				 * An actor who is authenticated as an administrator must be able to:
 				 * 		-Flag comments and activities as inappropriate.
 				 * 
-				 *Test: Un user marca un commentario como inapropiado 
+				 *Negative Test: Un user marca una activity como inapropiada 
 				 */
 				@Test(expected = IllegalArgumentException.class)
 				public void TestFlagActivity2(){
@@ -71,7 +71,7 @@ import domain.Activity;
 				 * An actor who is authenticated as an administrator must be able to:
 				 * 		-Flag comments and activities as inappropriate.
 				 * 
-				 *Test: Un manager marca un commentario como inapropiado 
+				 *Negative Test: Un manager marca una activity como inapropiada 
 				 */
 				@Test(expected = IllegalArgumentException.class)
 				public void TestFlagActivity3(){

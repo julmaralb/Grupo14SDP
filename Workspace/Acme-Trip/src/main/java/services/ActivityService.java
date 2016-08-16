@@ -25,6 +25,9 @@ public class ActivityService {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -103,6 +106,8 @@ public class ActivityService {
 	}
 
 	public void flagActivity(Activity activity) {
+		Assert.notNull(activity);
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));		
 		activity.setInappropriate(true);
 	}
 }

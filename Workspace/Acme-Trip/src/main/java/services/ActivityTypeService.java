@@ -22,6 +22,9 @@ public class ActivityTypeService {
 
 	// Supporting services ----------------------------------------------------
 
+	@Autowired
+	private ActorService actorService;
+	
 	// Constructors -----------------------------------------------------------
 
 	public ActivityTypeService() {
@@ -59,7 +62,7 @@ public class ActivityTypeService {
 
 	public void save(ActivityType activityType) {
 		Assert.notNull(activityType);
-
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		activityTypeRepository.save(activityType);
 	}
 

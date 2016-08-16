@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -63,7 +62,6 @@ public class UserServiceTest extends AbstractTest {
 				// Declare variables
 				User user;
 				UserAccount userAccount;
-				User userRegistered;
 				Actor authenticatedUser;
 				Authority authority;
 				Collection<Authority> authorities;
@@ -94,7 +92,7 @@ public class UserServiceTest extends AbstractTest {
 				
 				user.setUserAccount(userAccount);
 			
-				userRegistered = userService.save(user);
+				userService.save(user);
 				
 				Collection<User> after = userService.findAll();
 				

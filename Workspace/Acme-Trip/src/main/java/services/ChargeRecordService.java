@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 import repositories.ChargeRecordRepository;
 import domain.Actor;
 import domain.ChargeRecord;
+import domain.CreditCard;
 
 @Service
 @Transactional
@@ -27,6 +28,9 @@ public class ChargeRecordService {
 
 	@Autowired
 	private ActorService actorService;
+	
+	@Autowired
+	private CreditCardService creditCardService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -50,11 +54,13 @@ public class ChargeRecordService {
 
 	public ChargeRecord findOne(int chargeRecordId) {
 		Assert.notNull(chargeRecordId);
-
+		Actor principal;
 		ChargeRecord result;
-
+		principal=actorService.findByPrincipal();
 		result = chargeRecordRepository.findOne(chargeRecordId);
-
+		
+		Assert.isTrue(result.getCreditCard().getManager().getId()==principal.getId());
+		
 		return result;
 	}
 
@@ -89,11 +95,14 @@ public class ChargeRecordService {
 			int creditCardId) {
 		Collection<ChargeRecord> result;
 		Actor principal;
-
+		CreditCard cc;
+		
 		principal = actorService.findByPrincipal();
 		result = chargeRecordRepository.findAllByCreditCardIdAndManagerId(
 				creditCardId, principal.getId());
-
+		cc=creditCardService.findOne(creditCardId);
+		
+		Assert.isTrue(cc.getManager().getId()==principal.getId());
 		return result;
 	}
 

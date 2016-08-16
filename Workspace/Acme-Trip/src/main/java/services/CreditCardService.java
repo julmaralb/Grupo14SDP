@@ -43,6 +43,7 @@ public class CreditCardService {
 	// Simple CRUD methods ----------------------------------------------------
 
 	public CreditCard create() {
+		Assert.isTrue(actorService.checkAuthority("MANAGER"));
 		CreditCard result;
 		Manager principal;
 		Collection<Campaign> campaigns;
@@ -61,16 +62,18 @@ public class CreditCardService {
 
 	public CreditCard findOne(int creditCardId) {
 		Assert.notNull(creditCardId);
-
+		
+		Actor principal;
 		CreditCard result;
 
+		principal = managerService.findByPrincipal();
 		result = creditCardRepository.findOne(creditCardId);
-
+		Assert.isTrue(result.getManager().getId()==principal.getId());
 		return result;
 	}
 
 	public Collection<CreditCard> findAll() {
-
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		Collection<CreditCard> result;
 
 		result = creditCardRepository.findAll();
@@ -80,9 +83,12 @@ public class CreditCardService {
 
 	public void save(CreditCard creditCard) {
 		Assert.notNull(creditCard);
+		Assert.isTrue(actorService.checkAuthority("MANAGER"));
+	
 		Manager principal;
 
 		principal = managerService.findByPrincipal();
+		Assert.isTrue(creditCard.getManager().getId()==principal.getId());
 		creditCard.setManager(principal);
 		Assert.isTrue(checkNotExpired(creditCard));
 		creditCardRepository.save(creditCard);
@@ -90,7 +96,10 @@ public class CreditCardService {
 
 	public void delete(CreditCard creditCard) {
 		Assert.notNull(creditCard);
-
+		Actor principal;
+		
+		principal = actorService.findByPrincipal();
+		Assert.isTrue(creditCard.getManager().getId()==principal.getId());
 		creditCardRepository.delete(creditCard);
 	}
 

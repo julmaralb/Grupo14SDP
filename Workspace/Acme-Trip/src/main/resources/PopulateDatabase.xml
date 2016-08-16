@@ -350,7 +350,7 @@
 	
 	<bean id="campaign1" class="domain.Campaign">
 		<property name="title" value="campaignTitle1" />
-		<property name="startMoment" value="10/10/2016" />
+		<property name="startMoment" value="07/07/2016" />
 		<property name="finishMoment" value="11/10/2016" />
 		<property name="cancelled" value="false" />
 		<property name="manager" ref="manager1" />

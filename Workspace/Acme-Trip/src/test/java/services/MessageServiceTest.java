@@ -3,7 +3,6 @@ package services;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -19,7 +18,7 @@ import domain.Message;
 		"classpath:spring/datasource.xml",
 		"classpath:spring/config/packages.xml"})
 @Transactional
-@TransactionConfiguration(defaultRollback = false)
+@TransactionConfiguration(defaultRollback = true)
 public class MessageServiceTest extends AbstractTest {
 
 		// Service under test -------------------------
@@ -61,23 +60,13 @@ public class MessageServiceTest extends AbstractTest {
 		 * An actor who is authenticated must be able to:
 		 * 		-Exchange messages with other users
 		 * 
-		 * Test: Admin envia un mensaje a un user sin body.
+		 * Negative Test: Admin envia un mensaje nulo
 		 */
-			@Test(expected = DataIntegrityViolationException.class)
-			//@Rollback(value = true)
+			@Test(expected = IllegalArgumentException.class)
 			public void testCreateMessageAdmintoUser2() {
 			authenticate("admin");
-			Message message;
-			
-			Actor actor = actorService.findOne(62);
-			message = messageService.create();
-			message.setRecipient(actor);
-			message.setBody(null);
-			message.setSubject("Subject message Test");
-			message.setPriority(1);
-			messageService.sendMessage(message);
-			
-			//Assert.isTrue(messageService.isRecipient(message, actor));
+		
+			messageService.sendMessage(null);
 			
 			unauthenticate();
 		}
@@ -86,12 +75,12 @@ public class MessageServiceTest extends AbstractTest {
 			 *	 An actor who is authenticated must be able to:
 			 * 		-Exchange messages with other users
 			 * 
-			 * Test: Admin envia un mensaje sin receptor.
+			 * Negative Test: Admin envia un mensaje sin receptor.
 			 * 
 			 */
 			
 			// Test crear un message sin receptor
-			@Test(expected = IllegalArgumentException.class)
+			@Test(expected = NullPointerException.class)
 			public void testCreateMessageWithoutRecipient() {
 				authenticate("admin");
 				
@@ -148,7 +137,28 @@ public class MessageServiceTest extends AbstractTest {
 					unauthenticate();
 				}
 				
-					
-			//TODO SPAM TEST		
+					/**
+					 * An actor who is authenticated must be able to:
+					 * 		-Manage his or her messages and message boxes.
+					 * 
+					 * Positive Test: Mover un mensaje a spam
+					 */
+						@Test
+						public void testMoveToSpam1() {
+						authenticate("admin");
+						Message message;
+						String nameBefore;
+						Message message2;
+						String after;
+						
+						message=messageService.findOne(144);
+						nameBefore=message.getFolder().getName();
+						messageService.moveToSpam(message);
+						message2=messageService.findOne(144);
+						after=message2.getFolder().getName();
+						Assert.isTrue(!nameBefore.equals(after), "El mensaje no se ha movido");
+						unauthenticate();
+					}
+						
 			
 }

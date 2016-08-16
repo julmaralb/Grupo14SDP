@@ -90,7 +90,7 @@ public class ActivityTypeServiceTest extends AbstractTest {
 			 * An actor who is authenticated as an administrator must be able to:
 			 * 		-Manage activity types
 			 * 
-			 *Test:Un user cambia el nombre de un activity type
+			 *Negative Test:Un user cambia el nombre de un activity type
 			 */
 			@Test(expected = IllegalArgumentException.class)
 			public void TestModifyActivityType2(){
@@ -112,7 +112,7 @@ public class ActivityTypeServiceTest extends AbstractTest {
 			 * An actor who is authenticated as an administrator must be able to:
 			 * 		-Manage activity types
 			 * 
-			 *Test:Un manager cambia el nombre de un activity type
+			 *Negative Test:Un manager cambia el nombre de un activity type
 			 */
 			@Test(expected = IllegalArgumentException.class)
 			public void TestModifyActivityType3(){
