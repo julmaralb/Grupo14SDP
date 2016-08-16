@@ -77,6 +77,8 @@ public class SocialIdentityService {
 	public void delete(SocialIdentity socialIdentity) {
 		Assert.notNull(socialIdentity);
 
+		Assert.isTrue(socialIdentity.getActor().getId()==actorService.findByPrincipal().getId(),"Solo el dueño puede eliminar");
+		
 		socialIdentityRepository.delete(socialIdentity);
 	}
 

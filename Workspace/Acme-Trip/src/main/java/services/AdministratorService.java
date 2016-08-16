@@ -44,6 +44,9 @@ public class AdministratorService {
 
 	@Autowired
 	private DisplayPriceService displayPriceService;
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -54,6 +57,7 @@ public class AdministratorService {
 	// Simple CRUD methods ----------------------------------------------------
 
 	public Administrator create() {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		Administrator result;
 		UserAccount userAccount;
 
@@ -85,6 +89,7 @@ public class AdministratorService {
 
 	public void save(Administrator administrator) {
 		Assert.notNull(administrator);
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		Md5PasswordEncoder encoder;
 		encoder = new Md5PasswordEncoder();
 

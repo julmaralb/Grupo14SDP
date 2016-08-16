@@ -35,7 +35,7 @@ public class CommentServiceTest extends AbstractTest {
 			 *Positive Test: Marcar un commentario como innapropiado 
 			 */
 			@Test
-			public void TestFlagComment(){
+			public void TestFlagComment1(){
 			
 				authenticate("admin");
 				
@@ -43,8 +43,7 @@ public class CommentServiceTest extends AbstractTest {
 				Boolean inappropiate;
 				comment=commentService.findById(2);
 				inappropiate=comment.isInappropriate();
-				comment.setInappropriate(true);
-				commentService.save(comment);
+				commentService.flagComment(comment);
 				Assert.isTrue(inappropiate!=comment.isInappropriate(),"El mensaje no ha sido marcado como inapropiado");
 				
 				unauthenticate();
@@ -54,7 +53,7 @@ public class CommentServiceTest extends AbstractTest {
 			 * An actor who is authenticated as an administrator must be able to:
 			 * 		-Flag comments and activities as inappropriate.
 			 * 
-			 *Test: Un user marca un commentario como inapropiado 
+			 *Negative Test: Un user marca un commentario como inapropiado 
 			 */
 			@Test(expected = IllegalArgumentException.class)
 			public void TestFlagComment2(){
@@ -63,8 +62,7 @@ public class CommentServiceTest extends AbstractTest {
 				
 				Comment comment;
 				comment=commentService.findById(2);
-				comment.setInappropriate(true);
-				commentService.save(comment);
+				commentService.flagComment(comment);
 			
 				unauthenticate();
 			}
@@ -82,8 +80,7 @@ public class CommentServiceTest extends AbstractTest {
 				
 				Comment comment;
 				comment=commentService.findById(2);
-				comment.setInappropriate(true);
-				commentService.save(comment);
+				commentService.flagComment(comment);
 			
 				unauthenticate();
 			}

@@ -3,6 +3,7 @@ package services;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -58,11 +59,15 @@ public class CampaignService {
 
 	public Campaign findOne(int campaignId) {
 		Assert.notNull(campaignId);
-
+		Actor principal;
+		Manager manager;
 		Campaign result;
 
 		result = campaignRepository.findOne(campaignId);
-
+		manager=result.getManager();
+		principal=actorService.findByPrincipal();
+		Assert.isTrue(manager.getId()==(principal.getId()));
+		
 		return result;
 	}
 
@@ -78,16 +83,29 @@ public class CampaignService {
 	public void save(Campaign campaign) {
 		Assert.notNull(campaign);
 		Manager principal;
-
+		Manager manager;
+		
 		principal = managerService.findByPrincipal();
+		manager= campaign.getManager();
+		Assert.isTrue(manager.getId()==(principal.getId()));
+		
 		campaign.setManager(principal);
-
+			
 		campaignRepository.save(campaign);
 	}
 
 	public void delete(Campaign campaign) {
 		Assert.notNull(campaign);
-
+		Actor principal;
+		Manager manager;
+		Date currentDate;
+		currentDate =new Date();
+		
+		principal = actorService.findByPrincipal();
+		
+		manager= campaign.getManager();
+		Assert.isTrue(manager.getId()==(principal.getId()));
+		Assert.isTrue(!campaign.getStartMoment().before(currentDate));
 		campaignRepository.delete(campaign);
 	}
 
@@ -106,17 +124,28 @@ public class CampaignService {
 	public void cancelCampaign(Campaign campaign) {
 		Calendar currentDate;
 		Calendar startMoment;
+		Date currentDate2;
 		boolean sePuedeCancelar = false;
-
+		Manager manager;
+		Actor principal;
+		
+		currentDate2=new Date();
 		currentDate = Calendar.getInstance();
 		startMoment = Calendar.getInstance();
 		startMoment.setTime(campaign.getStartMoment());
+		manager= campaign.getManager();
+		principal=actorService.findByPrincipal();
+		
+		Assert.isTrue(manager.getId()==(principal.getId()));
+		Assert.isTrue(!campaign.getStartMoment().before(currentDate2));
 		if (currentDate.before(startMoment)) {
 			sePuedeCancelar = true;
 		}
 		if (sePuedeCancelar) {
 			campaign.setCancelled(true);
 		}
+	
+		
 	}
 
 	public boolean canBeModifiedOrDeleted(Campaign campaign) {

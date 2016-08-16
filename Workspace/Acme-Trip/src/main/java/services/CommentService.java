@@ -22,6 +22,9 @@ public class CommentService {
 
 	// Supporting services ----------------------------------------------------
 
+	@Autowired
+	private ActorService actorService;
+	
 	// Constructors -----------------------------------------------------------
 
 	public CommentService() {
@@ -80,6 +83,7 @@ public class CommentService {
 	}
 
 	public void flagComment(Comment comment) {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		comment.setInappropriate(true);
 	}
 }

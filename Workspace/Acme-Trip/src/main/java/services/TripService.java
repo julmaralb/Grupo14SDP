@@ -40,6 +40,9 @@ public class TripService {
 
 	@Autowired
 	private FolderService folderService;
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -54,14 +57,17 @@ public class TripService {
 		User principal;
 		Collection<DailyPlan> dailyPlans;
 		Collection<TripComment> tripComments;
+		Collection<User> subscriptors;
 
 		result = new Trip();
 		dailyPlans = new ArrayList<DailyPlan>();
 		tripComments = new ArrayList<TripComment>();
+		subscriptors=new ArrayList<User>();
 		principal = userService.findByPrincipal();
 		result.setOwner(principal);
 		result.setDailyPlans(dailyPlans);
 		result.setTripComments(tripComments);
+		result.setSubscriptors(subscriptors);
 
 		return result;
 	}
@@ -87,14 +93,15 @@ public class TripService {
 
 	public void save(Trip trip) {
 		Assert.notNull(trip);
-
+		Assert.isTrue(trip.getOwner().getId()==actorService.findByPrincipal().getId(),"Solo el propietario puede modificar el Trip");
 		User principal;
 
 		principal = userService.findByPrincipal();
 		if (trip.getId() == 0) {
 			trip.setOwner(principal);
 		}
-		if (trip.getId() != 0) {
+
+		if(trip.getSubscriptors().size()>=1 && trip.getId() != 0){
 			notifySubscriptors(trip);
 		}
 		tripRepository.save(trip);
@@ -102,6 +109,7 @@ public class TripService {
 
 	public void delete(Trip trip) {
 		Assert.notNull(trip);
+		Assert.isTrue(trip.getOwner().getId()==actorService.findByPrincipal().getId(), "Solo el propietario puede modificar el Trip");
 		tripRepository.delete(trip);
 	}
 
@@ -210,7 +218,7 @@ public class TripService {
 
 		subscriptors = trip.getSubscriptors();
 		sender = trip.getOwner();
-
+		
 		for (User u : subscriptors) {
 			Message m = messageService.create();
 			Folder recipientInbox = folderService.findByNameAndActorId(
@@ -223,6 +231,7 @@ public class TripService {
 			m.setBody("My trip with title: " + trip.getId()
 					+ " has been modified");
 			messageService.save(m);
+		
 		}
 	}
 }

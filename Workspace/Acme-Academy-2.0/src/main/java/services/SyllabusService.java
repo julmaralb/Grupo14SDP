@@ -27,6 +27,12 @@ public class SyllabusService {
 
 	@Autowired
 	private LecturerService lecturerService;
+	
+	@Autowired
+	private SubjectService subjectService;
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -74,13 +80,19 @@ public class SyllabusService {
 			b.setCounter(b.getCounter() + 1);
 		}
 		principal.setCounter(principal.getCounter() + bibliographies.size());
+		
+		Assert.isTrue(subjectService.findByLecturerId(principal.getId()).contains(syllabus.getSubject()),"Solo un Lecturer que enseña ese subject puede asociar un syllabus");
+		
 		syllabusRepository.save(syllabus);
 	}
 
 	public void delete(Syllabus syllabus) {
 		Assert.notNull(syllabus);
 
+		Assert.isTrue(syllabus.getSubject().getLecturer().getId()==actorService.findByPrincipal().getId(),"Solo el que creó el syllabus puede borrarlo");
+		
 		syllabusRepository.delete(syllabus);
+		
 	}
 
 	// Other business methods -------------------------------------------------

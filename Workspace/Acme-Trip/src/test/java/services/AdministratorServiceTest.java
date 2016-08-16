@@ -27,9 +27,6 @@ public class AdministratorServiceTest extends AbstractTest {
 
 			// Other services needed -----------------------
 
-			@Autowired
-			private ActorService actorService;
-
 			// Tests ---------------------------------------
 			
 			/**
@@ -40,7 +37,7 @@ public class AdministratorServiceTest extends AbstractTest {
 			 * 
 			 */
 			@Test
-			public void NewManagerTest(){
+			public void NewAdminTest1(){
 				
 				Administrator administrator;
 				UserAccount userAccount;
@@ -70,11 +67,11 @@ public class AdministratorServiceTest extends AbstractTest {
 			 * An actor who is authenticated as an administrator must be able to
 			 * 		- Register managers and other administrators
 			 * 
-			 * Test: Un user registra un nuevo administrator
+			 * Negative Test: Un user registra un nuevo administrator
 			 * 
 			 */
 			@Test(expected = IllegalArgumentException.class)
-			public void NewManagerTest2(){
+			public void NewAdminTest2(){
 				
 				Administrator administrator;
 				UserAccount userAccount;
@@ -104,11 +101,11 @@ public class AdministratorServiceTest extends AbstractTest {
 			 * An actor who is authenticated as an administrator must be able to
 			 * 		- Register managers and other administrators
 			 * 
-			 * Test: Registrar un nuevo administrator sin estar logueado en el sistema
+			 *Negative Test: Registrar un nuevo administrator sin estar logueado en el sistema
 			 * 
 			 */
 			@Test(expected = IllegalArgumentException.class)
-			public void NewManagerTest3(){
+			public void NewAdminTest3(){
 				
 				Administrator administrator;
 				UserAccount userAccount;
@@ -132,11 +129,11 @@ public class AdministratorServiceTest extends AbstractTest {
 			 * An actor who is authenticated as an administrator must be able to
 			 * 		- Register managers and other administrators
 			 * 
-			 * Test: Un manager registra un nuevo administrator
+			 * Negative Test: Un manager registra un nuevo administrator
 			 * 
 			 */
 			@Test(expected = IllegalArgumentException.class)
-			public void NewManagerTest4(){
+			public void NewAdminTest4(){
 				
 				authenticate("manager1");
 				
@@ -163,11 +160,11 @@ public class AdministratorServiceTest extends AbstractTest {
 			 * An actor who is authenticated as an administrator must be able to
 			 * 		- Register managers and other administrators
 			 * 
-			 * Test: Un admin registra un nuevo administrator
+			 * Negative Test: Un admin registra un nuevo administrator nulo
 			 * 
 			 */
 			@Test(expected = IllegalArgumentException.class)
-			public void NewManagerTest5(){
+			public void NewAdminTest5(){
 							
 				authenticate("admin");
 										

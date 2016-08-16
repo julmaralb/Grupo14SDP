@@ -7,13 +7,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
-
-import domain.CreditCard;
-import domain.Manager;
 
 import security.UserAccount;
 import utilities.AbstractTest;
+import domain.Manager;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/datasource.xml",
@@ -29,9 +26,6 @@ public class ManagerServiceTest extends AbstractTest {
 		private ManagerService managerService;
 
 		// Other services needed -----------------------
-
-		@Autowired
-		private CreditCardService creditCardService;
 		
 		// Tests ---------------------------------------
 		
@@ -43,7 +37,7 @@ public class ManagerServiceTest extends AbstractTest {
 		 * 
 		 */
 		@Test
-		public void NewManagerTest(){
+		public void NewManagerTest1(){
 			
 			Manager manager;
 			UserAccount userAccount;
@@ -73,7 +67,7 @@ public class ManagerServiceTest extends AbstractTest {
 		 * An actor who is authenticated as an administrator must be able to
 		 * 		- Register managers and other administrators
 		 * 
-		 * Test: Un user registra un nuevo manager
+		 * Negative Test: Un user registra un nuevo manager
 		 * 
 		 */
 		@Test(expected = IllegalArgumentException.class)
@@ -107,7 +101,7 @@ public class ManagerServiceTest extends AbstractTest {
 		 * An actor who is authenticated as an administrator must be able to
 		 * 		- Register managers and other administrators
 		 * 
-		 * Test: Registrar un nuevo manager sin estar logueado en el sistema
+		 * Negative Test: Registrar un nuevo manager sin estar logueado en el sistema
 		 * 
 		 */
 		@Test(expected = IllegalArgumentException.class)
@@ -135,7 +129,7 @@ public class ManagerServiceTest extends AbstractTest {
 		 * An actor who is authenticated as an administrator must be able to
 		 * 		- Register managers and other administrators
 		 * 
-		 * Test: Un manager registra un nuevo manager
+		 * Negative Test: Un manager registra un nuevo manager
 		 * 
 		 */
 		@Test(expected = IllegalArgumentException.class)
@@ -165,7 +159,7 @@ public class ManagerServiceTest extends AbstractTest {
 		 * An actor who is authenticated as an administrator must be able to
 		 * 		- Register managers and other administrators
 		 * 
-		 * Test: Un admin registra un nuevo manager
+		 * Negative Test: Un admin registra un nuevo manager nulo
 		 * 
 		 */
 		@Test(expected = IllegalArgumentException.class)

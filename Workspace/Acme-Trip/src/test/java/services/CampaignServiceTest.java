@@ -4,23 +4,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.validation.ConstraintDeclarationException;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import utilities.AbstractTest;
 import domain.Campaign;
 import domain.CreditCard;
 import domain.Manager;
-
-import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/datasource.xml",
@@ -77,19 +73,15 @@ public class CampaignServiceTest extends AbstractTest {
 	 * 		deleting them. A campaign may be modified or deleted as long as it is not started. 
 	 * 		A campaign that has not started yet may be cancelled.
 	 * 
-	 * Test: Un manager lista sus los campaigns de otro manager
+	 * Negative Test: Un manager lista alguna campaign de otro manager
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void TestListarCampaigns2(){
-		Collection<Campaign> campaigns;
-		Manager manager;
-		
+				
 		authenticate("manager1");
 		
-		manager= managerService.findOne(15);
-		
-		campaigns=manager.getCampaigns();
-		
+		campaignService.findOne(48);
+				
 		unauthenticate();
 	}
 	
@@ -99,18 +91,14 @@ public class CampaignServiceTest extends AbstractTest {
 	 * 		deleting them. A campaign may be modified or deleted as long as it is not started. 
 	 * 		A campaign that has not started yet may be cancelled.
 	 * 
-	 * Test: Un user lista los campaigns de un manager
+	 * Negative Test: Un user lista los campaigns de un manager
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void TestListarCampaigns3(){
-		Collection<Campaign> campaigns;
-		Manager manager;
-		
+	
 		authenticate("user1");
 		
-		manager= managerService.findOne(15);
-		
-		campaigns=manager.getCampaigns();
+		campaignService.findOne(48);
 		
 		unauthenticate();
 		
@@ -124,6 +112,7 @@ public class CampaignServiceTest extends AbstractTest {
 		 * 
 		 * Positive Test: Un manager crea una campaigns
 		 */
+		@SuppressWarnings("deprecation")
 		@Test
 		public void TestCrearCampaigns1(){
 			Campaign campaign;
@@ -165,8 +154,9 @@ public class CampaignServiceTest extends AbstractTest {
 		 * 		deleting them. A campaign may be modified or deleted as long as it is not started. 
 		 * 		A campaign that has not started yet may be cancelled.
 		 * 
-		 * Test: Un manager crea una campaigns a otro manager
+		 * Negative Test: Un manager modifica una campaigns a otro manager
 		 */
+		@SuppressWarnings("deprecation")
 		@Test(expected=IllegalArgumentException.class)
 		public void TestCrearCampaigns2(){
 			Campaign campaign;
@@ -183,12 +173,11 @@ public class CampaignServiceTest extends AbstractTest {
 			creditCard=creditCardService.findOne(33);
 			campaign=campaignService.create();
 			
-			
+			campaign.setManager(manager);
 			campaign.setTitle("Titulo Test");
 			campaign.setCancelled(false);
 			campaign.setStartMoment(startMoment);
 			campaign.setFinishMoment(finishMoment);
-			campaign.setManager(manager);
 			campaign.setCreditCard(creditCard);
 			campaignService.save(campaign);
 			manager.getCampaigns().add(campaign);
@@ -204,7 +193,7 @@ public class CampaignServiceTest extends AbstractTest {
 		 * 		deleting them. A campaign may be modified or deleted as long as it is not started. 
 		 * 		A campaign that has not started yet may be cancelled.
 		 * 
-		 * Test: Un manager crea una campaigns null
+		 * Negative Test: Un manager crea una campaigns null
 		 */
 		@Test(expected=IllegalArgumentException.class)
 		public void TestCrearCampaigns3(){
@@ -235,7 +224,7 @@ public class CampaignServiceTest extends AbstractTest {
 			authenticate("admin");
 			campaigns1=campaignService.findAll();
 			authenticate("manager1");
-			campaign=campaignService.findOne(42);
+			campaign=campaignService.findOne(44);
 			campaignService.delete(campaign);
 			
 			manager=managerService.findByPrincipal();			
@@ -249,8 +238,112 @@ public class CampaignServiceTest extends AbstractTest {
 			unauthenticate();
 		}
 		
-		//TODO Test borrado negativos y pruebas cuando ya han empezado
+		/**
+		 * An actor who is authenticated as a manager must be able to:
+		 * 		-Manage his or her campaigns, which includes listing, creating, modifying, and 
+		 * 		deleting them. A campaign may be modified or deleted as long as it is not started. 
+		 * 		A campaign that has not started yet may be cancelled.
+		 * 
+		 * Negative Test: Un manager elimina una campaign de otro manager
+		 */
+		@Test(expected=IllegalArgumentException.class)
+		public void TestBorrarCampaign2(){
+			Campaign campaign;
+				
+			authenticate("manager1");
+			
+			campaign=campaignService.findOne(44);
+			
+			authenticate("manager2");
+			
+			campaignService.delete(campaign);
+			
+			unauthenticate();
+		}
 		
+		/**
+		 * An actor who is authenticated as a manager must be able to:
+		 * 		-Manage his or her campaigns, which includes listing, creating, modifying, and 
+		 * 		deleting them. A campaign may be modified or deleted as long as it is not started. 
+		 * 		A campaign that has not started yet may be cancelled.
+		 * 
+		 * Negative Test: Un manager elimina una campaign que ya ha empezado
+		 */
+		@Test(expected=IllegalArgumentException.class)
+		public void TestBorrarCampaign3(){
+			Campaign campaign;
+					
+			authenticate("manager1");
+			
+			campaign=campaignService.findOne(42);
+	
+			campaignService.delete(campaign);
+			
+			unauthenticate();
+		}
 		
+		/**
+		 * An actor who is authenticated as a manager must be able to:
+		 * 		-Manage his or her campaigns, which includes listing, creating, modifying, and 
+		 * 		deleting them. A campaign may be modified or deleted as long as it is not started. 
+		 * 		A campaign that has not started yet may be cancelled.
+		 * 
+		 * Positive Test: Un manager cancela una campaign que aun no ha comenzado
+		 */
+		@Test
+		public void TestCancelarCampaign1(){
+			Campaign campaign;
+					
+			authenticate("manager1");
+			
+			campaign=campaignService.findOne(44);
+	
+			campaignService.cancelCampaign(campaign);
+			
+			unauthenticate();
+		}
 		
+		/**
+		 * An actor who is authenticated as a manager must be able to:
+		 * 		-Manage his or her campaigns, which includes listing, creating, modifying, and 
+		 * 		deleting them. A campaign may be modified or deleted as long as it is not started. 
+		 * 		A campaign that has not started yet may be cancelled.
+		 * 
+		 * Negative Test: Un manager cancela una campaign que ya ha empezado
+		 */
+		@Test(expected=IllegalArgumentException.class)
+		public void TestCancelarCampaign2(){
+			Campaign campaign;
+					
+			authenticate("manager1");
+			
+			campaign=campaignService.findOne(42);
+	
+			campaignService.cancelCampaign(campaign);
+					
+			unauthenticate();
+		}
+		
+		/**
+		 * An actor who is authenticated as a manager must be able to:
+		 * 		-Manage his or her campaigns, which includes listing, creating, modifying, and 
+		 * 		deleting them. A campaign may be modified or deleted as long as it is not started. 
+		 * 		A campaign that has not started yet may be cancelled.
+		 * 
+		 * Negative Test: Un manager cancela una campaign de otro manager
+		 */
+		@Test(expected=IllegalArgumentException.class)
+		public void TestCancelarCampaign3(){
+			Campaign campaign;
+				
+			authenticate("manager1");
+			
+			campaign=campaignService.findOne(44);
+	
+			authenticate("manager2");
+			
+			campaignService.cancelCampaign(campaign);
+					
+			unauthenticate();
+		}
 }

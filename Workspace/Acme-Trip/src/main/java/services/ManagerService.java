@@ -29,6 +29,9 @@ public class ManagerService {
 
 	@Autowired
 	private FolderService folderService;
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -39,6 +42,7 @@ public class ManagerService {
 	// Simple CRUD methods ----------------------------------------------------
 
 	public Manager create() {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
 		Manager result;
 
 		result = new Manager();

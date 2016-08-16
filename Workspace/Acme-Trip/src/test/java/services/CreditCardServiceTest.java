@@ -11,9 +11,9 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import utilities.AbstractTest;
 import domain.CreditCard;
 import domain.Manager;
-import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/datasource.xml",
@@ -71,7 +71,7 @@ public class CreditCardServiceTest extends AbstractTest {
 	 * An actor who is authenticated as a manager must be able to:
 	 * 		-Manage his or her credit cards, which includes listing, registering, and deleting them.
 	 * 
-	 * Test: Un user añade una nueva credit card
+	 * Negative Test: Un user añade una nueva credit card
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void TestAñadirCreditCard2(){
@@ -130,15 +130,14 @@ public class CreditCardServiceTest extends AbstractTest {
 	 * An actor who is authenticated as a manager must be able to:
 	 * 		-Manage his or her credit cards, which includes listing, registering, and deleting them.
 	 * 
-	 * Test: Un manager lista todas las creditCard en el sistema
+	 * Negative Test: Un manager lista todas las creditCard en el sistema
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void TestListarCreditCard2(){
-		Collection<CreditCard> creditCards;
 		
 		authenticate("manager1");
 	
-		creditCards = creditCardService.findAll();
+		creditCardService.findAll();
 		
 		unauthenticate();
 	}
@@ -147,15 +146,14 @@ public class CreditCardServiceTest extends AbstractTest {
 	 * An actor who is authenticated as a manager must be able to:
 	 * 		-Manage his or her credit cards, which includes listing, registering, and deleting them.
 	 * 
-	 * Test: Un manager lista una creditCard de otro manager
+	 * Negative Test: Un manager lista una creditCard de otro manager
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void TestListarCreditCard3(){
-		CreditCard creditCard;
 		
 		authenticate("manager1");
 	
-		creditCard = creditCardService.findOne(33);
+		creditCardService.findOne(33);
 		
 		unauthenticate();
 	}
@@ -185,7 +183,7 @@ public class CreditCardServiceTest extends AbstractTest {
 	 * An actor who is authenticated as a manager must be able to:
 	 * 		-Manage his or her credit cards, which includes listing, registering, and deleting them.
 	 * 
-	 * Test: Un manager borra una creditCard de otro manager
+	 * Negative Test: Un manager borra una creditCard de otro manager
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void TestBorraCreditCard2(){
@@ -206,18 +204,18 @@ public class CreditCardServiceTest extends AbstractTest {
 	 * An actor who is authenticated as a manager must be able to:
 	 * 		-Manage his or her credit cards, which includes listing, registering, and deleting them.
 	 * 
-	 * Test: Un usuario borra una creditCard suya
+	 * Negative Test: Un usuario borra una creditCard de un manager
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void TestBorraCreditCard3(){
 		CreditCard creditCard;
-		//Manager manager;
-		authenticate("user1");
+		
+		authenticate("manager2");
 	
 		creditCard = creditCardService.findOne(33);
 		
-		//manager=managerService.findByPrincipal();
-		//manager.getCreditCards().remove(creditCard);
+		authenticate("user1");
+		
 		creditCardService.delete(creditCard);
 		
 		unauthenticate();
