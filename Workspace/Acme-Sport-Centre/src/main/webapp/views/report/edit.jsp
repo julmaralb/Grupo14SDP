@@ -14,13 +14,13 @@
 	<form:hidden path="supervisor"/>
 	
 	
-	<acme:textbox code="report.title" path="title" />
-	<acme:textarea code="report.description" path="description" />
+	<acme:textbox code="report.title" path="title" /><br/>
+	<acme:textarea code="report.description" path="description" /><br/>
 	<acme:select items="${courts}" itemLabel="name" code="report.court" path="court"/>
 	
 	<br></br>
 	<acme:submit name="save" code="report.save"/>
-	<acme:cancel code="report.cancel" url="/"/>
+	<acme:cancel code="report.cancel" url="/report/supervisor/list.do"/>
 	<acme:delete code="report.delete" codeConfirm="report.confirm.delete" condition="${report.id != 0}"/>
 	
 </form:form>

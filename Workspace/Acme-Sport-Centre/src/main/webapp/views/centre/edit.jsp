@@ -18,7 +18,6 @@
 	<acme:textbox code="centre.picture" path="picture"/><br/>
 	
 	<acme:submit name="save" code="centre.save"/>
-	<acme:delete code="centre.delete" codeConfirm="centre.confirm.delete" condition="${centre.id != 0}"/>
 	<acme:cancel url="/centre/list.do" code="centre.cancel"/>
 
 </form:form>

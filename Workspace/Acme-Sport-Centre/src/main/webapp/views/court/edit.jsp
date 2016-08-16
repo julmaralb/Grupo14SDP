@@ -17,7 +17,6 @@
 	<acme:select items="${centres}" itemLabel="name" code="court.centre" path="centre"/><br/>
 	
 	<acme:submit name="save" code="court.save"/>
-	<acme:delete code="court.delete" codeConfirm="court.confirm.delete" condition="${court.id != 0}"/>
 	<acme:cancel url="/court/administrator/list.do" code="court.cancel"/>
 
 </form:form>

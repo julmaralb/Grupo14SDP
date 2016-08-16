@@ -113,7 +113,7 @@ public class ReservationCustomerController extends AbstractController {
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(reservation, binding.toString());
+			result = createEditModelAndView(reservation);
 		} else {
 			try {
 				reservationService.save(reservation, hourRangeId);

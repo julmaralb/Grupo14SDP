@@ -115,7 +115,7 @@ public class RentingCustomerController extends AbstractController {
 				rentingService.save(renting);
 				result = new ModelAndView("redirect:list.do");
 			} catch (Throwable oops) {
-				result = createEditModelAndView(renting, "renting.commit.error");
+				result = createEditModelAndView(renting, "reservation.creditCard.error");
 			}
 		}
 		return result;

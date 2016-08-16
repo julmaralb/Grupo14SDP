@@ -39,5 +39,5 @@
 	
 	<br></br>
 	<acme:submit name="save" code="supervisor.save"/>
-	<acme:cancel code="supervisor.cancel" url="/security/login.do"/>
+	<acme:cancel code="supervisor.cancel" url="/"/>
 </form:form>

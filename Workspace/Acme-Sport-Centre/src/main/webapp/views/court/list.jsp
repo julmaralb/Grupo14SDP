@@ -11,6 +11,7 @@
 <display:table name="courts" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 	
+	<acme:column code="court.centre" property="centre.name" sortable="true"/>
 	<acme:column code="court.name" property="name" sortable="true"/>
 	<acme:column code="court.category" property="category" sortable="true"/>
 	  	

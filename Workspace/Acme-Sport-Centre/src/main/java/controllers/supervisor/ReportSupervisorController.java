@@ -87,7 +87,7 @@ public class ReportSupervisorController extends AbstractController {
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(report, binding.toString());
+			result = createEditModelAndView(report);
 		} else {
 			try {
 				reportService.save(report);

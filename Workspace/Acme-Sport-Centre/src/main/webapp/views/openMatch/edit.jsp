@@ -22,7 +22,7 @@
 	
 	<br></br>
 	<acme:submit name="save" code="openMatch.save"/>
-	<acme:cancel code="openMatch.cancel" url="/"/>
+	<acme:cancel code="openMatch.cancel" url="/openMatch/customer/list.do"/>
 	<acme:delete code="openMatch.delete" codeConfirm="openMatch.confirm.delete" condition="${openMatch.id != 0}"/>
 	
 </form:form>

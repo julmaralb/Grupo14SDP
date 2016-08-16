@@ -86,7 +86,7 @@ public class SupervisorAdministratorController extends AbstractController {
 		} else {
 			try {
 				supervisorService.save(supervisor);
-				result = new ModelAndView("redirect:/security/login.do");
+				result = new ModelAndView("redirect:/");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(supervisor,
 						"supervisor.commit.error");

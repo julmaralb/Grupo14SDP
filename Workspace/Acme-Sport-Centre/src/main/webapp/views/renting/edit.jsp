@@ -14,7 +14,7 @@
 	<form:hidden path="sportEquipment"/>
 	
 	<acme:textbox code="renting.code" path="code" readonly="true"/><br/>
-	<acme:textbox code="renting.code" path="sportEquipment.name" readonly="true"/><br/>
+	<acme:textbox code="renting.name" path="sportEquipment.name" readonly="true"/><br/>
 	<acme:textbox code="renting.day" path="day" readonly="true"/><br/>
 	<acme:textbox code="renting.start" path="start" readonly="true"/><br/>
 	<acme:textbox code="renting.end" path="end" readonly="true"/><br/>
