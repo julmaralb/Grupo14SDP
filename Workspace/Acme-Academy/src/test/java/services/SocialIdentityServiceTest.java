@@ -11,10 +11,9 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import utilities.AbstractTest;
 import domain.Actor;
 import domain.SocialIdentity;
-
-import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/datasource.xml",
@@ -32,9 +31,6 @@ public class SocialIdentityServiceTest extends AbstractTest {
 
 	@Autowired
 	private ActorService actorService;
-
-	@Autowired
-	private GroupService groupService;
 
 	// Tests ---------------------------------------
 
@@ -90,7 +86,6 @@ public class SocialIdentityServiceTest extends AbstractTest {
 		actor = actorService.findByPrincipal();
 		socialIdentity = socialIdentityService.create();
 		socialIdentity.setActor(actor);
-		// socialIdentity.setEmail("test@email.com");
 		socialIdentity.setHomePage("http://www.homepage.com");
 		socialIdentity.setName("Name Test");
 		socialIdentity.setNickname("nickname Test");
@@ -261,7 +256,7 @@ public class SocialIdentityServiceTest extends AbstractTest {
 	 * Negative Test: Un student modifica la social identity de otro student;
 	 * 
 	 */
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void TestModificarSocialIdentity2() {
 
 		authenticate("student2");
@@ -292,7 +287,7 @@ public class SocialIdentityServiceTest extends AbstractTest {
 	 * Negative Test: Un student elimina la social identity de otro student;
 	 * 
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void TestEliminarSocialIdentity1() {
 
 		authenticate("student2");

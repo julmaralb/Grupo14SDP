@@ -2,8 +2,6 @@ package services;
 
 import java.util.Date;
 
-import javax.validation.ConstraintViolationException;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,30 +31,29 @@ public class AssignmentServiceTest extends AbstractTest {
 
 	@Autowired
 	private GroupService groupService;
-	
+
 	// Tests ---------------------------------------
 
-	
 	/**
-	 * 8.3 An actor who is authenticated as a lecturer must be able to:
-	 * 		- Create an assignment regarding a subject and assign it to a group of students.
+	 * 8.3 An actor who is authenticated as a lecturer must be able to: - Create
+	 * an assignment regarding a subject and assign it to a group of students.
 	 * 
 	 * Positive Test: Crear un assignment nuevo y asignarselo a un grupo
 	 */
 	@SuppressWarnings("deprecation")
-	@Test 
+	@Test
 	public void testNewAssignment1() {
-		
+
 		authenticate("lecturer1");
-		
+
 		Group group;
 		Assignment assignment;
 		Integer before;
-				
-		group=groupService.findOne(33);
+
+		group = groupService.findOne(33);
 		before = group.getAssignments().size();
-		assignment=assignmentService.create();
-		assignment.setDeadline(new Date(2017,3,3));
+		assignment = assignmentService.create();
+		assignment.setDeadline(new Date(2017, 3, 3));
 		assignment.setDescription("description Test");
 		assignment.setOpening(new Date());
 		assignment.setPoints(1);
@@ -65,29 +62,31 @@ public class AssignmentServiceTest extends AbstractTest {
 		assignmentService.save(assignment);
 		group.getAssignments().add(assignment);
 		groupService.save(group);
-		
-		Assert.isTrue(before+1==groupService.findOne(33).getAssignments().size(),"El grupo no se le ha asignado ningun assignment nuevo");
-		
+
+		Assert.isTrue(before + 1 == groupService.findOne(33).getAssignments()
+				.size(),
+				"El grupo no se le ha asignado ningun assignment nuevo");
+
 		unauthenticate();
 	}
-	
+
 	/**
-	 * 8.3 An actor who is authenticated as a lecturer must be able to:
-	 * 		- Create an assignment regarding a subject and assign it to a group of students.
+	 * 8.3 An actor who is authenticated as a lecturer must be able to: - Create
+	 * an assignment regarding a subject and assign it to a group of students.
 	 * 
-	 * Negative Test: Crear un assignment nuevo sin fecha de fin y asignarselo a un grupo
+	 * Negative Test: Crear un assignment nuevo sin fecha de fin y asignarselo a
+	 * un grupo
 	 */
-	@SuppressWarnings("deprecation")
-	@Test (expected = NullPointerException.class)
+	@Test(expected = NullPointerException.class)
 	public void testNewAssignment2() {
-		
+
 		authenticate("lecturer1");
-		
+
 		Group group;
 		Assignment assignment;
-		
-		group=groupService.findOne(33);
-		assignment=assignmentService.create();
+
+		group = groupService.findOne(33);
+		assignment = assignmentService.create();
 		assignment.setTitle("Title Test");
 		assignment.setOpening(new Date());
 		assignment.setDescription("description Test");
@@ -96,36 +95,37 @@ public class AssignmentServiceTest extends AbstractTest {
 		assignmentService.save(assignment);
 		group.getAssignments().add(assignment);
 		groupService.save(group);
-		
+
 		unauthenticate();
 	}
-	
+
 	/**
-	 * 8.3 An actor who is authenticated as a lecturer must be able to:
-	 * 		- Create an assignment regarding a subject and assign it to a group of students.
+	 * 8.3 An actor who is authenticated as a lecturer must be able to: - Create
+	 * an assignment regarding a subject and assign it to a group of students.
 	 * 
-	 * Negative Test: Crear un assignment nuevo sin fecha de inicio y asignarselo a un grupo
+	 * Negative Test: Crear un assignment nuevo sin fecha de inicio y
+	 * asignarselo a un grupo
 	 */
 	@SuppressWarnings("deprecation")
-	@Test (expected = NullPointerException.class)
+	@Test(expected = NullPointerException.class)
 	public void testNewAssignment3() {
-		
+
 		authenticate("lecturer1");
-		
+
 		Group group;
 		Assignment assignment;
-		
-		group=groupService.findOne(33);
-		assignment=assignmentService.create();
+
+		group = groupService.findOne(33);
+		assignment = assignmentService.create();
 		assignment.setTitle("Title Test");
-		assignment.setDeadline(new Date(2017,3,3));
+		assignment.setDeadline(new Date(2017, 3, 3));
 		assignment.setDescription("description Test");
 		assignment.setPoints(1);
 		assignment.setGroup(group);
 		assignmentService.save(assignment);
 		group.getAssignments().add(assignment);
 		groupService.save(group);
-		
+
 		unauthenticate();
 	}
 }

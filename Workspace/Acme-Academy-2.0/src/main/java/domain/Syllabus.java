@@ -37,6 +37,7 @@ public class Syllabus extends DomainEntity {
 	private Collection<String> prerequisites;
 	private String evaluationAndGradingPolicies;
 
+	@NotNull
 	@Min(2016)
 	public Integer getAcademicYear() {
 		return academicYear;

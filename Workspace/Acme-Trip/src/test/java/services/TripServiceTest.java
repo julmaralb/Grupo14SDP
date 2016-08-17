@@ -427,7 +427,7 @@ public class TripServiceTest extends AbstractTest{
 		
 		
 		
-		//TODO REQUISITO FUNCIONAL B-7.1
+		//TODO REQUISITO FUNCIONAL B-9.1
 		
 		
 		

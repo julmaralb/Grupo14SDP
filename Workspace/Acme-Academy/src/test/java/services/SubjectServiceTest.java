@@ -3,6 +3,8 @@ package services;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.validation.ConstraintViolationException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
+import repositories.SubjectRepository;
 
 import utilities.AbstractTest;
 import domain.Lecturer;
@@ -32,6 +36,9 @@ public class SubjectServiceTest extends AbstractTest {
 
 	@Autowired
 	private LecturerService lecturerService;
+	
+	@Autowired
+	private SubjectRepository subjectRepository;
 
 	// Tests ---------------------------------------
 
@@ -171,9 +178,9 @@ public class SubjectServiceTest extends AbstractTest {
 	 * 10.1 An actor who is authenticated as an administrator must be able to:
 	 * 		- Manage the subjects that are taught in an academy.
 	 * 
-	 * Negative Test: Un admin crea un nuevo subject sin el code
+	 * Negative Test: Un admin crea un nuevo subject sin el nombre
 	 */
-	@Test (expected=IllegalArgumentException.class)
+	@Test (expected=ConstraintViolationException.class)
 	public void testCrearSubject2() {
 
 		authenticate("admin");
@@ -183,7 +190,7 @@ public class SubjectServiceTest extends AbstractTest {
 		Lecturer lecturer;
 		
 		subject=subjectService.create();
-		subject.setTitle("Title Test");
+		subject.setCode("AC-123");
 		lecturer = lecturerService.findOne(13);
 		subject.setLecturer(lecturer);
 		subject.setSyllabus("Syllabus Test");
@@ -193,6 +200,8 @@ public class SubjectServiceTest extends AbstractTest {
 		subjects.add(subject);
 		lecturer.setSubjects(subjects);
 		lecturerService.save(lecturer);		
+		
+		subjectRepository.flush();
 		
 		unauthenticate();
 	}

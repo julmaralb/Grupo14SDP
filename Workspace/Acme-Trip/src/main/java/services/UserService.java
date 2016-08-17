@@ -88,6 +88,9 @@ public class UserService {
 		Md5PasswordEncoder encoder;
 		encoder = new Md5PasswordEncoder();
 
+		if(user.getId()>=1){
+			Assert.isTrue(user.getId()==actorService.findByPrincipal().getId(),"Solo el dueño puede modificar");
+		}
 		if (user.getId() == 0) {
 
 			String password;

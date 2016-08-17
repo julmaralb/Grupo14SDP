@@ -67,7 +67,17 @@ public class SocialIdentityService {
 	public void save(SocialIdentity socialIdentity) {
 		Assert.notNull(socialIdentity);
 		Actor principal;
-
+		
+		if(socialIdentity.getId()>=1){
+			Assert.isTrue(socialIdentity.getActor().getId() == actorService
+					.findByPrincipal().getId(), "Solo el dueño puede modificar");
+		}
+		
+		Assert.notNull(socialIdentity.getEmail(),"Email no puede ser null");
+		Assert.notNull(socialIdentity.getHomePage(),"HomePage no puede ser null");
+		Assert.notNull(socialIdentity.getNickname(),"Nickname no puede ser null");
+		Assert.notNull(socialIdentity.getName(),"Name no puede ser null");
+		
 		principal = actorService.findByPrincipal();
 
 		socialIdentity.setActor(principal);
@@ -77,8 +87,9 @@ public class SocialIdentityService {
 	public void delete(SocialIdentity socialIdentity) {
 		Assert.notNull(socialIdentity);
 
-		Assert.isTrue(socialIdentity.getActor().getId()==actorService.findByPrincipal().getId(),"Solo el dueño puede eliminar");
-		
+		Assert.isTrue(socialIdentity.getActor().getId() == actorService
+				.findByPrincipal().getId(), "Solo el dueño puede eliminar");
+
 		socialIdentityRepository.delete(socialIdentity);
 	}
 

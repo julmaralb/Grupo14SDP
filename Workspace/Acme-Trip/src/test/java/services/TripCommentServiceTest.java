@@ -10,41 +10,44 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
-import domain.Activity;
+import domain.TripComment;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/datasource.xml",
 		"classpath:spring/config/packages.xml" })
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
-public class ActivityServiceTest extends AbstractTest {
+public class TripCommentServiceTest extends AbstractTest {
 
 	// Service under test -------------------------
 
 	@Autowired
-	private ActivityService activityService;
+	private TripCommentService tripCommentService;
 
 	// Other services needed -----------------------
+
+	@Autowired
+	private CommentService commentService;
 
 	// Tests ---------------------------------------
 	/**
 	 * An actor who is authenticated as an administrator must be able to: -Flag
 	 * comments and activities as inappropriate.
 	 * 
-	 * Positive Test: Marcar una activity como innapropiada
+	 * Positive Test: Marcar un commentario como innapropiado
 	 */
 	@Test
-	public void TestFlagActivity() {
+	public void TestFlagComment1() {
 
 		authenticate("admin");
 
-		Activity activity;
-		Boolean inappropiate;
-		activity = activityService.findOne(95);
-		inappropiate = activity.isInappropriate();
-		activityService.flagActivity(activity);
+		TripComment comment;
+		Boolean inappropiate = false;
+		comment = tripCommentService.findOne(131);
+		inappropiate = comment.isInappropriate();
+		commentService.flagComment(comment);
 
-		Assert.isTrue(inappropiate != activity.isInappropriate(),
+		Assert.isTrue(!(inappropiate.equals(comment.isInappropriate())),
 				"El mensaje no ha sido marcado como inapropiado");
 
 		unauthenticate();
@@ -54,16 +57,16 @@ public class ActivityServiceTest extends AbstractTest {
 	 * An actor who is authenticated as an administrator must be able to: -Flag
 	 * comments and activities as inappropriate.
 	 * 
-	 * Negative Test: Un user marca una activity como inapropiada
+	 * Negative Test: Un user marca un commentario como inapropiado
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void TestFlagActivity2() {
+	public void TestFlagComment2() {
 
 		authenticate("user1");
 
-		Activity activity;
-		activity = activityService.findOne(95);
-		activityService.flagActivity(activity);
+		TripComment comment;
+		comment = tripCommentService.findOne(131);
+		commentService.flagComment(comment);
 
 		unauthenticate();
 	}
@@ -72,18 +75,17 @@ public class ActivityServiceTest extends AbstractTest {
 	 * An actor who is authenticated as an administrator must be able to: -Flag
 	 * comments and activities as inappropriate.
 	 * 
-	 * Negative Test: Un manager marca una activity como inapropiada
+	 * Test: Un manager marca un commentario como inapropiado
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void TestFlagActivity3() {
+	public void TestFlagComment3() {
 
 		authenticate("manager1");
 
-		Activity activity;
-		activity = activityService.findOne(95);
-		activityService.flagActivity(activity);
+		TripComment comment;
+		comment = tripCommentService.findOne(131);
+		commentService.flagComment(comment);
 
 		unauthenticate();
 	}
-
 }

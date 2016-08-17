@@ -13,6 +13,7 @@ import repositories.StudentRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Actor;
 import domain.Student;
 import forms.StudentForm;
 
@@ -26,6 +27,9 @@ public class StudentService {
 	private StudentRepository studentRepository;
 
 	// Supporting services ----------------------------------------------------
+
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -68,10 +72,16 @@ public class StudentService {
 	}
 
 	public void save(Student student) {
-		Assert.notNull(student);
+		Assert.notNull(student, "El Student no puede ser null");
 		Md5PasswordEncoder encoder;
 		encoder = new Md5PasswordEncoder();
+		Actor principal;
 
+		if (student.getId() >= 1) {
+			principal=actorService.findByPrincipal();
+			Assert.isTrue(student.getId() == principal.getId());
+		}
+		
 		String password;
 		password = student.getUserAccount().getPassword();
 		password = encoder.encodePassword(password, null);

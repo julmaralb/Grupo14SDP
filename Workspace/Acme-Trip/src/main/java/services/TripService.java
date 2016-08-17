@@ -109,7 +109,7 @@ public class TripService {
 
 	public void delete(Trip trip) {
 		Assert.notNull(trip);
-		Assert.isTrue(trip.getOwner().getId()==actorService.findByPrincipal().getId(), "Solo el propietario puede modificar el Trip");
+		Assert.isTrue(trip.getOwner().getId()==actorService.findByPrincipal().getId(), "Solo el propietario puede eliminar el Trip");
 		tripRepository.delete(trip);
 	}
 

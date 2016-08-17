@@ -24,7 +24,7 @@ public class CommentService {
 
 	@Autowired
 	private ActorService actorService;
-	
+
 	// Constructors -----------------------------------------------------------
 
 	public CommentService() {
@@ -83,7 +83,8 @@ public class CommentService {
 	}
 
 	public void flagComment(Comment comment) {
-		Assert.isTrue(actorService.checkAuthority("ADMIN"));
+		Assert.isTrue(actorService.checkAuthority("ADMIN"),
+				"Solo un ADMIN puede marcar como inapropiado un comentario");
 		comment.setInappropriate(true);
 	}
 }

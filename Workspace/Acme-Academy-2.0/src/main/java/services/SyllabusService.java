@@ -27,10 +27,10 @@ public class SyllabusService {
 
 	@Autowired
 	private LecturerService lecturerService;
-	
+
 	@Autowired
 	private SubjectService subjectService;
-	
+
 	@Autowired
 	private ActorService actorService;
 
@@ -71,6 +71,10 @@ public class SyllabusService {
 
 	public void save(Syllabus syllabus) {
 		Assert.notNull(syllabus);
+		Assert.notNull(syllabus.getAcademicYear());
+		Assert.notNull(syllabus.getGoals());
+		Assert.notNull(syllabus.getSubject());
+		
 		Collection<Bibliography> bibliographies;
 		Lecturer principal = lecturerService.findByPrincipal();
 
@@ -89,10 +93,13 @@ public class SyllabusService {
 	public void delete(Syllabus syllabus) {
 		Assert.notNull(syllabus);
 
-		Assert.isTrue(syllabus.getSubject().getLecturer().getId()==actorService.findByPrincipal().getId(),"Solo el que creó el syllabus puede borrarlo");
-		
+		Assert.isTrue(
+				syllabus.getSubject().getLecturer().getId() == actorService
+						.findByPrincipal().getId(),
+				"Solo el que creó el syllabus puede borrarlo");
+
 		syllabusRepository.delete(syllabus);
-		
+
 	}
 
 	// Other business methods -------------------------------------------------
@@ -152,7 +159,7 @@ public class SyllabusService {
 
 		return result;
 	}
-	
+
 	public Collection<Syllabus> findBySubjectId(int subjectId) {
 		Collection<Syllabus> result;
 
@@ -160,5 +167,5 @@ public class SyllabusService {
 
 		return result;
 	}
-	
+
 }

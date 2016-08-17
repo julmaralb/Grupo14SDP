@@ -83,7 +83,7 @@ public class MessageService {
 		Actor principal;
 
 		Assert.notNull(message);
-
+		
 		principal = actorService.findByPrincipal();
 		milliseconds = System.currentTimeMillis() - 100;
 		message.setMoment(new Date(milliseconds));

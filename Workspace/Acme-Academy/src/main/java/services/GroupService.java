@@ -66,7 +66,9 @@ public class GroupService {
 
 	public void save(Group group) {
 		Assert.notNull(group);
-
+		
+		Assert.notNull(group.getSubject(),"No se puede crear un grupo sin Subject");
+		
 		groupRepository.save(group);
 	}
 

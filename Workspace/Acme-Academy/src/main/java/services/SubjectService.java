@@ -67,7 +67,9 @@ public class SubjectService {
 
 	public void save(Subject subject) {
 		Assert.notNull(subject);
-
+		Assert.notNull(subject.getLecturer());
+		
+		
 		subjectRepository.save(subject);
 	}
 

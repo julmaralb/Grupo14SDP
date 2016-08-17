@@ -67,7 +67,12 @@ public class FolderService {
 		Assert.notNull(folder);
 		Actor principal;
 
+		Assert.isTrue(folder.getIsSystem()==false, "Las carpetas del sistema no se pueden modificar");
 		principal = actorService.findByPrincipal();
+		if (folder.getId() >= 1) {
+			Assert.isTrue(folder.getActor().getId() == principal.getId(),
+					"Solo el dueño puede modificar");
+		}
 		folder.setActor(principal);
 
 		folderRepository.save(folder);
@@ -78,6 +83,11 @@ public class FolderService {
 		Collection<Message> messages;
 		Folder trashFolder;
 		Actor principal;
+
+		principal = actorService.findByPrincipal();
+		Assert.isTrue(folder.getIsSystem()==false, "Las carpetas del sistema no se pueden eliminar");
+		Assert.isTrue(folder.getActor().getId() == principal.getId(),
+				"Solo el dueño puede modificar");
 
 		messages = folder.getMessages();
 		principal = actorService.findByPrincipal();
