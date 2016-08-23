@@ -44,7 +44,7 @@ public class SupervisorAdministratorController extends AbstractController {
 
 		result = new ModelAndView("supervisor/list");
 		result.addObject("supervisors", supervisors);
-		result.addObject("requestURI", "supervisor/adminsitrator/list.do");
+		result.addObject("requestURI", "supervisor/administrator/list.do");
 
 		return result;
 	}

@@ -44,7 +44,7 @@ public class CentreAdministratorController extends AbstractController {
 
 		result = new ModelAndView("centre/list");
 		result.addObject("centres", centres);
-		result.addObject("requestURI", "centre/adminsitrator/list.do");
+		result.addObject("requestURI", "centre/administrator/list.do");
 
 		return result;
 	}

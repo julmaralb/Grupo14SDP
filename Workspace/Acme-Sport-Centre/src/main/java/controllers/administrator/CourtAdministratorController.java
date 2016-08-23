@@ -49,7 +49,7 @@ public class CourtAdministratorController extends AbstractController {
 
 		result = new ModelAndView("court/list");
 		result.addObject("courts", courts);
-		result.addObject("requestURI", "court/adminsitrator/list.do");
+		result.addObject("requestURI", "court/administrator/list.do");
 
 		return result;
 	}

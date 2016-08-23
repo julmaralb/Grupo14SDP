@@ -49,7 +49,7 @@ public class SportEquipmentAdministratorController extends AbstractController {
 
 		result = new ModelAndView("sportEquipment/list");
 		result.addObject("sportEquipments", sportEquipments);
-		result.addObject("requestURI", "sportEquipment/adminsitrator/list.do");
+		result.addObject("requestURI", "sportEquipment/administrator/list.do");
 
 		return result;
 	}
