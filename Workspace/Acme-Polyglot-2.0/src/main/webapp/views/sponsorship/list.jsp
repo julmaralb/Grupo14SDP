@@ -28,7 +28,7 @@
 	
 	<spring:message code="sponsorship.display" var="displayHeader"/>
 	<display:column title="${displayHeader}">
-	<jstl:forEach items="${row.sponsorshipDescriptions}" var="a"><a href="sponsorshipDescription/agent/display.do?code=${a.code}&sponsorshipId=${row.id}"> <jstl:out value="${a.code}"/></a> </jstl:forEach>
+	<jstl:forEach items="${languages}" var="a"><a href="sponsorshipDescription/agent/display.do?code=${a.code}&sponsorshipId=${row.id}"> <jstl:out value="${a.code}"/></a> </jstl:forEach>
 	</display:column>
 	
 	<acme:refColumn ref="sponsorship/agent/edit.do?sponsorshipId=${row.id}" code="sponsorship.edit"/>

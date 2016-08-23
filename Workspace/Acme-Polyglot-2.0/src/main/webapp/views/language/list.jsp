@@ -33,7 +33,7 @@
 	<security:authorize access="hasRole('ADMIN')">
 	<spring:message code="language.display" var="displayHeader"/>
 	<display:column title="${displayHeader}">
-	<jstl:forEach items="${row.languageDescriptions}" var="a"><a href="languageDescription/administrator/display.do?code=${a.code}&languageId=${row.id}"> <jstl:out value="${a.code}"/></a> </jstl:forEach>
+	<jstl:forEach items="${languages}" var="a"><a href="languageDescription/administrator/display.do?code=${a.code}&languageId=${row.id}"> <jstl:out value="${a.code}"/></a> </jstl:forEach>
 	</display:column>
 	</security:authorize>
 	

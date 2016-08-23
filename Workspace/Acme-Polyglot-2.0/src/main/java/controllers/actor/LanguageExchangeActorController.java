@@ -10,8 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.LanguageExchangeService;
+import services.LanguageService;
 import controllers.AbstractController;
 import domain.Actor;
+import domain.Language;
 import domain.LanguageExchange;
 
 @Controller
@@ -25,6 +27,9 @@ public class LanguageExchangeActorController extends AbstractController {
 
 	@Autowired
 	private ActorService actorService;
+	
+	@Autowired
+	private LanguageService languageService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -40,13 +45,16 @@ public class LanguageExchangeActorController extends AbstractController {
 		ModelAndView result;
 		Collection<LanguageExchange> languageExchanges;
 		Actor principal;
+		Collection<Language> languages;
 
 		languageExchanges = languageExchangeService.find3MonthsAgo();
 		principal = actorService.findByPrincipal();
+		languages = languageService.findAll();
 
 		result = new ModelAndView("languageExchange/list");
 		result.addObject("languageExchanges", languageExchanges);
 		result.addObject("principal", principal);
+		result.addObject("languages", languages);
 		result.addObject("requestURI",
 				"languageExchange/actor/list3MonthsAgo.do");
 
@@ -59,13 +67,16 @@ public class LanguageExchangeActorController extends AbstractController {
 		ModelAndView result;
 		Collection<LanguageExchange> languageExchanges;
 		Actor principal;
+		Collection<Language> languages;
 
 		languageExchanges = languageExchangeService.find3MonthsTime();
 		principal = actorService.findByPrincipal();
+		languages = languageService.findAll();
 
 		result = new ModelAndView("languageExchange/list");
 		result.addObject("languageExchanges", languageExchanges);
 		result.addObject("principal", principal);
+		result.addObject("languages", languages);
 		result.addObject("requestURI",
 				"languageExchange/actor/list3MonthsTime.do");
 

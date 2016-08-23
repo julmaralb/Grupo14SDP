@@ -1,6 +1,8 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
@@ -21,7 +23,7 @@ public class LanguageDescriptionService {
 	private LanguageDescriptionRepository languageDescriptionRepository;
 
 	// Supporting services ----------------------------------------------------
-	
+
 	@Autowired
 	private ActorService actorService;
 
@@ -82,10 +84,26 @@ public class LanguageDescriptionService {
 	public LanguageDescription findByLanguageIdAndCode(int languageId,
 			String code) {
 		LanguageDescription result;
+		ArrayList<LanguageDescription> allGivenCode;
+		ArrayList<LanguageDescription> allEnglish;
+		ArrayList<LanguageDescription> all;
+		Random r = new Random();
 
-		result = languageDescriptionRepository.findByLanguageIdAndCode(
-				languageId, code);
+		allGivenCode = languageDescriptionRepository
+				.findAllByLanguageIdAndCode(languageId, code);
+		allEnglish = languageDescriptionRepository.findAllByLanguageIdAndCode(
+				languageId, "en");
+		all = languageDescriptionRepository.findAllByLanguage(languageId);
 
+		if (!allGivenCode.isEmpty()) {
+			result = allGivenCode.get(r.nextInt(allGivenCode.size()));
+		} else if (allGivenCode.isEmpty() && !allEnglish.isEmpty()) {
+			result = allEnglish.get(r.nextInt(allEnglish.size()));
+		} else if (allEnglish.isEmpty() && !all.isEmpty()) {
+			result = all.get(r.nextInt(all.size()));
+		}else{
+			result = allGivenCode.get(r.nextInt(allGivenCode.size()));
+		}
 		return result;
 	}
 }

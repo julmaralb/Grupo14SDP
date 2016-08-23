@@ -1,6 +1,8 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
@@ -67,7 +69,8 @@ public class SponsorshipDescriptionService {
 		Assert.notNull(sponsorshipDescription);
 		Agent principal;
 		principal = agentService.findByPrincipal();
-		Assert.isTrue(sponsorshipDescription.getSponsorship().getAgent().equals(principal));
+		Assert.isTrue(sponsorshipDescription.getSponsorship().getAgent()
+				.equals(principal));
 
 		sponsorshipDescriptionRepository.save(sponsorshipDescription);
 	}
@@ -76,7 +79,8 @@ public class SponsorshipDescriptionService {
 		Assert.notNull(sponsorshipDescription);
 		Agent principal;
 		principal = agentService.findByPrincipal();
-		Assert.isTrue(sponsorshipDescription.getSponsorship().getAgent().equals(principal));
+		Assert.isTrue(sponsorshipDescription.getSponsorship().getAgent()
+				.equals(principal));
 
 		sponsorshipDescriptionRepository.delete(sponsorshipDescription);
 
@@ -95,13 +99,30 @@ public class SponsorshipDescriptionService {
 		return result;
 	}
 
-	public SponsorshipDescription findBySponsorshipIdAndCode(
-			int sponsorshipId, String code) {
+	public SponsorshipDescription findBySponsorshipIdAndCode(int sponsorshipId,
+			String code) {
 		SponsorshipDescription result;
+		ArrayList<SponsorshipDescription> allGivenCode;
+		ArrayList<SponsorshipDescription> allEnglish;
+		ArrayList<SponsorshipDescription> all;
+		Random r = new Random();
 
-		result = sponsorshipDescriptionRepository.findBySponsorshipIdAndCode(
-				sponsorshipId, code);
+		allGivenCode = sponsorshipDescriptionRepository
+				.findAllBySponsorshipIdAndCode(sponsorshipId, code);
+		allEnglish = sponsorshipDescriptionRepository
+				.findAllBySponsorshipIdAndCode(sponsorshipId, "en");
+		all = sponsorshipDescriptionRepository
+				.findAllBySponsorship(sponsorshipId);
 
+		if (!allGivenCode.isEmpty()) {
+			result = allGivenCode.get(r.nextInt(allGivenCode.size()));
+		} else if (allGivenCode.isEmpty() && !allEnglish.isEmpty()) {
+			result = allEnglish.get(r.nextInt(allEnglish.size()));
+		} else if (allEnglish.isEmpty() && !all.isEmpty()) {
+			result = all.get(r.nextInt(all.size()));
+		}else{
+			result = allGivenCode.get(r.nextInt(allGivenCode.size()));
+		}
 		return result;
 	}
 }

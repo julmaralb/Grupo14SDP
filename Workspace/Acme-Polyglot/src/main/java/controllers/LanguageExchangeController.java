@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.LanguageExchangeService;
+import services.LanguageService;
+import domain.Language;
 import domain.LanguageExchange;
 
 @Controller
@@ -19,6 +21,9 @@ public class LanguageExchangeController extends AbstractController{
 
 	@Autowired
 	private LanguageExchangeService languageExchangeService;
+	
+	@Autowired
+	private LanguageService languageService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -33,11 +38,14 @@ public class LanguageExchangeController extends AbstractController{
 
 		ModelAndView result;
 		Collection<LanguageExchange> languageExchanges;
+		Collection<Language> languages;
 
 		languageExchanges = languageExchangeService.find3MonthsAgo();
+		languages = languageService.findAll();
 
 		result = new ModelAndView("languageExchange/list");
 		result.addObject("languageExchanges", languageExchanges);
+		result.addObject("languages", languages);
 		result.addObject("requestURI", "languageExchange/list3MonthsAgo.do");
 
 		return result;
@@ -48,11 +56,14 @@ public class LanguageExchangeController extends AbstractController{
 
 		ModelAndView result;
 		Collection<LanguageExchange> languageExchanges;
+		Collection<Language> languages;
 
 		languageExchanges = languageExchangeService.find3MonthsTime();
+		languages = languageService.findAll();
 
 		result = new ModelAndView("languageExchange/list");
 		result.addObject("languageExchanges", languageExchanges);
+		result.addObject("languages", languages);
 		result.addObject("requestURI", "languageExchange/list3MonthsTime.do");
 
 		return result;

@@ -63,7 +63,7 @@
 	
 	<spring:message code="languageExchange.display" var="displayHeader"/>
 	<display:column title="${displayHeader}">
-	<jstl:forEach items="${row.languageExchangeDescriptions}" var="a"><a href="languageExchangeDescription/display.do?code=${a.code}&languageExchangeId=${row.id}"> <jstl:out value="${a.code}"/></a> </jstl:forEach>
+	<jstl:forEach items="${languages}" var="a"><a href="languageExchangeDescription/display.do?code=${a.code}&languageExchangeId=${row.id}"> <jstl:out value="${a.code}"/></a> </jstl:forEach>
 	</display:column>
 	
 	<security:authorize access="hasRole('POLYGLOT')">

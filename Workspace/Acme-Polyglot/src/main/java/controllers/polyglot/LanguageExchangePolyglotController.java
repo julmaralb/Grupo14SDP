@@ -49,13 +49,16 @@ public class LanguageExchangePolyglotController extends AbstractController {
 		ModelAndView result;
 		Collection<LanguageExchange> languageExchanges;
 		Polyglot principal;
+		Collection<Language> languages;
 
 		languageExchanges = languageExchangeService.findAllByPrincipal();
 		principal = polyglotService.findByPrincipal();
+		languages = languageService.findAll();
 
 		result = new ModelAndView("languageExchange/list");
 		result.addObject("requestURI", "languageExchange/polyglot/list.do");
 		result.addObject("principal", principal);
+		result.addObject("languages", languages);
 		result.addObject("languageExchanges", languageExchanges);
 
 		return result;
@@ -66,14 +69,17 @@ public class LanguageExchangePolyglotController extends AbstractController {
 		ModelAndView result;
 		Collection<LanguageExchange> languageExchanges;
 		Polyglot principal;
+		Collection<Language> languages;
 
 		languageExchanges = languageExchangeService.findAllJoinedByPrincipal();
 		principal = polyglotService.findByPrincipal();
+		languages = languageService.findAll();
 
 		result = new ModelAndView("languageExchange/list");
 		result.addObject("requestURI",
 				"languageExchange/polyglot/listJoined.do");
 		result.addObject("principal", principal);
+		result.addObject("languages", languages);
 		result.addObject("languageExchanges", languageExchanges);
 
 		return result;

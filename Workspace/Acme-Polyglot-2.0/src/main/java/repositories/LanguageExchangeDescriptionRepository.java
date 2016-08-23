@@ -1,5 +1,6 @@
 package repositories;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,8 +16,17 @@ public interface LanguageExchangeDescriptionRepository extends
 	@Query("select led from LanguageExchangeDescription led where led.languageExchange.owner.id = ?1")
 	Collection<LanguageExchangeDescription> findAllByPolyglotId(int polyglotId);
 
+	// @Query("select led from LanguageExchange le join le.languageExchangeDescriptions led where le.id = ?1 AND led.code = ?2")
+	// LanguageExchangeDescription findByExchangeIdAndCode(int
+	// languageExchangeId,
+	// String code);
+
 	@Query("select led from LanguageExchange le join le.languageExchangeDescriptions led where le.id = ?1 AND led.code = ?2")
-	LanguageExchangeDescription findByExchangeIdAndCode(int languageExchangeId,
-			String code);
+	ArrayList<LanguageExchangeDescription> findAllByLanguageExchangeIdAndCode(
+			int languageExchangeId, String code);
+
+	@Query("select led from LanguageExchange le join le.languageExchangeDescriptions led where le.id = ?1")
+	ArrayList<LanguageExchangeDescription> findAllByLanguageExchange(
+			int languageExchangeId);
 
 }

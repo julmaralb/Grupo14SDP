@@ -15,9 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AgentService;
 import services.LanguageExchangeService;
+import services.LanguageService;
 import services.SponsorshipService;
 import controllers.AbstractController;
 import domain.Agent;
+import domain.Language;
 import domain.LanguageExchange;
 import domain.Sponsorship;
 
@@ -36,6 +38,9 @@ public class SponsorshipAgentController extends AbstractController {
 	@Autowired
 	private SponsorshipService sponsorshipService;
 
+	@Autowired
+	private LanguageService languageService;
+
 	// Constructors -----------------------------------------------------------
 
 	public SponsorshipAgentController() {
@@ -48,12 +53,15 @@ public class SponsorshipAgentController extends AbstractController {
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Sponsorship> sponsorships;
+		Collection<Language> languages;
 
 		sponsorships = sponsorshipService.findAllByPrincipal();
+		languages = languageService.findAll();
 
 		result = new ModelAndView("sponsorship/list");
 		result.addObject("requestURI", "sponsorship/agent/list.do");
 		result.addObject("sponsorships", sponsorships);
+		result.addObject("languages", languages);
 
 		return result;
 	}

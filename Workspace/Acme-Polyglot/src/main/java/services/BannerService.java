@@ -114,11 +114,13 @@ public class BannerService {
 				languageExchangeId, "en");
 		all = bannerRepository.findAllByLangageExchange(languageExchangeId);
 
-		if (allGivenCode.isEmpty() && !allEnglish.isEmpty()) {
+		if (!allGivenCode.isEmpty()) {
+			result = allGivenCode.get(r.nextInt(allGivenCode.size()));
+		} else if (allGivenCode.isEmpty() && !allEnglish.isEmpty()) {
 			result = allEnglish.get(r.nextInt(allEnglish.size()));
 		} else if (allEnglish.isEmpty() && !all.isEmpty()) {
 			result = all.get(r.nextInt(all.size()));
-		} else {
+		}else{
 			result = allGivenCode.get(r.nextInt(allGivenCode.size()));
 		}
 		return result;
