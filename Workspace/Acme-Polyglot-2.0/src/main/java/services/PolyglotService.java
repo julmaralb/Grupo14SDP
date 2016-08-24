@@ -211,5 +211,9 @@ public class PolyglotService {
 		result.setSurname(surname);
 		result.setName(name);
 		result.setEmail(email);
+		
+		if(result.getEmail() == "" && result.getPhone() == ""){
+			throw new IllegalArgumentException("Must have a contact mean either phone or email");
+		}
 	}
 }
