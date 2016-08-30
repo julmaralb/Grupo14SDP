@@ -77,7 +77,7 @@ function initialize() {
 	<div>
 		<spring:message code="languageExchange.name"/> : <jstl:out value="${languageExchange.name}"></jstl:out><br/>
     	<spring:message code="languageExchange.registrationDate"/> : <jstl:out value="${languageExchange.registrationDate}"></jstl:out><br/>
-    	<spring:message code="languageExchange.exchangePlace"/> : <jstl:out value="${languageExchange.exchangePlace}"></jstl:out><br/>
+    	<spring:message code="languageExchange.exchangePlace"/> : <jstl:out value="${languageExchange.exchangePlace}"></jstl:out>   <a href="https://www.google.com/maps/place/${languageExchange.exchangePlace}">Google Map</a>
     </div>
   </fieldset>
 

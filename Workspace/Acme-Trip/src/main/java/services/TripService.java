@@ -95,6 +95,8 @@ public class TripService {
 		Assert.notNull(trip);
 		Assert.isTrue(trip.getOwner().getId()==actorService.findByPrincipal().getId(),"Solo el propietario puede modificar el Trip");
 		User principal;
+		
+		Assert.isTrue(trip.getStartingDate().before(trip.getEndingDate()));
 
 		principal = userService.findByPrincipal();
 		if (trip.getId() == 0) {

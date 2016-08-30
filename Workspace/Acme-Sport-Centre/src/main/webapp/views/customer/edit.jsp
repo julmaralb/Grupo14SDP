@@ -34,8 +34,8 @@
   	<legend><spring:message code="customer.accountInfo"/>:</legend>
 
 	<acme:textbox code="customer.username" path="username"/><br/>
-	<acme:textbox code="customer.password" path="password"/><br/>
-	<acme:textbox code="customer.secondPassword" path="secondPassword"/><br/>
+	<acme:password code="customer.password" path="password"/><br/>
+	<acme:password code="customer.secondPassword" path="secondPassword"/><br/>
 
 	</fieldset>
 	

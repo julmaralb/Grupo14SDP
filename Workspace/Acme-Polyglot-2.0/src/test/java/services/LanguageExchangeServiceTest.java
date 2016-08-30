@@ -325,7 +325,7 @@ public class LanguageExchangeServiceTest extends AbstractTest {
 		
 		result = languageExchangeService.find3MonthsTime();
 		
-		Assert.isTrue(result.size()==4);
+		Assert.isTrue(result.size()==5);
 
 	}
 

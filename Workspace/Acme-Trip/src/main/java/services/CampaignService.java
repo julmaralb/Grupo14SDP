@@ -85,6 +85,8 @@ public class CampaignService {
 		Manager principal;
 		Manager manager;
 		
+		Assert.isTrue(campaign.getStartMoment().before(campaign.getFinishMoment()));
+		
 		principal = managerService.findByPrincipal();
 		manager= campaign.getManager();
 		Assert.isTrue(manager.getId()==(principal.getId()));

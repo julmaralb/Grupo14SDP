@@ -125,7 +125,7 @@ public class SponsorshipServiceTest extends AbstractTest {
 
 		authenticate("agent1");
 		
-		sponsorship = sponsorshipService.findOne(24);
+		sponsorship = sponsorshipService.findOne(29);
 		
 		sponsorshipService.delete(sponsorship);
 		allAfter= sponsorshipService.findAll();

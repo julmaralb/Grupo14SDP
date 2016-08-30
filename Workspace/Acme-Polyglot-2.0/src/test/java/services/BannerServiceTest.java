@@ -88,7 +88,7 @@ public class BannerServiceTest extends AbstractTest {
 		authenticate("agent1");
 		
 		banner = bannerService.create();
-		sponsorship = sponsorshipService.findOne(61);
+		sponsorship = sponsorshipService.findOne(66);
 		all = bannerService.findAll();
 		Assert.isTrue(all.size()== 5);
 		

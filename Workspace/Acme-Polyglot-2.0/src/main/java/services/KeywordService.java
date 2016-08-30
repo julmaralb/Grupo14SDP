@@ -82,7 +82,7 @@ public class KeywordService {
 
 		principal = actorService.findByPrincipal();
 		keywords = principal.getKeywords();
-		key = keywordRepository.findByKeyword(keyword);
+		key = keywordRepository.findByKeyword(keyword, principal.getId());
 
 		if (key == null) {
 			Keyword newKeyword = create();

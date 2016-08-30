@@ -41,6 +41,7 @@ public class CustomerServiceTest extends AbstractTest {
 	public void testCreateCustomer1() {
 		Customer customer;
 		
+		authenticate(null);
 		Assert.isTrue(customerService.findAll().size()==2);	
 		customer = customerService.create();
 		

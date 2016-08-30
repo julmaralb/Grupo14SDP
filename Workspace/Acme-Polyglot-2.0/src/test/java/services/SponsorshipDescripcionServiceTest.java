@@ -103,7 +103,7 @@ public class SponsorshipDescripcionServiceTest  extends AbstractTest {
 		authenticate("agent1");
 		
 		sponsorshipDescription = sponsorshipDescriptionService.create();
-		sponsorship = sponsorshipService.findOne(61);
+		sponsorship = sponsorshipService.findOne(66);
 		
 		sponsorshipDescription.setSponsorship(sponsorship);
 		sponsorshipDescription.setCode("fa");

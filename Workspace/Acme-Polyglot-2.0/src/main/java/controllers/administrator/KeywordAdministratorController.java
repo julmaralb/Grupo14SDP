@@ -55,8 +55,7 @@ public class KeywordAdministratorController extends AbstractController {
 
 		result = new ModelAndView("keyword/list");
 		result.addObject("keywords", keywords);
-		result.addObject("requestURI",
-				"keyword/administrator/listByActor.do");
+		result.addObject("requestURI", "keyword/administrator/listByActor.do");
 
 		return result;
 	}

@@ -58,7 +58,7 @@ public class LanguageDescriptionServiceTest extends AbstractTest {
 		authenticate("admin");
 		
 		languageDescription = languageDescriptionService.create();
-		language = languageService.findOne(64);
+		language = languageService.findOne(72);
 		
 		languageDescription.setLanguage(language);
 		languageDescription.setCode("fa");
