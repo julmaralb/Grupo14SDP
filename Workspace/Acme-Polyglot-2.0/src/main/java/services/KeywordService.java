@@ -1,6 +1,8 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import javax.transaction.Transactional;
 
@@ -102,6 +104,31 @@ public class KeywordService {
 
 		result = keywordRepository.findAllByActorId(actorId);
 
+		return result;
+	}
+
+	public Collection<Object[]> generalKeywordsStatistics() {
+		Collection<Object[]> result;
+		HashMap<String, Integer> map;
+		Collection<Keyword> all;
+
+		result = new ArrayList<Object[]>();
+		map = new HashMap<String, Integer>();
+		all = keywordRepository.findAll();
+
+		for (Keyword k : all) {
+			if (!map.containsKey(k.getKeyword())) {
+				map.put(k.getKeyword(), k.getCount());
+			} else {
+				map.put(k.getKeyword(), map.get(k.getKeyword()) + 1);
+			}
+		}
+		for(String s: map.keySet()){
+			Object[] obj = new Object[2];
+			obj[0] = s;
+			obj[1] = map.get(s);
+			result.add(obj);
+		}
 		return result;
 	}
 }

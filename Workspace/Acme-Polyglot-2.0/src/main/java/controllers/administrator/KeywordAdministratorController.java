@@ -34,9 +34,9 @@ public class KeywordAdministratorController extends AbstractController {
 	public ModelAndView list() {
 
 		ModelAndView result;
-		Collection<Keyword> keywords;
+		Collection<Object[]> keywords;
 
-		keywords = keywordService.findAll();
+		keywords = keywordService.generalKeywordsStatistics();
 
 		result = new ModelAndView("keyword/list");
 		result.addObject("keywords", keywords);
@@ -53,7 +53,7 @@ public class KeywordAdministratorController extends AbstractController {
 
 		keywords = keywordService.findAllByActorId(actorId);
 
-		result = new ModelAndView("keyword/list");
+		result = new ModelAndView("keyword/list2");
 		result.addObject("keywords", keywords);
 		result.addObject("requestURI", "keyword/administrator/listByActor.do");
 

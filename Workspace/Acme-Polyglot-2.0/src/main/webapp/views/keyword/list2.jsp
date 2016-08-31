@@ -24,15 +24,8 @@
 <display:table name="keywords" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
-	<spring:message code="keyword.keyword" var="keywordHeader" />
-	<display:column title="${keywordHeader}" sortable="true">
-	<jstl:out value="${row[0]}"/>
-	</display:column>
-	
-	<spring:message code="keyword.count" var="countHeader" />
-	<display:column title="${countHeader}" sortable="true">
-	<jstl:out value="${row[1]}"/>
-	</display:column>
+	<acme:column code="keyword.keyword" property="keyword" sortable="true"/>
+	<acme:column code="keyword.count" property="count" sortable="true"/>
 				
 </display:table>
 <acme:cancel url="/administrator/dashboard.do" code="keyword.back"/>
